@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.rhynia.astro;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;

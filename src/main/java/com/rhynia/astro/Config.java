@@ -1,4 +1,4 @@
-package com.myname.mymodid;
+package com.rhynia.astro;
 
 import java.io.File;
 
