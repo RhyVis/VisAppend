@@ -15,7 +15,7 @@ public class MaterialAstra implements IColorModulationContainer, ISubTagContaine
         1.0F,
         0,
         2,
-        1|2|8|32|64|128,
+        1|2|8|16|32|128,
         0,
         50,
         255,
