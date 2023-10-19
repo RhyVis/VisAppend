@@ -1,8 +1,8 @@
 package com.rhynia.astro;
 
-import java.io.File;
-
 import net.minecraftforge.common.config.Configuration;
+
+import java.io.File;
 
 public class Config {
 
