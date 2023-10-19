@@ -1,87 +1,55 @@
 package com.rhynia.astro.Material;
 
-import gregtech.api.enums.Dyes;
+import static gregtech.api.enums.OrePrefixes.ingot;
+import static gregtech.api.enums.OrePrefixes.nugget;
+
+import java.util.Arrays;
+
+import gregtech.api.enums.MaterialBuilder;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.SubTag;
+import gregtech.api.enums.TC_Aspects;
+import gregtech.api.enums.TC_Aspects.TC_AspectStack;
 import gregtech.api.enums.TextureSet;
-import gregtech.api.interfaces.IColorModulationContainer;
-import gregtech.api.interfaces.ISubTagContainer;
 
-public class MaterialAstra implements IColorModulationContainer, ISubTagContainer {
+public class MaterialAstra {
 
-    public static Materials Astro = new Materials(
-        250,
-        TextureSet.SET_SHINY,
-        1.0F,
-        0,
-        2,
-        1 | 2 | 4 | 8 | 16 | 32,
-        65,
-        105,
-        225,
-        0,
-        "Astro",
-        "Astro",
-        0,
-        0,
-        8500,
-        9500,
-        true,
-        true,
-        10,
-        1,
-        1,
-        Dyes._NULL,
-        "custom",
-        false,
-        "");
+    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_METALLIC, "星辉").setName("Astro")
+        .setRGBA(150, 219, 252, 255)
+        .addDustItems()
+        .addGemItems()
+        .addFluid()
+        .addPlasma()
+        .setLiquidTemperature(200)
+        .addCell()
+        .setAspects(
+            Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.PRAECANTATIO, 1)))
+        .constructMaterial();
 
-    public static Materials AstroInf = new Materials(
-        251,
-        TextureSet.SET_SHINY,
-        1.0F,
-        0,
-        2,
-        1 | 2 | 4 | 8 | 16 | 32,
-        0,
-        191,
-        255,
-        0,
-        "AstroInf",
-        "AstroInf",
-        0,
-        0,
-        8500,
-        10300,
-        true,
-        true,
-        10,
-        1,
-        1,
-        Dyes._NULL,
-        "custom",
-        false,
-        "");
+    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_METALLIC, "星极").setName("AstroInf")
+        .setRGBA(150, 219, 252, 255)
+        .addDustItems()
+        .addGemItems()
+        .addFluid()
+        .addPlasma()
+        .addGas()
+        .setGasTemperature(8000)
+        .setLiquidTemperature(250)
+        .addCell()
+        .setAspects(
+            Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 15), new TC_AspectStack(TC_Aspects.PRAECANTATIO, 1)))
+        .constructMaterial();
 
-    @SuppressWarnings("unused")
+    public static void init() {
+        Astro.mChemicalFormula = "Ao";
+        AstroInf.mChemicalFormula = "Aoⁿ";
 
-    @Override
-    public short[] getRGBA() {
-        return new short[0];
-    }
+        Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.NO_SMELTING);
+        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.NO_SMELTING);
 
-    @Override
-    public boolean contains(SubTag aTag) {
-        return false;
-    }
-
-    @Override
-    public ISubTagContainer add(SubTag... aTags) {
-        return null;
-    }
-
-    @Override
-    public boolean remove(SubTag aTag) {
-        return false;
+        ingot.mNotGeneratedItems.add(Astro);
+        ingot.mNotGeneratedItems.add(AstroInf);
+        nugget.mNotGeneratedItems.add(Astro);
+        nugget.mNotGeneratedItems.add(AstroInf);
     }
 }
