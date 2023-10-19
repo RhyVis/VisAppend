@@ -1,5 +1,6 @@
 package com.rhynia.astro;
 
+import com.rhynia.astro.Material.MaterialAstra;
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -14,6 +15,8 @@ public class CommonProxy {
 
         Astro.LOG.info(Config.greeting);
         Astro.LOG.info("I am " + Tags.MODNAME + " at version " + Tags.VERSION);
+
+        new MaterialAstra();
     }
 
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
