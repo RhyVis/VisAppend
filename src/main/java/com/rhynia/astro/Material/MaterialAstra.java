@@ -20,19 +20,18 @@ public class MaterialAstra {
         .addGemItems()
         .addCell()
         .setLiquidTemperature(200)
-        .setGasTemperature(7400)
         .addFluid()
         .setAspects(Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.ALIENIS, 1)))
         .constructMaterial();
 
-    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "AstroInf").setName("AstroInf")
+    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "AstroInf")
+        .setName("AstroInf")
         .setRGBA(0, 191, 255, 255)
         .addDustItems()
         .addGemItems()
         .addCell()
         .setLiquidTemperature(50)
-        .setGasTemperature(8000)
-        .addGas()
+        .addFluid()
         .setAspects(
             Arrays.asList(
                 new TC_AspectStack(TC_Aspects.ORDO, 15),
@@ -45,7 +44,7 @@ public class MaterialAstra {
         AstroInf.mChemicalFormula = "Aoⁿ";
 
         Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.SMELTING_TO_FLUID);
-        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING);
+        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.SMELTING_TO_FLUID);
 
         ingot.mNotGeneratedItems.add(Astro);
         ingot.mNotGeneratedItems.add(AstroInf);
