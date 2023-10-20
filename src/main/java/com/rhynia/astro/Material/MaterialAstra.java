@@ -14,30 +14,32 @@ import gregtech.api.enums.TextureSet;
 
 public class MaterialAstra {
 
-    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_METALLIC, "星辉").setName("Astro")
-        .setRGBA(150, 219, 252, 255)
+    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "星辉").setName("星辉")
+        .setRGBA(30, 144, 252, 255)
         .addDustItems()
         .addGemItems()
-        .addFluid()
+        .addCell()
         .addPlasma()
         .setLiquidTemperature(200)
-        .addCell()
-        .setAspects(
-            Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.PRAECANTATIO, 1)))
+        .setGasTemperature(5600)
+        .addFluid()
+        .setAspects(Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.ALIENIS, 1)))
         .constructMaterial();
 
-    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_METALLIC, "星极").setName("AstroInf")
-        .setRGBA(150, 219, 252, 255)
+    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "星极").setName("星极")
+        .setRGBA(0, 191, 255, 255)
         .addDustItems()
         .addGemItems()
-        .addFluid()
-        .addPlasma()
-        .addGas()
-        .setGasTemperature(8000)
-        .setLiquidTemperature(250)
         .addCell()
+        .addPlasma()
+        .setLiquidTemperature(250)
+        .setGasTemperature(8000)
+        .addFluid()
         .setAspects(
-            Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 15), new TC_AspectStack(TC_Aspects.PRAECANTATIO, 1)))
+            Arrays.asList(
+                new TC_AspectStack(TC_Aspects.ORDO, 15),
+                new TC_AspectStack(TC_Aspects.ALIENIS, 9),
+                new TC_AspectStack(TC_Aspects.POTENTIA, 5)))
         .constructMaterial();
 
     public static void init() {
