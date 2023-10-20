@@ -42,7 +42,7 @@ public class MaterialAstra {
                 new TC_AspectStack(TC_Aspects.POTENTIA, 5)))
         .constructMaterial();
 
-    public static void init() {
+    static {
         Astro.mChemicalFormula = "Ao";
         AstroInf.mChemicalFormula = "Aoⁿ";
 
