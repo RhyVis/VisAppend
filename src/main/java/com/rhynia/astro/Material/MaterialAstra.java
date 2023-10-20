@@ -13,7 +13,7 @@ import gregtech.api.enums.TextureSet;
 
 public class MaterialAstra {
 
-    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_DIAMOND, "Astro").setName("Astro")
+    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro").setName("Astro")
         .setRGBA(30, 144, 252, 255)
         .addDustItems()
         .addGemItems()
@@ -23,8 +23,7 @@ public class MaterialAstra {
         .setAspects(Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.ALIENIS, 1)))
         .constructMaterial();
 
-    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_NETHERSTAR, "AstroInf")
-        .setName("AstroInf")
+    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_DIAMOND, "AstroInf").setName("AstroInf")
         .setRGBA(0, 191, 255, 255)
         .addDustItems()
         .addGemItems()
@@ -54,6 +53,12 @@ public class MaterialAstra {
         screw.mNotGeneratedItems.add(AstroInf);
         rod.mNotGeneratedItems.add(Astro);
         rod.mNotGeneratedItems.add(AstroInf);
+        stick.mNotGeneratedItems.add(Astro);
+        stick.mNotGeneratedItems.add(AstroInf);
+        stickLong.mNotGeneratedItems.add(Astro);
+        stickLong.mNotGeneratedItems.add(AstroInf);
+        bolt.mNotGeneratedItems.add(Astro);
+        bolt.mNotGeneratedItems.add(AstroInf);
         itemCasing.mNotGeneratedItems.add(Astro);
         itemCasing.mNotGeneratedItems.add(AstroInf);
         plate.mNotGeneratedItems.add(Astro);
