@@ -42,8 +42,8 @@ public class MaterialAstra {
         Astro.mChemicalFormula = "Ao";
         AstroInf.mChemicalFormula = "Aoⁿ";
 
-        Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.SMELTING_TO_FLUID);
-        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.SMELTING_TO_FLUID);
+        Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING);
+        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING);
 
         ingot.mNotGeneratedItems.add(Astro);
         ingot.mNotGeneratedItems.add(AstroInf);
