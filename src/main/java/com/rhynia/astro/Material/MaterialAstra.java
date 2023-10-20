@@ -14,27 +14,25 @@ import gregtech.api.enums.TextureSet;
 
 public class MaterialAstra {
 
-    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "星辉").setName("星辉")
+    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro").setName("Astro")
         .setRGBA(30, 144, 252, 255)
         .addDustItems()
         .addGemItems()
         .addCell()
-        .addPlasma()
         .setLiquidTemperature(200)
-        .setGasTemperature(5600)
+        .setGasTemperature(7400)
         .addFluid()
         .setAspects(Arrays.asList(new TC_AspectStack(TC_Aspects.ORDO, 3), new TC_AspectStack(TC_Aspects.ALIENIS, 1)))
         .constructMaterial();
 
-    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "星极").setName("星极")
+    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "AstroInf").setName("AstroInf")
         .setRGBA(0, 191, 255, 255)
         .addDustItems()
         .addGemItems()
         .addCell()
-        .addPlasma()
-        .setLiquidTemperature(250)
+        .setLiquidTemperature(50)
         .setGasTemperature(8000)
-        .addFluid()
+        .addGas()
         .setAspects(
             Arrays.asList(
                 new TC_AspectStack(TC_Aspects.ORDO, 15),
@@ -46,8 +44,8 @@ public class MaterialAstra {
         Astro.mChemicalFormula = "Ao";
         AstroInf.mChemicalFormula = "Aoⁿ";
 
-        Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.NO_SMELTING);
-        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.NO_SMELTING);
+        Astro.add(SubTag.CRYSTAL, SubTag.NO_SMASHING, SubTag.SMELTING_TO_FLUID);
+        AstroInf.add(SubTag.CRYSTAL, SubTag.NO_SMASHING);
 
         ingot.mNotGeneratedItems.add(Astro);
         ingot.mNotGeneratedItems.add(AstroInf);
