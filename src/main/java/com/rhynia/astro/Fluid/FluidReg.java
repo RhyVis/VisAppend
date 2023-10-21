@@ -43,14 +43,25 @@ public class FluidReg implements Runnable {
         TextureSet.SET_FLUID);
     // Astro Fuel MKI
     public static final Werkstoff astroFuelMKI = new Werkstoff(
-        new short[] { 0x19, 0x19, 0x70 },
+        new short[] { 0x00, 0xcd, 0xcd },
         "AstroFuelMKI",
-        "((Ao₂Nq+₈)₂Ao₂Nq*₆)Nq₂Aoⁿ",
+        "((Ao₂Nq+₈)₂Ao₂Nq*₆)Nq₂",
         new Werkstoff.Stats().setRadioactive(true),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .addCells(),
         OffsetID + 3,
+        TextureSet.SET_FLUID);
+    // Astro Fuel MKI Depleted
+    public static final Werkstoff astroFuelMKIDepleted = new Werkstoff(
+        new short[] { 0x00, 0x8b, 0x8b },
+        "AstroFuelMKIDepleted",
+        "~Aoⁿ~",
+        new Werkstoff.Stats().setRadioactive(true),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells(),
+        OffsetID + 4,
         TextureSet.SET_FLUID);
 
     @Override
