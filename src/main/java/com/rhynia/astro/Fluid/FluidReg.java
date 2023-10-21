@@ -1,33 +1,25 @@
 package com.rhynia.astro.Fluid;
 
-import static gregtech.api.enums.FluidState.*;
+import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
-import gregtech.api.fluid.GT_FluidFactory;
+import gregtech.api.enums.TextureSet;
 
 public class FluidReg implements Runnable {
 
-    @Override
-    public void run() {
-        GT_FluidFactory.builder("AstroActivated")
-            .withLocalizedName("激发态星辉超流体")
-            .withStateAndTemperature(LIQUID, 250)
-            .buildAndRegister()
-            .asFluid();
-        GT_FluidFactory.builder("AstroUnstable")
-            .withLocalizedName("亚稳态星辉超流体")
-            .withStateAndTemperature(LIQUID, 25)
-            .buildAndRegister()
-            .asFluid();
-        GT_FluidFactory.builder("AstroLimited")
-            .withLocalizedName("极限态星辉超载体")
-            .withStateAndTemperature(LIQUID, 10)
-            .buildAndRegister()
-            .asFluid();
-        GT_FluidFactory.builder("AstroCatalyst")
-            .withLocalizedName("星辉催化载体")
-            .withStateAndTemperature(PLASMA, 1100)
-            .buildAndRegister()
-            .asFluid();
-    }
+    protected static final int OffsetID = 24510;
 
+    // AstroActivated
+    public static final Werkstoff astroActivated = new Werkstoff(
+        new short[] { 0x3a, 0x77, 0x3d },
+        "Astro Activated Fluid",
+        "AoNq",
+        new Werkstoff.Stats().setRadioactive(true),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells(),
+        OffsetID,
+        TextureSet.SET_FLUID);
+
+    @Override
+    public void run() {}
 }
