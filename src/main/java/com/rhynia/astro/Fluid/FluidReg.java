@@ -10,16 +10,45 @@ public class FluidReg implements Runnable {
 
     // AstroActivated
     public static final Werkstoff astroActivated = new Werkstoff(
-        new short[] { 0x3a, 0x77, 0x3d },
-        "Astro Activated Fluid",
-        "AoNq",
+        new short[] { 0x5f, 0x9e, 0xa0 },
+        "AstroActivated",
+        "Ao₂Nq+₈",
         new Werkstoff.Stats().setRadioactive(true),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .addCells(),
         OffsetID,
         TextureSet.SET_FLUID);
-
+    public static final Werkstoff astroUnstable = new Werkstoff(
+        new short[] { 0x64, 0x82, 0xb4 },
+        "AstroUnstable",
+        "Ao₂Nq*₆",
+        new Werkstoff.Stats().setRadioactive(true),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells(),
+        OffsetID + 1,
+        TextureSet.SET_FLUID);
+    public static final Werkstoff astroLimit = new Werkstoff(
+        new short[] { 0x64, 0x82, 0xb4 },
+        "AstroLimit",
+        "(Ao₂Nq+₈)₂Ao₂Nq*₆",
+        new Werkstoff.Stats().setRadioactive(true),
+        Werkstoff.Types.MIXTURE,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells(),
+        OffsetID + 2,
+        TextureSet.SET_FLUID);
+    public static final Werkstoff astroFuelMKI = new Werkstoff(
+        new short[] { 0x19, 0x19, 0x70 },
+        "AstroFuelMKI",
+        "((Ao₂Nq+₈)₂Ao₂Nq*₆)Nq₂Aoⁿ",
+        new Werkstoff.Stats().setRadioactive(true),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells(),
+        OffsetID + 3,
+        TextureSet.SET_FLUID);
     @Override
     public void run() {}
 }
