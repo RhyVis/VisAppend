@@ -8,7 +8,7 @@ public class FluidReg implements Runnable {
 
     protected static final int OffsetID = 24510;
 
-    // AstroActivated
+    // Astro Activated Liquid
     public static final Werkstoff astroActivated = new Werkstoff(
         new short[] { 0x5f, 0x9e, 0xa0 },
         "AstroActivated",
@@ -19,6 +19,7 @@ public class FluidReg implements Runnable {
             .addCells(),
         OffsetID,
         TextureSet.SET_FLUID);
+    // Astro Unstable Liquid
     public static final Werkstoff astroUnstable = new Werkstoff(
         new short[] { 0x64, 0x82, 0xb4 },
         "AstroUnstable",
@@ -29,6 +30,7 @@ public class FluidReg implements Runnable {
             .addCells(),
         OffsetID + 1,
         TextureSet.SET_FLUID);
+    // Astro Liquid at Limit
     public static final Werkstoff astroLimit = new Werkstoff(
         new short[] { 0x64, 0x82, 0xb4 },
         "AstroLimit",
@@ -39,6 +41,7 @@ public class FluidReg implements Runnable {
             .addCells(),
         OffsetID + 2,
         TextureSet.SET_FLUID);
+    // Astro Fuel MKI
     public static final Werkstoff astroFuelMKI = new Werkstoff(
         new short[] { 0x19, 0x19, 0x70 },
         "AstroFuelMKI",
@@ -49,6 +52,7 @@ public class FluidReg implements Runnable {
             .addCells(),
         OffsetID + 3,
         TextureSet.SET_FLUID);
+
     @Override
     public void run() {}
 }
