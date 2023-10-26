@@ -75,6 +75,18 @@ public class FluidReg implements Runnable {
             .enforceUnification(),
         OffsetID + 5,
         TextureSet.SET_FLUID);
+    public static final Werkstoff astroCatalystActivated = new Werkstoff(
+        new short[] { 0x6a, 0x5a, 0xcd },
+        "AstroCatalystBaseActivated",
+        "(?AoⁿIf?)*",
+        new Werkstoff.Stats().setRadioactive(true).setMeltingPoint(980),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .onlyDust()
+            .addMolten()
+            .enforceUnification(),
+        OffsetID + 6,
+        TextureSet.SET_FLUID);
 
     @Override
     public void run() {}
