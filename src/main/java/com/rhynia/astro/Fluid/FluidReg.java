@@ -45,7 +45,7 @@ public class FluidReg implements Runnable {
     public static final Werkstoff astroFuelMKI = new Werkstoff(
         new short[] { 0x00, 0xcd, 0xcd },
         "AstroFuelMKI",
-        "((Ao₂Nq+₈)₂Ao₂Nq*₆)Nq₂",
+        "~?Ao?~",
         new Werkstoff.Stats().setRadioactive(true),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
@@ -62,6 +62,18 @@ public class FluidReg implements Runnable {
         new Werkstoff.GenerationFeatures().disable()
             .addCells(),
         OffsetID + 4,
+        TextureSet.SET_FLUID);
+    public static final Werkstoff astroCatalystBase = new Werkstoff(
+        new short[] { 0x48, 0x3d, 0x8b },
+        "AstroCatalystBase",
+        "?AoⁿIf?",
+        new Werkstoff.Stats().setRadioactive(true).setSublimation(true).setBoilingPoint(570).setGas(true),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .onlyDust()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 5,
         TextureSet.SET_FLUID);
 
     @Override
