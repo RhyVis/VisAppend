@@ -67,7 +67,10 @@ public class FluidReg implements Runnable {
         new short[] { 0x48, 0x3d, 0x8b },
         "AstroCatalystBase",
         "?AoⁿIf?",
-        new Werkstoff.Stats().setRadioactive(true).setSublimation(true).setBoilingPoint(570).setGas(true),
+        new Werkstoff.Stats().setRadioactive(true)
+            .setSublimation(true)
+            .setBoilingPoint(570)
+            .setGas(true),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .onlyDust()
@@ -79,7 +82,8 @@ public class FluidReg implements Runnable {
         new short[] { 0x6a, 0x5a, 0xcd },
         "AstroCatalystBaseActivated",
         "(?AoⁿIf?)*",
-        new Werkstoff.Stats().setRadioactive(true).setMeltingPoint(980),
+        new Werkstoff.Stats().setRadioactive(true)
+            .setMeltingPoint(980),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .onlyDust()
