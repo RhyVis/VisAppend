@@ -13,25 +13,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class GTNHExtend {
 
-    /**
-     * <li>The signal of whether in Development Mode.
-     * <li>Keep care to set 'false' when dev complete.
-     */
-    public static final boolean isInDevMode = false;
-
-    /**
-     * The absolute Path of your workspace/resources folder.
-     * If it not work correctly, please operate it manually and disable
-     */
-    public static String DevResource = "";
-
-    public static final String MODID = Tags.MODID;
-    public static final String MOD_ID = Tags.MODID;
-    public static final String MOD_NAME = Tags.MODNAME;
-    public static final String VERSION = Tags.VERSION;
-
-    @Mod.Instance
-    public static GTNHExtend instance;
 
     @SidedProxy(clientSide = "com.rhynia.gtnhextend.ClientProxy", serverSide = "com.rhynia.gtnhextend.CommonProxy")
     public static CommonProxy proxy;
