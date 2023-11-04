@@ -45,7 +45,7 @@ public enum ContinerList implements IItemContainer {
     @Override
     public Item getItem() {
         sanityCheck();
-        if (GT_Utility.isStackInvalid(mStack)) return null;// TODO replace a default issue item
+        if (GT_Utility.isStackInvalid(mStack)) return null;
         return mStack.getItem();
     }
 
