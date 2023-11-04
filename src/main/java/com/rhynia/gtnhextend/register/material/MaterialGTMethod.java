@@ -11,9 +11,10 @@ import gregtech.api.enums.TC_Aspects;
 import gregtech.api.enums.TC_Aspects.TC_AspectStack;
 import gregtech.api.enums.TextureSet;
 
-public class MaterialGTMethod {
+public class MaterialGTMethod implements Runnable {
 
-    public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro").setName("Astro")
+    public static final Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro")
+        .setName("Astro")
         .setRGBA(30, 144, 252, 255)
         .addDustItems()
         .addGemItems()
@@ -27,7 +28,8 @@ public class MaterialGTMethod {
                 new TC_AspectStack(TC_Aspects.VACUOS, 1)))
         .constructMaterial();
 
-    public static Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_DIAMOND, "AstroInf").setName("AstroInf")
+    public static final Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_DIAMOND, "AstroInf")
+        .setName("AstroInf")
         .setRGBA(0, 191, 255, 255)
         .addDustItems()
         .addGemItems()
@@ -42,7 +44,7 @@ public class MaterialGTMethod {
                 new TC_AspectStack(TC_Aspects.POTENTIA, 5)))
         .constructMaterial();
 
-    public static Materials AstroMagic = new MaterialBuilder(252, TextureSet.SET_DIAMOND, "AstroMagic")
+    public static final Materials AstroMagic = new MaterialBuilder(252, TextureSet.SET_DIAMOND, "AstroMagic")
         .setName("AstroMagic")
         .setRGBA(0, 32, 178, 170)
         .addDustItems()
@@ -103,4 +105,7 @@ public class MaterialGTMethod {
         gemFlawed.mNotGeneratedItems.add(AstroInf);
         gemFlawed.mNotGeneratedItems.add(AstroMagic);
     }
+
+    @Override
+    public void run() {}
 }
