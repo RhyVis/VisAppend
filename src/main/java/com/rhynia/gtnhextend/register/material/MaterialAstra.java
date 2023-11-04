@@ -1,4 +1,4 @@
-package com.rhynia.astro.Material;
+package com.rhynia.gtnhextend.register.material;
 
 import static gregtech.api.enums.OrePrefixes.*;
 

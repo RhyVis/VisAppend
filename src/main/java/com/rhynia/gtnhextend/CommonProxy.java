@@ -1,7 +1,7 @@
-package com.rhynia.astro;
+package com.rhynia.gtnhextend;
 
-import com.rhynia.astro.Fluid.FluidReg;
-import com.rhynia.astro.Material.MaterialAstra;
+import com.rhynia.gtnhextend.register.fluid.FluidReg;
+import com.rhynia.gtnhextend.register.material.MaterialAstra;
 
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 

@@ -1,4 +1,4 @@
-package com.rhynia.astro.Fluid;
+package com.rhynia.gtnhextend.register.fluid;
 
 import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 

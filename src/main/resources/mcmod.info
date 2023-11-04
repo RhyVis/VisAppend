@@ -6,7 +6,7 @@
 		"description": "A simple mod used in GTNH for tewak use.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/F-vssr/Mod-Astro",
+		"url": "https://github.com/RhyVis/GTNH-Extend",
 		"updateUrl": "",
 		"authorList": ["Rhynia"],
 		"credits": "",

@@ -1,4 +1,4 @@
-package com.rhynia.astro;
+package com.rhynia.gtnhextend;
 
 public class ClientProxy extends CommonProxy {
 
