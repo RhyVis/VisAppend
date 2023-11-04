@@ -11,7 +11,7 @@ import gregtech.api.enums.TC_Aspects;
 import gregtech.api.enums.TC_Aspects.TC_AspectStack;
 import gregtech.api.enums.TextureSet;
 
-public class MaterialAstra {
+public class MaterialGTMethod {
 
     public static Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro").setName("Astro")
         .setRGBA(30, 144, 252, 255)
