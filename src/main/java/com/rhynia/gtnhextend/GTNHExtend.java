@@ -8,7 +8,6 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
     modid = Tags.MODID,
     version = Tags.VERSION,
     name = Tags.MODNAME,
-    dependencies = "required-after:IC2; " + "required-after:gregtech; " + "required-after:bartworks; ",
     acceptedMinecraftVersions = "[1.7.10]")
 
 public class GTNHExtend {
