@@ -8,6 +8,17 @@ public class MaterialBartworksMethod implements Runnable {
 
     protected static final int OffsetID = 24510;
 
+    // Primogem
+    public static final Werkstoff Primogem = new Werkstoff(
+        new short[] { 0x87, 0xce, 0xeb },
+        "Primogem",
+        "Maybe you were right, but...",
+        new Werkstoff.Stats(),
+        Werkstoff.Types.MATERIAL,
+        new Werkstoff.GenerationFeatures().disable()
+            .addGems().addMetalItems(),
+        OffsetID - 1,
+        TextureSet.SET_NETHERSTAR);
     // Astro Activated Liquid
     public static final Werkstoff astroActivated = new Werkstoff(
         new short[] { 0x5f, 0x9e, 0xa0 },
