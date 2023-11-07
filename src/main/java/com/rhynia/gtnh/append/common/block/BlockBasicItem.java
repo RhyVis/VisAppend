@@ -5,7 +5,7 @@ import static com.rhynia.gtnh.append.common.block.BlockBasic.MetaBlock01;
 import static com.rhynia.gtnh.append.util.UtilMetaItemStack.initMetaItemStack;
 import static com.rhynia.gtnh.append.util.UtilMetaItemStack.metaItemStackTooltipsAdd;
 
-import java.util.*;
+
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -15,6 +15,13 @@ import net.minecraft.item.ItemStack;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.util.GT_LanguageManager;
+
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Map;
+import java.util.Set;
+import java.util.Arrays;
+import java.util.List;
 
 public class BlockBasicItem extends ItemBlock {
     // region statics
