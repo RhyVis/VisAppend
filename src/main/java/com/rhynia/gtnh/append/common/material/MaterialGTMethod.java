@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.register.material;
+package com.rhynia.gtnh.append.common.material;
 
 import static gregtech.api.enums.OrePrefixes.*;
 
@@ -19,6 +19,7 @@ public class MaterialGTMethod implements Runnable {
         .addDustItems()
         .addGemItems()
         .addCell()
+        .addMetalItems()
         .setLiquidTemperature(200)
         .addFluid()
         .setAspects(
