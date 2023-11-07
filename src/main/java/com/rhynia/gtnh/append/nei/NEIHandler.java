@@ -11,31 +11,9 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class NEIHandler {
 
     public static void IMCSender() {
+        sendHandler("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
 
-        sendHandler("gtcm.recipe.IntensifyChemicalDistorterRecipes", "gregtech:gt.blockmachines:19001");
-        sendHandler("gtcm.recipe.PreciseHighEnergyPhotonicQuantumMasterRecipes", "gregtech:gt.blockmachines:19002");
-        sendHandler("gtcm.recipe.MiracleTopRecipes", "gregtech:gt.blockmachines:19003");
-
-        sendCatalyst("gtcm.recipe.IntensifyChemicalDistorterRecipes", "gregtech:gt.blockmachines:19001");
-        sendCatalyst("gtcm.recipe.PreciseHighEnergyPhotonicQuantumMasterRecipes", "gregtech:gt.blockmachines:19002");
-        sendCatalyst("gtcm.recipe.MiracleTopRecipes", "gregtech:gt.blockmachines:19003");
-        sendCatalyst("gt.recipe.largechemicalreactor", "gregtech:gt.blockmachines:19001", -20);
-        sendCatalyst("gt.recipe.laserengraver", "gregtech:gt.blockmachines:19002", -10);
-        sendCatalyst("gt.recipe.metalbender", "gregtech:gt.blockmachines:19004", -10);
-        sendCatalyst("gt.recipe.press", "gregtech:gt.blockmachines:19004", -10);
-        sendCatalyst("gt.recipe.hammer", "gregtech:gt.blockmachines:19004", -10);
-        sendCatalyst("gt.recipe.extruder", "gregtech:gt.blockmachines:19004", -10);
-        sendCatalyst("gt.recipe.fluidextractor", "gregtech:gt.blockmachines:19005", -10);
-        sendCatalyst("gt.recipe.fluidsolidifier", "gregtech:gt.blockmachines:19005", -10);
-        sendCatalyst("gtpp.recipe.multimixer", "gregtech:gt.blockmachines:19006", -10);
-        sendCatalyst("gt.recipe.polarizer", "gregtech:gt.blockmachines:19007", -10);
-        sendCatalyst("gt.recipe.electromagneticseparator", "gregtech:gt.blockmachines:19007", -10);
-        sendCatalyst("gt.recipe.wiremill", "gregtech:gt.blockmachines:19008", -10);
-        sendCatalyst("gt.recipe.slicer", "gregtech:gt.blockmachines:19009", -10);
-        sendCatalyst("gt.recipe.cuttingsaw", "gregtech:gt.blockmachines:19009", -10);
-        sendCatalyst("gt.recipe.extractor", "gregtech:gt.blockmachines:19010", -10);
-        sendCatalyst("gt.recipe.compressor", "gregtech:gt.blockmachines:19010", -10);
-
+        sendCatalyst("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
     }
 
     private static void sendHandler(String aName, String aBlock) {
