@@ -4,9 +4,8 @@ import com.rhynia.gtnh.append.util.UtilDevPathHelper;
 import com.rhynia.gtnh.append.util.UtilTextHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
+import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 @Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.7.10]")
 
@@ -28,10 +27,6 @@ public class GTNHAppend {
     public static final String MOD_NAME = Tags.MODNAME;
     public static final String VERSION = Tags.VERSION;
 
-    /**
-     * If you need send a message to the Log, call {@link GTNHAppend#LOG#info(String message)} .
-     */
-    public static final Logger LOG = LogManager.getLogger(Tags.MODID);
     @SidedProxy(clientSide = "com.rhynia.gtnh.append.ClientProxy", serverSide = "com.rhynia.gtnh.append.CommonProxy")
     public static CommonProxy proxy;
 
@@ -42,5 +37,12 @@ public class GTNHAppend {
         UtilTextHandler.initLangMap(isInDevMode);
 
         proxy.preInit(event);
+    }
+
+    @Mod.EventHandler
+    // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
+    public void postInit(FMLPostInitializationEvent event) {
+        proxy.postInit(event);
+        UtilTextHandler.serializeLangMap(isInDevMode);
     }
 }

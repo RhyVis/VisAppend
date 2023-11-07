@@ -31,7 +31,6 @@ public class UtilTextHandler {
          */
         if (GTNHAppend.isInDevMode) {
             if (LangMap.get(aKey) == null) {
-                GTNHAppend.LOG.info("Texter get a new key - TextLine: " + aKey + " - " + aTextLine);
                 LangMapNeedToWrite.put(aKey, aTextLine);
                 return aTextLine;
             } else {
@@ -47,7 +46,6 @@ public class UtilTextHandler {
 
         if (GTNHAppend.isInDevMode) {
             if (LangMap.get(aKey) == null) {
-                GTNHAppend.LOG.info("Texter get a new key - TextLine: " + aKey + " - " + aTextLine);
                 LangMapNeedToWrite.put(aKey, aTextLine);
             }
         }
@@ -119,37 +117,25 @@ public class UtilTextHandler {
             /* Prepare the files. */
             File en_US_lang = new File(GTNHAppend.DevResource + "\\assets\\GTNHAppend\\lang\\en_US.lang");
             File zh_CN_lang = new File(GTNHAppend.DevResource + "\\assets\\GTNHAppend\\lang\\zh_CN.lang");
-            GTNHAppend.LOG
-                .info("File finder with en_US.lang catch a file absolutePath: " + en_US_lang.getAbsolutePath());
-            GTNHAppend.LOG.info("File finder with en_US.lang catch a file named: " + en_US_lang.getName());
 
             /* Write the new textLines in the end of the lang file. */
-            GTNHAppend.LOG.info("Start write new text: " + en_US_lang.getAbsolutePath());
 
             try {
                 FileWriter en_Us = new FileWriter(en_US_lang, true);
                 FileWriter zh_CN = new FileWriter(zh_CN_lang, true);
                 for (String key : LangMapNeedToWrite.keySet()) {
-                    GTNHAppend.LOG
-                        .info("en_US write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
                     en_Us.write(key);
                     en_Us.write("=");
                     en_Us.write(LangMapNeedToWrite.get(key));
                     en_Us.write("\n");
-                    GTNHAppend.LOG.info("en_US write a Line COMPLETE.");
-                    GTNHAppend.LOG
-                        .info("zh_CN write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
                     zh_CN.write(key);
                     zh_CN.write("=");
                     zh_CN.write(LangMapNeedToWrite.get(key));
                     zh_CN.write("\n");
-                    GTNHAppend.LOG.info("zh_CN write a Line COMPLETE.");
                 }
-                GTNHAppend.LOG.info("Finish to write new text: " + en_US_lang.getAbsolutePath());
                 en_Us.close();
                 zh_CN.close();
             } catch (IOException e) {
-                GTNHAppend.LOG.info("Error in serializeLangMap() File Writer en_US");
                 throw new RuntimeException(e);
             }
 
