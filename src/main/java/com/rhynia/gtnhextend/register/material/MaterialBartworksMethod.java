@@ -14,11 +14,22 @@ public class MaterialBartworksMethod implements Runnable {
         "Primogem",
         "Maybe you were right, but...",
         new Werkstoff.Stats(),
-        Werkstoff.Types.MATERIAL,
+        Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
-            .addGems().addMetalItems(),
-        OffsetID - 1,
+            .addGems(),
+        OffsetID - 2,
         TextureSet.SET_NETHERSTAR);
+    // Originiums
+    public static final Werkstoff Originiums = new Werkstoff(
+        new short[] { 0xda, 0xa5, 0x20 },
+        "Originiums",
+        "The Stone of Origins.",
+        new Werkstoff.Stats(),
+        Werkstoff.Types.ELEMENT,
+        new Werkstoff.GenerationFeatures().disable()
+            .addGems(),
+        OffsetID - 1,
+        TextureSet.SET_DIAMOND);
     // Astro Activated Liquid
     public static final Werkstoff astroActivated = new Werkstoff(
         new short[] { 0x5f, 0x9e, 0xa0 },
