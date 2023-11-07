@@ -30,7 +30,7 @@ public class GTNHAppend {
      * <li>The signal of whether in Development Mode.
      * <li>Keep care to set 'false' when dev complete.
      */
-    public static final boolean isInDevMode = false;
+    public static final boolean isInDevMode = true;
     /**
      * The absolute Path of your workspace/resources folder.
      * It will be replaced by {@link UtilDevPathHelper#initResourceAbsolutePath(boolean)}.

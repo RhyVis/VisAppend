@@ -80,7 +80,7 @@ public class UtilTextHandler {
     }
 
     /**
-     * Write the new textLines into Dev/src/main/resources/GTNHAppend/lang/.lang
+     * Write the new textLines into Dev/src/main/resources/append/lang/.lang
      *
      * @param isInDevMode The signal of whether in development mode.
      */
@@ -116,8 +116,8 @@ public class UtilTextHandler {
             // }
 
             /* Prepare the files. */
-            File en_US_lang = new File(GTNHAppend.DevResource + "\\assets\\GTNHAppend\\lang\\en_US.lang");
-            File zh_CN_lang = new File(GTNHAppend.DevResource + "\\assets\\GTNHAppend\\lang\\zh_CN.lang");
+            File en_US_lang = new File(GTNHAppend.DevResource + "\\assets\\append\\lang\\en_US.lang");
+            File zh_CN_lang = new File(GTNHAppend.DevResource + "\\assets\\append\\lang\\zh_CN.lang");
 
             /* Write the new textLines in the end of the lang file. */
 

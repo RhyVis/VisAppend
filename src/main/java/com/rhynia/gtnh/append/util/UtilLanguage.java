@@ -1,3 +1,6 @@
+/**
+ * Copyright (C) 2023 abcAFCR
+ */
 package com.rhynia.gtnh.append.util;
 
 import java.io.IOException;
@@ -25,7 +28,7 @@ public class UtilLanguage {
 
     static {
         init();
-        System.out.println("abcAFCR:LanguageUtil0 init completed");
+        System.out.println("GTAppend:UtilLanguage init completed");
     }
 
     public static Map<String, String> getZhCN() {
@@ -60,7 +63,7 @@ public class UtilLanguage {
     }
 
     public static Map<String, String> parseLangFile(String currentLangCode) {
-        return parseLangFile("/assets/gtnhcommunitymod/lang/", currentLangCode);
+        return parseLangFile("/assets/append/lang/", currentLangCode);
     }
 
     public static Map<String, String> parseLangFile(String langPath, String currentLangCode) {
