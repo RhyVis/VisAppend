@@ -1,7 +1,8 @@
 package com.rhynia.gtnh.append.common.block;
 
-import com.rhynia.gtnh.append.common.block.container.BlockBase01;
 import net.minecraft.block.Block;
+
+import com.rhynia.gtnh.append.common.block.container.BlockBase01;
 
 public class BlockBasic {
 

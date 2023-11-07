@@ -1,20 +1,23 @@
 package com.rhynia.gtnh.append.common.item.container;
 
-import com.rhynia.gtnh.append.util.UtilTextHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
+import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
+
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import java.util.List;
+import com.rhynia.gtnh.append.util.UtilTextHandler;
 
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
-import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemUltimate extends Item {
+
     public String unlocalizedName;
 
     public ItemUltimate(String aName, String aMetaName, CreativeTabs aCreativeTabs) {
@@ -49,18 +52,14 @@ public class ItemUltimate extends Item {
     @Override
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
-                               final boolean advancedToolTips) {
+        final boolean advancedToolTips) {
         if (isShiftKeyDown()) {
             toolTip.add(
                 texter(
-                    EnumChatFormatting.LIGHT_PURPLE
-                        + "You're stepping onto the highest edge of this game.",
+                    EnumChatFormatting.LIGHT_PURPLE + "You're stepping onto the highest edge of this game.",
                     "tooltips.ultimate.proof.line2"));
         } else {
-            toolTip.add(
-                texter(
-                    "You're stepping onto the highest edge of this game.",
-                    "tooltips.ultimate.proof.line1"));
+            toolTip.add(texter("You're stepping onto the highest edge of this game.", "tooltips.ultimate.proof.line1"));
         }
     }
 
