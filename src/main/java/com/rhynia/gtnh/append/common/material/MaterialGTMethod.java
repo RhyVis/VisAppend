@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.register.material;
+package com.rhynia.gtnh.append.common.material;
 
 import static gregtech.api.enums.OrePrefixes.*;
 

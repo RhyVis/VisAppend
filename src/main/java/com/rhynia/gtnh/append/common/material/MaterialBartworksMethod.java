@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.register.material;
+package com.rhynia.gtnh.append.common.material;
 
 import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 

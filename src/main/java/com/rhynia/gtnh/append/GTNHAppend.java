@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append;
 
 import com.rhynia.gtnh.append.util.UtilDevPathHelper;
+import com.rhynia.gtnh.append.util.UtilTextHandler;
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
@@ -38,7 +39,7 @@ public class GTNHAppend {
     public void preInit(FMLPreInitializationEvent event) {
 
         UtilDevPathHelper.initResourceAbsolutePath(isInDevMode);
-        TextHandler.initLangMap(isInDevMode);
+        UtilTextHandler.initLangMap(isInDevMode);
 
         proxy.preInit(event);
     }
