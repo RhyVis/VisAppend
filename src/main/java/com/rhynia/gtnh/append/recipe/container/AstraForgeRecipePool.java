@@ -18,16 +18,13 @@ public class AstraForgeRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
-        // Optical SoC
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(1),
-                ItemList.Circuit_Chip_Optical.get(1),
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 1))
+                ItemList.Circuit_Chip_Optical.get(1))
             .fluidInputs(Materials.Hydrogen.getPlasma(16000))
             .itemOutputs(GT_ModHandler.getModItem(GTPlusPlus.ID, "particleBase", 1, 14))
             .fluidOutputs(Materials.Helium.getPlasma(4000))
-            .outputChances(10000, 1)
             .noOptimize()
             .eut(RECIPE_UMV)
             .duration(6144 * 20)

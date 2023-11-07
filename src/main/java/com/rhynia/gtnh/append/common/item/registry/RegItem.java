@@ -94,10 +94,10 @@ public class RegItem extends RegItemBasic {
     @SideOnly(Side.CLIENT)
     public void registerIcons(IIconRegister iconRegister) {
         super.registerIcons(iconRegister);
-        this.itemIcon = iconRegister.registerIcon("gtnhcommunitymod:MetaItem01/0");
+        this.itemIcon = iconRegister.registerIcon("append:MetaItem01/0");
         for (int meta : Meta01Set) {
             ItemStaticDataClientOnly.iconsMap01
-                .put(meta, iconRegister.registerIcon("gtnhcommunitymod:MetaItem01/" + meta));
+                .put(meta, iconRegister.registerIcon("append:MetaItem01/" + meta));
         }
     }
 

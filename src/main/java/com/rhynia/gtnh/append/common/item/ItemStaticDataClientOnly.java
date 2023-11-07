@@ -20,6 +20,6 @@ public class ItemStaticDataClientOnly {
      */
     @SideOnly(Side.CLIENT)
     public static String getIconPath01(String aMetaName) {
-        return "gtnhcommunitymod:MetaItem01/" + aMetaName;
+        return "append:MetaItem01/" + aMetaName;
     }
 }

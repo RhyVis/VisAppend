@@ -11,7 +11,6 @@ public class CommonProxy {
 
     public void preInit(FMLPreInitializationEvent event) {
         new MaterialGTMethod();
-        new MaterialBartworksMethod();
     }
 
     public void init(FMLInitializationEvent event) {}

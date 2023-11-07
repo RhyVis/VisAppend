@@ -16,7 +16,7 @@ public class GTNHATab {
      * Creative Tab for MetaItem01
      */
     public static final CreativeTabs tabMetaItem01 = new CreativeTabs(
-        texter("GTCM Meta Items 1", "itemGroup.GTCM Meta Items 1")) {
+        texter("AppendMetaItems1", "itemGroup.AppendMetaItems1")) {
 
         @Override
         @SideOnly(Side.CLIENT)
@@ -29,7 +29,7 @@ public class GTNHATab {
      * Creative Tab for MetaBlock01
      */
     public static final CreativeTabs tabMetaBlock01 = new CreativeTabs(
-        texter("GTCM Meta Blocks 1", "itemGroup.GTCM Meta Blocks 1")) {
+        texter("AppendMetaBlocks1", "itemGroup.AppendMetaBlocks1")) {
 
         @Override
         @SideOnly(Side.CLIENT)
@@ -41,7 +41,7 @@ public class GTNHATab {
     /**
      * Creative Tab for MetaBlock01
      */
-    public static final CreativeTabs tabGTCMGeneralTab = new CreativeTabs(texter("GTCM", "itemGroup.GTCM")) {
+    public static final CreativeTabs tabGTCMGeneralTab = new CreativeTabs(texter("GTAppend", "itemGroup.GTAppend")) {
 
         @Override
         @SideOnly(Side.CLIENT)

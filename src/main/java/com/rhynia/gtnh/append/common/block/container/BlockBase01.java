@@ -75,9 +75,9 @@ public class BlockBase01 extends Block {
     @Override
     @SideOnly(Side.CLIENT)
     public void registerBlockIcons(IIconRegister reg) {
-        this.blockIcon = reg.registerIcon("gtnhcommunitymod:MetaBlocks/0");
+        this.blockIcon = reg.registerIcon("append:MetaBlocks/0");
         for (int Meta : MetaBlockSet01) {
-            iconsBlockMap01.put(Meta, reg.registerIcon("gtnhcommunitymod:MetaBlocks/" + Meta));
+            iconsBlockMap01.put(Meta, reg.registerIcon("append:MetaBlocks/" + Meta));
         }
     }
 

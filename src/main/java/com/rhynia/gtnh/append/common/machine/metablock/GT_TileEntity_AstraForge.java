@@ -109,8 +109,8 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             true);
     }
 
-    private final int horizontalOffSet = 3;
-    private final int verticalOffSet = 3;
+    private final int horizontalOffSet = 1;
+    private final int verticalOffSet = 1;
     private final int depthOffSet = 0;
 
     /*

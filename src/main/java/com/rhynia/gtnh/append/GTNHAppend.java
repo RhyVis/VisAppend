@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append;
 
 import com.rhynia.gtnh.append.loader.LoaderMachine;
+import com.rhynia.gtnh.append.loader.LoaderMaterial;
 import com.rhynia.gtnh.append.loader.LoaderRecipe;
 import com.rhynia.gtnh.append.nei.NEIHandler;
 import com.rhynia.gtnh.append.util.UtilDevPathHelper;
@@ -13,7 +14,15 @@ import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.7.10]")
+@Mod(modid = Tags.MODID,
+    version = Tags.VERSION,
+    name = Tags.MODNAME,
+    dependencies = "required-after:IC2; "
+    + "required-after:gregtech; "
+    + "required-after:bartworks; "
+    + "before:miscutils; "
+    + "after:dreamcraft;",
+    acceptedMinecraftVersions = "[1.7.10]")
 
 public class GTNHAppend {
 
@@ -44,6 +53,7 @@ public class GTNHAppend {
         UtilTextHandler.initLangMap(isInDevMode);
 
         proxy.preInit(event);
+        LoaderMaterial.load();
     }
 
     @Mod.EventHandler
@@ -64,6 +74,6 @@ public class GTNHAppend {
 
     @Mod.EventHandler
     public void completeInit(FMLLoadCompleteEvent event) {
-        LoaderRecipe.loadRecipes();// Load Recipes
+        LoaderRecipe.loadRecipes();
     }
 }

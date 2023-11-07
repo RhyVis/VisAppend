@@ -9,6 +9,6 @@ import com.rhynia.gtnh.append.common.item.registry.RegItem;
 public final class ItemBasic {
 
     public static final Item MetaItem01 = new RegItem("MetaItem01Base", "MetaItem01", tabMetaItem01)
-        .setTextureName("gtnhcommunitymod:MetaItem01/0");
+        .setTextureName("append:MetaItem01/0");
 
 }
