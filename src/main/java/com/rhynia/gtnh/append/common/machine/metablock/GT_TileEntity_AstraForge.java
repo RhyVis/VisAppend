@@ -2,8 +2,6 @@ package com.rhynia.gtnh.append.common.machine.metablock;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.util.UtilLocal.*;
-import static goodgenerator.util.DescTextLocalization.BLUE_PRINT_INFO;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Materials.Infinity;
 import static gregtech.api.enums.Materials.Neutronium;
@@ -36,7 +34,10 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.*;
+import gregtech.api.util.GT_HatchElementBuilder;
+import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
+import gregtech.api.util.GT_Recipe;
+import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
 public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_AstraForge>
@@ -163,23 +164,24 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType(Tooltip_AstraForge_MachineType)
-            .addInfo(Tooltip_AstraForge_00)
-            .addInfo(Tooltip_AstraForge_01)
-            .addInfo(Tooltip_AstraForge_02)
-            .addInfo(Tooltip_AstraForge_03)
-            .addInfo(Tooltip_AstraForge_04)
+        tt.addMachineType("伟大之光")
+            .addInfo("星辉锻造台的控制器")
+            .addInfo("§c不要试图去理解祂的原理.")
+            .addInfo("使用星光将平凡转化为奇迹.")
+            .addInfo("需要星极或星芒透镜辅助合成.")
+            .addInfo("拥有与无损超频等效的并行(但有损超频).")
+            .addInfo("电压每提高1级, 额外降低20%%配方耗时, 叠乘计算.")
             .addSeparator()
-            .addInfo(StructureTooComplex)
-            .addInfo(BLUE_PRINT_INFO)
+            .addInfo("结构太复杂了!")
+            .addInfo("请参考§9Structure§1Lib§7全息投影，构建主体结构")
             .beginStructureBlock(19, 19, 21, false)
-            .addInputHatch(textUseBlueprint, 1)
-            .addOutputHatch(textUseBlueprint, 1)
-            .addInputBus(textUseBlueprint, 1)
-            .addOutputBus(textUseBlueprint, 1)
-            .addMaintenanceHatch(textUseBlueprint, 3)
-            .addEnergyHatch(textUseBlueprint, 2)
-            .toolTipFinisher(ModName);
+            .addInputHatch("用§9蓝§b图§r预览", 1)
+            .addOutputHatch("用§9蓝§b图§r预览", 1)
+            .addInputBus("用§9蓝§b图§r预览", 1)
+            .addOutputBus("用§9蓝§b图§r预览", 1)
+            .addMaintenanceHatch("用§9蓝§b图§r预览", 3)
+            .addEnergyHatch("用§9蓝§b图§r预览", 2)
+            .toolTipFinisher("GTNH: Append");
         return tt;
     }
 

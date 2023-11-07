@@ -13,6 +13,8 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 @Mod(
     modid = Tags.MODID,
@@ -30,7 +32,7 @@ public class GTNHAppend {
      * <li>The signal of whether in Development Mode.
      * <li>Keep care to set 'false' when dev complete.
      */
-    public static final boolean isInDevMode = true;
+    public static final boolean isInDevMode = false;
     /**
      * The absolute Path of your workspace/resources folder.
      * It will be replaced by {@link UtilDevPathHelper#initResourceAbsolutePath(boolean)}.
@@ -42,6 +44,7 @@ public class GTNHAppend {
     public static final String MOD_ID = Tags.MODID;
     public static final String MOD_NAME = Tags.MODNAME;
     public static final String VERSION = Tags.VERSION;
+    public static final Logger LOG = LogManager.getLogger(Tags.MODID);
 
     @SidedProxy(clientSide = "com.rhynia.gtnh.append.ClientProxy", serverSide = "com.rhynia.gtnh.append.CommonProxy")
     public static CommonProxy proxy;

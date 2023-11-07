@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.loader;
 
-import static com.rhynia.gtnh.append.util.UtilLocal.NameAstraForge;
 
 import net.minecraft.item.ItemStack;
 
@@ -14,7 +13,7 @@ public class LoaderMachine {
     // region multi Machine controller
 
     public static void loadMachines() {
-        AstraForge = new GT_TileEntity_AstraForge(17501, "NameAstraForge", NameAstraForge).getStackForm(1);
+        AstraForge = new GT_TileEntity_AstraForge(17501, "NameAstraForge", "星辉锻造台").getStackForm(1);
         AppendItemList.AstraForge.set(AstraForge);
     }
 

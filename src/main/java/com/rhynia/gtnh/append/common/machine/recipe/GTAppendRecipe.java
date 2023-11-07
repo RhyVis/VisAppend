@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.common.machine.recipe;
 
-import static com.rhynia.gtnh.append.util.UtilLocal.NameAstraForge;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -129,7 +128,7 @@ public class GTAppendRecipe {
     public final GTAppendRecipeMap AstraForgeRecipes = new GTAppendRecipeMap(
         new HashSet<>(),
         "append.recipe.AstraForgeRecipes",
-        NameAstraForge,
+        "星辉锻造台",
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         16,
