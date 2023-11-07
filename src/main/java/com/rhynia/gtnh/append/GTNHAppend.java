@@ -8,7 +8,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
 public class GTNHAppend {
 
-    @SidedProxy(clientSide = "com.rhynia.gtnhextend.ClientProxy", serverSide = "com.rhynia.gtnhextend.CommonProxy")
+    @SidedProxy(clientSide = "com.rhynia.gtnh.append.ClientProxy", serverSide = "com.rhynia.gtnh.append.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler
