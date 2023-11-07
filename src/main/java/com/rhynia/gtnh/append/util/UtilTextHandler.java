@@ -132,15 +132,13 @@ public class UtilTextHandler {
                 FileWriter en_Us = new FileWriter(en_US_lang, true);
                 FileWriter zh_CN = new FileWriter(zh_CN_lang, true);
                 for (String key : LangMapNeedToWrite.keySet()) {
-                    GTNHAppend.LOG
-                        .info("en_US write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
+                    GTNHAppend.LOG.info("en_US write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
                     en_Us.write(key);
                     en_Us.write("=");
                     en_Us.write(LangMapNeedToWrite.get(key));
                     en_Us.write("\n");
                     GTNHAppend.LOG.info("en_US write a Line COMPLETE.");
-                    GTNHAppend.LOG
-                        .info("zh_CN write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
+                    GTNHAppend.LOG.info("zh_CN write a Line START: " + key + "===>" + LangMapNeedToWrite.get(key));
                     zh_CN.write(key);
                     zh_CN.write("=");
                     zh_CN.write(LangMapNeedToWrite.get(key));

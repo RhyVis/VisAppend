@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.loader;
 
-
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.common.AppendItemList;
