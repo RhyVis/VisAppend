@@ -1,12 +1,15 @@
 package com.rhynia.gtnh.append.loader;
 
+import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.recipe.container.AppendCommonRecipePool;
+import com.rhynia.gtnh.append.recipe.container.AstraForgeRecipePool;
+
 public class LoaderRecipe {
 
     public static void loadRecipes() {
-        IRecipePool[] recipePools = new IRecipePool[] { new GTCMMachineRecipePool(),
-            new IntensifyChemicalDistorterRecipePool(), new ChemicalReactorRecipePool(),
-            new PreciseHighEnergyPhotonicQuantumMasterRecipePool(), new CircuitAssemblerRecipePool(),
-            new MiracleTopRecipePool(), new FluidSolidifierRecipePool() };
+        IRecipePool[] recipePools = new IRecipePool[] {
+            new AppendCommonRecipePool(),
+            new AstraForgeRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();
