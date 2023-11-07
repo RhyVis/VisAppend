@@ -14,7 +14,7 @@ public class LoaderMachine {
     // region multi Machine controller
 
     public static void loadMachines() {
-        AstraForge = new GT_TileEntity_AstraForge(17001, "NameAstraForge", NameAstraForge).getStackForm(1);
+        AstraForge = new GT_TileEntity_AstraForge(17501, "NameAstraForge", NameAstraForge).getStackForm(1);
         AppendItemList.AstraForge.set(AstraForge);
     }
 
