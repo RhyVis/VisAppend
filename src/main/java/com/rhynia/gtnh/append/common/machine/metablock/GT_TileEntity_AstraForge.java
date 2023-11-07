@@ -5,10 +5,15 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose
 import static com.rhynia.gtnh.append.util.UtilLocal.*;
 import static goodgenerator.util.DescTextLocalization.BLUE_PRINT_INFO;
 import static gregtech.api.enums.GT_HatchElement.*;
+import static gregtech.api.enums.Materials.Infinity;
+import static gregtech.api.enums.Materials.Neutronium;
 import static gregtech.api.enums.Textures.BlockIcons.*;
 import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
+import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import fox.spiteful.avaritia.blocks.LudicrousBlocks;
+import gregtech.api.util.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -32,10 +37,6 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_HatchElementBuilder;
-import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
-import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 import gtPlusPlus.core.block.ModBlocks;
 
@@ -110,47 +111,28 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     }
 
     private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 1;
+    private final int verticalOffSet = 10;
     private final int depthOffSet = 0;
 
-    /*
-     * Blocks:
-     * A -> ofBlock...(gt.blockcasings2, 8, ...);
-     * B -> ofBlock...(gt.blockcasings8, 2, ...); // IO Hatch
-     * C -> ofBlock...(gt.blockcasings8, 3, ...); // Energy Hatch
-     * D -> ofBlock...(gt.blockcasings8, 10, ...); // Maintenance Hatch
-     * E -> ofBlock...(gtplusplus.blockcasings.3, 11, ...);
-     */
     @Override
     public IStructureDefinition<GT_TileEntity_AstraForge> getStructureDefinition() {
         return StructureDefinition.<GT_TileEntity_AstraForge>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
-            .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 8))
+            .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 9))
             .addElement(
                 'B',
                 GT_HatchElementBuilder.<GT_TileEntity_AstraForge>builder()
-                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch)
+                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
                     .adder(GT_TileEntity_AstraForge::addToMachineList)
                     .dot(1)
-                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(2))
-                    .buildAndChain(GregTech_API.sBlockCasings8, 2))
+                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(7))
+                    .buildAndChain(GregTech_API.sBlockCasings8, 7))
             .addElement(
-                'C',
-                GT_HatchElementBuilder.<GT_TileEntity_AstraForge>builder()
-                    .atLeast(Energy.or(ExoticEnergy))
-                    .adder(GT_TileEntity_AstraForge::addToMachineList)
-                    .dot(2)
-                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(3))
-                    .buildAndChain(GregTech_API.sBlockCasings8, 3))
+                'C', ofBlock(LudicrousBlocks.resource_block, 1))
             .addElement(
-                'D',
-                GT_HatchElementBuilder.<GT_TileEntity_AstraForge>builder()
-                    .atLeast(Maintenance)
-                    .adder(GT_TileEntity_AstraForge::addToMachineList)
-                    .dot(3)
-                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(10))
-                    .buildAndChain(GregTech_API.sBlockCasings8, 10))
-            .addElement('E', ofBlock(ModBlocks.blockCasings3Misc, 11))
+                'D', ofFrame(Neutronium))
+            .addElement(
+                'E', ofFrame(Infinity))
             .build();
     }
 
@@ -160,8 +142,20 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
     }
 
-    private final String[][] shape = new String[][] { { "ABA", "BAB", "ABA" }, { "B~B", "ACA", "BAB" },
-        { "ABA", "BAB", "ABA" } };
+    private final String[][] shape = new String[][]{
+        {"   "," E ","   "},
+        {" D ","DDD"," D "},
+        {" B ","BAB"," B "},
+        {" D ","DAD"," D "},
+        {" D ","DAD"," D "},
+        {" D ","DAD"," D "},
+        {"CEC","ECE","CEC"},
+        {" D ","DAD"," D "},
+        {" D ","DAD"," D "},
+        {" D ","DAD"," D "},
+        {" ~ ","BAB"," B "},
+        {"BBB","BBB","BBB"}
+    };
     // endregion
 
     // region Overrides
@@ -249,7 +243,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
         if (sideDirection == facingDirection) {
             if (active) return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 10)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
                 TextureFactory.builder()
                     .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
                     .extFacing()
@@ -261,7 +255,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
                     .build() };
             return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 10)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
                 TextureFactory.builder()
                     .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
                     .extFacing()
@@ -273,7 +267,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
                     .build() };
         }
         return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 10)) };
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)) };
     }
 
     // endregion

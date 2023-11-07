@@ -19,6 +19,7 @@ public class MaterialGTMethod implements Runnable {
         .addDustItems()
         .addGemItems()
         .addCell()
+        .addMetalItems()
         .setLiquidTemperature(200)
         .addFluid()
         .setAspects(
