@@ -17,7 +17,7 @@ public class AppendCommonRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(21),
-                Materials.Chrome.getDust(32),
+                Materials.Desh.getDust(32),
                 Materials.Saltpeter.getDust(64),
                 Materials.Saltpeter.getDust(64),
                 Materials.Saltpeter.getDust(32))
