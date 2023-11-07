@@ -1,17 +1,20 @@
 package com.rhynia.gtnh.append.common.item.registry;
 
-import com.rhynia.gtnh.append.util.UtilTextHandler;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import java.util.ArrayList;
-import java.util.List;
+import com.rhynia.gtnh.append.util.UtilTextHandler;
 
-public class RegItemBasic extends Item{
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
+public class RegItemBasic extends Item {
+
     private List<String> tooltips = new ArrayList<>();
 
     private String unlocalizedName;
@@ -72,7 +75,7 @@ public class RegItemBasic extends Item{
     @SideOnly(Side.CLIENT)
     @SuppressWarnings({ "unchecked" })
     public void addInformation(ItemStack aItemStack, EntityPlayer aEntityPlayer, List aTooltipsList,
-                               boolean p_77624_4_) {
+        boolean p_77624_4_) {
         if (tooltips.size() > 0) {
             aTooltipsList.addAll(tooltips);
         }

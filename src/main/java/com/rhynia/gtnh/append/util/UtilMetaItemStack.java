@@ -1,15 +1,16 @@
 package com.rhynia.gtnh.append.util;
 
-import net.minecraft.block.Block;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
+import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
 
 import java.util.Map;
 import java.util.Set;
 
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
+import net.minecraft.block.Block;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
 
 public class UtilMetaItemStack {
+
     // generate item stack when init
     public static ItemStack initMetaItemStack(String i18nName, int Meta, Item basicItem, Set<Integer> aContainerSet) {
 

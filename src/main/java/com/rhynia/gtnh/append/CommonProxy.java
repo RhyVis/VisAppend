@@ -13,6 +13,8 @@ public class CommonProxy {
         new MaterialGTMethod();
         new MaterialBartworksMethod();
     }
+
     public void init(FMLInitializationEvent event) {}
+
     public void postInit(FMLPostInitializationEvent event) {}
 }

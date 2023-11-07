@@ -1,10 +1,11 @@
 package com.rhynia.gtnh.append.util;
 
-import com.rhynia.gtnh.append.GTNHAppend;
-
 import java.net.URL;
 
+import com.rhynia.gtnh.append.GTNHAppend;
+
 public class UtilDevPathHelper {
+
     /**
      * Auto init the workspace 'resources' folder's path.
      *

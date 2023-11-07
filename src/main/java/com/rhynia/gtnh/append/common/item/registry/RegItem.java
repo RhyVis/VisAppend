@@ -1,9 +1,10 @@
 package com.rhynia.gtnh.append.common.item.registry;
 
-import com.rhynia.gtnh.append.common.item.ItemBasic;
-import com.rhynia.gtnh.append.common.item.ItemStaticDataClientOnly;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static com.rhynia.gtnh.append.util.UtilMetaItemStack.initMetaItemStack;
+import static com.rhynia.gtnh.append.util.UtilMetaItemStack.metaItemStackTooltipsAdd;
+
+import java.util.*;
+
 import net.minecraft.client.renderer.texture.IIconRegister;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -11,14 +12,15 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
-import java.util.*;
+import com.rhynia.gtnh.append.common.item.ItemBasic;
+import com.rhynia.gtnh.append.common.item.ItemStaticDataClientOnly;
 
-import static com.rhynia.gtnh.append.util.UtilMetaItemStack.initMetaItemStack;
-import static com.rhynia.gtnh.append.util.UtilMetaItemStack.metaItemStackTooltipsAdd;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
-public class RegItem extends RegItemBasic{
+public class RegItem extends RegItemBasic {
     /*
-      An Item Map for managing basic items
+     * An Item Map for managing basic items
      */
     // public static Map<String, ItemAdder01> Item01Map = new HashMap<>();
 
@@ -113,7 +115,7 @@ public class RegItem extends RegItemBasic{
     @Override
     @SuppressWarnings({ "unchecked" })
     public void addInformation(ItemStack aItemStack, EntityPlayer p_77624_2_, List theTooltipsList,
-                               boolean p_77624_4_) {
+        boolean p_77624_4_) {
         int meta = aItemStack.getItemDamage();
         if (null != MetaItemTooltipsMap01.get(meta)) {
             String[] tooltips = MetaItemTooltipsMap01.get(meta);

@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append;
 
 import com.rhynia.gtnh.append.util.UtilDevPathHelper;
 import com.rhynia.gtnh.append.util.UtilTextHandler;
+
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
@@ -10,6 +11,7 @@ import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 @Mod(modid = Tags.MODID, version = Tags.VERSION, name = Tags.MODNAME, acceptedMinecraftVersions = "[1.7.10]")
 
 public class GTNHAppend {
+
     /**
      * <li>The signal of whether in Development Mode.
      * <li>Keep care to set 'false' when dev complete.

@@ -1,14 +1,17 @@
 package com.rhynia.gtnh.append.client;
 
-import com.rhynia.gtnh.append.common.item.ItemBasic;
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
+import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
+
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
+import com.rhynia.gtnh.append.common.item.ItemBasic;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
 
 public class GTNHATab {
+
     /**
      * Creative Tab for MetaItem01
      */

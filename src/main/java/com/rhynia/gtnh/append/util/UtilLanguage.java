@@ -1,11 +1,5 @@
 package com.rhynia.gtnh.append.util;
 
-import com.google.common.base.Splitter;
-import com.google.common.collect.Iterables;
-import net.minecraft.client.Minecraft;
-import org.apache.commons.io.Charsets;
-import org.apache.commons.io.IOUtils;
-
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -13,7 +7,16 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import net.minecraft.client.Minecraft;
+
+import org.apache.commons.io.Charsets;
+import org.apache.commons.io.IOUtils;
+
+import com.google.common.base.Splitter;
+import com.google.common.collect.Iterables;
+
 public class UtilLanguage {
+
     private static Map<String, String> zhCN;
     private static Map<String, String> currentLang;
     private static List<String> itemNameKey;

@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.util;
 
-import com.rhynia.gtnh.append.GTNHAppend;
+import static net.minecraft.util.StatCollector.translateToLocalFormatted;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -8,9 +8,10 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-import static net.minecraft.util.StatCollector.translateToLocalFormatted;
+import com.rhynia.gtnh.append.GTNHAppend;
 
 public class UtilTextHandler {
+
     /* The Map across all text<Key, Value> */
     public static Map<String, String> LangMap;
     // public static Map<String, String> LangMapBackUp;

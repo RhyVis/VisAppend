@@ -1,14 +1,16 @@
 package com.rhynia.gtnh.append.common.item;
 
-import cpw.mods.fml.relauncher.Side;
-import cpw.mods.fml.relauncher.SideOnly;
-import net.minecraft.util.IIcon;
-
 import java.util.HashMap;
 import java.util.Map;
 
+import net.minecraft.util.IIcon;
+
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+
 @SideOnly(Side.CLIENT)
 public class ItemStaticDataClientOnly {
+
     @SideOnly(Side.CLIENT)
     public static Map<Integer, IIcon> iconsMap01 = new HashMap<>();
 
