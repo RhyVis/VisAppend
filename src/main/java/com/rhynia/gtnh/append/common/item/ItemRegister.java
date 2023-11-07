@@ -1,14 +1,13 @@
 package com.rhynia.gtnh.append.common.item;
 
-import com.rhynia.gtnh.append.common.item.container.ItemUltimate;
-import cpw.mods.fml.common.registry.GameRegistry;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-
 import static com.rhynia.gtnh.append.common.item.ItemBasic.MetaItem01;
 
+import net.minecraft.item.Item;
+
+import cpw.mods.fml.common.registry.GameRegistry;
+
 public class ItemRegister {
+
     public static void registryItems() {
         Item[] itemsToReg = { MetaItem01 };
 

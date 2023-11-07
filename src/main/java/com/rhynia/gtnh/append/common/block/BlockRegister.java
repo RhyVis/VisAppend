@@ -9,6 +9,7 @@ public class BlockRegister {
     public static void registryBlocks() {
         GameRegistry.registerBlock(MetaBlock01, BlockBasicItem.class, MetaBlock01.getUnlocalizedName());
     }
+
     public static void registry() {
         registryBlocks();
     }

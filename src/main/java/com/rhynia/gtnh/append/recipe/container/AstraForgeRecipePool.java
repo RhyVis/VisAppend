@@ -19,9 +19,7 @@ public class AstraForgeRecipePool implements IRecipePool {
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(1),
-                ItemList.Circuit_Chip_Optical.get(1))
+            .itemInputs(GT_Utility.getIntegratedCircuit(1), ItemList.Circuit_Chip_Optical.get(1))
             .fluidInputs(Materials.Hydrogen.getPlasma(16000))
             .itemOutputs(GT_ModHandler.getModItem(GTPlusPlus.ID, "particleBase", 1, 14))
             .fluidOutputs(Materials.Helium.getPlasma(4000))

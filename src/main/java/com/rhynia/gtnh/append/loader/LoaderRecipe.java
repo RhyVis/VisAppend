@@ -7,9 +7,7 @@ import com.rhynia.gtnh.append.recipe.container.AstraForgeRecipePool;
 public class LoaderRecipe {
 
     public static void loadRecipes() {
-        IRecipePool[] recipePools = new IRecipePool[] {
-            new AppendCommonRecipePool(),
-            new AstraForgeRecipePool() };
+        IRecipePool[] recipePools = new IRecipePool[] { new AppendCommonRecipePool(), new AstraForgeRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();

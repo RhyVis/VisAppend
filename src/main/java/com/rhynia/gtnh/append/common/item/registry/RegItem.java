@@ -96,8 +96,7 @@ public class RegItem extends RegItemBasic {
         super.registerIcons(iconRegister);
         this.itemIcon = iconRegister.registerIcon("append:MetaItem01/0");
         for (int meta : Meta01Set) {
-            ItemStaticDataClientOnly.iconsMap01
-                .put(meta, iconRegister.registerIcon("append:MetaItem01/" + meta));
+            ItemStaticDataClientOnly.iconsMap01.put(meta, iconRegister.registerIcon("append:MetaItem01/" + meta));
         }
     }
 

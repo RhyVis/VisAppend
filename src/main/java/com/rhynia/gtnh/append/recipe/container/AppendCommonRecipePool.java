@@ -1,12 +1,13 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 
 public class AppendCommonRecipePool implements IRecipePool {
 

@@ -12,8 +12,6 @@ import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import fox.spiteful.avaritia.blocks.LudicrousBlocks;
-import gregtech.api.util.*;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -28,6 +26,7 @@ import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 
+import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -37,8 +36,8 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
+import gregtech.api.util.*;
 import gregtech.common.blocks.GT_Block_Casings8;
-import gtPlusPlus.core.block.ModBlocks;
 
 public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_AstraForge>
     implements IConstructable, ISurvivalConstructable {
@@ -127,12 +126,9 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
                     .dot(1)
                     .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(7))
                     .buildAndChain(GregTech_API.sBlockCasings8, 7))
-            .addElement(
-                'C', ofBlock(LudicrousBlocks.resource_block, 1))
-            .addElement(
-                'D', ofFrame(Neutronium))
-            .addElement(
-                'E', ofFrame(Infinity))
+            .addElement('C', ofBlock(LudicrousBlocks.resource_block, 1))
+            .addElement('D', ofFrame(Neutronium))
+            .addElement('E', ofFrame(Infinity))
             .build();
     }
 
@@ -142,20 +138,10 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
     }
 
-    private final String[][] shape = new String[][]{
-        {"   "," E ","   "},
-        {" D ","DDD"," D "},
-        {" B ","BAB"," B "},
-        {" D ","DAD"," D "},
-        {" D ","DAD"," D "},
-        {" D ","DAD"," D "},
-        {"CEC","ECE","CEC"},
-        {" D ","DAD"," D "},
-        {" D ","DAD"," D "},
-        {" D ","DAD"," D "},
-        {" ~ ","BAB"," B "},
-        {"BBB","BBB","BBB"}
-    };
+    private final String[][] shape = new String[][] { { "   ", " E ", "   " }, { " D ", "DDD", " D " },
+        { " B ", "BAB", " B " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " },
+        { "CEC", "ECE", "CEC" }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " },
+        { " ~ ", "BAB", " B " }, { "BBB", "BBB", "BBB" } };
     // endregion
 
     // region Overrides

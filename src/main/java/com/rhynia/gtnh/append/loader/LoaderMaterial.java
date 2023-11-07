@@ -6,6 +6,7 @@ import com.rhynia.gtnh.append.common.item.ItemRegister;
 import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 
 public class LoaderMaterial {
+
     public static void load() {
 
         ItemRegister.registry();

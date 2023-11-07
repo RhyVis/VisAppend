@@ -14,14 +14,14 @@ import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
 
-@Mod(modid = Tags.MODID,
+@Mod(
+    modid = Tags.MODID,
     version = Tags.VERSION,
     name = Tags.MODNAME,
-    dependencies = "required-after:IC2; "
-    + "required-after:gregtech; "
-    + "required-after:bartworks; "
-    + "before:miscutils; "
-    + "after:dreamcraft;",
+    dependencies = "required-after:IC2; " + "required-after:gregtech; "
+        + "required-after:bartworks; "
+        + "before:miscutils; "
+        + "after:dreamcraft;",
     acceptedMinecraftVersions = "[1.7.10]")
 
 public class GTNHAppend {
