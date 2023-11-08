@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append;
 
+import com.rhynia.gtnh.append.common.machine.recipe.crtsupport.AstraForge;
+import minetweaker.MineTweakerAPI;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -56,6 +58,7 @@ public class GTNHAppend {
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+        MineTweakerAPI.registerClass(AstraForge.class);//MineTweaker Support
         LoaderMachine.loadMachines();// Load Machines
         NEIHandler.IMCSender();// NEI reg
 
