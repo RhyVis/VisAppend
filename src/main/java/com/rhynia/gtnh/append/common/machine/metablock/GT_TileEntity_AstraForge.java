@@ -220,6 +220,11 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     }
 
     @Override
+    public boolean supportsSingleRecipeLocking() {
+        return true;
+    }
+
+    @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
         return new GT_TileEntity_AstraForge(this.mName);
     }
