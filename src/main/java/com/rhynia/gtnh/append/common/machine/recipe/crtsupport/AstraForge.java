@@ -16,12 +16,12 @@ import stanhebben.zenscript.annotations.ZenMethod;
  *
  * @author Rhynia
  */
-@ZenClass("mods.gregtech.ChemicalReactor")
+@ZenClass("mods.append.AstraForge")
 @ModOnly("append")
 public class AstraForge {
 
     /**
-     * Adds a Chemical Reactor recipe.
+     * Adds an Astra Forge recipe.
      *
      * @param output1       primary output
      * @param output2       secondary output
