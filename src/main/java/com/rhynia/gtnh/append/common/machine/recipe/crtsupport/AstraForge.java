@@ -19,6 +19,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
 @ZenClass("mods.gregtech.ChemicalReactor")
 @ModOnly("append")
 public class AstraForge {
+
     /**
      * Adds a Chemical Reactor recipe.
      *
@@ -33,7 +34,7 @@ public class AstraForge {
      */
     @ZenMethod
     public static void addRecipe(IItemStack output1, IItemStack output2, ILiquidStack fluidOutput, IIngredient input1,
-                                 IIngredient input2, ILiquidStack fluidInput, int durationTicks, int euPerTick) {
+        IIngredient input2, ILiquidStack fluidInput, int durationTicks, int euPerTick) {
         MineTweakerAPI.apply(
             new AddMultipleRecipeAction(
                 "Adding Astra Forge recipe for " + output1,
@@ -63,13 +64,13 @@ public class AstraForge {
 
     @ZenMethod
     public static void addRecipe(IItemStack output, ILiquidStack fluidOutput, IIngredient input1, IIngredient input2,
-                                 ILiquidStack fluidInput, int durationTicks, int euPerTick) {
+        ILiquidStack fluidInput, int durationTicks, int euPerTick) {
         addRecipe(output, null, fluidOutput, input1, input2, fluidInput, durationTicks, euPerTick);
     }
 
     @ZenMethod
     public static void addRecipe(IItemStack output, ILiquidStack fluidOutput, IIngredient input1, IIngredient input2,
-                                 ILiquidStack fluidInput, int durationTicks) {
+        ILiquidStack fluidInput, int durationTicks) {
         addRecipe(output, fluidOutput, input1, input2, fluidInput, durationTicks, 30);
     }
 
