@@ -3,6 +3,7 @@ package com.rhynia.gtnh.append;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import com.rhynia.gtnh.append.common.machine.recipe.crtsupport.AstraForge;
 import com.rhynia.gtnh.append.loader.LoaderMachine;
 import com.rhynia.gtnh.append.loader.LoaderMaterial;
 import com.rhynia.gtnh.append.loader.LoaderRecipe;
@@ -15,6 +16,7 @@ import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLLoadCompleteEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;
 import cpw.mods.fml.common.event.FMLPreInitializationEvent;
+import minetweaker.MineTweakerAPI;
 
 @Mod(
     modid = Tags.MODID,
@@ -56,6 +58,7 @@ public class GTNHAppend {
     // load "Do your mod setup. Build whatever data structures you care about. Register recipes." (Remove if not needed)
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
+        MineTweakerAPI.registerClass(AstraForge.class);// MineTweaker Support
         LoaderMachine.loadMachines();// Load Machines
         NEIHandler.IMCSender();// NEI reg
 
