@@ -125,7 +125,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
                     .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
                     .adder(GT_TileEntity_AstraForge::addToMachineList)
                     .dot(1)
-                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(7))
+                    .casingIndex(183)
                     .buildAndChain(GregTech_API.sBlockCasings8, 7))
             .addElement('C', ofBlock(LudicrousBlocks.resource_block, 1))
             .addElement('D', ofFrame(Neutronium))
