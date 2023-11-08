@@ -71,7 +71,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     }
 
     public float getSpeedBonus() {
-        return (float) Math.pow(0.8, GT_Utility.getTier(this.getMaxInputVoltage()));
+        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
     }
 
     @Override
@@ -163,13 +163,13 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("伟大之光")
+        tt.addMachineType("星光聚能器")
             .addInfo("星辉锻造台的控制器")
             .addInfo("§c不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("需要星极或星芒透镜辅助合成.")
             .addInfo("拥有与无损超频等效的并行(但有损超频).")
-            .addInfo("电压每提高1级, 额外降低20%%配方耗时, 叠乘计算.")
+            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo("结构太复杂了!")
             .addInfo("请参考§9Structure§1Lib§7全息投影，构建主体结构")
@@ -216,6 +216,11 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
 
     @Override
     public boolean supportsBatchMode() {
+        return true;
+    }
+
+    @Override
+    public boolean supportsSingleRecipeLocking() {
         return true;
     }
 
