@@ -1,22 +1,16 @@
 package com.rhynia.gtnh.append.recipe.container;
 
-import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
-import com.github.bartimaeusnek.bartworks.API.WerkstoffAPI;
-import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
-import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
-import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -34,10 +28,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1)),
                 MaterialGTMethod.Astro.getDust(16),
                 Materials.Redstone.getDust(1))
-            .fluidInputs(
-                Materials.Water.getFluid(32000))
-            .fluidOutputs(
-                Materials.Lubricant.getFluid(256000))
+            .fluidInputs(Materials.Water.getFluid(32000))
+            .fluidOutputs(Materials.Lubricant.getFluid(256000))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * 20)
@@ -50,10 +42,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(4),
                 Materials.BlackPlutonium.getDust(16))
-            .fluidInputs(
-                Materials.Helium.getFluid(2000))
-            .itemOutputs(
-                Materials.CosmicNeutronium.getDust(12))
+            .fluidInputs(Materials.Helium.getFluid(2000))
+            .itemOutputs(Materials.CosmicNeutronium.getDust(12))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(30 * 20)
@@ -66,10 +56,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(1),
                 Materials.Glowstone.getDust(16))
-            .fluidInputs(
-                Materials.Hydrogen.getFluid(12000))
-            .itemOutputs(
-                Materials.Sunnarium.getDust(64))
+            .fluidInputs(Materials.Hydrogen.getFluid(12000))
+            .itemOutputs(Materials.Sunnarium.getDust(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(22 * 20)
@@ -86,8 +74,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64))
-            .fluidInputs(
-                Materials.NaquadahEnriched.getFluid(144 * 32))
+            .fluidInputs(Materials.NaquadahEnriched.getFluid(144 * 32))
             .itemOutputs(
                 Materials.Naquadria.getDust(64),
                 Materials.Naquadria.getDust(64),
@@ -105,12 +92,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(60),
                 Materials.Naquadah.getDust(60))
-            .fluidInputs(
-                Materials.Helium.getFluid(120000),
-                Materials.Quantium.getFluid(40000))
-            .itemOutputs(
-                MyMaterial.orundum.get(dust, 64),
-                MyMaterial.orundum.get(dust, 64))
+            .fluidInputs(Materials.Helium.getFluid(120000), Materials.Quantium.getFluid(40000))
+            .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(100 * 20)
