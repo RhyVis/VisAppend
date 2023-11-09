@@ -38,7 +38,7 @@ public class AppendMachineRecipePool implements IRecipePool {
                 Materials.CosmicNeutronium.getFluid(10 * 144),
                 MaterialGTMethod.Astro.getFluid(16000),
                 MaterialGTMethod.AstroInf.getFluid(8000))
-            .itemOutputs(AppendItemList.AstraForge.get(1))
+            .itemOutputs(AppendItemList.InfiniteLiquidAirHatch.get(1))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(140 * 20)
