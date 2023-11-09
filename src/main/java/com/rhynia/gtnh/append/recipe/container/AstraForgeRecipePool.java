@@ -15,7 +15,9 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
+import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
@@ -24,26 +26,18 @@ public class AstraForgeRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
-        // Test
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(1), ItemList.Circuit_Ultimate.get(1))
-            .fluidInputs(Materials.Hydrogen.getPlasma(16000))
-            .itemOutputs(GT_ModHandler.getModItem(GTPlusPlus.ID, "particleBase", 1, 14))
-            .fluidOutputs(Materials.Helium.getPlasma(4000))
-            .noOptimize()
-            .eut(RECIPE_UMV)
-            .duration(3580 * 20)
-            .addTo(AF);
 
         // 润滑油
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24252),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1)),
                 MaterialGTMethod.Astro.getDust(16),
                 Materials.Redstone.getDust(1))
-            .fluidInputs(Materials.Water.getFluid(32000))
-            .fluidOutputs(Materials.Lubricant.getFluid(256000))
+            .fluidInputs(
+                Materials.Water.getFluid(32000))
+            .fluidOutputs(
+                Materials.Lubricant.getFluid(256000))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * 20)
@@ -53,11 +47,13 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24251),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(4),
                 Materials.BlackPlutonium.getDust(16))
-            .fluidInputs(Materials.Helium.getFluid(2000))
-            .itemOutputs(Materials.CosmicNeutronium.getDust(12))
+            .fluidInputs(
+                Materials.Helium.getFluid(2000))
+            .itemOutputs(
+                Materials.CosmicNeutronium.getDust(12))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(30 * 20)
@@ -67,11 +63,13 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24251),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(1),
                 Materials.Glowstone.getDust(16))
-            .fluidInputs(Materials.Hydrogen.getFluid(12000))
-            .itemOutputs(Materials.Sunnarium.getDust(64))
+            .fluidInputs(
+                Materials.Hydrogen.getFluid(12000))
+            .itemOutputs(
+                Materials.Sunnarium.getDust(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(22 * 20)
@@ -81,14 +79,15 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24251),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.AstroInf.getDust(12),
                 MaterialGTMethod.Astro.getDust(32),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64))
-            .fluidInputs(Materials.NaquadahEnriched.getFluid(144 * 32))
+            .fluidInputs(
+                Materials.NaquadahEnriched.getFluid(144 * 32))
             .itemOutputs(
                 Materials.Naquadria.getDust(64),
                 Materials.Naquadria.getDust(64),
@@ -103,7 +102,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24252),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 MaterialGTMethod.Astro.getDust(60),
                 Materials.Naquadah.getDust(60))
             .fluidInputs(
