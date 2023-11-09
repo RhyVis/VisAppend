@@ -44,7 +44,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(12 * 20)
             .addTo(AF);
 
-        //合成宇宙中子素 SpNt
+        // 合成宇宙中子素 SpNt
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
@@ -58,7 +58,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(30 * 20)
             .addTo(AF);
 
-        //合成阳光化合物 Su
+        // 合成阳光化合物 Su
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
@@ -72,7 +72,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(22 * 20)
             .addTo(AF);
 
-        //合成超能硅岩 Nq*
+        // 合成超能硅岩 Nq*
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
@@ -82,8 +82,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64))
-            .fluidInputs(
-                Materials.NaquadahEnriched.getFluid(144*32))
+            .fluidInputs(Materials.NaquadahEnriched.getFluid(144 * 32))
             .itemOutputs(
                 Materials.Naquadria.getDust(64),
                 Materials.Naquadria.getDust(64),
@@ -94,16 +93,14 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(36 * 20)
             .addTo(AF);
 
-        //合成合成玉 Or
+        // 合成合成玉 Or
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24252),
                 MaterialGTMethod.Astro.getDust(6),
                 Materials.Naquadah.getDust(6))
-            .fluidInputs(
-                Materials.Helium.getFluid(12000),
-                Materials.Quantium.getFluid(4000))
+            .fluidInputs(Materials.Helium.getFluid(12000), Materials.Quantium.getFluid(4000))
             .itemOutputs(GT_ModHandler.getModItem("bartworks", "gt.bwMetaGenerateddust", 8, 10023))
             .noOptimize()
             .eut(RECIPE_UV)
