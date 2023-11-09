@@ -18,7 +18,7 @@ public class LoaderMachine {
         AstraForge = new GT_TileEntity_AstraForge(17501, "NameAstraForge", "星辉锻造台").getStackForm(1);
         AppendItemList.AstraForge.set(AstraForge);
 
-        InfiniteLiquidAirHatch = new GT_MetaTileEntity_Hatch_LiquidAir(18999, "InfiniteLiquidAirHatch", "无限压缩进气仓", 9)
+        InfiniteLiquidAirHatch = new GT_MetaTileEntity_Hatch_LiquidAir(17401, "InfiniteLiquidAirHatch", "无限压缩进气仓", 9)
             .getStackForm(1);
         AppendItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
     }
