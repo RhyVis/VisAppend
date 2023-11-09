@@ -3,7 +3,6 @@ package com.rhynia.gtnh.append.common.block.container;
 import static com.rhynia.gtnh.append.client.GTNHATab.tabMetaBlock01;
 import static com.rhynia.gtnh.append.common.block.BlockBasicItem.MetaBlockSet01;
 import static com.rhynia.gtnh.append.common.block.container.BlockStaticDataClientOnly.iconsBlockMap01;
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
 
 import java.util.List;
 
@@ -37,7 +36,6 @@ public class BlockBase01 extends Block {
     public BlockBase01(String unlocalizedName, String localName) {
         this();
         this.unlocalizedName = unlocalizedName;
-        texter(localName, "blockBase01." + unlocalizedName + ".name");
     }
 
     // endregion

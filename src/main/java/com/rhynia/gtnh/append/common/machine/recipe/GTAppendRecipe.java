@@ -127,7 +127,7 @@ public class GTAppendRecipe {
     public final GTAppendRecipeMap AstraForgeRecipes = new GTAppendRecipeMap(
         new HashSet<>(),
         "append.recipe.AstraForgeRecipes",
-        "星辉锻造台",
+        "星辉聚能转化",
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         16,

@@ -8,8 +8,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.rhynia.gtnh.append.util.UtilTextHandler;
-
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
@@ -25,8 +23,6 @@ public class RegItemBasic extends Item {
         this.setMaxDamage(0);
         this.setCreativeTab(aCreativeTabs);
         this.unlocalizedName = MetaName;
-        UtilTextHandler.texter(Name, this.unlocalizedName + ".name");
-
     }
 
     public static String generateUnlocalizedName(String MetaName) {
