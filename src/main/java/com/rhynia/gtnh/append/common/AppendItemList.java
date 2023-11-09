@@ -15,7 +15,7 @@ public enum AppendItemList implements IItemContainer {
 
     // Item
     ItemUltimate,
-    //Sig Block
+    // Sig Block
     InfiniteLiquidAirHatch,
     // Machine Controller
     AstraForge;

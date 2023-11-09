@@ -1,5 +1,8 @@
 package com.rhynia.gtnh.append.common.machine.singalblock;
 
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -7,16 +10,16 @@ import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
 import gtPlusPlus.xmod.gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_FluidGenerator;
 import gtPlusPlus.xmod.gregtech.common.blocks.textures.TexturesGtBlock;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 
 public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Hatch_FluidGenerator {
-    public GT_MetaTileEntity_Hatch_LiquidAir(final int aID, final String aName, final String aNameRegional, final int aTier) {
+
+    public GT_MetaTileEntity_Hatch_LiquidAir(final int aID, final String aName, final String aNameRegional,
+        final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
     public GT_MetaTileEntity_Hatch_LiquidAir(final String aName, final int aTier, final String[] aDescription,
-                                       final ITexture[][][] aTextures) {
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 
@@ -35,7 +38,7 @@ public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Hatch_F
 
     @Override
     public Fluid getFluidToGenerate() {
-        return FluidUtils.getFluidStack("liquidair",1)
+        return FluidUtils.getFluidStack("liquidair", 1)
             .getFluid();
     }
 
