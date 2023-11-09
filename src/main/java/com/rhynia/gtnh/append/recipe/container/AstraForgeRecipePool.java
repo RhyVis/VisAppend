@@ -21,6 +21,8 @@ public class AstraForgeRecipePool implements IRecipePool {
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
 
+        // region 星辉转化
+
         // 润滑油
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -33,6 +35,20 @@ public class AstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * 20)
+            .addTo(AF);
+
+        // UU增殖
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(11),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidInputs(Materials.UUMatter.getFluid(2048))
+            .fluidOutputs(Materials.UUMatter.getFluid(32768))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(10 * 20)
             .addTo(AF);
 
         // 合成宇宙中子素 SpNt
@@ -98,5 +114,21 @@ public class AstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(100 * 20)
             .addTo(AF);
+
+        // 合成合成玉 Or
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(4),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                MaterialGTMethod.Astro.getDust(60),
+                Materials.Naquadah.getDust(60))
+            .fluidInputs(Materials.Helium.getFluid(120000), Materials.Quantium.getFluid(40000))
+            .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(100 * 20)
+            .addTo(AF);
+
+        // endregion 星辉转化
     }
 }
