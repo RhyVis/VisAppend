@@ -26,14 +26,15 @@ public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Append_
 
     @Override
     public MetaTileEntity newMetaEntity(final IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_LiquidAir(this.mName, 13, this.mDescriptionArray, this.mTextures);
+        return new GT_MetaTileEntity_Hatch_LiquidAir(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
     }
 
     @Override
     public String[] getCustomTooltip() {
-        String[] aTooltip = new String[3];
+        String[] aTooltip = new String[4];
         aTooltip[0] = "直接将吸入的气体压缩至液态.";
         aTooltip[1] = "每5秒填充至最大容量.";
+        aTooltip[2] = "你是在里面塞了一个奇点吗?";
         return aTooltip;
     }
 
