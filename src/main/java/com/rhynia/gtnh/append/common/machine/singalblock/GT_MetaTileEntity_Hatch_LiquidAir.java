@@ -10,7 +10,6 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
-import gtPlusPlus.xmod.gregtech.common.blocks.textures.TexturesGtBlock;
 
 public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
