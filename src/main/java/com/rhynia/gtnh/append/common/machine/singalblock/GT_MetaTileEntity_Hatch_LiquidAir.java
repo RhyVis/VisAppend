@@ -3,15 +3,16 @@ package com.rhynia.gtnh.append.common.machine.singalblock;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
+import com.rhynia.gtnh.append.common.machine.implementations.GT_MetaTileEntity_Append_Hatch_FluidGenerator;
+
+import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
-import gtPlusPlus.xmod.gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_FluidGenerator;
-import gtPlusPlus.xmod.gregtech.common.blocks.textures.TexturesGtBlock;
 
-public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Hatch_FluidGenerator {
+public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
     public GT_MetaTileEntity_Hatch_LiquidAir(final int aID, final String aName, final String aNameRegional,
         final int aTier) {
@@ -25,12 +26,12 @@ public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Hatch_F
 
     @Override
     public MetaTileEntity newMetaEntity(final IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_LiquidAir(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
+        return new GT_MetaTileEntity_Hatch_LiquidAir(this.mName, 13, this.mDescriptionArray, this.mTextures);
     }
 
     @Override
     public String[] getCustomTooltip() {
-        String[] aTooltip = new String[2];
+        String[] aTooltip = new String[3];
         aTooltip[0] = "直接将吸入的气体压缩至液态.";
         aTooltip[1] = "每5秒填充至最大容量.";
         return aTooltip;
@@ -67,11 +68,11 @@ public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Hatch_F
 
     @Override
     public ITexture[] getTexturesActive(final ITexture aBaseTexture) {
-        return new ITexture[] { aBaseTexture, new GT_RenderedTexture(TexturesGtBlock.Overlay_Hatch_Muffler_Adv) };
+        return new ITexture[] { aBaseTexture, new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FUSION1) };
     }
 
     @Override
     public ITexture[] getTexturesInactive(final ITexture aBaseTexture) {
-        return new ITexture[] { aBaseTexture, new GT_RenderedTexture(TexturesGtBlock.Overlay_Hatch_Muffler_Adv) };
+        return new ITexture[] { aBaseTexture, new GT_RenderedTexture(Textures.BlockIcons.OVERLAY_FUSION1) };
     }
 }
