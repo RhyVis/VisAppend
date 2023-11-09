@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.client;
 
-
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 
@@ -15,6 +14,7 @@ public class GTNHATab {
      * Creative Tab for MetaItem01
      */
     public static final CreativeTabs tabMetaItem01 = new CreativeTabs("Append: Item") {
+
         @Override
         @SideOnly(Side.CLIENT)
         public Item getTabIconItem() {
