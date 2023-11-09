@@ -1,12 +1,17 @@
 package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.Mods.GTPlusPlus;
+import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
+import com.github.bartimaeusnek.bartworks.API.WerkstoffAPI;
+import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
+import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -78,6 +83,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(4),
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24251),
                 MaterialGTMethod.AstroInf.getDust(12),
+                MaterialGTMethod.Astro.getDust(32),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
@@ -98,13 +104,17 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 0, 24252),
-                MaterialGTMethod.Astro.getDust(6),
-                Materials.Naquadah.getDust(6))
-            .fluidInputs(Materials.Helium.getFluid(12000), Materials.Quantium.getFluid(4000))
-            .itemOutputs(GT_ModHandler.getModItem("bartworks", "gt.bwMetaGenerateddust", 8, 10023))
+                MaterialGTMethod.Astro.getDust(60),
+                Materials.Naquadah.getDust(60))
+            .fluidInputs(
+                Materials.Helium.getFluid(120000),
+                Materials.Quantium.getFluid(40000))
+            .itemOutputs(
+                MyMaterial.orundum.get(dust, 64),
+                MyMaterial.orundum.get(dust, 64))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(10 * 20)
+            .duration(100 * 20)
             .addTo(AF);
     }
 }
