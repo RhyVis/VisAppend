@@ -1,10 +1,11 @@
 package com.rhynia.gtnh.append.common.machine.singalblock;
 
-import com.rhynia.gtnh.append.common.machine.implementations.GT_MetaTileEntity_Append_Hatch_FluidGenerator;
-import gregtech.api.enums.Textures;
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
+import com.rhynia.gtnh.append.common.machine.implementations.GT_MetaTileEntity_Append_Hatch_FluidGenerator;
+
+import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
