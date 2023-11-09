@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.common.item.container;
 
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
 import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
 
 import java.util.List;
@@ -10,8 +9,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
-
-import com.rhynia.gtnh.append.util.UtilTextHandler;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
@@ -24,7 +21,6 @@ public class ItemUltimate extends Item {
         super();
         this.setCreativeTab(aCreativeTabs);
         this.unlocalizedName = aMetaName;
-        UtilTextHandler.texter(aName, this.unlocalizedName + ".name");
     }
 
     @Override
@@ -54,12 +50,9 @@ public class ItemUltimate extends Item {
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
         if (isShiftKeyDown()) {
-            toolTip.add(
-                texter(
-                    EnumChatFormatting.LIGHT_PURPLE + "You're stepping onto the highest edge of this game.",
-                    "tooltips.ultimate.proof.line2"));
+            toolTip.add(EnumChatFormatting.LIGHT_PURPLE + "You're stepping onto the highest edge of this game.");
         } else {
-            toolTip.add(texter("You're stepping onto the highest edge of this game.", "tooltips.ultimate.proof.line1"));
+            toolTip.add("You're stepping onto the highest edge of this game.");
         }
     }
 

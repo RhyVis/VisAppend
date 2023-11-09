@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.client;
 
-import static com.rhynia.gtnh.append.util.UtilTextHandler.texter;
 
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
@@ -15,8 +14,18 @@ public class GTNHATab {
     /**
      * Creative Tab for MetaItem01
      */
-    public static final CreativeTabs tabMetaItem01 = new CreativeTabs(
-        texter("AppendMetaItems1", "itemGroup.AppendMetaItems1")) {
+    public static final CreativeTabs tabMetaItem01 = new CreativeTabs("Append: Item") {
+        @Override
+        @SideOnly(Side.CLIENT)
+        public Item getTabIconItem() {
+            return ItemBasic.MetaItem01;
+        }
+    };
+
+    /**
+     * Creative Tab for MetaBlock01
+     */
+    public static final CreativeTabs tabMetaBlock01 = new CreativeTabs("Append: Block") {
 
         @Override
         @SideOnly(Side.CLIENT)
@@ -28,20 +37,7 @@ public class GTNHATab {
     /**
      * Creative Tab for MetaBlock01
      */
-    public static final CreativeTabs tabMetaBlock01 = new CreativeTabs(
-        texter("AppendMetaBlocks1", "itemGroup.AppendMetaBlocks1")) {
-
-        @Override
-        @SideOnly(Side.CLIENT)
-        public Item getTabIconItem() {
-            return ItemBasic.MetaItem01;
-        }
-    };
-
-    /**
-     * Creative Tab for MetaBlock01
-     */
-    public static final CreativeTabs tabGTCMGeneralTab = new CreativeTabs(texter("GTAppend", "itemGroup.GTAppend")) {
+    public static final CreativeTabs tabGeneralTab = new CreativeTabs("Append: Material") {
 
         @Override
         @SideOnly(Side.CLIENT)

@@ -8,7 +8,6 @@ import com.rhynia.gtnh.append.loader.LoaderMachine;
 import com.rhynia.gtnh.append.loader.LoaderMaterial;
 import com.rhynia.gtnh.append.loader.LoaderRecipe;
 import com.rhynia.gtnh.append.nei.NEIHandler;
-import com.rhynia.gtnh.append.util.UtilTextHandler;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -47,11 +46,8 @@ public class GTNHAppend {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-
-        UtilTextHandler.initLangMap(isInDevMode);
-
         proxy.preInit(event);
-        LoaderMaterial.load();
+        LoaderMaterial.load();// Load Materials
     }
 
     @Mod.EventHandler
@@ -68,7 +64,6 @@ public class GTNHAppend {
     // postInit "Handle interaction with other mods, complete your setup based on this." (Remove if not needed)
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
-        UtilTextHandler.serializeLangMap(isInDevMode);
     }
 
     @Mod.EventHandler
