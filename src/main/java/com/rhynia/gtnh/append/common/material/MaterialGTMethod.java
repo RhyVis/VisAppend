@@ -4,12 +4,8 @@ import static gregtech.api.enums.OrePrefixes.*;
 
 import java.util.Arrays;
 
-import gregtech.api.enums.MaterialBuilder;
-import gregtech.api.enums.Materials;
-import gregtech.api.enums.SubTag;
-import gregtech.api.enums.TC_Aspects;
+import gregtech.api.enums.*;
 import gregtech.api.enums.TC_Aspects.TC_AspectStack;
-import gregtech.api.enums.TextureSet;
 
 public class MaterialGTMethod implements Runnable {
 
