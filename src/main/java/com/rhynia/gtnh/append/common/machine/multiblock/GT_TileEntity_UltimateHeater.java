@@ -66,17 +66,18 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             @Override
             public CheckRecipeResult process() {
                 setSpeedBonus(getSpeedBonus());
+                setOverclock(coilLevel.getTier() > 12 ? 2 : 1, 2);
                 return super.process();
             }
         }.setMaxParallelSupplier(this::getMaxParallelRecipes);
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(4, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return (int) (Math.pow(2, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
     public float getSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
+        return (float) Math.pow(0.95, coilLevel.getTier());
     }
 
     @Override
@@ -174,7 +175,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     // spotless: off
     private final String[][] shape = new String[][]{
         {" EEEEE ","EHGGGHE","EGBBBGE","EGBIBGE","EGBBBGE","EHGGGHE"," EEEEE "},
-        {" FFFFF ","FBBBBBF","FB   BF","FB D BF","FB   BF","FBBBBBF"," FFFFF "},
+        {" FFFFF ","FBBBBBF","FB I BF","FBIDIBF","FB I BF","FBBBBBF"," FFFFF "},
         {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
         {" FAAAF ","FC B CF","A BJB A","ABJDJBA","A BJB A","FC B CF"," FAAAF "},
         {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
@@ -210,8 +211,9 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addInfo("至终加热场的控制器")
             .addInfo("用纯粹的能量暴力地将物质加热为离子态.")
             .addInfo("需要星极透镜聚焦热量.")
-            .addInfo("拥有与无损超频等效的并行(但有损超频).")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
+            .addInfo("电压每提高1级, 并行翻倍.")
+            .addInfo("线圈每提高1级, 额外减少5%配方耗时.")
+            .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
             .addSeparator()
             .addInfo("结构太复杂了!")
             .addInfo("请参考§9Structure§1Lib§7全息投影，构建主体结构")
