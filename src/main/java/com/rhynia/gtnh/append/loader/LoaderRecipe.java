@@ -9,7 +9,7 @@ public class LoaderRecipe {
 
     public static void loadRecipes() {
         IRecipePool[] recipePools = new IRecipePool[] { new AppendCommonRecipePool(), new AppendMachineRecipePool(),
-            new AstraForgeRecipePool()};
+            new AstraForgeRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();

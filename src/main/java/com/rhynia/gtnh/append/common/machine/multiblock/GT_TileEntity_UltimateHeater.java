@@ -9,9 +9,6 @@ import static gregtech.api.util.GT_StructureUtility.ofCoil;
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import gregtech.api.enums.HeatingCoilLevel;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
-import gregtech.common.blocks.GT_Block_Casings8;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
@@ -27,21 +24,25 @@ import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 
 import gregtech.api.GregTech_API;
+import gregtech.api.enums.HeatingCoilLevel;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gregtech.common.blocks.GT_Block_Casings8;
 
 public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
+
     // region Definition
     private HeatingCoilLevel coilLevel;
     public byte glassTier;
@@ -126,7 +127,6 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             true);
     }
 
-
     private final int horizontalOffSet = 3;
     private final int verticalOffSet = 9;
     private final int depthOffSet = 0;
@@ -135,31 +135,33 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     public IStructureDefinition<GT_TileEntity_UltimateHeater> getStructureDefinition() {
         return StructureDefinition.<GT_TileEntity_UltimateHeater>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
-            .addElement('A',
-                        withChannel("glass",
-                        com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass(
+            .addElement(
+                'A',
+                withChannel(
+                    "glass",
+                    com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass(
                         (byte) 0,
                         (byte) 1,
                         Byte.MAX_VALUE,
                         (te, t) -> te.glassTier = t,
-                        te -> te.glassTier
-                    )))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings1,15))
-            .addElement('C', ofBlock(GregTech_API.sBlockCasings4,7))
-            .addElement('D',
+                        te -> te.glassTier)))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
+            .addElement('C', ofBlock(GregTech_API.sBlockCasings4, 7))
+            .addElement(
+                'D',
                 withChannel(
                     "coil",
-                    ofCoil(
-                        GT_TileEntity_UltimateHeater::setCoilLevel,
-                        GT_TileEntity_UltimateHeater::getCoilLevel)))
-            .addElement('E', GT_HatchElementBuilder.<GT_TileEntity_UltimateHeater>builder()
-                .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                .adder(GT_TileEntity_UltimateHeater::addToMachineList)
-                .dot(1)
-                .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(2))
-                .buildAndChain(GregTech_API.sBlockCasings8, 2))
-            .addElement('F', ofBlock(GregTech_API.sBlockCasings8,7))
-            .addElement('G', ofBlock(GregTech_API.sBlockCasings8,10))
+                    ofCoil(GT_TileEntity_UltimateHeater::setCoilLevel, GT_TileEntity_UltimateHeater::getCoilLevel)))
+            .addElement(
+                'E',
+                GT_HatchElementBuilder.<GT_TileEntity_UltimateHeater>builder()
+                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
+                    .adder(GT_TileEntity_UltimateHeater::addToMachineList)
+                    .dot(1)
+                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(2))
+                    .buildAndChain(GregTech_API.sBlockCasings8, 2))
+            .addElement('F', ofBlock(GregTech_API.sBlockCasings8, 7))
+            .addElement('G', ofBlock(GregTech_API.sBlockCasings8, 10))
             .addElement('H', ofFrame(Neutronium))
             .addElement('I', ofFrame(CosmicNeutronium))
             .addElement('J', ofFrame(Infinity))
@@ -173,18 +175,17 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     }
 
     // spotless: off
-    private final String[][] shape = new String[][]{
-        {" EEEEE ","EHGGGHE","EGBBBGE","EGBIBGE","EGBBBGE","EHGGGHE"," EEEEE "},
-        {" FFFFF ","FBBBBBF","FB I BF","FBIDIBF","FB I BF","FBBBBBF"," FFFFF "},
-        {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
-        {" FAAAF ","FC B CF","A BJB A","ABJDJBA","A BJB A","FC B CF"," FAAAF "},
-        {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
-        {" FAAAF ","FC B CF","A BJB A","ABJDJBA","A BJB A","FC B CF"," FAAAF "},
-        {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
-        {" FAAAF ","FC B CF","A BJB A","ABJDJBA","A BJB A","FC B CF"," FAAAF "},
-        {" FAAAF ","FC   CF","A  J  A","A JDJ A","A  J  A","FC   CF"," FAAAF "},
-        {" EE~EE ","EEGGGEE","EGGGGGE","EGGGGGE","EGGGGGE","EEGGGEE"," EEEEE "}
-    };
+    private final String[][] shape = new String[][] {
+        { " EEEEE ", "EHGGGHE", "EGBBBGE", "EGBIBGE", "EGBBBGE", "EHGGGHE", " EEEEE " },
+        { " FFFFF ", "FBBBBBF", "FB I BF", "FBIDIBF", "FB I BF", "FBBBBBF", " FFFFF " },
+        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
+        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
+        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
+        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
+        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
+        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
+        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
+        { " EE~EE ", "EEGGGEE", "EGGGGGE", "EGGGGGE", "EGGGGGE", "EEGGGEE", " EEEEE " } };
     // spotless: on
     // endregion
 
@@ -275,7 +276,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
-                                 ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
+        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
         if (sideDirection == facingDirection) {
             if (active) return new ITexture[] {
                 Textures.BlockIcons
@@ -316,5 +317,5 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     public HeatingCoilLevel getCoilLevel() {
         return this.coilLevel;
     }
-    //endregion
+    // endregion
 }
