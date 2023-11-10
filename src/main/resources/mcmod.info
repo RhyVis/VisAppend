@@ -6,7 +6,7 @@
 		"description": "A simple mod used in GTNH for tewak use.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
-		"url": "https://github.com/RhyVis/GTNH-Append",
+		"url": "https://github.com/RhyVis/GTAppend",
 		"updateUrl": "",
 		"authorList": ["Rhynia"],
 		"credits": "",
