@@ -94,7 +94,6 @@ public class MaterialGTMethod implements Runnable {
         itemCasing.mNotGeneratedItems.add(Astro);
         itemCasing.mNotGeneratedItems.add(AstroInf);
         itemCasing.mNotGeneratedItems.add(AstroMagic);
-        plate.mNotGeneratedItems.add(Astro);
         plate.mNotGeneratedItems.add(AstroInf);
         plate.mNotGeneratedItems.add(AstroMagic);
         gemFlawless.mNotGeneratedItems.add(AstroInf);

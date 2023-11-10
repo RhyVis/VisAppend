@@ -29,13 +29,12 @@ public class AppendMachineRecipePool implements IRecipePool {
                 ItemList.Electric_Pump_UEV.get(32),
                 ItemList.Field_Generator_UEV.get(12),
                 new Object[] { OrePrefixes.circuit.get(Materials.Infinite), 8 },
+                Materials.Infinity.getPlates(4),
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 1),
-                Materials.Infinity.getPlates(4),
-                Materials.Infinity.getPlates(4),
-                Materials.Infinity.getPlates(4),
+                ItemList.UHV_Coil.get(1),
                 Materials.Infinity.getPlates(4))
             .fluidInputs(
-                Materials.CosmicNeutronium.getFluid(10 * 144),
+                Materials.CosmicNeutronium.getFluid(1440),
                 MaterialGTMethod.Astro.getFluid(16000),
                 MaterialGTMethod.AstroInf.getFluid(8000))
             .itemOutputs(AppendItemList.InfiniteLiquidAirHatch.get(1))
@@ -49,7 +48,7 @@ public class AppendMachineRecipePool implements IRecipePool {
             .metadata(RESEARCH_ITEM, MaterialGTMethod.AstroInf.getGems(1))
             .metadata(RESEARCH_TIME, 2 * HOURS)
             .itemInputs(
-                ItemList.UHV_Coil.get(1),
+                ItemList.Machine_IV_LaserEngraver.get(64),
                 ItemList.Field_Generator_UHV.get(8),
                 ItemList.Sensor_UHV.get(8),
                 Materials.Infinity.getPlates(12),
