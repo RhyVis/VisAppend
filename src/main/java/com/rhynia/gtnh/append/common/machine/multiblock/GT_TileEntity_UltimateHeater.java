@@ -9,9 +9,7 @@ import static gregtech.api.util.GT_StructureUtility.ofCoil;
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import com.github.bartimaeusnek.bartworks.API.BorosilicateGlass;
 import gregtech.api.enums.HeatingCoilLevel;
-import gregtech.api.enums.ItemList;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.common.blocks.GT_Block_Casings8;
 import net.minecraft.entity.player.EntityPlayerMP;
