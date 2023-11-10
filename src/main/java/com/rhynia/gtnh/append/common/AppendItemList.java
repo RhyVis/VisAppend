@@ -18,7 +18,8 @@ public enum AppendItemList implements IItemContainer {
     // Sig Block
     InfiniteLiquidAirHatch,
     // Machine Controller
-    AstraForge;
+    AstraForge,
+    CasimirMacroFieldGenerator;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

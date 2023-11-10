@@ -12,8 +12,10 @@ public class NEIHandler {
 
     public static void IMCSender() {
         sendHandler("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
+        sendHandler("append.recipe.CasimirMacroFieldGenerator", "gregtech:gt.blockmachines:17502");
 
         sendCatalyst("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
+        sendCatalyst("append.recipe.CasimirMacroFieldGenerator", "gregtech:gt.blockmachines:17502");
     }
 
     private static void sendHandler(String aName, String aBlock) {
