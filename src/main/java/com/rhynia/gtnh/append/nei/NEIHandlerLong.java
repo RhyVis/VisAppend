@@ -6,12 +6,12 @@ import com.rhynia.gtnh.append.Tags;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 
-public class NEIHandler {
+public class NEIHandlerLong {
 
     public static void IMCSender() {
-        sendHandler("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
+        sendHandler("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
 
-        sendCatalyst("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
+        sendCatalyst("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
     }
 
     private static void sendHandler(String aName, String aBlock) {
@@ -23,7 +23,7 @@ public class NEIHandler {
         aNBT.setString("itemName", aBlock);
         aNBT.setInteger("handlerHeight", 135);
         aNBT.setInteger("handlerWidth", 166);
-        aNBT.setInteger("maxRecipesPerPage", 2);
+        aNBT.setInteger("maxRecipesPerPage", 1);
         aNBT.setInteger("yShift", 6);
         FMLInterModComms.sendMessage("NotEnoughItems", "registerHandlerInfo", aNBT);
     }

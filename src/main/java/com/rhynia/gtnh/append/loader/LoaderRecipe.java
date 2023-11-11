@@ -4,12 +4,13 @@ import com.rhynia.gtnh.append.recipe.IRecipePool;
 import com.rhynia.gtnh.append.recipe.container.AppendCommonRecipePool;
 import com.rhynia.gtnh.append.recipe.container.AppendMachineRecipePool;
 import com.rhynia.gtnh.append.recipe.container.AstraForgeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.UltimateHeaterRecipePool;
 
 public class LoaderRecipe {
 
     public static void loadRecipes() {
         IRecipePool[] recipePools = new IRecipePool[] { new AppendCommonRecipePool(), new AppendMachineRecipePool(),
-            new AstraForgeRecipePool() };
+            new AstraForgeRecipePool(), new UltimateHeaterRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();
