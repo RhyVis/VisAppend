@@ -1,8 +1,10 @@
 package com.rhynia.gtnh.append.nei;
 
-import com.rhynia.gtnh.append.Tags;
-import cpw.mods.fml.common.event.FMLInterModComms;
 import net.minecraft.nbt.NBTTagCompound;
+
+import com.rhynia.gtnh.append.Tags;
+
+import cpw.mods.fml.common.event.FMLInterModComms;
 
 public class NEIHandler {
 

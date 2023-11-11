@@ -1,24 +1,27 @@
 package com.rhynia.gtnh.append.common.machine.single;
 
+import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+
 import com.rhynia.gtnh.append.common.machine.implementations.GT_MetaTileEntity_Append_Hatch_FluidGenerator;
+
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
-import net.minecraft.world.World;
-import net.minecraftforge.fluids.Fluid;
 
 public class GT_MetaTileEntity_Hatch_Oil extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
+
     protected int mode = 0;// 0 means IntensifyChemicalDistorter; 1 means LCR adv
-    public GT_MetaTileEntity_Hatch_Oil(final int aID, final String aName, final String aNameRegional,
-                                       final int aTier) {
+
+    public GT_MetaTileEntity_Hatch_Oil(final int aID, final String aName, final String aNameRegional, final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
     public GT_MetaTileEntity_Hatch_Oil(final String aName, final int aTier, final String[] aDescription,
-                                       final ITexture[][][] aTextures) {
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 

@@ -16,7 +16,7 @@ public class GTAppendRecipe {
 
     public static final GTAppendRecipe instance = new GTAppendRecipe();
 
-    //Astra Forge
+    // Astra Forge
     public static class GTAppendAstraForgeRecipeMap extends GT_Recipe.GT_Recipe_Map {
 
         /**
@@ -44,11 +44,11 @@ public class GTAppendRecipe {
          * @param aShowVoltageAmperageInNEI
          * @param aNEIAllowed                if NEI is allowed to display this Recipe Handler in general.
          */
-        public GTAppendAstraForgeRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName, String aLocalName,
-                                           String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount, int aUsualFluidInputCount,
-                                           int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems, int aMinimalInputFluids,
-                                           int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier, String aNEISpecialValuePost,
-                                           boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
+        public GTAppendAstraForgeRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName,
+            String aLocalName, String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount,
+            int aUsualFluidInputCount, int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems,
+            int aMinimalInputFluids, int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier,
+            String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
             super(
                 aRecipeList,
                 aUnlocalizedName,
@@ -145,7 +145,7 @@ public class GTAppendRecipe {
         false,
         true);
 
-    //Ultimate Heater
+    // Ultimate Heater
     public static class GTAppendUltimateHeaterRecipeMap extends GT_Recipe.GT_Recipe_Map {
 
         /**
@@ -173,11 +173,11 @@ public class GTAppendRecipe {
          * @param aShowVoltageAmperageInNEI
          * @param aNEIAllowed                if NEI is allowed to display this Recipe Handler in general.
          */
-        public GTAppendUltimateHeaterRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName, String aLocalName,
-                                           String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount, int aUsualFluidInputCount,
-                                           int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems, int aMinimalInputFluids,
-                                           int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier, String aNEISpecialValuePost,
-                                           boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
+        public GTAppendUltimateHeaterRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName,
+            String aLocalName, String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount,
+            int aUsualFluidInputCount, int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems,
+            int aMinimalInputFluids, int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier,
+            String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
             super(
                 aRecipeList,
                 aUnlocalizedName,

@@ -15,18 +15,22 @@ import gtPlusPlus.core.util.minecraft.FluidUtils;
 public class GT_MetaTileEntity_Hatch_DistilledWater extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
     public GT_MetaTileEntity_Hatch_DistilledWater(final int aID, final String aName, final String aNameRegional,
-                                             final int aTier) {
+        final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
     public GT_MetaTileEntity_Hatch_DistilledWater(final String aName, final int aTier, final String[] aDescription,
-                                             final ITexture[][][] aTextures) {
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 
     @Override
     public MetaTileEntity newMetaEntity(final IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_DistilledWater(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
+        return new GT_MetaTileEntity_Hatch_DistilledWater(
+            this.mName,
+            this.mTier,
+            this.mDescriptionArray,
+            this.mTextures);
     }
 
     @Override

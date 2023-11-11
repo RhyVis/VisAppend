@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append;
 
-import com.rhynia.gtnh.append.nei.NEIHandler;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -8,6 +7,7 @@ import com.rhynia.gtnh.append.common.machine.recipe.crtsupport.AstraForge;
 import com.rhynia.gtnh.append.loader.LoaderMachine;
 import com.rhynia.gtnh.append.loader.LoaderMaterial;
 import com.rhynia.gtnh.append.loader.LoaderRecipe;
+import com.rhynia.gtnh.append.nei.NEIHandler;
 import com.rhynia.gtnh.append.nei.NEIHandlerLong;
 
 import cpw.mods.fml.common.Mod;
@@ -57,7 +57,7 @@ public class GTNHAppend {
         proxy.init(event);
         MineTweakerAPI.registerClass(AstraForge.class);// MineTweaker Support
         LoaderMachine.loadMachines();// Load Machines
-        NEIHandler.IMCSender();//NEI reg 2 each page
+        NEIHandler.IMCSender();// NEI reg 2 each page
         NEIHandlerLong.IMCSender();// NEI reg 1 each page
 
     }
