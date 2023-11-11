@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.common.machine.recipe;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -10,14 +9,8 @@ import com.gtnewhorizons.modularui.api.forge.IItemHandlerModifiable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 
-import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
-import goodgenerator.client.GUI.GG_UITextures;
-import goodgenerator.util.MyRecipeAdder;
 import gregtech.api.util.GT_Recipe;
-import gregtech.api.util.GT_Utility;
 import gregtech.common.gui.modularui.UIHelper;
-import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidStack;
 
 public class GTAppendRecipe {
 

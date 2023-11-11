@@ -83,7 +83,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return GTAppendRecipe.instance.AstraForgeRecipes;
+        return GTAppendRecipe.instance.UltimateHeaterRecipes;
     }
 
     @Override
