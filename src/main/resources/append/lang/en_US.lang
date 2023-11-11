@@ -1,15 +1,6 @@
 ModName=GTNH: Append
 itemGroup.GTAppend=GTNH: Append
 
-NameAstraForge=Astra Forge
-Tooltip_AstraForge_MachineType=Grand Astra Forge
-
-Tooltip_MagneticMixer_00=Controller block for the Astra Forge
-Tooltip_MagneticMixer_01=§cDon't try to understand its principle.
-Tooltip_MagneticMixer_02=Use starlight to transform the ordinary to miracles.
-Tooltip_MagneticMixer_03=Astro Lenses are required in recipe.
-Tooltip_MagneticMixer_04=Has parallel equivalent to Perfect Overclock.
-Tooltip_MagneticMixer_05=Additional 20% reduction in time per Voltage Tier, multiplication calculus.
-
-BLUE_PRINT_INFO=Follow the§9 Structure§1Lib§7 hologram projector to build the main structure.
-textUseBlueprint=Use §9Blue§bprint§r to preview
+HatchInfiniteOil.mode.0=优势1
+HatchInfiniteOil.mode.1=优势2
+HatchInfiniteOil.mode.2=优势3
