@@ -35,7 +35,7 @@ public class GT_MetaTileEntity_Hatch_Oil extends GT_MetaTileEntity_Append_Hatch_
         String[] aTooltip = new String[4];
         aTooltip[0] = "地下的油泉，就在你家门口!";
         aTooltip[1] = "每5秒填充至最大容量.";
-        aTooltip[3] = "应该不会招来霉菌吧?";
+        aTooltip[2] = "应该不会招来霉菌吧?";
         return aTooltip;
     }
 

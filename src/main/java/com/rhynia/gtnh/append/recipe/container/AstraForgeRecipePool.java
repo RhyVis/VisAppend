@@ -11,10 +11,14 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import net.minecraft.block.Block;
+import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
 public class AstraForgeRecipePool implements IRecipePool {
@@ -47,6 +51,9 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Iron.getDust(64),
                 Materials.Diamond.getDust(64),
                 Materials.Diamond.getDust(64))
+            .itemOutputs(
+                Materials.Unstable.getDust(64),
+                Materials.Unstable.getDust(64))
             .noOptimize()
             .eut(RECIPE_IV)
             .duration(20 * 20)
@@ -59,15 +66,15 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
-                Materials.Sand.getDust(64),
-                Materials.Sand.getDust(64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
                 new ItemStack(Items.blaze_powder, 4, 0))
             .fluidInputs(
                 Materials.Water.getFluid(1000),
                 MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
-                Materials.SoulSand.getBlocks(64),
-                Materials.SoulSand.getBlocks(64))
+                new ItemStack(Blocks.soul_sand, 64,0),
+                new ItemStack(Blocks.soul_sand, 64,0))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(350)
@@ -89,6 +96,24 @@ public class AstraForgeRecipePool implements IRecipePool {
                 new ItemStack(Items.blaze_powder, 64, 0))
             .noOptimize()
             .eut(RECIPE_EV)
+            .duration(350)
+            .addTo(AF);
+        // 末影珍珠
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(11),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                GT_ModHandler.getModItem("HardcoreEnderExpansion","end_powder",16),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidInputs(
+                MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                new ItemStack(Items.ender_pearl, 64, 0),
+                new ItemStack(Items.ender_pearl, 64, 0),
+                new ItemStack(Items.ender_pearl, 64, 0),
+                new ItemStack(Items.ender_pearl , 64, 0))
+            .noOptimize()
+            .eut(RECIPE_IV)
             .duration(350)
             .addTo(AF);
         // endregion
