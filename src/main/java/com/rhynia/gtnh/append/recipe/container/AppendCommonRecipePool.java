@@ -19,10 +19,9 @@ public class AppendCommonRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map LCR = GT_Recipe.GT_Recipe_Map.sMultiblockChemicalRecipes;
-        final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sMultiblockCentrifugeRecipes;
         final GT_Recipe.GT_Recipe_Map EMS = GT_Recipe.GT_Recipe_Map.sElectroMagneticSeparatorRecipes;
         final GT_Recipe.GT_Recipe_Map LE = GT_Recipe.GT_Recipe_Map.sLaserEngraverRecipes;
+        final GT_Recipe.GT_Recipe_Map e = GT_Recipe.GT_Recipe_Map.sImplosionRecipes;
 
         // region 星辉产生
         // 磁析神秘 FeMa=>Fe+Ao
@@ -33,17 +32,7 @@ public class AppendCommonRecipePool implements IRecipePool {
             .eut(RECIPE_MV)
             .duration(21 * 20)
             .addTo(EMS);
-        // 离心秘银 FePtMa=>CSMa+Pt+Ao
-        GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.Mithril.getDust(6))
-            .itemOutputs(
-                Materials.Pyrotheum.getDust(1),
-                Materials.Platinum.getDust(1),
-                MaterialGTMethod.Astro.getDust(2))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(21 * 20)
-            .addTo(CF);
+
         // endregion
 
         // region 异氙光刻
