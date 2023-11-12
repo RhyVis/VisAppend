@@ -2,8 +2,6 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
-import gtPlusPlus.core.material.ALLOY;
-import gtPlusPlus.core.material.ELEMENT;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -19,6 +17,7 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.material.ALLOY;
 
 public class UltimateHeaterRecipePool implements IRecipePool {
 
@@ -47,8 +46,8 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
                 MaterialGTMethod.AstroInf.getGems(4))
-            .fluidInputs(ALLOY.NITINOL_60.getFluidStack(144*512))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.advancednitinol"), 144*512))
+            .fluidInputs(ALLOY.NITINOL_60.getFluidStack(144 * 512))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.advancednitinol"), 144 * 512))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(120 * 20)
