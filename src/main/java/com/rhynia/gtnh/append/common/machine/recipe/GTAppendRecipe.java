@@ -233,7 +233,8 @@ public class GTAppendRecipe {
 
         @Override
         public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
-            return UIHelper.getGridPositions(fluidOutputCount, 116, yOriginOutput + getItemRowCount() * 18, xDirMaxCount);
+            return UIHelper
+                .getGridPositions(fluidOutputCount, 116, yOriginOutput + getItemRowCount() * 18, xDirMaxCount);
         }
 
         @Override
