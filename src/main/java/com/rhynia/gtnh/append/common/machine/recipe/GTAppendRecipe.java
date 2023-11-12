@@ -206,6 +206,7 @@ public class GTAppendRecipe {
 
         private static final int xDirMaxCount = 2;
         private static final int yOrigin = 17;
+        private static final int yOriginOutput = -9;
 
         private int getItemRowCount() {
             return (Math.max(mUsualInputCount, mUsualOutputCount) - 1) / xDirMaxCount + 1;
@@ -222,7 +223,7 @@ public class GTAppendRecipe {
 
         @Override
         public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
-            return UIHelper.getGridPositions(itemOutputCount, 116, yOrigin, xDirMaxCount);
+            return UIHelper.getGridPositions(itemOutputCount, 116, yOriginOutput, xDirMaxCount);
         }
 
         @Override
@@ -232,7 +233,7 @@ public class GTAppendRecipe {
 
         @Override
         public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
-            return UIHelper.getGridPositions(fluidOutputCount, 116, yOrigin + getItemRowCount() * 18, xDirMaxCount);
+            return UIHelper.getGridPositions(fluidOutputCount, 116, yOriginOutput + getItemRowCount() * 18, xDirMaxCount);
         }
 
         @Override
@@ -259,9 +260,9 @@ public class GTAppendRecipe {
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         4,
+        0,
+        2,
         4,
-        2,
-        2,
         true,
         0,
         0,
