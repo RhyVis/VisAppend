@@ -37,7 +37,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 32000))
             .noOptimize()
             .eut(RECIPE_UMV)
-            .duration(80 * 20)
+            .duration(95 * 20)
             .addTo(UH);
         // 等离子 Nitinol
         GT_Values.RA.stdBuilder()
@@ -51,6 +51,32 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(120 * 20)
+            .addTo(UH);
+        // 等离子 AstralTitanium
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(8))
+            .fluidInputs(Materials.Titanium.getMolten(144 * 512))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.astraltitanium"), 144 * 512))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(105 * 20)
+            .addTo(UH);
+        // 等离子 ChromaticGlass
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(8))
+            .fluidInputs(Materials.Glass.getMolten(144 * 512))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.chromaticglass"), 144 * 512))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(180 * 20)
             .addTo(UH);
         // endregion
         // region 稀有气体
