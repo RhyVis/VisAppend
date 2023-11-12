@@ -1,7 +1,11 @@
 package com.rhynia.gtnh.append.loader;
 
 import com.rhynia.gtnh.append.recipe.IRecipePool;
-import com.rhynia.gtnh.append.recipe.container.*;
+import com.rhynia.gtnh.append.recipe.container.AppendCentrifugeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.AppendCommonRecipePool;
+import com.rhynia.gtnh.append.recipe.container.AppendMachineRecipePool;
+import com.rhynia.gtnh.append.recipe.container.AstraForgeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.UltimateHeaterRecipePool;
 
 public class LoaderRecipe {
 
