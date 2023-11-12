@@ -33,17 +33,6 @@ public class AppendCommonRecipePool implements IRecipePool {
             .eut(RECIPE_MV)
             .duration(21 * 20)
             .addTo(EMS);
-        // 离心秘银 FePtMa=>CSMa+Pt+Ao
-        GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.Mithril.getDust(6))
-            .itemOutputs(
-                Materials.Pyrotheum.getDust(1),
-                Materials.Platinum.getDust(1),
-                MaterialGTMethod.Astro.getDust(2))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(21 * 20)
-            .addTo(CF);
         // endregion
 
         // region 异氙光刻

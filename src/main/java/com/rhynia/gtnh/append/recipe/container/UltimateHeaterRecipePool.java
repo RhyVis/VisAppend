@@ -2,6 +2,8 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
+import gtPlusPlus.core.material.ALLOY;
+import gtPlusPlus.core.material.ELEMENT;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -24,6 +26,34 @@ public class UltimateHeaterRecipePool implements IRecipePool {
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map UH = GTAppendRecipe.instance.UltimateHeaterRecipes;
 
+        // region 聚变加热
+        // 等离子 Og
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(64))
+            .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(32000))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 32000))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(80 * 20)
+            .addTo(UH);
+        // 等离子 Nitinol
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(4))
+            .fluidInputs(ALLOY.NITINOL_60.getFluidStack(144*512))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.advancednitinol"), 144*512))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(120 * 20)
+            .addTo(UH);
+        // endregion
         // region 稀有气体
         // 等离子 He
         GT_Values.RA.stdBuilder()
@@ -78,19 +108,6 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.xenon"), 16000))
             .noOptimize()
             .eut(RECIPE_UIV)
-            .duration(12 * 20)
-            .addTo(UH);
-        // 等离子 Og
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(10),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(64))
-            .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(16000))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 16000))
-            .noOptimize()
-            .eut(RECIPE_UMV)
             .duration(12 * 20)
             .addTo(UH);
         // endregion
