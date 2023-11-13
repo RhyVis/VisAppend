@@ -210,7 +210,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("离子发生器")
             .addInfo("至终加热场的控制器")
-            .addInfo("仿若上帝亲自撕碎离子间的力.")
+            .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量暴力地将物质加热为离子态.")
             .addInfo("需要星极透镜聚焦热量.")
             .addInfo("电压每提高1级, 并行翻倍.")
