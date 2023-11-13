@@ -135,6 +135,17 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .eut(RECIPE_UIV)
             .duration(12 * 20)
             .addTo(UH);
+        // 等离子 Rn
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(12),
+                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)))
+            .fluidInputs(Materials.Radon.getGas(16000))
+            .fluidOutputs(Materials.Radon.getPlasma(16000))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(12 * 20)
+            .addTo(UH);
         // endregion
         // region 第一二周期 UV-UEV
         // 氢等离子 H
