@@ -242,7 +242,7 @@ public class GTAppendRecipe {
             IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
             IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
             Supplier<Float> progressSupplier, Pos2d windowOffset) {
-            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount() + 1) * 18);
+            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,
                 itemOutputsInventory,

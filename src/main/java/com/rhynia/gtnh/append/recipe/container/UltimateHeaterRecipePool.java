@@ -81,6 +81,32 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(180 * 20)
             .addTo(UH);
+        // 等离子 CelestialTungsten
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(8))
+            .fluidInputs(Materials.Tungsten.getMolten(144 * 512))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.celestialtungsten"), 144 * 512))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(130 * 20)
+            .addTo(UH);
+        // 等离子 DragonBlood
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                MaterialGTMethod.AstroInf.getGems(16))
+            .fluidInputs(Materials.Enderium.getMolten(144 * 256), MaterialGTMethod.Astro.getFluid(12000))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.dragonblood"), 144 * 512))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(165 * 20)
+            .addTo(UH);
         // endregion
         // region 稀有气体
         // 等离子 He
