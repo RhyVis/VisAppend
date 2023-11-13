@@ -219,7 +219,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addSeparator()
             .addInfo("结构太复杂了!")
             .addInfo("请参考§9Structure§1Lib§7全息投影，构建主体结构")
-            .beginStructureBlock(3, 12, 3, false)
+            .beginStructureBlock(7, 12, 7, false)
             .addInputHatch("用§9蓝§b图§r预览", 1)
             .addOutputHatch("用§9蓝§b图§r预览", 1)
             .addInputBus("用§9蓝§b图§r预览", 1)
