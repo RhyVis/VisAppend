@@ -7,6 +7,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -288,7 +289,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 硫酸钠
-        final ItemStack Na2SO4 = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 57);
+        final ItemStack Na2SO4 = WerkstoffLoader.Sodiumsulfate.get(dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
@@ -328,7 +329,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(40 * 20)
             .addTo(AF);
-        // 钐精粉
+        // 钐
         final ItemStack SmMix = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 11128);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMix, SmMix, SmMix, SmMix)
@@ -362,6 +363,21 @@ public class AstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
+            .addTo(AF);
+        // 稀土
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.RareEarth.getDust(64),
+                Materials.RareEarth.getDust(64))
+            .itemOutputs(
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthI", 48),
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthII", 40),
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthIII", 32))
+            .noOptimize()
+            .eut(RECIPE_IV)
+            .duration(12 * 20)
             .addTo(AF);
         // endregion
 
