@@ -1,14 +1,15 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static gregtech.api.enums.TierEU.*;
+
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-
-import static gregtech.api.enums.TierEU.*;
 
 public class AppendMixerRecipePool implements IRecipePool {
 
@@ -19,10 +20,7 @@ public class AppendMixerRecipePool implements IRecipePool {
         // region 杂项
         // 深渊铁
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                Materials.Iron.getDust(1),
-                Materials.Thaumium.getDust(3),
-                GT_Utility.getIntegratedCircuit(2))
+            .itemInputs(Materials.Iron.getDust(1), Materials.Thaumium.getDust(3), GT_Utility.getIntegratedCircuit(2))
             .itemOutputs(Materials.ShadowIron.getDust(3))
             .noOptimize()
             .eut(RECIPE_HV)

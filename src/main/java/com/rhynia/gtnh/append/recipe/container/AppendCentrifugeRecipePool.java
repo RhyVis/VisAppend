@@ -45,7 +45,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .itemOutputs(
                 Materials.Copper.getDust(8),
                 Materials.Ledox.getDust(2),
-                WerkstoffLoader.Roquesit.get(OrePrefixes.dust,1),
+                WerkstoffLoader.Roquesit.get(OrePrefixes.dust, 1),
                 Materials.Firestone.getDust(1),
                 MaterialGTMethod.Astro.getDust(1))
             .noOptimize()
@@ -55,10 +55,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
         // 深空冰
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.CallistoIce.getDust(4))
-            .itemOutputs(
-                Materials.Ice.getDust(2),
-                Materials.Cryotheum.getDust(1),
-                MaterialGTMethod.Astro.getDust(1))
+            .itemOutputs(Materials.Ice.getDust(2), Materials.Cryotheum.getDust(1), MaterialGTMethod.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * 20)
@@ -68,7 +65,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .itemInputs(Materials.Mithril.getDust(6))
             .itemOutputs(
                 Materials.Pyrotheum.getDust(1),
-                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust,2),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
                 MaterialGTMethod.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
@@ -81,7 +78,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
                 Materials.Mithril.getDust(4),
                 Materials.Thaumium.getDust(3),
                 Materials.AstralSilver.getDust(1),
-                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust,2),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
                 MaterialGTMethod.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
