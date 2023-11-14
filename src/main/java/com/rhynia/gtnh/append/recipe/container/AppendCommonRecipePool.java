@@ -2,10 +2,10 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
-import com.github.bartimaeusnek.bartworks.util.BWRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
+import com.github.bartimaeusnek.bartworks.util.BWRecipes;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 

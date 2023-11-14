@@ -3,11 +3,11 @@ package com.rhynia.gtnh.append.recipe.container;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
-import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
@@ -331,7 +331,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 钐
-        final ItemStack SmMix = WerkstoffMaterialPool.SamariumOreConcentrate.get(OrePrefixes.dust,64);
+        final ItemStack SmMix = WerkstoffMaterialPool.SamariumOreConcentrate.get(OrePrefixes.dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMix, SmMix, SmMix, SmMix)
             .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
@@ -348,7 +348,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 富铈粉
-        final ItemStack CeMix = WerkstoffMaterialPool.CeriumRichMixture.get(OrePrefixes.dust,64);
+        final ItemStack CeMix = WerkstoffMaterialPool.CeriumRichMixture.get(OrePrefixes.dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, CeMix, CeMix, CeMix, CeMix)
             .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
