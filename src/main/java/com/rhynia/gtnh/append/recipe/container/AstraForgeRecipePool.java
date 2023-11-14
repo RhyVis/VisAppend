@@ -36,7 +36,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1)),
+                lensMagic,
                 MaterialGTMethod.Astro.getDust(16),
                 Materials.Redstone.getDust(1))
             .fluidInputs(Materials.Water.getFluid(32000))
@@ -49,7 +49,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1)),
+                lensMagic,
                 Materials.Iron.getDust(64),
                 Materials.Iron.getDust(64),
                 Materials.Diamond.getDust(64),
@@ -66,7 +66,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Items.blaze_powder, 4, 0))
@@ -80,7 +80,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 Materials.Carbon.getDust(64),
                 Materials.Sulfur.getDust(64))
             .fluidInputs(Materials.Lava.getFluid(1000), MaterialGTMethod.Astro.getFluid(16))
@@ -97,7 +97,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 GT_ModHandler.getModItem("HardcoreEnderExpansion", "end_powder", 16),
                 MaterialGTMethod.Astro.getDust(64))
             .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
@@ -117,7 +117,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
             .fluidInputs(Materials.UUMatter.getFluid(2048))
@@ -133,7 +133,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64),
@@ -148,7 +148,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64),
@@ -164,7 +164,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -173,7 +173,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64),
@@ -188,7 +188,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64),
@@ -204,7 +204,173 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 方解石
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64),
+                Materials.Calcite.getDust(64))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Calcium.getDust(64),
+                Materials.Calcium.getDust(64),
+                Materials.Calcium.getDust(64),
+                Materials.Calcium.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                Materials.Carbon.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 磷酸盐
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64),
+                Materials.Phosphate.getDust(64))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                Materials.Phosphorus.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 硫酸钠
+        final ItemStack Na2SO4 = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,57);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4,
+                Na2SO4)
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sodium.getDust(64),
+                Materials.Sulfur.getDust(64),
+                Materials.Sulfur.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 钐精粉
+        final ItemStack SmMix = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,11128);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                SmMix,
+                SmMix,
+                SmMix,
+                SmMix)
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Samarium.getDust(64),
+                Materials.Samarium.getDust(32),
+                Materials.Lanthanum.getDust(16),
+                Materials.Cerium.getDust(16),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 富铈粉
+        final ItemStack CeMix = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,11029);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                CeMix,
+                CeMix,
+                CeMix,
+                CeMix)
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Cerium.getDust(64),
+                Materials.Cerium.getDust(16),
+                Materials.Lanthanum.getDust(16),
+                Materials.Europium.getDust(16),
+                Materials.Gadolinium.getDust(16),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -216,7 +382,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 MaterialGTMethod.Astro.getDust(4),
                 Materials.BlackPlutonium.getDust(16))
             .fluidInputs(Materials.Helium.getFluid(2000))
@@ -230,7 +396,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 MaterialGTMethod.Astro.getDust(1),
                 Materials.Glowstone.getDust(16))
             .fluidInputs(Materials.Hydrogen.getFluid(12000))
@@ -244,7 +410,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 MaterialGTMethod.AstroInf.getDust(12),
                 MaterialGTMethod.Astro.getDust(32),
                 Materials.Naquadah.getDust(64),
@@ -266,7 +432,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1)),
+                lensInf,
                 MaterialGTMethod.Astro.getDust(60),
                 Materials.Naquadah.getDust(60))
             .fluidInputs(Materials.Helium.getFluid(120000), Materials.Quantium.getFluid(40000))
