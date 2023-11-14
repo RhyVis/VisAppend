@@ -15,7 +15,7 @@ public class AppendElectroRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map EC = GT_Recipe.GT_Recipe_Map.sMultiblockElectrolyzerRecipes;
+        final GT_Recipe.GT_Recipe_Map EC = GT_Recipe.GT_Recipe_Map.sElectrolyzerRecipes;
 
         // region 焙烧粉还原
         // 焙烧铁粉
