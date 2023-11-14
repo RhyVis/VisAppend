@@ -11,8 +11,12 @@ import com.rhynia.gtnh.append.recipe.container.UltimateHeaterRecipePool;
 public class LoaderRecipe {
 
     public static void loadRecipes() {
-        IRecipePool[] recipePools = new IRecipePool[] { new AppendCommonRecipePool(), new AppendMachineRecipePool(),
-            new AppendCentrifugeRecipePool(), new AppendElectroRecipePool(), new AstraForgeRecipePool(),
+        IRecipePool[] recipePools = new IRecipePool[] {
+            new AppendCommonRecipePool(),
+            new AppendMachineRecipePool(),
+            new AppendCentrifugeRecipePool(),
+            new AppendElectroRecipePool(),
+            new AstraForgeRecipePool(),
             new UltimateHeaterRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {

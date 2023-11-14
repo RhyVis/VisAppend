@@ -13,7 +13,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sMultiblockCentrifugeRecipes;
+        final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
 
         // region 杂项系列
         // 褐煤制煤
