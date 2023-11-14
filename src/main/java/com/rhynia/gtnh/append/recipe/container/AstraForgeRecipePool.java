@@ -3,6 +3,7 @@ package com.rhynia.gtnh.append.recipe.container;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -288,7 +289,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 硫酸钠
-        final ItemStack Na2SO4 = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 57);
+        final ItemStack Na2SO4 = WerkstoffLoader.Sodiumsulfate.get(dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
@@ -345,25 +346,6 @@ public class AstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(40 * 20)
             .addTo(AF);
-        // 钐
-        final ItemStack SmMixia = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 53);
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMixia, SmMixia, SmMixia, SmMixia, SmMixia, SmMixia)
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
-            .itemOutputs(
-                Materials.Samarium.getDust(64),
-                Materials.Samarium.getDust(64),
-                Materials.Lanthanum.getDust(24),
-                Materials.Cerium.getDust(24),
-                Materials.Neodymium.getDust(24),
-                Materials.Holmium.getDust(24),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(40 * 20)
-            .addTo(AF);
         // 富铈粉
         final ItemStack CeMix = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 11029);
         GT_Values.RA.stdBuilder()
@@ -390,9 +372,9 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.RareEarth.getDust(64),
                 Materials.RareEarth.getDust(64))
             .itemOutputs(
-                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",48),
-                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",40),
-                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",32))
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthI", 48),
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthII", 40),
+                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthIII", 32))
             .noOptimize()
             .eut(RECIPE_IV)
             .duration(12 * 20)
