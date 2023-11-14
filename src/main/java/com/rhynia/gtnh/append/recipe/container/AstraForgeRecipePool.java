@@ -25,8 +25,10 @@ public class AstraForgeRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
-        final ItemStack lensMagic = GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1));
-        final ItemStack lensInf = GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1));
+        final ItemStack lensMagic = GT_Utility
+            .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1));
+        final ItemStack lensInf = GT_Utility
+            .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1));
 
         // region 12号电路
 
@@ -146,13 +148,11 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64))
-            .fluidInputs(
-                MaterialGTMethod.Astro.getFluid(125))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
             .itemOutputs(
                 Materials.Silicon.getDust(512),
                 Materials.SiliconSG.getDust(256),
-                MaterialGTMethod.Astro.getDust(128)
-            )
+                MaterialGTMethod.Astro.getDust(128))
             .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
             .noOptimize()
             .eut(RECIPE_HV)
@@ -177,13 +177,11 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64))
-            .fluidInputs(
-                MaterialGTMethod.Astro.getFluid(125))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
             .itemOutputs(
                 Materials.Silicon.getDust(512),
                 Materials.SiliconSG.getDust(256),
-                MaterialGTMethod.Astro.getDust(128)
-            )
+                MaterialGTMethod.Astro.getDust(128))
             .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
             .noOptimize()
             .eut(RECIPE_HV)
