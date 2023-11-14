@@ -45,7 +45,7 @@ public class MaterialBartworksMethod implements Runnable {
     public static final Werkstoff astroUnstable = new Werkstoff(
         new short[] { 0x64, 0x82, 0xb4 },
         "AstroUnstable",
-        "Ao₂Nq*₆",
+        "Ao₂If*₆",
         new Werkstoff.Stats().setRadioactive(true),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
@@ -56,7 +56,7 @@ public class MaterialBartworksMethod implements Runnable {
     public static final Werkstoff astroLimit = new Werkstoff(
         new short[] { 0x64, 0x82, 0xb4 },
         "AstroLimit",
-        "(Ao₂Nq+₈)₂Ao₂Nq*₆",
+        "(Ao₂Nq+₈)₂Ao₂If*₆",
         new Werkstoff.Stats().setRadioactive(true),
         Werkstoff.Types.MIXTURE,
         new Werkstoff.GenerationFeatures().disable()
