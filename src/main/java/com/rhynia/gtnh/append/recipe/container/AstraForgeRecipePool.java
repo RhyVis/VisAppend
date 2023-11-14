@@ -288,7 +288,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 硫酸钠
-        final ItemStack Na2SO4 = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,57);
+        final ItemStack Na2SO4 = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 57);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
@@ -329,15 +329,9 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 钐精粉
-        final ItemStack SmMix = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,11128);
+        final ItemStack SmMix = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 11128);
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                lensInf,
-                SmMix,
-                SmMix,
-                SmMix,
-                SmMix)
+            .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMix, SmMix, SmMix, SmMix)
             .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Samarium.getDust(64),
@@ -352,15 +346,9 @@ public class AstraForgeRecipePool implements IRecipePool {
             .duration(40 * 20)
             .addTo(AF);
         // 富铈粉
-        final ItemStack CeMix = GT_ModHandler.getModItem("bartworks","bwMetaGenerateddust",64,11029);
+        final ItemStack CeMix = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 11029);
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                lensInf,
-                CeMix,
-                CeMix,
-                CeMix,
-                CeMix)
+            .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, CeMix, CeMix, CeMix, CeMix)
             .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Cerium.getDust(64),
