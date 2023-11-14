@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
+import com.github.bartimaeusnek.bartworks.util.BWRecipes;
 import net.minecraftforge.fluids.FluidRegistry;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
@@ -21,7 +22,7 @@ public class AppendCommonRecipePool implements IRecipePool {
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map EMS = GT_Recipe.GT_Recipe_Map.sElectroMagneticSeparatorRecipes;
         final GT_Recipe.GT_Recipe_Map LE = GT_Recipe.GT_Recipe_Map.sLaserEngraverRecipes;
-        final GT_Recipe.GT_Recipe_Map e = GT_Recipe.GT_Recipe_Map.sImplosionRecipes;
+        final GT_Recipe.GT_Recipe_Map IMP = BWRecipes.instance.eicMap;
 
         // region 星辉产生
         // 磁析神秘 FeMa=>Fe+Ao
@@ -32,7 +33,15 @@ public class AppendCommonRecipePool implements IRecipePool {
             .eut(RECIPE_MV)
             .duration(21 * 20)
             .addTo(EMS);
-
+        // 聚爆星辉
+        GT_Values.RA.stdBuilder()
+            .itemInputs(MaterialGTMethod.AstroInf.getDust(1))
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
+            .itemOutputs(MaterialGTMethod.AstroInf.getGems(1))
+            .noOptimize()
+            .eut(6000000)
+            .duration(1)
+            .addTo(IMP);
         // endregion
 
         // region 异氙光刻
