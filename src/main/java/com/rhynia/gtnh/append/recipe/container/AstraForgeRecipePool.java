@@ -150,9 +150,20 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Quartzite.getDust(64))
             .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
             .itemOutputs(
-                Materials.Silicon.getDust(512),
-                Materials.SiliconSG.getDust(256),
-                MaterialGTMethod.Astro.getDust(128))
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
             .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
             .noOptimize()
             .eut(RECIPE_HV)
@@ -179,9 +190,20 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconDioxide.getDust(64))
             .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
             .itemOutputs(
-                Materials.Silicon.getDust(512),
-                Materials.SiliconSG.getDust(256),
-                MaterialGTMethod.Astro.getDust(128))
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
             .fluidOutputs(MaterialGTMethod.Astro.getFluid(125))
             .noOptimize()
             .eut(RECIPE_HV)
