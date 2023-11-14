@@ -328,7 +328,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(40 * 20)
             .addTo(AF);
-        // 钐精粉
+        // 钐
         final ItemStack SmMix = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 11128);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMix, SmMix, SmMix, SmMix)
@@ -338,6 +338,25 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Samarium.getDust(32),
                 Materials.Lanthanum.getDust(16),
                 Materials.Cerium.getDust(16),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 钐
+        final ItemStack SmMixia = GT_ModHandler.getModItem("bartworks", "bwMetaGenerateddust", 64, 53);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMixia, SmMixia, SmMixia, SmMixia, SmMixia, SmMixia)
+            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+            .itemOutputs(
+                Materials.Samarium.getDust(64),
+                Materials.Samarium.getDust(64),
+                Materials.Lanthanum.getDust(24),
+                Materials.Cerium.getDust(24),
+                Materials.Neodymium.getDust(24),
+                Materials.Holmium.getDust(24),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
             .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
@@ -362,6 +381,21 @@ public class AstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
+            .addTo(AF);
+        // 稀土
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.RareEarth.getDust(64),
+                Materials.RareEarth.getDust(64))
+            .itemOutputs(
+                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",48),
+                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",40),
+                GT_ModHandler.getModItem("miscutils","itemDustRareEarthI",32))
+            .noOptimize()
+            .eut(RECIPE_IV)
+            .duration(12 * 20)
             .addTo(AF);
         // endregion
 
