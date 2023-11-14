@@ -1,13 +1,13 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static gregtech.api.enums.TierEU.*;
+
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_Recipe;
-
-import static gregtech.api.enums.TierEU.*;
 
 public class AppendCentrifugeRecipePool implements IRecipePool {
 
@@ -22,7 +22,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .itemOutputs(Materials.Coal.getDust(3))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8*20)
+            .duration(8 * 20)
             .addTo(CF);
         // 氟碳铈
         GT_Values.RA.stdBuilder()
@@ -32,13 +32,10 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
                 Materials.Gadolinium.getDust(1),
                 Materials.Samarium.getDust(1),
                 Materials.Carbon.getDust(2))
-            .fluidOutputs(
-                Materials.Oxygen.getGas(6000),
-                Materials.Fluorine.getGas(2000)
-            )
+            .fluidOutputs(Materials.Oxygen.getGas(6000), Materials.Fluorine.getGas(2000))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(8*20)
+            .duration(8 * 20)
             .addTo(CF);
         // 离心秘银 FePtMa=>CSMa+Pt+Ao
         GT_Values.RA.stdBuilder()
