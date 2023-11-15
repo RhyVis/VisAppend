@@ -150,7 +150,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64),
                 Materials.Quartzite.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64),
@@ -166,7 +165,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -190,7 +188,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64),
                 Materials.SiliconDioxide.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64),
@@ -206,7 +203,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -230,7 +226,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Calcite.getDust(64),
                 Materials.Calcite.getDust(64),
                 Materials.Calcite.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Calcium.getDust(64),
                 Materials.Calcium.getDust(64),
@@ -246,7 +241,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Carbon.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -270,7 +264,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Phosphate.getDust(64),
                 Materials.Phosphate.getDust(64),
                 Materials.Phosphate.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Phosphorus.getDust(64),
                 Materials.Phosphorus.getDust(64),
@@ -284,7 +277,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -309,7 +301,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Na2SO4,
                 Na2SO4,
                 Na2SO4)
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Sodium.getDust(64),
                 Materials.Sodium.getDust(64),
@@ -325,7 +316,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Sulfur.getDust(64),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -334,7 +324,6 @@ public class AstraForgeRecipePool implements IRecipePool {
         final ItemStack SmMix = WerkstoffMaterialPool.SamariumOreConcentrate.get(OrePrefixes.dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, SmMix, SmMix, SmMix, SmMix)
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Samarium.getDust(64),
                 Materials.Samarium.getDust(32),
@@ -342,7 +331,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Cerium.getDust(16),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -351,7 +339,6 @@ public class AstraForgeRecipePool implements IRecipePool {
         final ItemStack CeMix = WerkstoffMaterialPool.CeriumRichMixture.get(OrePrefixes.dust, 64);
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(8), lensInf, CeMix, CeMix, CeMix, CeMix)
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
             .itemOutputs(
                 Materials.Cerium.getDust(64),
                 Materials.Cerium.getDust(16),
@@ -360,7 +347,6 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Gadolinium.getDust(16),
                 MaterialGTMethod.Astro.getDust(64),
                 MaterialGTMethod.Astro.getDust(64))
-            .fluidOutputs(MaterialGTMethod.Astro.getFluid(16))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
