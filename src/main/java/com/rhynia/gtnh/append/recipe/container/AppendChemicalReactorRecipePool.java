@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static gregtech.api.enums.TierEU.*;
+
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -11,8 +13,6 @@ import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-
-import static gregtech.api.enums.TierEU.*;
 
 public class AppendChemicalReactorRecipePool implements IRecipePool {
 
@@ -43,12 +43,10 @@ public class AppendChemicalReactorRecipePool implements IRecipePool {
             .addTo(LCR);
         // 氟锑酸
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                Materials.Antimony.getDust(8),
-                GT_Utility.getIntegratedCircuit(20))
+            .itemInputs(Materials.Antimony.getDust(8), GT_Utility.getIntegratedCircuit(20))
             .fluidInputs(Materials.HydrofluoricAcid.getFluid(96000))
             .fluidOutputs(
-                new FluidStack(FluidRegistry.getFluid("fluoroantimonic acid"),16000),
+                new FluidStack(FluidRegistry.getFluid("fluoroantimonic acid"), 16000),
                 Materials.Hydrogen.getGas(80000))
             .noOptimize()
             .eut(RECIPE_EV)
