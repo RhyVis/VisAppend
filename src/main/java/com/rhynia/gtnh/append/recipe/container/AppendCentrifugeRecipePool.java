@@ -85,5 +85,44 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .duration(21 * 20)
             .addTo(CF);
         // endregion
+
+        // region 钨处理
+        // 白钨
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Scheelite.getDust(4))
+            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Calcium.getDust(3))
+            .fluidOutputs(Materials.Oxygen.getGas(2000))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(8 * 20)
+            .addTo(CF);
+        // 钨酸锂
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Tungstate.getDust(6))
+            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Lithium.getDust(5))
+            .fluidOutputs(Materials.Oxygen.getGas(1500))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(8 * 20)
+            .addTo(CF);
+        // 钨铁
+        GT_Values.RA.stdBuilder()
+            .itemInputs(WerkstoffLoader.Ferberite.get(OrePrefixes.dust, 6))
+            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Iron.getDust(2))
+            .fluidOutputs(Materials.Oxygen.getGas(1500))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(8 * 20)
+            .addTo(CF);
+        // 钨酸锰
+        GT_Values.RA.stdBuilder()
+            .itemInputs(WerkstoffLoader.Huebnerit.get(OrePrefixes.dust, 8))
+            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Manganese.getDust(4))
+            .fluidOutputs(Materials.Oxygen.getGas(2000))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(8 * 20)
+            .addTo(CF);
+        // endregion
     }
 }
