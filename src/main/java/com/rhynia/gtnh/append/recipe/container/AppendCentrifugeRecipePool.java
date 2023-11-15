@@ -107,7 +107,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .addTo(CF);
         // 钨铁
         GT_Values.RA.stdBuilder()
-            .itemInputs(WerkstoffLoader.Ferberite.get(OrePrefixes.dust,6))
+            .itemInputs(WerkstoffLoader.Ferberite.get(OrePrefixes.dust, 6))
             .itemOutputs(Materials.Tungsten.getDust(3), Materials.Iron.getDust(2))
             .fluidOutputs(Materials.Oxygen.getGas(1500))
             .noOptimize()
@@ -116,7 +116,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .addTo(CF);
         // 钨酸锰
         GT_Values.RA.stdBuilder()
-            .itemInputs(WerkstoffLoader.Huebnerit.get(OrePrefixes.dust,8))
+            .itemInputs(WerkstoffLoader.Huebnerit.get(OrePrefixes.dust, 8))
             .itemOutputs(Materials.Tungsten.getDust(3), Materials.Manganese.getDust(4))
             .fluidOutputs(Materials.Oxygen.getGas(2000))
             .noOptimize()
