@@ -34,7 +34,7 @@ public class AppendMachineRecipePool implements IRecipePool {
                 ItemList.UHV_Coil.get(1),
                 Materials.Infinity.getPlates(4))
             .fluidInputs(
-                Materials.CosmicNeutronium.getFluid(1440),
+                Materials.CosmicNeutronium.getMolten(1440),
                 MaterialGTMethod.Astro.getFluid(16000),
                 MaterialGTMethod.AstroInf.getFluid(8000))
             .itemOutputs(AppendItemList.InfiniteLiquidAirHatch.get(1))
@@ -57,7 +57,7 @@ public class AppendMachineRecipePool implements IRecipePool {
                 GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 32),
                 MaterialGTMethod.AstroMagic.getGems(16))
             .fluidInputs(
-                Materials.CosmicNeutronium.getFluid(10 * 144),
+                Materials.CosmicNeutronium.getMolten(10 * 144),
                 MaterialGTMethod.Astro.getFluid(16000),
                 MaterialGTMethod.AstroInf.getFluid(8000))
             .itemOutputs(AppendItemList.AstraForge.get(1))

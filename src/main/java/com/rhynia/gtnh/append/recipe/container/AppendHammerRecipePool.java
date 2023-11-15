@@ -42,7 +42,6 @@ public class AppendHammerRecipePool implements IRecipePool {
         // Kevlar
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Bees.combs.getStackForType(CombType.KEVLAR, 16), MaterialGTMethod.Astro.getDust(12))
-            .itemOutputs(Materials.Neutronium.getIngots(2))
             .fluidOutputs(
                 MaterialGTMethod.Astro.getFluid(12),
                 new FluidStack(FluidRegistry.getFluid("molten.kevlar"), 4608))

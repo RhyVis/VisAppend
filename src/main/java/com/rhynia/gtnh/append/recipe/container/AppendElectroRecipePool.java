@@ -9,6 +9,7 @@ import com.rhynia.gtnh.append.recipe.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_Recipe;
+import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class AppendElectroRecipePool implements IRecipePool {
 
@@ -89,6 +90,18 @@ public class AppendElectroRecipePool implements IRecipePool {
             .itemInputs(Materials.Ilmenite.getDust(8))
             .itemOutputs(Materials.Titanium.getDust(5), Materials.Iron.getDust(4))
             .fluidOutputs(Materials.Oxygen.getGas(6000))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(8 * 20)
+            .addTo(EC);
+        // endregion
+
+        // region 电解杂项矿
+        // 钛铁矿
+        GT_Values.RA.stdBuilder()
+            .itemInputs(MISC_MATERIALS.STRONTIUM_OXIDE.getDust(6))
+            .itemOutputs(Materials.Strontium.getDust(4))
+            .fluidOutputs(Materials.Oxygen.getGas(4500))
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(8 * 20)
