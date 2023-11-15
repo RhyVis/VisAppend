@@ -1,8 +1,5 @@
 package com.rhynia.gtnh.append.recipe.container;
 
-import static gregtech.api.enums.TierEU.RECIPE_HV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
-
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -14,6 +11,8 @@ import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+
+import static gregtech.api.enums.TierEU.*;
 
 public class AppendChemicalReactorRecipePool implements IRecipePool {
 
@@ -32,6 +31,28 @@ public class AppendChemicalReactorRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(21 * 20)
+            .addTo(LCR);
+        // 磷酸
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Phosphate.getDust(8))
+            .fluidInputs(Materials.Water.getFluid(12000))
+            .fluidOutputs(Materials.PhosphoricAcid.getFluid(10000))
+            .noOptimize()
+            .eut(RECIPE_LV)
+            .duration(21 * 20)
+            .addTo(LCR);
+        // 氟锑酸
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.Antimony.getDust(8),
+                GT_Utility.getIntegratedCircuit(20))
+            .fluidInputs(Materials.HydrofluoricAcid.getFluid(96000))
+            .fluidOutputs(
+                new FluidStack(FluidRegistry.getFluid("fluoroantimonic acid"),16000),
+                Materials.Hydrogen.getGas(80000))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(45 * 20)
             .addTo(LCR);
         // 干细胞
         GT_Values.RA.stdBuilder()
