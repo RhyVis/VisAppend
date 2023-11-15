@@ -3,12 +3,13 @@ package com.rhynia.gtnh.append.recipe.container;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
 
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
-import gregtech.api.util.GT_ModHandler;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_Recipe;
 
 public class AppendElectroRecipePool implements IRecipePool {
@@ -85,42 +86,6 @@ public class AppendElectroRecipePool implements IRecipePool {
         // endregion
 
         // region 电解钨-钛系列
-        // 白钨
-        GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.Scheelite.getDust(4))
-            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Calcium.getDust(3))
-            .fluidOutputs(Materials.Oxygen.getGas(2000))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(8 * 20)
-            .addTo(EC);
-        // 钨酸锂
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_ModHandler.getModItem("bartworks", "gt.bwMetaGenerateddust", 6, 17))
-            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Lithium.getDust(5))
-            .fluidOutputs(Materials.Oxygen.getGas(1500))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(8 * 20)
-            .addTo(EC);
-        // 钨铁
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_ModHandler.getModItem("bartworks", "gt.bwMetaGenerateddust", 6, 11))
-            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Iron.getDust(2))
-            .fluidOutputs(Materials.Oxygen.getGas(1500))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(8 * 20)
-            .addTo(EC);
-        // 钨酸锰
-        GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.Tungstate.getDust(8))
-            .itemOutputs(Materials.Tungsten.getDust(3), Materials.Manganese.getDust(4))
-            .fluidOutputs(Materials.Oxygen.getGas(2000))
-            .noOptimize()
-            .eut(RECIPE_MV)
-            .duration(8 * 20)
-            .addTo(EC);
         // 钛铁矿
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Ilmenite.getDust(8))
