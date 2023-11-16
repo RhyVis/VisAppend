@@ -207,6 +207,82 @@ public class AstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(40 * 20)
             .addTo(AF);
+        // 赛特斯石英
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64),
+                Materials.CertusQuartz.getDust(64))
+            .itemOutputs(
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
+        // 下界石英
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64),
+                Materials.NetherQuartz.getDust(64))
+            .itemOutputs(
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                Materials.SiliconSG.getDust(64),
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialGTMethod.Astro.getDust(64))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(40 * 20)
+            .addTo(AF);
         // 方解石
         GT_Values.RA.stdBuilder()
             .itemInputs(
