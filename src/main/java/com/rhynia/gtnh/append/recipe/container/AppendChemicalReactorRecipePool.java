@@ -2,16 +2,16 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
-import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import gregtech.api.enums.OrePrefixes;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -56,8 +56,8 @@ public class AppendChemicalReactorRecipePool implements IRecipePool {
             .addTo(LCR);
         // 钯金属粉处理
         GT_Values.RA.stdBuilder()
-            .itemInputs(WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust,8), GT_Utility.getIntegratedCircuit(24))
-            .itemOutputs(WerkstoffLoader.PDRawPowder.get(OrePrefixes.dust,8))
+            .itemInputs(WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 8), GT_Utility.getIntegratedCircuit(24))
+            .itemOutputs(WerkstoffLoader.PDRawPowder.get(OrePrefixes.dust, 8))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(15 * 20)
