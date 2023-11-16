@@ -2,6 +2,8 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
+import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
+import gregtech.api.enums.OrePrefixes;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -51,6 +53,14 @@ public class AppendChemicalReactorRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(45 * 20)
+            .addTo(LCR);
+        // 钯金属粉处理
+        GT_Values.RA.stdBuilder()
+            .itemInputs(WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust,8), GT_Utility.getIntegratedCircuit(24))
+            .itemOutputs(WerkstoffLoader.PDRawPowder.get(OrePrefixes.dust,8))
+            .noOptimize()
+            .eut(RECIPE_LV)
+            .duration(15 * 20)
             .addTo(LCR);
         // 干细胞
         GT_Values.RA.stdBuilder()
