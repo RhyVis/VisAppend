@@ -69,11 +69,26 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
                 lensInf,
+                new ItemStack(Items.blaze_powder, 4, 0),
+                Materials.Sulfur.getDust(16),
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Blocks.sand, 64),
-                new ItemStack(Items.blaze_powder, 4, 0))
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64))
             .fluidInputs(Materials.Water.getFluid(1000), MaterialGTMethod.Astro.getFluid(16))
-            .itemOutputs(new ItemStack(Blocks.soul_sand, 64, 0), new ItemStack(Blocks.soul_sand, 64, 0))
+            .itemOutputs(
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(350)
@@ -464,10 +479,14 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(1),
-                Materials.Glowstone.getDust(16))
-            .fluidInputs(Materials.Hydrogen.getFluid(12000))
-            .itemOutputs(Materials.Sunnarium.getDust(64))
+                MaterialGTMethod.Astro.getDust(64),
+                Materials.Glowstone.getDust(64))
+            .fluidInputs(Materials.Hydrogen.getFluid(48000))
+            .itemOutputs(
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(22 * 20)
