@@ -84,6 +84,17 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .eut(RECIPE_MV)
             .duration(21 * 20)
             .addTo(CF);
+        // 离心方钍石
+        GT_Values.RA.stdBuilder()
+            .itemInputs(WerkstoffLoader.Thorianit.get(OrePrefixes.dust,8))
+            .itemOutputs(
+                Materials.Thorium.getDust(6),
+                WerkstoffLoader.Thorium232.get(OrePrefixes.dust, 2))
+            .outputChances(10000, 2000)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(15 * 20)
+            .addTo(CF);
         // endregion
 
         // region 钨处理
