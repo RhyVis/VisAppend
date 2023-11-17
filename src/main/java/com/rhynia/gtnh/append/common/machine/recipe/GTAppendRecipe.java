@@ -257,7 +257,7 @@ public class GTAppendRecipe {
     public final GTAppendUltimateHeaterRecipeMap UltimateHeaterRecipes = new GTAppendUltimateHeaterRecipeMap(
         new HashSet<>(),
         "append.recipe.UltimateHeaterRecipes",
-        "离子发生过程",
+        "热核控制过程",
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         4,
