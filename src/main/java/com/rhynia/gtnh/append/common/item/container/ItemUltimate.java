@@ -1,7 +1,6 @@
 package com.rhynia.gtnh.append.common.item.container;
 
 import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
-import static net.minecraft.util.StatCollector.translateToLocalFormatted;
 
 import java.util.List;
 
@@ -33,7 +32,14 @@ public class ItemUltimate extends Item {
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
         if (isShiftKeyDown()) {
-            toolTip.add(EnumChatFormatting.BLUE + "你" + EnumChatFormatting.AQUA + "会" + EnumChatFormatting.RED + "更进一步" + EnumChatFormatting.BLUE + "吗？");
+            toolTip.add(
+                EnumChatFormatting.BLUE + "你"
+                    + EnumChatFormatting.AQUA
+                    + "会"
+                    + EnumChatFormatting.RED
+                    + "更进一步"
+                    + EnumChatFormatting.BLUE
+                    + "吗？");
         } else {
             toolTip.add("你可能已经触及到这个游戏的最终阶段了.");
         }
