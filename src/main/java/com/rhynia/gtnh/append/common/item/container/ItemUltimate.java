@@ -15,28 +15,10 @@ import cpw.mods.fml.relauncher.SideOnly;
 
 public class ItemUltimate extends Item {
 
-    public String unlocalizedName;
-
-    public ItemUltimate(String aName, String aMetaName, CreativeTabs aCreativeTabs) {
+    public ItemUltimate(CreativeTabs aCreativeTabs) {
         super();
         this.setCreativeTab(aCreativeTabs);
-        this.unlocalizedName = aMetaName;
-    }
-
-    @Override
-    public Item setUnlocalizedName(String aUnlocalizedName) {
-        this.unlocalizedName = aUnlocalizedName;
-        return this;
-    }
-
-    @Override
-    public String getUnlocalizedName(ItemStack aItemStack) {
-        return this.unlocalizedName;
-    }
-
-    @Override
-    public String getUnlocalizedName() {
-        return this.unlocalizedName;
+        this.setUnlocalizedName("Ultimate");
     }
 
     @Override
@@ -50,9 +32,16 @@ public class ItemUltimate extends Item {
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
         if (isShiftKeyDown()) {
-            toolTip.add(EnumChatFormatting.LIGHT_PURPLE + "You're stepping onto the highest edge of this game.");
+            toolTip.add(
+                EnumChatFormatting.BLUE + "你"
+                    + EnumChatFormatting.AQUA
+                    + "会"
+                    + EnumChatFormatting.RED
+                    + "更进一步"
+                    + EnumChatFormatting.BLUE
+                    + "吗？");
         } else {
-            toolTip.add("You're stepping onto the highest edge of this game.");
+            toolTip.add("你可能已经触及到这个游戏的最终阶段了.");
         }
     }
 

@@ -17,7 +17,7 @@ import stanhebben.zenscript.annotations.ZenMethod;
  * @author Rhynia
  */
 @ZenClass("mods.append.AstraForge")
-@ModOnly("append")
+@ModOnly("assets/append")
 public class AstraForge {
 
     /**
