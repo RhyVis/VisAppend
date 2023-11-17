@@ -69,11 +69,26 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
                 lensInf,
+                new ItemStack(Items.blaze_powder, 4, 0),
+                Materials.Sulfur.getDust(16),
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Blocks.sand, 64),
-                new ItemStack(Items.blaze_powder, 4, 0))
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64),
+                new ItemStack(Blocks.sand, 64))
             .fluidInputs(Materials.Water.getFluid(1000), MaterialGTMethod.Astro.getFluid(16))
-            .itemOutputs(new ItemStack(Blocks.soul_sand, 64, 0), new ItemStack(Blocks.soul_sand, 64, 0))
+            .itemOutputs(
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0),
+                new ItemStack(Blocks.soul_sand, 64, 0))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(350)
