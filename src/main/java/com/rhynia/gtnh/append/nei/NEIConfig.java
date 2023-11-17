@@ -1,11 +1,13 @@
 package com.rhynia.gtnh.append.nei;
 
-import codechicken.nei.api.API;
-import codechicken.nei.api.IConfigureNEI;
-import com.rhynia.gtnh.append.Tags;
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import com.rhynia.gtnh.append.Tags;
+
+import codechicken.nei.api.API;
+import codechicken.nei.api.IConfigureNEI;
 
 public class NEIConfig implements IConfigureNEI {
 
