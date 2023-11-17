@@ -41,7 +41,7 @@ public class ItemUltimate extends Item {
                     + EnumChatFormatting.BLUE
                     + "吗？");
         } else {
-            toolTip.add("你可能已经触及到这个游戏的最终阶段了.");
+            toolTip.add("你可能已经触及这个游戏的最终阶段了.");
         }
     }
 
