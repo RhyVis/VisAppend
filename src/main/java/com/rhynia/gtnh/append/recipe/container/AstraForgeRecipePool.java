@@ -479,10 +479,14 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(1),
-                Materials.Glowstone.getDust(16))
-            .fluidInputs(Materials.Hydrogen.getFluid(12000))
-            .itemOutputs(Materials.Sunnarium.getDust(64))
+                MaterialGTMethod.Astro.getDust(64),
+                Materials.Glowstone.getDust(64))
+            .fluidInputs(Materials.Hydrogen.getFluid(48000))
+            .itemOutputs(
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64),
+                Materials.Sunnarium.getDust(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(22 * 20)
