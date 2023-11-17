@@ -27,7 +27,7 @@ public class LoaderMachine {
     public static void loadMachines() {
         AstraForge = new GT_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
         AppendItemList.AstraForge.set(AstraForge);
-        UltimateHeater = new GT_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "至终加热场").getStackForm(1);
+        UltimateHeater = new GT_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
         AppendItemList.UltimateHeater.set(UltimateHeater);
 
         InfiniteLiquidAirHatch = new GT_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
