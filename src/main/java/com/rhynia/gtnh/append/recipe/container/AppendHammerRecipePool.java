@@ -2,12 +2,12 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 
-import com.dreammaster.gthandler.CustomItemList;
-import com.rhynia.gtnh.append.common.AppendItemList;
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.dreammaster.gthandler.CustomItemList;
+import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 

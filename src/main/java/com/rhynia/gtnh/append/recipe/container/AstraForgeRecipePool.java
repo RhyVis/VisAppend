@@ -5,7 +5,6 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -13,6 +12,7 @@ import net.minecraft.item.ItemStack;
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
@@ -65,7 +65,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(12),
                 lensMagic,
                 MaterialGTMethod.Astro.getDust(64),
-                MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust,16))
+                MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust, 16))
             .itemOutputs(MaterialGTMethod.AstroInf.getDust(1))
             .fluidOutputs(MaterialBartworksMethod.astroCatalystBase.getFluidOrGas(48000))
             .noOptimize()

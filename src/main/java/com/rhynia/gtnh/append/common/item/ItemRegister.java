@@ -1,6 +1,5 @@
 package com.rhynia.gtnh.append.common.item;
 
-import com.rhynia.gtnh.append.common.item.container.ItemLapo;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -11,7 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ItemRegister {
 
     public static void registryItems() {
-        Item[] itemsToReg = { ItemBasic.Ultimate, ItemBasic.LapoMatrix};
+        Item[] itemsToReg = { ItemBasic.Ultimate, ItemBasic.LapoMatrix };
 
         for (Item item : itemsToReg) {
             GameRegistry.registerItem(item, item.getUnlocalizedName());

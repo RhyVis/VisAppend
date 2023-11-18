@@ -2,9 +2,9 @@ package com.rhynia.gtnh.append.common.item;
 
 import static com.rhynia.gtnh.append.client.GTNHATab.tabMetaItem01;
 
-import com.rhynia.gtnh.append.common.item.container.ItemLapo;
 import net.minecraft.item.Item;
 
+import com.rhynia.gtnh.append.common.item.container.ItemLapo;
 import com.rhynia.gtnh.append.common.item.container.ItemUltimate;
 import com.rhynia.gtnh.append.common.item.registry.RegItem;
 

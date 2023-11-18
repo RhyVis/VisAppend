@@ -34,7 +34,7 @@ public class AppendMixerRecipePool implements IRecipePool {
                 MaterialGTMethod.AstroInf.getDust(8),
                 Materials.InfinityCatalyst.getDust(12),
                 GT_Utility.getIntegratedCircuit(12))
-            .itemOutputs(MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust,64))
+            .itemOutputs(MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * 20)

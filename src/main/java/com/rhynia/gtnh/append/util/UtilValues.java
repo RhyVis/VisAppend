@@ -1,11 +1,13 @@
 package com.rhynia.gtnh.append.util;
 
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 
 public class UtilValues {
 
