@@ -83,7 +83,7 @@ public class MaterialBartworksMethod implements Runnable {
         TextureSet.SET_FLUID);
     // Lapo Activation Fluid
     public static final Werkstoff lapoActivatedFluid = new Werkstoff(
-        new short[] { 0x6a, 0x5a, 0xcd },
+        new short[] { 0x64, 0x95, 0xed },
         "LapoActivatedFluid",
         "为什么只用兰波顿储能？",
         new Werkstoff.Stats().setRadioactive(true)
