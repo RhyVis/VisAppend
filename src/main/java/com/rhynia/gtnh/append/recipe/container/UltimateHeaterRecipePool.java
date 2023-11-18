@@ -1,21 +1,21 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static gregtech.api.enums.TierEU.*;
 
-import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
-import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
@@ -25,8 +25,22 @@ public class UltimateHeaterRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map UH = GTAppendRecipe.instance.UltimateHeaterRecipes;
-        final ItemStack lensInf = GT_Utility
-            .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1));
+
+        // region 兰波顿
+        // 兰波顿核心
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                CustomItemList.LapotronDust.get(64),
+                CustomItemList.LapotronDust.get(64))
+            .fluidInputs(MaterialBartworksMethod.astroCatalystActivated.getFluidOrGas(1000))
+            .fluidOutputs(MaterialBartworksMethod.lapoActivatedFluid.getFluidOrGas(8000))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(115 * 20)
+            .addTo(UH);
+        // endregion
 
         // region 聚变加热
         // 等离子 Og
@@ -108,6 +122,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
             .duration(180 * 20)
             .addTo(UH);
         // endregion
+
         // region 稀有气体
         // 等离子 He
         GT_Values.RA.stdBuilder()

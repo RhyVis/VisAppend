@@ -5,6 +5,9 @@ import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.dreammaster.gthandler.CustomItemList;
+import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
@@ -48,6 +51,18 @@ public class AppendHammerRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(25 * 20)
+            .addTo(HM);
+        // endregion
+
+        // region 兰波顿
+        // 兰波顿矩阵
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.LapotronDust.get(64), MaterialGTMethod.Astro.getDust(16))
+            .itemOutputs(AppendItemList.ItemLapoMatrix.get(16))
+            .fluidInputs(MaterialBartworksMethod.lapoActivatedFluid.getFluidOrGas(12000))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(40 * 20)
             .addTo(HM);
         // endregion
     }
