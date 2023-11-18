@@ -17,7 +17,6 @@ public class LoaderMachine {
     public static ItemStack InfiniteDistilledWaterHatch;
     public static ItemStack InfiniteLavaHatch;
     public static ItemStack InfiniteOilHatch;
-    public static ItemStack Wireless_Dynamo_Legend;
     // endregion
 
     // region multi Machine controller
