@@ -1,8 +1,11 @@
 package com.rhynia.gtnh.append.recipe.container;
 
+import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
+import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -18,7 +21,6 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
-import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
@@ -27,10 +29,6 @@ public class AstraForgeRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
-        final ItemStack lensMagic = GT_Utility
-            .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1));
-        final ItemStack lensInf = GT_Utility
-            .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroInf, 1));
 
         // region 12号电路
 
@@ -59,6 +57,19 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemOutputs(Materials.Unstable.getDust(64), Materials.Unstable.getDust(64))
             .noOptimize()
             .eut(RECIPE_IV)
+            .duration(20 * 20)
+            .addTo(AF);
+        // 星辉催化剂
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(12),
+                lensMagic,
+                MaterialGTMethod.Astro.getDust(64),
+                MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust,16))
+            .itemOutputs(MaterialGTMethod.AstroInf.getDust(1))
+            .fluidOutputs(MaterialBartworksMethod.astroCatalystBase.getFluidOrGas(48000))
+            .noOptimize()
+            .eut(RECIPE_UV)
             .duration(20 * 20)
             .addTo(AF);
         // endregion

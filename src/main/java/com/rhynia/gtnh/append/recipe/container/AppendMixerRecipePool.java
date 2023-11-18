@@ -2,11 +2,13 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
+import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
 import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -25,6 +27,17 @@ public class AppendMixerRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(21 * 20)
+            .addTo(MX);
+        // 星辉催化剂
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                MaterialGTMethod.AstroInf.getDust(8),
+                Materials.InfinityCatalyst.getDust(12),
+                GT_Utility.getIntegratedCircuit(12))
+            .itemOutputs(MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust,64))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * 20)
             .addTo(MX);
         // endregion
 

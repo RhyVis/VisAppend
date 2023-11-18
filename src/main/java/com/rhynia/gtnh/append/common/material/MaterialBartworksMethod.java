@@ -17,7 +17,7 @@ public class MaterialBartworksMethod implements Runnable {
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
             .addGems(),
-        OffsetID - 2,
+        OffsetID + 1,
         TextureSet.SET_NETHERSTAR);
     // Originiums
     public static final Werkstoff Originiums = new Werkstoff(
@@ -28,41 +28,8 @@ public class MaterialBartworksMethod implements Runnable {
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
             .addGems(),
-        OffsetID - 1,
-        TextureSet.SET_DIAMOND);
-    // Astro Activated Liquid
-    public static final Werkstoff astroActivated = new Werkstoff(
-        new short[] { 0x5f, 0x9e, 0xa0 },
-        "AstroActivated",
-        "Ao₂Nq+₈",
-        new Werkstoff.Stats().setRadioactive(true),
-        Werkstoff.Types.COMPOUND,
-        new Werkstoff.GenerationFeatures().disable()
-            .addCells(),
-        OffsetID,
-        TextureSet.SET_FLUID);
-    // Astro Unstable Liquid
-    public static final Werkstoff astroUnstable = new Werkstoff(
-        new short[] { 0x64, 0x82, 0xb4 },
-        "AstroUnstable",
-        "Ao₂If*₆",
-        new Werkstoff.Stats().setRadioactive(true),
-        Werkstoff.Types.COMPOUND,
-        new Werkstoff.GenerationFeatures().disable()
-            .addCells(),
-        OffsetID + 1,
-        TextureSet.SET_FLUID);
-    // Astro Liquid at Limit
-    public static final Werkstoff astroLimit = new Werkstoff(
-        new short[] { 0x64, 0x82, 0xb4 },
-        "AstroLimit",
-        "(Ao₂Nq+₈)₂Ao₂If*₆",
-        new Werkstoff.Stats().setRadioactive(true),
-        Werkstoff.Types.MIXTURE,
-        new Werkstoff.GenerationFeatures().disable()
-            .addCells(),
         OffsetID + 2,
-        TextureSet.SET_FLUID);
+        TextureSet.SET_DIAMOND);
     // Astro Fuel MKI
     public static final Werkstoff astroFuelMKI = new Werkstoff(
         new short[] { 0x00, 0xcd, 0xcd },
@@ -85,6 +52,7 @@ public class MaterialBartworksMethod implements Runnable {
             .addCells(),
         OffsetID + 4,
         TextureSet.SET_FLUID);
+    // Astro Catalyst Base
     public static final Werkstoff astroCatalystBase = new Werkstoff(
         new short[] { 0x48, 0x3d, 0x8b },
         "AstroCatalystBase",
@@ -100,6 +68,7 @@ public class MaterialBartworksMethod implements Runnable {
             .enforceUnification(),
         OffsetID + 5,
         TextureSet.SET_FLUID);
+    // Astro Catalyst Activated
     public static final Werkstoff astroCatalystActivated = new Werkstoff(
         new short[] { 0x6a, 0x5a, 0xcd },
         "AstroCatalystBaseActivated",
@@ -108,10 +77,22 @@ public class MaterialBartworksMethod implements Runnable {
             .setMeltingPoint(980),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
-            .onlyDust()
-            .addMolten()
+            .addCells()
             .enforceUnification(),
         OffsetID + 6,
+        TextureSet.SET_FLUID);
+    // Lapo Activation Fluid
+    public static final Werkstoff lapoActivatedFluid = new Werkstoff(
+        new short[] { 0x6a, 0x5a, 0xcd },
+        "LapoActivatedFluid",
+        "为什么只用兰波顿储能？",
+        new Werkstoff.Stats().setRadioactive(true)
+            .setMeltingPoint(4888),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 7,
         TextureSet.SET_FLUID);
 
     @Override

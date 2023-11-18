@@ -15,6 +15,7 @@ public enum AppendItemList implements IItemContainer {
 
     // Item
     ItemUltimate,
+    ItemLapoMatrix,
     // Sig Block
     InfiniteLiquidAirHatch,
     InfiniteDistilledWaterHatch,
