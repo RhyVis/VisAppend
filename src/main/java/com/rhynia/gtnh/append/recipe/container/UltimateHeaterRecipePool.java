@@ -115,7 +115,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
                 MaterialGTMethod.AstroInf.getGems(16))
-            .fluidInputs(Materials.Enderium.getMolten(144000), MaterialGTMethod.Astro.getFluid(12000))
+            .fluidInputs(Materials.DraconiumAwakened.getMolten(144000), MaterialGTMethod.Astro.getFluid(12000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)
