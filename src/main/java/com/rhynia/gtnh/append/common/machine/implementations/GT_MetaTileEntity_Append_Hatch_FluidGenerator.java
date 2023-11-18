@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.common.machine.implementations;
 
+import static com.rhynia.gtnh.append.util.UtilValues.AddByAppend;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -52,7 +54,7 @@ public abstract class GT_MetaTileEntity_Append_Hatch_FluidGenerator extends GT_M
         System.arraycopy(mDescriptionArray, 0, desc, 0, mDescriptionArray.length);
         System.arraycopy(hatchTierString, 0, desc, mDescriptionArray.length, 1);
         System.arraycopy(aCustomTips, 0, desc, mDescriptionArray.length + 1, aCustomTips.length);
-        desc[mDescriptionArray.length + aCustomTips.length] = "由 §aGTNH: Append§7 添加§r";
+        desc[mDescriptionArray.length + aCustomTips.length] = AddByAppend;
         return desc;
     }
 
