@@ -9,6 +9,8 @@ import com.rhynia.gtnh.append.Tags;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+
 public class NEIConfig implements IConfigureNEI {
 
     public static boolean isAdded = true;
@@ -28,7 +30,7 @@ public class NEIConfig implements IConfigureNEI {
 
     @Override
     public String getName() {
-        return Tags.MODNAME + " NEI Plugin";
+        return MOD_NAME + " NEI Plugin";
     }
 
     @Override
