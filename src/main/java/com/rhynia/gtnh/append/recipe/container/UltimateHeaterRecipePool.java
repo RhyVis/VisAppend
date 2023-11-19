@@ -8,9 +8,9 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -24,7 +24,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map UH = GTAppendRecipe.instance.UltimateHeaterRecipes;
+        final GT_Recipe.GT_Recipe_Map UH = VARecipe.instance.UltimateHeaterRecipes;
 
         // region 兰波顿
         // 兰波顿核心
@@ -34,8 +34,8 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 lensInf,
                 CustomItemList.LapotronDust.get(64),
                 CustomItemList.LapotronDust.get(64))
-            .fluidInputs(MaterialBartworksMethod.astroCatalystActivated.getFluidOrGas(1000))
-            .fluidOutputs(MaterialBartworksMethod.lapoActivatedFluid.getFluidOrGas(8000))
+            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(1000))
+            .fluidOutputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8000))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(115 * 20)
@@ -49,7 +49,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(64))
+                VA_GregtechMaterialPool.AstroInf.getGems(64))
             .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 144000))
             .noOptimize()
@@ -62,7 +62,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(4))
+                VA_GregtechMaterialPool.AstroInf.getGems(4))
             .fluidInputs(ALLOY.NITINOL_60.getFluidStack(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 144000))
             .noOptimize()
@@ -75,7 +75,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(8))
+                VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Titanium.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.astraltitanium"), 144000))
             .noOptimize()
@@ -88,7 +88,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(8))
+                VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Glass.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.chromaticglass"), 144000))
             .noOptimize()
@@ -101,7 +101,7 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(8))
+                VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Tungsten.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.celestialtungsten"), 144000))
             .noOptimize()
@@ -114,8 +114,8 @@ public class UltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
-                MaterialGTMethod.AstroInf.getGems(16))
-            .fluidInputs(Materials.DraconiumAwakened.getMolten(144000), MaterialGTMethod.Astro.getFluid(12000))
+                VA_GregtechMaterialPool.AstroInf.getGems(16))
+            .fluidInputs(Materials.DraconiumAwakened.getMolten(144000), VA_GregtechMaterialPool.Astro.getFluid(12000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)

@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.multiblock;
+package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
@@ -24,7 +24,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
@@ -41,15 +41,15 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
-public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_AstraForge>
+public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AstraForge>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
-    public GT_TileEntity_AstraForge(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_AstraForge(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public GT_TileEntity_AstraForge(String aName) {
+    public VA_TileEntity_AstraForge(String aName) {
         super(aName);
     }
     // endregion
@@ -78,7 +78,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return GTAppendRecipe.instance.AstraForgeRecipes;
+        return VARecipe.instance.AstraForgeRecipes;
     }
 
     @Override
@@ -116,15 +116,15 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<GT_TileEntity_AstraForge> getStructureDefinition() {
-        return StructureDefinition.<GT_TileEntity_AstraForge>builder()
+    public IStructureDefinition<VA_TileEntity_AstraForge> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_AstraForge>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 9))
             .addElement(
                 'B',
-                GT_HatchElementBuilder.<GT_TileEntity_AstraForge>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_AstraForge>builder()
                     .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                    .adder(GT_TileEntity_AstraForge::addToMachineList)
+                    .adder(VA_TileEntity_AstraForge::addToMachineList)
                     .dot(1)
                     .casingIndex(183)
                     .buildAndChain(GregTech_API.sBlockCasings8, 7))
@@ -228,7 +228,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_TileEntity_AstraForge(this.mName);
+        return new VA_TileEntity_AstraForge(this.mName);
     }
 
     @Override

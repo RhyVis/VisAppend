@@ -9,8 +9,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.AppendItemList;
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -28,7 +28,7 @@ public class AppendLaserEngraverRecipePool implements IRecipePool {
         // region 光刻
         // 异氙
         GT_Values.RA.stdBuilder()
-            .itemInputs(MaterialGTMethod.AstroMagic.getDust(1), lensMagic)
+            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getDust(1), lensMagic)
             .fluidInputs(Materials.UUMatter.getFluid(16), WerkstoffLoader.Xenon.getFluidOrGas(1000))
             .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))
             .noOptimize()
@@ -39,7 +39,7 @@ public class AppendLaserEngraverRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 1, 32071), lensMagic)
             .itemOutputs(GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 4, 32668))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(50))
+            .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(50))
             .noOptimize()
             .eut(160000)
             .duration(900)
@@ -47,8 +47,8 @@ public class AppendLaserEngraverRecipePool implements IRecipePool {
         // 激活催化剂
         GT_Values.RA.stdBuilder()
             .itemInputs(lensInf)
-            .fluidInputs(MaterialBartworksMethod.astroCatalystBase.getFluidOrGas(1000))
-            .fluidOutputs(MaterialBartworksMethod.astroCatalystActivated.getFluidOrGas(1000))
+            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(1000))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(1000))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(900)

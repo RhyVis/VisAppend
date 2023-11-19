@@ -4,7 +4,7 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
 
-public class MaterialBartworksMethod implements Runnable {
+public class VA_WerkstoffMaterialPool implements Runnable {
 
     protected static final int OffsetID = 24510;
 

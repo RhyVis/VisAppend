@@ -6,7 +6,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.github.bartimaeusnek.bartworks.util.BWRecipes;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -28,16 +28,16 @@ public class AppendCommonRecipePool implements IRecipePool {
         // 磁析神秘
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Thaumium.getDust(8))
-            .itemOutputs(Materials.Iron.getDust(6), MaterialGTMethod.Astro.getDust(4))
+            .itemOutputs(Materials.Iron.getDust(6), VA_GregtechMaterialPool.Astro.getDust(4))
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(21 * 20)
             .addTo(EMS);
         // 聚爆星辉
         GT_Values.RA.stdBuilder()
-            .itemInputs(MaterialGTMethod.AstroInf.getDust(1))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(125))
-            .itemOutputs(MaterialGTMethod.AstroInf.getGems(1))
+            .itemInputs(VA_GregtechMaterialPool.AstroInf.getDust(1))
+            .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(125))
+            .itemOutputs(VA_GregtechMaterialPool.AstroInf.getGems(1))
             .noOptimize()
             .eut(6000000)
             .duration(1)
@@ -47,8 +47,9 @@ public class AppendCommonRecipePool implements IRecipePool {
         // region 异氙光刻
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 1)),
-                MaterialGTMethod.AstroMagic.getDust(1))
+                GT_Utility
+                    .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1)),
+                VA_GregtechMaterialPool.AstroMagic.getDust(1))
             .fluidInputs(Materials.UUMatter.getFluid(16), WerkstoffLoader.Xenon.getFluidOrGas(1000))
             .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))
             .noOptimize()

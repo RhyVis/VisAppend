@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.multiblock;
+package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
 import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
@@ -23,7 +23,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.HeatingCoilLevel;
@@ -42,7 +42,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
-public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_UltimateHeater>
+public class VA_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
 
     // region Definition
@@ -51,11 +51,11 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     // endregion
 
     // region Class Constructor
-    public GT_TileEntity_UltimateHeater(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_UltimateHeater(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public GT_TileEntity_UltimateHeater(String aName) {
+    public VA_TileEntity_UltimateHeater(String aName) {
         super(aName);
     }
     // endregion
@@ -85,7 +85,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return GTAppendRecipe.instance.UltimateHeaterRecipes;
+        return VARecipe.instance.UltimateHeaterRecipes;
     }
 
     @Override
@@ -134,8 +134,8 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<GT_TileEntity_UltimateHeater> getStructureDefinition() {
-        return StructureDefinition.<GT_TileEntity_UltimateHeater>builder()
+    public IStructureDefinition<VA_TileEntity_UltimateHeater> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_UltimateHeater>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement(
                 'A',
@@ -153,12 +153,12 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
                 'D',
                 withChannel(
                     "coil",
-                    ofCoil(GT_TileEntity_UltimateHeater::setCoilLevel, GT_TileEntity_UltimateHeater::getCoilLevel)))
+                    ofCoil(VA_TileEntity_UltimateHeater::setCoilLevel, VA_TileEntity_UltimateHeater::getCoilLevel)))
             .addElement(
                 'E',
-                GT_HatchElementBuilder.<GT_TileEntity_UltimateHeater>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
                     .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                    .adder(GT_TileEntity_UltimateHeater::addToMachineList)
+                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(2))
                     .buildAndChain(GregTech_API.sBlockCasings8, 2))
@@ -274,7 +274,7 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_TileEntity_UltimateHeater(this.mName);
+        return new VA_TileEntity_UltimateHeater(this.mName);
     }
 
     @Override

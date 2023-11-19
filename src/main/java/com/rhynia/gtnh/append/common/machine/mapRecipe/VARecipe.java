@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.recipe;
+package com.rhynia.gtnh.append.common.machine.mapRecipe;
 
 import java.util.Collection;
 import java.util.HashSet;
@@ -12,9 +12,9 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import gregtech.api.util.GT_Recipe;
 import gregtech.common.gui.modularui.UIHelper;
 
-public class GTAppendRecipe {
+public class VARecipe {
 
-    public static final GTAppendRecipe instance = new GTAppendRecipe();
+    public static final VARecipe instance = new VARecipe();
 
     // Astra Forge
     public static class GTAppendAstraForgeRecipeMap extends GT_Recipe.GT_Recipe_Map {

@@ -2,8 +2,8 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -31,10 +31,10 @@ public class AppendMixerRecipePool implements IRecipePool {
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                MaterialGTMethod.AstroInf.getDust(8),
+                VA_GregtechMaterialPool.AstroInf.getDust(8),
                 Materials.InfinityCatalyst.getDust(12),
                 GT_Utility.getIntegratedCircuit(12))
-            .itemOutputs(MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust, 64))
+            .itemOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * 20)
@@ -46,7 +46,7 @@ public class AppendMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.Calcium.getDust(3),
-                MaterialGTMethod.Astro.getDust(4),
+                VA_GregtechMaterialPool.Astro.getDust(4),
                 GT_Utility.getIntegratedCircuit(15))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.GrowthMediumRaw.getFluid(8000))
@@ -58,7 +58,7 @@ public class AppendMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.NetherStar.getDust(2),
-                MaterialGTMethod.Astro.getDust(6),
+                VA_GregtechMaterialPool.Astro.getDust(6),
                 GT_Utility.getIntegratedCircuit(16))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.BioMediumRaw.getFluid(8000))
