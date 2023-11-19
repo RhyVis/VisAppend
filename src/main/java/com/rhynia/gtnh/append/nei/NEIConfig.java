@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.nei;
 
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+
 import net.minecraft.block.Block;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -8,8 +10,6 @@ import com.rhynia.gtnh.append.Tags;
 
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
-
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 
 public class NEIConfig implements IConfigureNEI {
 
