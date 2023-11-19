@@ -5,7 +5,11 @@ import net.minecraft.item.ItemStack;
 import com.rhynia.gtnh.append.common.AppendItemList;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
-import com.rhynia.gtnh.append.common.machine.singleMachine.*;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Oil;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 
 public class LoaderMachine {
 
