@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.recipe.container;
 import static gregtech.api.enums.TierEU.*;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -47,7 +47,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
                 Materials.Ledox.getDust(2),
                 WerkstoffLoader.Roquesit.get(OrePrefixes.dust, 1),
                 Materials.Firestone.getDust(1),
-                MaterialGTMethod.Astro.getDust(1))
+                VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * 20)
@@ -55,7 +55,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
         // 深空冰
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.CallistoIce.getDust(4))
-            .itemOutputs(Materials.Ice.getDust(2), Materials.Cryotheum.getDust(1), MaterialGTMethod.Astro.getDust(1))
+            .itemOutputs(Materials.Ice.getDust(2), Materials.Cryotheum.getDust(1), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * 20)
@@ -66,7 +66,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
             .itemOutputs(
                 Materials.Pyrotheum.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
-                MaterialGTMethod.Astro.getDust(2))
+                VA_GregtechMaterialPool.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(21 * 20)
@@ -79,7 +79,7 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
                 Materials.Thaumium.getDust(3),
                 Materials.AstralSilver.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
-                MaterialGTMethod.Astro.getDust(2))
+                VA_GregtechMaterialPool.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(21 * 20)

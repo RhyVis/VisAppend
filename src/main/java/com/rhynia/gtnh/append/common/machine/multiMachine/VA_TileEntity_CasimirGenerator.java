@@ -1,31 +1,11 @@
-package com.rhynia.gtnh.append.common.machine.multiblock;
-
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
-import static com.rhynia.gtnh.append.util.UtilValues.*;
-import static gregtech.api.enums.GT_HatchElement.*;
-import static gregtech.api.enums.Materials.Infinity;
-import static gregtech.api.enums.Materials.Neutronium;
-import static gregtech.api.enums.Textures.BlockIcons.*;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
-import static gregtech.api.util.GT_StructureUtility.ofFrame;
-import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
-
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import org.jetbrains.annotations.NotNull;
+package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
-
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -40,16 +20,32 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
+import org.jetbrains.annotations.NotNull;
 
-public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<GT_TileEntity_AstraForge>
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+import static com.rhynia.gtnh.append.util.UtilValues.*;
+import static gregtech.api.enums.GT_HatchElement.*;
+import static gregtech.api.enums.Materials.Infinity;
+import static gregtech.api.enums.Materials.Neutronium;
+import static gregtech.api.enums.Textures.BlockIcons.*;
+import static gregtech.api.util.GT_StructureUtility.ofFrame;
+import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
+
+public class VA_TileEntity_CasimirGenerator extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_CasimirGenerator>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
-    public GT_TileEntity_AstraForge(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_CasimirGenerator(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public GT_TileEntity_AstraForge(String aName) {
+    public VA_TileEntity_CasimirGenerator(String aName) {
         super(aName);
     }
     // endregion
@@ -78,7 +74,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return GTAppendRecipe.instance.AstraForgeRecipes;
+        return VARecipe.instance.AstraForgeRecipes;
     }
 
     @Override
@@ -116,15 +112,15 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<GT_TileEntity_AstraForge> getStructureDefinition() {
-        return StructureDefinition.<GT_TileEntity_AstraForge>builder()
+    public IStructureDefinition<VA_TileEntity_CasimirGenerator> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_CasimirGenerator>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 9))
             .addElement(
                 'B',
-                GT_HatchElementBuilder.<GT_TileEntity_AstraForge>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_CasimirGenerator>builder()
                     .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                    .adder(GT_TileEntity_AstraForge::addToMachineList)
+                    .adder(VA_TileEntity_CasimirGenerator::addToMachineList)
                     .dot(1)
                     .casingIndex(183)
                     .buildAndChain(GregTech_API.sBlockCasings8, 7))
@@ -165,7 +161,7 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("星光聚能器")
+        tt.addMachineType("零点能差分机")
             .addInfo("星辉锻造台的控制器")
             .addInfo("§c不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
@@ -206,29 +202,10 @@ public class GT_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
         return false;
     }
 
-    @Override
-    public boolean supportsVoidProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInputSeparation() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsSingleRecipeLocking() {
-        return true;
-    }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new GT_TileEntity_AstraForge(this.mName);
+        return new VA_TileEntity_CasimirGenerator(this.mName);
     }
 
     @Override

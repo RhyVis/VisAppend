@@ -6,7 +6,7 @@ import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeConstants.*;
 
 import com.rhynia.gtnh.append.common.AppendItemList;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -35,8 +35,8 @@ public class AppendMachineRecipePool implements IRecipePool {
                 Materials.Infinity.getPlates(4))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(1440),
-                MaterialGTMethod.Astro.getFluid(16000),
-                MaterialGTMethod.AstroInf.getFluid(8000))
+                VA_GregtechMaterialPool.Astro.getFluid(16000),
+                VA_GregtechMaterialPool.AstroInf.getFluid(8000))
             .itemOutputs(AppendItemList.InfiniteLiquidAirHatch.get(1))
             .noOptimize()
             .eut(RECIPE_UEV)
@@ -45,21 +45,21 @@ public class AppendMachineRecipePool implements IRecipePool {
 
         // Astra Forge
         GT_Values.RA.stdBuilder()
-            .metadata(RESEARCH_ITEM, MaterialGTMethod.AstroInf.getGems(1))
+            .metadata(RESEARCH_ITEM, VA_GregtechMaterialPool.AstroInf.getGems(1))
             .metadata(RESEARCH_TIME, 2 * HOURS)
             .itemInputs(
                 ItemList.Machine_IV_LaserEngraver.get(64),
                 ItemList.Field_Generator_UHV.get(8),
                 ItemList.Sensor_UHV.get(8),
                 Materials.Infinity.getPlates(12),
-                MaterialGTMethod.AstroMagic.getGems(16),
-                GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 32),
-                GT_OreDictUnificator.get(OrePrefixes.lens, MaterialGTMethod.AstroMagic, 32),
-                MaterialGTMethod.AstroMagic.getGems(16))
+                VA_GregtechMaterialPool.AstroMagic.getGems(16),
+                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 32),
+                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 32),
+                VA_GregtechMaterialPool.AstroMagic.getGems(16))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(10 * 144),
-                MaterialGTMethod.Astro.getFluid(16000),
-                MaterialGTMethod.AstroInf.getFluid(8000))
+                VA_GregtechMaterialPool.Astro.getFluid(16000),
+                VA_GregtechMaterialPool.AstroInf.getFluid(8000))
             .itemOutputs(AppendItemList.AstraForge.get(1))
             .noOptimize()
             .eut(RECIPE_UHV)

@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.single;
+package com.rhynia.gtnh.append.common.machine.singleMachine;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -12,35 +12,39 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
 
-public class GT_MetaTileEntity_Hatch_LiquidAir extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
+public class VA_MetaTileEntity_Hatch_DistilledWater extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
-    public GT_MetaTileEntity_Hatch_LiquidAir(final int aID, final String aName, final String aNameRegional,
-        final int aTier) {
+    public VA_MetaTileEntity_Hatch_DistilledWater(final int aID, final String aName, final String aNameRegional,
+                                                  final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
-    public GT_MetaTileEntity_Hatch_LiquidAir(final String aName, final int aTier, final String[] aDescription,
-        final ITexture[][][] aTextures) {
+    public VA_MetaTileEntity_Hatch_DistilledWater(final String aName, final int aTier, final String[] aDescription,
+                                                  final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 
     @Override
     public MetaTileEntity newMetaEntity(final IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_LiquidAir(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
+        return new VA_MetaTileEntity_Hatch_DistilledWater(
+            this.mName,
+            this.mTier,
+            this.mDescriptionArray,
+            this.mTextures);
     }
 
     @Override
     public String[] getCustomTooltip() {
         String[] aTooltip = new String[4];
-        aTooltip[0] = "直接将吸入的气体压缩至液态.";
+        aTooltip[0] = "水蓄积其中时即被彻底净化.";
         aTooltip[1] = "每5秒填充至最大容量.";
-        aTooltip[2] = "你是在里面塞了一个奇点吗?";
+        aTooltip[2] = "感觉不如太空电梯.";
         return aTooltip;
     }
 
     @Override
     public Fluid getFluidToGenerate() {
-        return FluidUtils.getFluidStack("liquidair", 1)
+        return FluidUtils.getFluidStack("ic2distilledwater", 1)
             .getFluid();
     }
 

@@ -11,9 +11,9 @@ import net.minecraft.item.ItemStack;
 
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipe.GTAppendRecipe;
-import com.rhynia.gtnh.append.common.material.MaterialBartworksMethod;
-import com.rhynia.gtnh.append.common.material.MaterialGTMethod;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
@@ -29,7 +29,7 @@ public class AstraForgeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map AF = GTAppendRecipe.instance.AstraForgeRecipes;
+        final GT_Recipe.GT_Recipe_Map AF = VARecipe.instance.AstraForgeRecipes;
 
         // region 12号电路
 
@@ -38,7 +38,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
                 lensMagic,
-                MaterialGTMethod.Astro.getDust(16),
+                VA_GregtechMaterialPool.Astro.getDust(16),
                 Materials.Redstone.getDust(1))
             .fluidInputs(Materials.Water.getFluid(32000))
             .fluidOutputs(Materials.Lubricant.getFluid(256000))
@@ -65,10 +65,10 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
                 lensMagic,
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialBartworksMethod.astroCatalystBase.get(OrePrefixes.dust, 16))
-            .itemOutputs(MaterialGTMethod.AstroInf.getDust(1))
-            .fluidOutputs(MaterialBartworksMethod.astroCatalystBase.getFluidOrGas(48000))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 16))
+            .itemOutputs(VA_GregtechMaterialPool.AstroInf.getDust(1))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(48000))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(20 * 20)
@@ -91,7 +91,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Blocks.sand, 64),
                 new ItemStack(Blocks.sand, 64))
-            .fluidInputs(Materials.Water.getFluid(1000), MaterialGTMethod.Astro.getFluid(16))
+            .fluidInputs(Materials.Water.getFluid(1000), VA_GregtechMaterialPool.Astro.getFluid(16))
             .itemOutputs(
                 new ItemStack(Blocks.soul_sand, 64, 0),
                 new ItemStack(Blocks.soul_sand, 64, 0),
@@ -112,7 +112,7 @@ public class AstraForgeRecipePool implements IRecipePool {
                 lensInf,
                 Materials.Carbon.getDust(64),
                 Materials.Sulfur.getDust(64))
-            .fluidInputs(Materials.Lava.getFluid(1000), MaterialGTMethod.Astro.getFluid(16))
+            .fluidInputs(Materials.Lava.getFluid(1000), VA_GregtechMaterialPool.Astro.getFluid(16))
             .itemOutputs(
                 new ItemStack(Items.blaze_powder, 64, 0),
                 new ItemStack(Items.blaze_powder, 64, 0),
@@ -128,8 +128,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(11),
                 lensInf,
                 GT_ModHandler.getModItem("HardcoreEnderExpansion", "end_powder", 16),
-                MaterialGTMethod.Astro.getDust(64))
-            .fluidInputs(MaterialGTMethod.Astro.getFluid(16))
+                VA_GregtechMaterialPool.Astro.getDust(64))
+            .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(16))
             .itemOutputs(
                 new ItemStack(Items.ender_pearl, 64, 0),
                 new ItemStack(Items.ender_pearl, 64, 0),
@@ -147,8 +147,8 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .fluidInputs(Materials.UUMatter.getFluid(2048))
             .fluidOutputs(Materials.UUMatter.getFluid(32768))
             .noOptimize()
@@ -190,8 +190,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -228,8 +228,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -266,8 +266,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -304,8 +304,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
                 Materials.SiliconSG.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -342,8 +342,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Carbon.getDust(64),
                 Materials.Carbon.getDust(64),
                 Materials.Carbon.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -376,10 +376,10 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Phosphorus.getDust(64),
                 Materials.Phosphorus.getDust(64),
                 Materials.Phosphorus.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -417,8 +417,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Sodium.getDust(64),
                 Materials.Sulfur.getDust(64),
                 Materials.Sulfur.getDust(64),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -432,8 +432,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Samarium.getDust(32),
                 Materials.Lanthanum.getDust(16),
                 Materials.Cerium.getDust(16),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -448,8 +448,8 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.Lanthanum.getDust(16),
                 Materials.Europium.getDust(16),
                 Materials.Gadolinium.getDust(16),
-                MaterialGTMethod.Astro.getDust(64),
-                MaterialGTMethod.Astro.getDust(64))
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * 20)
@@ -477,7 +477,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(4),
+                VA_GregtechMaterialPool.Astro.getDust(4),
                 Materials.BlackPlutonium.getDust(16))
             .fluidInputs(Materials.Helium.getFluid(2000))
             .itemOutputs(Materials.CosmicNeutronium.getDust(12))
@@ -491,7 +491,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
                 Materials.Glowstone.getDust(64))
             .fluidInputs(Materials.Hydrogen.getFluid(48000))
             .itemOutputs(
@@ -509,8 +509,8 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.AstroInf.getDust(12),
-                MaterialGTMethod.Astro.getDust(32),
+                VA_GregtechMaterialPool.AstroInf.getDust(12),
+                VA_GregtechMaterialPool.Astro.getDust(32),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
@@ -531,7 +531,7 @@ public class AstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(4),
                 lensInf,
-                MaterialGTMethod.Astro.getDust(60),
+                VA_GregtechMaterialPool.Astro.getDust(60),
                 Materials.Naquadah.getDust(60))
             .fluidInputs(Materials.Helium.getFluid(120000), Materials.Quantium.getFluid(40000))
             .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))

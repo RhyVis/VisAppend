@@ -11,7 +11,7 @@ import gregtech.api.enums.TC_Aspects;
 import gregtech.api.enums.TC_Aspects.TC_AspectStack;
 import gregtech.api.enums.TextureSet;
 
-public class MaterialGTMethod implements Runnable {
+public class VA_GregtechMaterialPool implements Runnable {
 
     public static final Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro")
         .setName("Astro")

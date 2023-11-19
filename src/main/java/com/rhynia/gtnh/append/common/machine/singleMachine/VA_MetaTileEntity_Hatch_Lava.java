@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.single;
+package com.rhynia.gtnh.append.common.machine.singleMachine;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
@@ -12,21 +12,21 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
 
-public class GT_MetaTileEntity_Hatch_Lava extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
+public class VA_MetaTileEntity_Hatch_Lava extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
-    public GT_MetaTileEntity_Hatch_Lava(final int aID, final String aName, final String aNameRegional,
-        final int aTier) {
+    public VA_MetaTileEntity_Hatch_Lava(final int aID, final String aName, final String aNameRegional,
+                                        final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
-    public GT_MetaTileEntity_Hatch_Lava(final String aName, final int aTier, final String[] aDescription,
-        final ITexture[][][] aTextures) {
+    public VA_MetaTileEntity_Hatch_Lava(final String aName, final int aTier, final String[] aDescription,
+                                        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 
     @Override
     public MetaTileEntity newMetaEntity(final IGregTechTileEntity aTileEntity) {
-        return new GT_MetaTileEntity_Hatch_Lava(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
+        return new VA_MetaTileEntity_Hatch_Lava(this.mName, this.mTier, this.mDescriptionArray, this.mTextures);
     }
 
     @Override
