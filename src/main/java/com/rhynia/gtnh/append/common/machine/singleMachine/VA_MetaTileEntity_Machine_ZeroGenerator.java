@@ -1,5 +1,19 @@
 package com.rhynia.gtnh.append.common.machine.singleMachine;
 
+import static com.github.technus.tectech.thing.metaTileEntity.Textures.*;
+import static com.github.technus.tectech.util.CommonValues.TRANSFER_AT;
+import static com.github.technus.tectech.util.CommonValues.VN;
+import static com.rhynia.gtnh.append.util.UtilValues.AddByAppend;
+
+import java.util.function.Consumer;
+import java.util.function.Supplier;
+
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraftforge.common.util.ForgeDirection;
+
 import com.github.technus.tectech.mechanics.pipe.IConnectsToEnergyTunnel;
 import com.github.technus.tectech.util.TT_Utility;
 import com.gtnewhorizons.modularui.api.drawable.IDrawable;
@@ -9,6 +23,7 @@ import com.gtnewhorizons.modularui.common.widget.ButtonWidget;
 import com.gtnewhorizons.modularui.common.widget.DrawableWidget;
 import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import com.gtnewhorizons.modularui.common.widget.textfield.TextFieldWidget;
+
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.enums.Textures;
@@ -23,22 +38,9 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_TieredMachineBlock;
 import gregtech.api.objects.GT_RenderedTexture;
 import gregtech.api.util.GT_Utility;
-import net.minecraft.client.renderer.texture.IIconRegister;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraftforge.common.util.ForgeDirection;
-
-import java.util.function.Consumer;
-import java.util.function.Supplier;
-
-import static com.github.technus.tectech.thing.metaTileEntity.Textures.*;
-import static com.github.technus.tectech.util.CommonValues.TRANSFER_AT;
-import static com.github.technus.tectech.util.CommonValues.VN;
-import static com.rhynia.gtnh.append.util.UtilValues.AddByAppend;
 
 public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_TieredMachineBlock
-        implements IConnectsToEnergyTunnel, IAddUIWidgets, IAddGregtechLogo, IGlobalWirelessEnergy {
+    implements IConnectsToEnergyTunnel, IAddUIWidgets, IAddGregtechLogo, IGlobalWirelessEnergy {
 
     public static GT_RenderedTexture GENNY;
     private boolean WIRELESS = false;
@@ -48,17 +50,17 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
 
     public VA_MetaTileEntity_Machine_ZeroGenerator(int aID, String aName, String aNameRegional, int aTier) {
         super(
-                aID,
-                aName,
-                aNameRegional,
-                aTier,
-                0,
-                new String[] { "从虚空中抽取能量", "使用方式与Debug发电机无异", "使用螺丝刀切换至无线模式", "直接注入能量到无线网络!", AddByAppend });
+            aID,
+            aName,
+            aNameRegional,
+            aTier,
+            0,
+            new String[] { "从虚空中抽取能量", "使用方式与Debug发电机无异", "使用螺丝刀切换至无线模式", "直接注入能量到无线网络!", AddByAppend });
         TT_Utility.setTier(aTier, this);
     }
 
     public VA_MetaTileEntity_Machine_ZeroGenerator(String aName, int aTier, String[] aDescription,
-                                                   ITexture[][][] aTextures) {
+        ITexture[][][] aTextures) {
         super(aName, aTier, 0, aDescription, aTextures);
         TT_Utility.setTier(aTier, this);
     }
@@ -71,8 +73,11 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         WIRELESS = !WIRELESS;
-        if(WIRELESS) {GT_Utility.sendChatToPlayer(aPlayer, "无线模式:启动");}
-        else {GT_Utility.sendChatToPlayer(aPlayer, "无线模式:关闭");}
+        if (WIRELESS) {
+            GT_Utility.sendChatToPlayer(aPlayer, "无线模式:启动");
+        } else {
+            GT_Utility.sendChatToPlayer(aPlayer, "无线模式:关闭");
+        }
     }
 
     @Override
@@ -84,12 +89,12 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
 
     @Override
     public ITexture[] getTexture(IGregTechTileEntity aBaseMetaTileEntity, ForgeDirection side, ForgeDirection facing,
-            int colorIndex, boolean aActive, boolean aRedstone) {
+        int colorIndex, boolean aActive, boolean aRedstone) {
         return new ITexture[] { MACHINE_CASINGS_TT[mTier][colorIndex + 1],
-                side != facing
-                        ? WIRELESS ? (aActive ? OVERLAYS_ENERGY_OUT_LASER_TT[mTier] : OVERLAYS_ENERGY_IN_LASER_TT[mTier])
-                                : (aActive ? OVERLAYS_ENERGY_OUT_POWER_TT[mTier] : OVERLAYS_ENERGY_IN_POWER_TT[mTier])
-                        : GENNY };
+            side != facing
+                ? WIRELESS ? (aActive ? OVERLAYS_ENERGY_OUT_LASER_TT[mTier] : OVERLAYS_ENERGY_IN_LASER_TT[mTier])
+                    : (aActive ? OVERLAYS_ENERGY_OUT_POWER_TT[mTier] : OVERLAYS_ENERGY_IN_POWER_TT[mTier])
+                : GENNY };
     }
 
     @Override
@@ -99,13 +104,13 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
 
     @Override
     public boolean allowPutStack(IGregTechTileEntity iGregTechTileEntity, int i, ForgeDirection side,
-            ItemStack itemStack) {
+        ItemStack itemStack) {
         return false;
     }
 
     @Override
     public boolean allowPullStack(IGregTechTileEntity iGregTechTileEntity, int i, ForgeDirection side,
-            ItemStack itemStack) {
+        ItemStack itemStack) {
         return false;
     }
 
@@ -132,7 +137,8 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
 
     @Override
     public void onPostTick(IGregTechTileEntity aBaseMetaTileEntity, long aTick) {
-        owner_uuid = aBaseMetaTileEntity.getOwnerUuid().toString();
+        owner_uuid = aBaseMetaTileEntity.getOwnerUuid()
+            .toString();
         if (aBaseMetaTileEntity.isServerSide()) {
             aBaseMetaTileEntity.setActive(producing);
             if (!WIRELESS) {
@@ -263,22 +269,27 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
     @Override
     public void addGregTechLogo(ModularWindow.Builder builder) {
         builder.widget(
-                new DrawableWidget().setDrawable(GT_UITextures.PICTURE_GT_LOGO_17x17_TRANSPARENT_GRAY).setSize(17, 17)
-                        .setPos(113, 56));
+            new DrawableWidget().setDrawable(GT_UITextures.PICTURE_GT_LOGO_17x17_TRANSPARENT_GRAY)
+                .setSize(17, 17)
+                .setPos(113, 56));
     }
 
     @Override
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         builder.widget(
-                new DrawableWidget().setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK).setSize(90, 72).setPos(43, 4))
+            new DrawableWidget().setDrawable(GT_UITextures.PICTURE_SCREEN_BLACK)
+                .setSize(90, 72)
+                .setPos(43, 4))
 
-                .widget(
-                        TextWidget.dynamicString(() -> "TIER: " + VN[TT_Utility.getTier(Math.abs(EUT))])
-                                .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(46, 22))
+            .widget(
+                TextWidget.dynamicString(() -> "TIER: " + VN[TT_Utility.getTier(Math.abs(EUT))])
+                    .setDefaultColor(COLOR_TEXT_WHITE.get())
+                    .setPos(46, 22))
 
-                .widget(
-                        TextWidget.dynamicString(() -> "SUM: " + (long) AMP * EUT)
-                                .setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(46, 46));
+            .widget(
+                TextWidget.dynamicString(() -> "SUM: " + (long) AMP * EUT)
+                    .setDefaultColor(COLOR_TEXT_WHITE.get())
+                    .setPos(46, 46));
 
         addLabelledIntegerTextField(builder, "EUT: ", 24, this::getEUT, this::setEUT, 46, 8);
         addLabelledIntegerTextField(builder, "AMP: ", 24, this::getAMP, this::setAMP, 46, 34);
@@ -305,20 +316,29 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
     }
 
     private void addLabelledIntegerTextField(ModularWindow.Builder builder, String label, int labelWidth,
-            Supplier<Integer> getter, Consumer<Integer> setter, int xPos, int yPos) {
+        Supplier<Integer> getter, Consumer<Integer> setter, int xPos, int yPos) {
         TextFieldWidget itfw = new TextFieldWidget();
         TextWidget ltw = new TextWidget(label);
-        builder.widget(ltw.setDefaultColor(COLOR_TEXT_WHITE.get()).setPos(xPos, yPos)).widget(
-                itfw.setSetterInt(setter).setGetterInt(getter).setTextColor(COLOR_TEXT_WHITE.get())
-                        .setBackground(GT_UITextures.BACKGROUND_TEXT_FIELD.withOffset(-1, -1, 2, 2))
-                        .setPos(xPos + labelWidth, yPos - 1).setSize(56, 10));
+        builder.widget(
+            ltw.setDefaultColor(COLOR_TEXT_WHITE.get())
+                .setPos(xPos, yPos))
+            .widget(
+                itfw.setSetterInt(setter)
+                    .setGetterInt(getter)
+                    .setTextColor(COLOR_TEXT_WHITE.get())
+                    .setBackground(GT_UITextures.BACKGROUND_TEXT_FIELD.withOffset(-1, -1, 2, 2))
+                    .setPos(xPos + labelWidth, yPos - 1)
+                    .setSize(56, 10));
     }
 
     private void addChangeNumberButton(ModularWindow.Builder builder, IDrawable overlay, Consumer<Integer> setter,
-            int changeNumberShift, int changeNumber, int xPos, int yPos) {
+        int changeNumberShift, int changeNumber, int xPos, int yPos) {
         builder.widget(new ButtonWidget().setOnClick((clickData, widget) -> {
             setter.accept(clickData.shift ? changeNumberShift : changeNumber);
             producing = (long) AMP * EUT >= 0;
-        }).setBackground(GT_UITextures.BUTTON_STANDARD, overlay).setSize(18, 18).setPos(xPos, yPos));
+        })
+            .setBackground(GT_UITextures.BUTTON_STANDARD, overlay)
+            .setSize(18, 18)
+            .setPos(xPos, yPos));
     }
 }
