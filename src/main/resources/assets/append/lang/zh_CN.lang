@@ -1,5 +1,5 @@
-ModName=GTNH: Append
-itemGroup.GTAppend=GTNH: Append
+ModName=Vis Append
+itemGroup.GTAppend=Vis Append
 
 item.Ultimate.name=无效证明
 item.LapoMatrix.name=兰波顿矩阵

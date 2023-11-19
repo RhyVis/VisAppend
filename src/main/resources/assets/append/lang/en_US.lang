@@ -1,5 +1,5 @@
-ModName=GTNH: Append
-itemGroup.GTAppend=GTNH: Append
+ModName=Vis Append
+itemGroup.GTAppend=Vis Append
 
 item.Ultimate.name=Useless
 item.LapoMatrix.name=Lapotron Matrix
