@@ -1,14 +1,11 @@
 package com.rhynia.gtnh.append.loader;
 
+import com.rhynia.gtnh.append.common.machine.singleMachine.*;
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.common.AppendItemList;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
-import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
-import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
-import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
-import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Oil;
 
 public class LoaderMachine {
 
@@ -17,6 +14,7 @@ public class LoaderMachine {
     public static ItemStack InfiniteDistilledWaterHatch;
     public static ItemStack InfiniteLavaHatch;
     public static ItemStack InfiniteOilHatch;
+    public static ItemStack ZeroGenerator;
     // endregion
 
     // region multi Machine controller
@@ -41,10 +39,13 @@ public class LoaderMachine {
             .getStackForm(1);
         InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOilHatch", "无限油泉仓", 8).getStackForm(1);
 
+        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450,"MachineGeneratorZero","零点能发电机",14).getStackForm(1L);
+
         AppendItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         AppendItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
         AppendItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
         AppendItemList.InfiniteOilHatch.set(InfiniteOilHatch);
+        AppendItemList.ZeroGenerator.set(ZeroGenerator);
     }
 
     // endregion

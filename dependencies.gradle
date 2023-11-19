@@ -46,4 +46,5 @@ dependencies {
     implementation('com.github.GTNewHorizons:BlockRenderer6343:1.0.3:dev')
     implementation('com.github.GTNewHorizons:Minetweaker-Gregtech-5-Addon:2.0.2:dev')
     implementation('com.github.GTNewHorizons:GTNH-Lanthanides:0.11.4:dev')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.1')
 }

@@ -21,6 +21,7 @@ public enum AppendItemList implements IItemContainer {
     InfiniteDistilledWaterHatch,
     InfiniteLavaHatch,
     InfiniteOilHatch,
+    ZeroGenerator,
     // Machine Controller
     AstraForge,
     UltimateHeater;
