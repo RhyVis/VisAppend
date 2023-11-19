@@ -13,7 +13,7 @@ public class UtilValues {
 
     // 字段
     public static final String AddByAppend = "由 " + EnumChatFormatting.GREEN
-        + "GTNH: Append"
+        + "Vis Append"
         + EnumChatFormatting.GRAY
         + " 添加";
 
