@@ -16,6 +16,9 @@ public class UtilValues {
         + "Vis Append"
         + EnumChatFormatting.GRAY
         + " 添加";
+    public static final String BluePrintInfo = "参考§9蓝§b图§r相对位置";
+    public static final String BluePrintTip = "请参考§9Structure§1Lib§7全息投影，构建主体结构";
+    public static final String StructureTooComplex = "结构太复杂了!";
 
     // 物品
     public static final ItemStack lensMagic = GT_Utility

@@ -5,7 +5,6 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
-import gtPlusPlus.core.material.MISC_MATERIALS;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -24,6 +23,7 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class AstraForgeRecipePool implements IRecipePool {
 

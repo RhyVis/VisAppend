@@ -117,9 +117,7 @@ public class AppendElectroRecipePool implements IRecipePool {
                 Materials.Carbon.getDust(4),
                 Materials.Copper.getDust(3),
                 Materials.Molybdenum.getDust(1))
-            .fluidOutputs(
-                Materials.Oxygen.getGas(200),
-                Materials.Hydrogen.getGas(150))
+            .fluidOutputs(Materials.Oxygen.getGas(200), Materials.Hydrogen.getGas(150))
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(28 * 20)

@@ -1,6 +1,8 @@
 package com.rhynia.gtnh.append.common.machine.multiblock;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Materials.*;
 import static gregtech.api.enums.Textures.BlockIcons.*;
@@ -217,16 +219,16 @@ public class GT_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
             .addSeparator()
-            .addInfo("结构太复杂了!")
-            .addInfo("请参考§9Structure§1Lib§7全息投影，构建主体结构")
+            .addInfo(StructureTooComplex)
+            .addInfo(BluePrintTip)
             .beginStructureBlock(7, 12, 7, false)
-            .addInputHatch("用§9蓝§b图§r预览", 1)
-            .addOutputHatch("用§9蓝§b图§r预览", 1)
-            .addInputBus("用§9蓝§b图§r预览", 1)
-            .addOutputBus("用§9蓝§b图§r预览", 1)
-            .addMaintenanceHatch("用§9蓝§b图§r预览", 3)
-            .addEnergyHatch("用§9蓝§b图§r预览", 2)
-            .toolTipFinisher("GTNH: Append");
+            .addInputHatch(BluePrintInfo, 1)
+            .addOutputHatch(BluePrintInfo, 1)
+            .addInputBus(BluePrintInfo, 1)
+            .addOutputBus(BluePrintInfo, 1)
+            .addMaintenanceHatch(BluePrintInfo, 3)
+            .addEnergyHatch(BluePrintInfo, 2)
+            .toolTipFinisher(MOD_NAME);
         return tt;
     }
 

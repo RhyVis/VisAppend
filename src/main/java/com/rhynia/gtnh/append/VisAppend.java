@@ -28,12 +28,8 @@ import minetweaker.MineTweakerAPI;
         + "after:dreamcraft;",
     acceptedMinecraftVersions = "[1.7.10]")
 
-public class GTNHAppend {
+public class VisAppend {
 
-    /**
-     * <li>The signal of whether in Development Mode.
-     * <li>Keep care to set 'false' when dev complete.
-     */
     public static final String MODID = Tags.MODID;
     public static final String MOD_ID = Tags.MODID;
     public static final String MOD_NAME = Tags.MODNAME;
