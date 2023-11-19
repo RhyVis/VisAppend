@@ -1,11 +1,30 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+import static com.rhynia.gtnh.append.util.UtilValues.*;
+import static gregtech.api.enums.GT_HatchElement.*;
+import static gregtech.api.enums.Materials.Infinity;
+import static gregtech.api.enums.Materials.Neutronium;
+import static gregtech.api.enums.Textures.BlockIcons.*;
+import static gregtech.api.util.GT_StructureUtility.ofFrame;
+import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
+
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -20,24 +39,9 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.util.ForgeDirection;
-import org.jetbrains.annotations.NotNull;
 
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
-import static com.rhynia.gtnh.append.util.UtilValues.*;
-import static gregtech.api.enums.GT_HatchElement.*;
-import static gregtech.api.enums.Materials.Infinity;
-import static gregtech.api.enums.Materials.Neutronium;
-import static gregtech.api.enums.Textures.BlockIcons.*;
-import static gregtech.api.util.GT_StructureUtility.ofFrame;
-import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
-
-public class VA_TileEntity_CasimirGenerator extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_CasimirGenerator>
+public class VA_TileEntity_CasimirGenerator
+    extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_CasimirGenerator>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
@@ -201,7 +205,6 @@ public class VA_TileEntity_CasimirGenerator extends GT_MetaTileEntity_EnhancedMu
     public boolean explodesOnComponentBreak(ItemStack aStack) {
         return false;
     }
-
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {

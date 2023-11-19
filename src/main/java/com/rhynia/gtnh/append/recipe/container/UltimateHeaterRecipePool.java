@@ -3,7 +3,6 @@ package com.rhynia.gtnh.append.recipe.container;
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static gregtech.api.enums.TierEU.*;
 
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -11,6 +10,7 @@ import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;

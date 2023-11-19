@@ -55,7 +55,10 @@ public class AppendCentrifugeRecipePool implements IRecipePool {
         // 深空冰
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.CallistoIce.getDust(4))
-            .itemOutputs(Materials.Ice.getDust(2), Materials.Cryotheum.getDust(1), VA_GregtechMaterialPool.Astro.getDust(1))
+            .itemOutputs(
+                Materials.Ice.getDust(2),
+                Materials.Cryotheum.getDust(1),
+                VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * 20)

@@ -12,8 +12,8 @@ import net.minecraft.item.ItemStack;
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import goodgenerator.items.MyMaterial;

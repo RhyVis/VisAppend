@@ -2,8 +2,8 @@ package com.rhynia.gtnh.append.recipe.container;
 
 import static gregtech.api.enums.TierEU.*;
 
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;

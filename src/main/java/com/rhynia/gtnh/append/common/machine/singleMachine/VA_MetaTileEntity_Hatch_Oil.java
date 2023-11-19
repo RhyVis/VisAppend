@@ -21,7 +21,7 @@ public class VA_MetaTileEntity_Hatch_Oil extends GT_MetaTileEntity_Append_Hatch_
     }
 
     public VA_MetaTileEntity_Hatch_Oil(final String aName, final int aTier, final String[] aDescription,
-                                       final ITexture[][][] aTextures) {
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 

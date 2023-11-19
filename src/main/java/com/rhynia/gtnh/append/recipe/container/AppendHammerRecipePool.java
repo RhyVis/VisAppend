@@ -7,8 +7,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.common.AppendItemList;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -35,7 +35,9 @@ public class AppendHammerRecipePool implements IRecipePool {
             .addTo(HM);
         // Nt
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Bees.combs.getStackForType(CombType.NEUTRONIUM, 16), VA_GregtechMaterialPool.Astro.getDust(12))
+            .itemInputs(
+                GT_Bees.combs.getStackForType(CombType.NEUTRONIUM, 16),
+                VA_GregtechMaterialPool.Astro.getDust(12))
             .itemOutputs(Materials.Neutronium.getIngots(2))
             .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(12), Materials.Neutronium.getMolten(2304))
             .noOptimize()

@@ -15,12 +15,12 @@ import gtPlusPlus.core.util.minecraft.FluidUtils;
 public class VA_MetaTileEntity_Hatch_Lava extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
 
     public VA_MetaTileEntity_Hatch_Lava(final int aID, final String aName, final String aNameRegional,
-                                        final int aTier) {
+        final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
     public VA_MetaTileEntity_Hatch_Lava(final String aName, final int aTier, final String[] aDescription,
-                                        final ITexture[][][] aTextures) {
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 

@@ -47,7 +47,8 @@ public class AppendCommonRecipePool implements IRecipePool {
         // region 异氙光刻
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_Utility.copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1)),
+                GT_Utility
+                    .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1)),
                 VA_GregtechMaterialPool.AstroMagic.getDust(1))
             .fluidInputs(Materials.UUMatter.getFluid(16), WerkstoffLoader.Xenon.getFluidOrGas(1000))
             .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))

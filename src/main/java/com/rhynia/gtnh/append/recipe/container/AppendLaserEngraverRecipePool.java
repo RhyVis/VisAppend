@@ -9,8 +9,8 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.AppendItemList;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
