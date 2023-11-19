@@ -151,7 +151,7 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
                 byte Tick = (byte) (aTick % 20);
                 if (aBaseMetaTileEntity.isActive() && TRANSFER_AT == Tick) {
                     setEUVar(maxEUStore());
-                    addEUToGlobalEnergyMap(owner_uuid, getEUVar());
+                    addEUToGlobalEnergyMap(owner_uuid, Math.abs(getEUVar()));
                 } else if (TRANSFER_AT == Tick) {
                     setEUVar(0);
                 }
