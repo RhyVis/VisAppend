@@ -9,6 +9,7 @@ import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 
+import com.dreammaster.gthandler.CustomItemList;
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
@@ -126,7 +127,7 @@ public class AstraForgeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(11),
-                lensInf,
+                lensMagic,
                 GT_ModHandler.getModItem("HardcoreEnderExpansion", "end_powder", 16),
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(16))
@@ -138,6 +139,35 @@ public class AstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_IV)
             .duration(350)
+            .addTo(AF);
+        // 胶质云母
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(11),
+                lensMagic,
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                Materials.Mica.getDust(64),
+                Materials.Mica.getDust(64),
+                Materials.Mica.getDust(64),
+                Materials.Mica.getDust(64))
+            .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(1000))
+            .itemOutputs(
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64),
+                CustomItemList.MicaBasedPulp.get(64))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(20 * 20)
             .addTo(AF);
         // endregion
 
