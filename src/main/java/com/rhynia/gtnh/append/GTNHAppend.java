@@ -34,8 +34,6 @@ public class GTNHAppend {
      * <li>The signal of whether in Development Mode.
      * <li>Keep care to set 'false' when dev complete.
      */
-    public static final boolean isInDevMode = false;
-    public static String DevResource = "";
     public static final String MODID = Tags.MODID;
     public static final String MOD_ID = Tags.MODID;
     public static final String MOD_NAME = Tags.MODNAME;

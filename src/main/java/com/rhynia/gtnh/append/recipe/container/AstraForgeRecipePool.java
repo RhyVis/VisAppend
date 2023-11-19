@@ -5,6 +5,7 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
 
+import gtPlusPlus.core.material.MISC_MATERIALS;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -461,9 +462,9 @@ public class AstraForgeRecipePool implements IRecipePool {
                 Materials.RareEarth.getDust(64),
                 Materials.RareEarth.getDust(64))
             .itemOutputs(
-                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthI", 48),
-                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthII", 40),
-                GT_ModHandler.getModItem("miscutils", "itemDustRareEarthIII", 32))
+                MISC_MATERIALS.RARE_EARTH_LOW.getDust(48),
+                MISC_MATERIALS.RARE_EARTH_MID.getDust(40),
+                MISC_MATERIALS.RARE_EARTH_HIGH.getDust(32))
             .noOptimize()
             .eut(RECIPE_IV)
             .duration(12 * 20)

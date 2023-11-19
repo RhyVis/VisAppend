@@ -24,8 +24,8 @@ public class AppendCommonRecipePool implements IRecipePool {
         final GT_Recipe.GT_Recipe_Map LE = GT_Recipe.GT_Recipe_Map.sLaserEngraverRecipes;
         final GT_Recipe.GT_Recipe_Map IMP = BWRecipes.instance.eicMap;
 
-        // region 星辉产生
-        // 磁析神秘 FeMa=>Fe+Ao
+        // region 星辉
+        // 磁析神秘
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Thaumium.getDust(8))
             .itemOutputs(Materials.Iron.getDust(6), MaterialGTMethod.Astro.getDust(4))
