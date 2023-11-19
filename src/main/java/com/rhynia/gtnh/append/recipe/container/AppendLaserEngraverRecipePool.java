@@ -7,6 +7,7 @@ import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 
 import net.minecraftforge.fluids.FluidRegistry;
 
+import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.AppendItemList;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
@@ -43,6 +44,17 @@ public class AppendLaserEngraverRecipePool implements IRecipePool {
             .noOptimize()
             .eut(160000)
             .duration(900)
+            .addTo(LE);
+        // 皮米晶圆
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.RawPicoWafer.get(1), lensInf)
+            .itemOutputs(CustomItemList.PicoWafer.get(4))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(100),
+                Materials.Neutronium.getMolten(2 * 144))
+            .noOptimize()
+            .eut(6000000)
+            .duration(300)
             .addTo(LE);
         // 激活催化剂
         GT_Values.RA.stdBuilder()
