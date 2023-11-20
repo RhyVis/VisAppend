@@ -13,7 +13,7 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
-public class AppendMixerRecipePool implements IRecipePool {
+public class VAMixerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

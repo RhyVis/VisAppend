@@ -11,7 +11,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_Recipe;
 
-public class AppendCentrifugeRecipePool implements IRecipePool {
+public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

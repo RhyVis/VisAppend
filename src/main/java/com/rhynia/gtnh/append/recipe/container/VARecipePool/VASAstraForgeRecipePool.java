@@ -26,7 +26,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
-public class AstraForgeRecipePool implements IRecipePool {
+public class VASAstraForgeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

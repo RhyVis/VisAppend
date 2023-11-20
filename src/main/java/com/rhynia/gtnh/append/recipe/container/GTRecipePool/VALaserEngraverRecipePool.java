@@ -20,7 +20,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 
-public class AppendLaserEngraverRecipePool implements IRecipePool {
+public class VALaserEngraverRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

@@ -16,7 +16,7 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
-public class AppendChemicalReactorRecipePool implements IRecipePool {
+public class VAChemicalReactorRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

@@ -12,7 +12,7 @@ import gregtech.api.util.GT_Recipe;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
-public class AppendElectroRecipePool implements IRecipePool {
+public class VAElectroRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

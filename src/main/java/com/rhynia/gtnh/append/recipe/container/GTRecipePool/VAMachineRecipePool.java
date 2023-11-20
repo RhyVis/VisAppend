@@ -16,7 +16,7 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 
-public class AppendMachineRecipePool implements IRecipePool {
+public class VAMachineRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

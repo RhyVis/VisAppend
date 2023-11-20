@@ -17,7 +17,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.common.items.CombType;
 import gregtech.loaders.misc.GT_Bees;
 
-public class AppendHammerRecipePool implements IRecipePool {
+public class VAHammerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

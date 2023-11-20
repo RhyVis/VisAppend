@@ -20,7 +20,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
-public class UltimateHeaterRecipePool implements IRecipePool {
+public class VASUltimateHeaterRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
