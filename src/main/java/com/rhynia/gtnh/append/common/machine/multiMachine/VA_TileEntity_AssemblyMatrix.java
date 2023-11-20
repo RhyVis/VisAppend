@@ -130,7 +130,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
-            .addElement('D', ofBlock(GregTech_API.sBlockCasings5, 10))
+            .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
                 'E',
                 GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
@@ -236,11 +236,6 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsSingleRecipeLocking() {
         return true;
     }
 
