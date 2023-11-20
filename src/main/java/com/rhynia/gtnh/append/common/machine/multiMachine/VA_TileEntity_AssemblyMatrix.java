@@ -1,7 +1,6 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
 import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.GT_HatchElement.*;
@@ -35,6 +34,7 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gregtech.common.blocks.GT_Block_Casings2;
 
 public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
@@ -64,7 +64,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(4, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return (int) (Math.pow(3, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
     public float getSpeedBonus() {
@@ -114,15 +114,40 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
-            .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 9))
             .addElement(
-                'B',
+                'A',
+                ofChain(
+                    ofBlockUnlocalizedName("IC2", "blockAlloyGlass", 0, true),
+                    ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
+                    // Warded Glass
+                    ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
+            .addElement(
+                'C',
                 GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
-                    .atLeast(InputBus, OutputBus, InputHatch, Maintenance, Energy.or(ExoticEnergy))
+                    .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
                     .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
                     .dot(1)
-                    .casingIndex(183)
-                    .buildAndChain(GregTech_API.sBlockCasings8, 7))
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement('D', ofBlock(GregTech_API.sBlockCasings5, 10))
+            .addElement(
+                'E',
+                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                    .atLeast(Maintenance)
+                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .dot(1)
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement(
+                'F',
+                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                    .atLeast(OutputBus)
+                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .dot(1)
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement('T', ofBlock(GregTech_API.sBlockCasings2, 9))
             .build();
     }
 
@@ -134,12 +159,12 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     // spotless:off
     private final String[][] shape = new String[][]{
-    {"BBB","BBB","BBB"},
-    {"B~B","BAB","BBB"},
-    {"BBB","BBB","BBB"}
-};
-    // endregion
+        {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
+        {"C~C","ABA","ABA","ABA","ABA","ABA","FEF"},
+        {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
+    };
 //spotless:on
+    // endregion
     // region Overrides
 
     @Override
@@ -164,7 +189,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装电池等基础元件.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("拥有与无损超频等效的并行(但有损超频).")
+            .addInfo("电压每提高1级, 并行翻倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)
@@ -230,7 +255,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
         if (sideDirection == facingDirection) {
             if (active) return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
                 TextureFactory.builder()
                     .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
                     .extFacing()
@@ -242,7 +267,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     .build() };
             return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
                 TextureFactory.builder()
                     .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
                     .extFacing()
@@ -254,7 +279,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     .build() };
         }
         return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)) };
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
     }
 
     // endregion
