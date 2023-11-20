@@ -17,8 +17,18 @@ public class UtilValues {
         + "Vis Append"
         + EnumChatFormatting.GRAY
         + " 添加";
-    public static final String BluePrintInfo = "参考§9蓝§b图§r相对位置";
-    public static final String BluePrintTip = "请参考§9Structure§1Lib§7全息投影，构建主体结构";
+    public static final String BluePrintInfo = "如" + EnumChatFormatting.BLUE
+        + "蓝"
+        + EnumChatFormatting.AQUA
+        + "图"
+        + EnumChatFormatting.GRAY
+        + "所示相对位置";
+    public static final String BluePrintTip = "请参考" + EnumChatFormatting.BLUE
+        + "Structure"
+        + EnumChatFormatting.DARK_BLUE
+        + "Lib"
+        + EnumChatFormatting.GRAY
+        + "全息投影，构建主体结构";
     public static final String StructureTooComplex = "结构太复杂了!";
 
     // 物品
