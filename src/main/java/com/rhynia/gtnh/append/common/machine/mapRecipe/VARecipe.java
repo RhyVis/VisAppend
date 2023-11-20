@@ -1,5 +1,8 @@
 package com.rhynia.gtnh.append.common.machine.mapRecipe;
 
+import static com.rhynia.gtnh.append.util.UtilValues.VA_LOGO_32;
+import static gregtech.api.gui.modularui.GT_UITextures.*;
+
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.List;
@@ -11,8 +14,6 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 
 import gregtech.api.util.GT_Recipe;
 import gregtech.common.gui.modularui.UIHelper;
-
-import static com.rhynia.gtnh.append.util.UtilValues.VA_LOGO;
 
 public class VARecipe {
 
@@ -64,8 +65,12 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            setLogo(VA_LOGO);
-            setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18);
+            setLogo(VA_LOGO_32);
+            setLogoSize(17, 17);
+            setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18 - 8);
+            setProgressBar(PROGRESSBAR_ARROW_MULTIPLE);
+            setProgressBarPos(80, yOrigin + (getItemRowCount() - 2) * 18 - 9);
+            setProgressBarSize(15, 15);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);
             setDisableOptimize(disableOptimize);
@@ -108,9 +113,7 @@ public class VARecipe {
             IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
             IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
             Supplier<Float> progressSupplier, Pos2d windowOffset) {
-            // Delay setter so that calls to #setUsualFluidInputCount and #setUsualFluidOutputCount are considered
             setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
-            // setNEIBackgroundSize(172, 82 + (Math.max(getItemRowCount() + getFluidRowCount() - 4, 0)) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,
                 itemOutputsInventory,
@@ -188,9 +191,11 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            setLogo(VA_LOGO);
+            setLogo(VA_LOGO_32);
+            setLogoSize(17, 17);
+            setProgressBar(PROGRESSBAR_ASSEMBLE);
             setProgressBarPos(114, getItemRowCount() * 18 - 13);
-            setLogoPos(115, getItemRowCount() * 18 + 13);
+            setLogoPos(115, getItemRowCount() * 18 + 8);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);
             setDisableOptimize(disableOptimize);
@@ -312,7 +317,9 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            setLogo(VA_LOGO);
+            setLogo(VA_LOGO_32);
+            setProgressBar(PROGRESSBAR_MIXER);
+            setLogoSize(17, 17);
             setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);

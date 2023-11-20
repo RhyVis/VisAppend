@@ -3,9 +3,9 @@ package com.rhynia.gtnh.append.loader;
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
-import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;

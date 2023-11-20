@@ -1,16 +1,14 @@
 package com.rhynia.gtnh.append.util;
 
-import com.gtnewhorizons.modularui.api.drawable.UITexture;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
+import com.gtnewhorizons.modularui.api.drawable.UITexture;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
-
-import static gregtech.api.enums.Mods.GregTech;
 
 public class UtilValues {
 
@@ -29,5 +27,5 @@ public class UtilValues {
     public static final ItemStack lensInf = GT_Utility
         .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1));
     // 图标
-    public static final UITexture VA_LOGO = UITexture.fullImage("append", "gui/picture/va_logo_17x17_t");
+    public static final UITexture VA_LOGO_32 = UITexture.fullImage("append", "gui/picture/va_logo_32_t");
 }

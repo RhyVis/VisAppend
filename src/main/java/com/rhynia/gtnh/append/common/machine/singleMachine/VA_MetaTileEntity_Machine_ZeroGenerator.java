@@ -4,6 +4,7 @@ import static com.github.technus.tectech.thing.metaTileEntity.Textures.*;
 import static com.github.technus.tectech.util.CommonValues.TRANSFER_AT;
 import static com.github.technus.tectech.util.CommonValues.VN;
 import static com.rhynia.gtnh.append.util.UtilValues.AddByAppend;
+import static com.rhynia.gtnh.append.util.UtilValues.VA_LOGO_32;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -269,7 +270,7 @@ public class VA_MetaTileEntity_Machine_ZeroGenerator extends GT_MetaTileEntity_T
     @Override
     public void addGregTechLogo(ModularWindow.Builder builder) {
         builder.widget(
-            new DrawableWidget().setDrawable(GT_UITextures.PICTURE_GT_LOGO_17x17_TRANSPARENT_GRAY)
+            new DrawableWidget().setDrawable(VA_LOGO_32)
                 .setSize(17, 17)
                 .setPos(113, 56));
     }

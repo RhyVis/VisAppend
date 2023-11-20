@@ -9,28 +9,21 @@ import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendHammerRecipePo
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendLaserEngraverRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendMachineRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendMixerRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.AssemblyMatrixRecipePool;
 import com.rhynia.gtnh.append.recipe.container.VARecipePool.AstraForgeRecipePool;
 import com.rhynia.gtnh.append.recipe.container.VARecipePool.UltimateHeaterRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.AssemblyMatrixRecipePool;
 
 public class LoaderRecipe {
 
     public static void loadRecipes() {
         IRecipePool[] recipePools = new IRecipePool[] {
             // Basic & Misc Recipe
-            new AppendCommonRecipePool(),
-            new AppendMachineRecipePool(),
+            new AppendCommonRecipePool(), new AppendMachineRecipePool(),
             // VA Special Recipe
-            new AstraForgeRecipePool(),
-            new UltimateHeaterRecipePool(),
-            new AssemblyMatrixRecipePool(),
+            new AstraForgeRecipePool(), new UltimateHeaterRecipePool(), new AssemblyMatrixRecipePool(),
             // GT Recipe
-            new AppendCentrifugeRecipePool(),
-            new AppendElectroRecipePool(),
-            new AppendMixerRecipePool(),
-            new AppendChemicalReactorRecipePool(),
-            new AppendHammerRecipePool(),
-            new AppendLaserEngraverRecipePool() };
+            new AppendCentrifugeRecipePool(), new AppendElectroRecipePool(), new AppendMixerRecipePool(),
+            new AppendChemicalReactorRecipePool(), new AppendHammerRecipePool(), new AppendLaserEngraverRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();
