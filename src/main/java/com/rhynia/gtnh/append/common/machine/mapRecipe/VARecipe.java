@@ -186,8 +186,8 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            setProgressBarPos(114, getItemRowCount() * 18 - 9);
-            setLogoPos(115, getItemRowCount() * 18 + 9);
+            setProgressBarPos(114, getItemRowCount() * 18 - 13);
+            setLogoPos(115, getItemRowCount() * 18 + 13);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);
             setDisableOptimize(disableOptimize);
