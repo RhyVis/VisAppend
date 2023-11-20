@@ -18,7 +18,7 @@ public class AssemblyMatrixRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
-        // 润滑油
+        // 透镜配方
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(12),
