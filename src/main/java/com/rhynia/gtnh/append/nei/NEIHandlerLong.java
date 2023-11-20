@@ -9,9 +9,12 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class NEIHandlerLong {
 
     public static void IMCSender() {
+        // Handler
         sendHandler("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
-
+        sendHandler("append.recipe.AssemblyMatrixRecipes", "gregtech:gt.blockmachines:17503");
+        // Catalyst
         sendCatalyst("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
+        sendCatalyst("append.recipe.AssemblyMatrixRecipes", "gregtech:gt.blockmachines:17503");
     }
 
     private static void sendHandler(String aName, String aBlock) {

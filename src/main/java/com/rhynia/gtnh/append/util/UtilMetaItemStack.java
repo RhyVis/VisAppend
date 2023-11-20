@@ -9,7 +9,7 @@ import net.minecraft.item.ItemStack;
 
 public class UtilMetaItemStack {
 
-    // generate item stack when init
+    // Generate item stack when init
     public static ItemStack initMetaItemStack(String i18nName, int Meta, Item basicItem, Set<Integer> aContainerSet) {
 
         // Hold the list of Meta-generated Items
@@ -18,7 +18,7 @@ public class UtilMetaItemStack {
         return new ItemStack(basicItem, 1, Meta);
     }
 
-    // generate itemBlock stack when init
+    // Generate itemBlock stack when init
     public static ItemStack initMetaItemStack(String i18nName, int Meta, Block baseBlock, Set<Integer> aContainerSet) {
 
         aContainerSet.add(Meta);

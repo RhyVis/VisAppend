@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.*;
 
@@ -16,7 +16,7 @@ import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
-public class AppendCommonRecipePool implements IRecipePool {
+public class VACommonRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

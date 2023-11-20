@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
@@ -9,7 +9,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -20,7 +20,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 
-public class AppendLaserEngraverRecipePool implements IRecipePool {
+public class VALaserEngraverRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
@@ -70,7 +70,7 @@ public class AppendLaserEngraverRecipePool implements IRecipePool {
         // region 兰波顿
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
-            .itemInputs(AppendItemList.ItemLapoMatrix.get(4), lensInf)
+            .itemInputs(VAItemList.ItemLapoMatrix.get(4), lensInf)
             .fluidInputs(Materials.EnergeticAlloy.getMolten(1440))
             .itemOutputs(
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),

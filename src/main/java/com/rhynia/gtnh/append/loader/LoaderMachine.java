@@ -2,7 +2,8 @@ package com.rhynia.gtnh.append.loader;
 
 import net.minecraft.item.ItemStack;
 
-import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
@@ -24,13 +25,16 @@ public class LoaderMachine {
     // region multi Machine controller
     public static ItemStack AstraForge;
     public static ItemStack UltimateHeater;
+    public static ItemStack AssemblyMatrix;
     // endregion
 
     public static void loadMachines() {
         AstraForge = new VA_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
-        AppendItemList.AstraForge.set(AstraForge);
+        VAItemList.AstraForge.set(AstraForge);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
-        AppendItemList.UltimateHeater.set(UltimateHeater);
+        VAItemList.UltimateHeater.set(UltimateHeater);
+        AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
+        VAItemList.AssemblyMatrix.set(AssemblyMatrix);
 
         InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
             .getStackForm(1);
@@ -46,11 +50,11 @@ public class LoaderMachine {
         ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
             .getStackForm(1L);
 
-        AppendItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
-        AppendItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
-        AppendItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
-        AppendItemList.InfiniteOilHatch.set(InfiniteOilHatch);
-        AppendItemList.ZeroGenerator.set(ZeroGenerator);
+        VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
+        VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
+        VAItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
+        VAItemList.InfiniteOilHatch.set(InfiniteOilHatch);
+        VAItemList.ZeroGenerator.set(ZeroGenerator);
     }
 
     // endregion

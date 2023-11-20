@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
@@ -12,7 +12,7 @@ import gregtech.api.util.GT_Recipe;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
-public class AppendElectroRecipePool implements IRecipePool {
+public class VAElectroRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

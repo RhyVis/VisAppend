@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static gregtech.api.enums.TierEU.*;
@@ -20,7 +20,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
-public class UltimateHeaterRecipePool implements IRecipePool {
+public class VASUltimateHeaterRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {

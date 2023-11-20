@@ -9,9 +9,11 @@ import cpw.mods.fml.common.event.FMLInterModComms;
 public class NEIHandler {
 
     public static void IMCSender() {
+        // Handler
         sendHandler("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
-
+        // Catalyst
         sendCatalyst("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
+
     }
 
     private static void sendHandler(String aName, String aBlock) {
