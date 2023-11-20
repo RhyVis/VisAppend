@@ -12,6 +12,8 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import gregtech.api.util.GT_Recipe;
 import gregtech.common.gui.modularui.UIHelper;
 
+import static com.rhynia.gtnh.append.util.UtilValues.VA_LOGO;
+
 public class VARecipe {
 
     public static final VARecipe instance = new VARecipe();
@@ -62,7 +64,7 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            // setProgressBarPos(78, getItemRowCount() * 18);
+            setLogo(VA_LOGO);
             setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);
@@ -186,6 +188,7 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
+            setLogo(VA_LOGO);
             setProgressBarPos(114, getItemRowCount() * 18 - 13);
             setLogoPos(115, getItemRowCount() * 18 + 13);
             setUsualFluidInputCount(aUsualFluidInputCount);
@@ -309,7 +312,7 @@ public class VARecipe {
                 aNEIAllowed);
 
             useModularUI(true);
-            // setProgressBarPos(78, getItemRowCount() * 18);
+            setLogo(VA_LOGO);
             setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18);
             setUsualFluidInputCount(aUsualFluidInputCount);
             setUsualFluidOutputCount(aUsualFluidOutputCount);

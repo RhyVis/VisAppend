@@ -6,7 +6,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
-import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -60,7 +60,7 @@ public class AppendHammerRecipePool implements IRecipePool {
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
-            .itemOutputs(AppendItemList.ItemLapoMatrix.get(16))
+            .itemOutputs(VAItemList.ItemLapoMatrix.get(16))
             .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
             .noOptimize()
             .eut(RECIPE_LuV)

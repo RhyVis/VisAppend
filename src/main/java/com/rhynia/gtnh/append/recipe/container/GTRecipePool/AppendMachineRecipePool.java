@@ -5,7 +5,7 @@ import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeConstants.*;
 
-import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
@@ -37,7 +37,7 @@ public class AppendMachineRecipePool implements IRecipePool {
                 Materials.CosmicNeutronium.getMolten(1440),
                 VA_GregtechMaterialPool.Astro.getFluid(16000),
                 VA_GregtechMaterialPool.AstroInf.getFluid(8000))
-            .itemOutputs(AppendItemList.InfiniteLiquidAirHatch.get(1))
+            .itemOutputs(VAItemList.InfiniteLiquidAirHatch.get(1))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(140 * 20)
@@ -60,7 +60,7 @@ public class AppendMachineRecipePool implements IRecipePool {
                 Materials.CosmicNeutronium.getMolten(10 * 144),
                 VA_GregtechMaterialPool.Astro.getFluid(16000),
                 VA_GregtechMaterialPool.AstroInf.getFluid(8000))
-            .itemOutputs(AppendItemList.AstraForge.get(1))
+            .itemOutputs(VAItemList.AstraForge.get(1))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(95 * 20)

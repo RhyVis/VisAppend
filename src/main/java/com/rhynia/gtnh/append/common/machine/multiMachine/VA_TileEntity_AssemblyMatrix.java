@@ -158,11 +158,11 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("装配线")
+        tt.addMachineType("集成装配线")
             .addInfo("组装矩阵的控制器")
-            .addInfo("完全不用动脑的装配线机构.")
-            .addInfo("占位.")
-            .addInfo("占位.")
+            .addInfo("现代化的组装机构.")
+            .addInfo("高效组装电池等基础元件.")
+            .addInfo("再见，进阶装配线!")
             .addInfo("拥有与无损超频等效的并行(但有损超频).")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()

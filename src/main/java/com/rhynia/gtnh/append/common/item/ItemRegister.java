@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.common.item;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
-import com.rhynia.gtnh.append.common.AppendItemList;
+import com.rhynia.gtnh.append.common.VAItemList;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
@@ -20,8 +20,8 @@ public class ItemRegister {
 
     // spotless:off
     public static void registryItemContainers() {
-        AppendItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
-        AppendItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));
+        VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
+        VAItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));
     }
     // spotless:on
     public static void registry() {

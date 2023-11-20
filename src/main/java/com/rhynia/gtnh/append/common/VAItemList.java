@@ -11,7 +11,7 @@ import gregtech.api.util.GT_Log;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 
-public enum AppendItemList implements IItemContainer {
+public enum VAItemList implements IItemContainer {
 
     // Item
     ItemUltimate,
@@ -35,11 +35,11 @@ public enum AppendItemList implements IItemContainer {
     private ItemStack mStack;
 
     // endregion
-    AppendItemList() {
+    VAItemList() {
         mHasNotBeenSet = true;
     }
 
-    AppendItemList(boolean aDeprecated) {
+    VAItemList(boolean aDeprecated) {
         if (aDeprecated) {
             mDeprecated = true;
             mHasNotBeenSet = true;
