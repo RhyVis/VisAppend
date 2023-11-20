@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static gregtech.api.enums.TierEU.*;

@@ -1,16 +1,16 @@
 package com.rhynia.gtnh.append.loader;
 
 import com.rhynia.gtnh.append.recipe.IRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendCentrifugeRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendChemicalReactorRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendCommonRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendElectroRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendHammerRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendLaserEngraverRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendMachineRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AppendMixerRecipePool;
-import com.rhynia.gtnh.append.recipe.container.AstraForgeRecipePool;
-import com.rhynia.gtnh.append.recipe.container.UltimateHeaterRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendCentrifugeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendChemicalReactorRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendCommonRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendElectroRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendHammerRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendLaserEngraverRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendMachineRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.AppendMixerRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.AstraForgeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.UltimateHeaterRecipePool;
 
 public class LoaderRecipe {
 

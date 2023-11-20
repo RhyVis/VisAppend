@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;

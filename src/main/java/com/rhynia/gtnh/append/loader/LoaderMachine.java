@@ -5,6 +5,7 @@ import net.minecraft.item.ItemStack;
 import com.rhynia.gtnh.append.common.AppendItemList;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
+import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
@@ -24,6 +25,7 @@ public class LoaderMachine {
     // region multi Machine controller
     public static ItemStack AstraForge;
     public static ItemStack UltimateHeater;
+    public static ItemStack AssemblyMatrix;
     // endregion
 
     public static void loadMachines() {
@@ -31,6 +33,8 @@ public class LoaderMachine {
         AppendItemList.AstraForge.set(AstraForge);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
         AppendItemList.UltimateHeater.set(UltimateHeater);
+        AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
+        AppendItemList.AssemblyMatrix.set(AssemblyMatrix);
 
         InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
             .getStackForm(1);

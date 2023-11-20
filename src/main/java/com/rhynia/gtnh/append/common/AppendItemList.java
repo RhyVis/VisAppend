@@ -24,7 +24,8 @@ public enum AppendItemList implements IItemContainer {
     ZeroGenerator,
     // Machine Controller
     AstraForge,
-    UltimateHeater;
+    UltimateHeater,
+    AssemblyMatrix;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

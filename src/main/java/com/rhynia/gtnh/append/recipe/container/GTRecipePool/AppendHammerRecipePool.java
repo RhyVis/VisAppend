@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container;
+package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 
