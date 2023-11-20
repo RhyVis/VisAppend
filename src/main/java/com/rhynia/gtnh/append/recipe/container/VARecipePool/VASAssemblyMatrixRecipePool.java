@@ -36,12 +36,12 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 MaterialsUEVplus.Eternity.getNanite(64),
                 MaterialsUEVplus.Eternity.getNanite(64))
             .fluidInputs(
-                MaterialsUEVplus.Universium.getMolten(144000000),
-                MaterialsUEVplus.ExcitedDTSC.getFluid(120000000),
-                Materials.Neutronium.getMolten(144000000),
-                Materials.CosmicNeutronium.getMolten(144000000),
-                MaterialsUEVplus.SpaceTime.getMolten(144000000),
-                Materials.Infinity.getMolten(144000000))
+                MaterialsUEVplus.Universium.getMolten(1440000000),
+                MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
+                Materials.Neutronium.getMolten(1440000000),
+                Materials.CosmicNeutronium.getMolten(1440000000),
+                MaterialsUEVplus.SpaceTime.getMolten(1440000000),
+                Materials.Infinity.getMolten(1440000000))
             .itemOutputs(VAItemList.ItemUltimate.get(1))
             .noOptimize()
             .eut(RECIPE_MAX)
