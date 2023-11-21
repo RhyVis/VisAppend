@@ -215,6 +215,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(950 * SECONDS)
             .addTo(AM);
+        // TODO 添加UXV+配方
         /*
          * // 极·终极电池 UXV
          * GT_Values.RA.stdBuilder()
