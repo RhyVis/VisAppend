@@ -130,7 +130,10 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 Materials.Americium.getMolten(64 * INGOTS),
                 Materials.Neutronium.getMolten(48 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(48000))
-            .itemOutputs(ItemList.Energy_Module.get(64), ItemList.Energy_Module.get(64))
+            .itemOutputs(
+                ItemList.Energy_Module.get(64),
+                ItemList.Energy_Module.get(64),
+                ItemList.Energy_Module.get(32))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(615 * SECONDS)
@@ -155,7 +158,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 Materials.Naquadah.getMolten(128 * INGOTS),
                 ALLOY.QUANTUM.getFluidStack(16 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(96 * 1000))
-            .itemOutputs(ItemList.Energy_Cluster.get(64),ItemList.Energy_Cluster.get(32))
+            .itemOutputs(ItemList.Energy_Cluster.get(64),ItemList.Energy_Cluster.get(64))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(800 * SECONDS)
@@ -180,9 +183,9 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 80 * 1000),
                 Materials.Neutronium.getMolten(256 * INGOTS),
                 Materials.Infinity.getMolten(64 * INGOTS),
-                Materials.EnrichedNaquadria.getMolten(128 * INGOTS),
+                Materials.NaquadahEnriched.getMolten(128 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160 * 1000))
-            .itemOutputs(ItemList.ZPM2.get(64))
+            .itemOutputs(ItemList.ZPM2.get(64),ItemList.ZPM2.get(32))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(1000 * SECONDS)
