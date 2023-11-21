@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.*;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
@@ -24,11 +25,12 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 public class VASAssemblyMatrixRecipePool implements IRecipePool {
+    final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
-        // 透镜配方
+        // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64),
@@ -56,13 +58,17 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .duration(160 * HOURS)
             .addTo(AM);
 
-        // region 能量球
+        // region 电池配方
         // 兰波顿能量球 IV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32754),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32729),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 32, 32729))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32754),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32729),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32729),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32737),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32738),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32739),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32740))
             .fluidInputs(
                 Materials.SolderingAlloy.getMolten(160 * INGOTS),
                 Materials.Platinum.getMolten(128 * INGOTS),
@@ -81,10 +87,14 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         // 兰波顿能量簇 LUV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32750),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32727),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32727),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 32, 32731))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32750),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32727),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32727),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32731),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32737),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32738),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32739),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32740))
             .fluidInputs(
                 ALLOY.INDALLOY_140.getFluidStack(128 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(48 * INGOTS),
@@ -103,14 +113,19 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         // 能量模块 ZPM
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32750),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 32, 32722),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32723),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32723),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 32, 32723),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 16, 32730))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32750),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32722),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32723),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32723),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32723),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32730),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32737),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32738),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32739),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32740))
             .fluidInputs(
                 ALLOY.INDALLOY_140.getFluidStack(256 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 1000),
                 Materials.Europium.getMolten(128 * INGOTS),
                 Materials.Americium.getMolten(64 * INGOTS),
                 Materials.Neutronium.getMolten(48 * INGOTS),
@@ -123,19 +138,24 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         // 能量簇 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32746),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32721),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32721),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32722),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 64, 32722),
-                GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", 16, 32731))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32746),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32730),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32737),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32738),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32739),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32740))
             .fluidInputs(
                 ALLOY.INDALLOY_140.getFluidStack(256 * INGOTS),
-                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 4608),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 48 * 1000),
                 ELEMENT.STANDALONE.ADVANCED_NITINOL.getFluidStack(90 * 1000),
-                ALLOY.QUANTUM.getFluidStack(12 * INGOTS),
+                Materials.Naquadah.getMolten(128 * INGOTS),
+                ALLOY.QUANTUM.getFluidStack(16 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(96 * 1000))
-            .itemOutputs(ItemList.Energy_Cluster.get(64))
+            .itemOutputs(ItemList.Energy_Cluster.get(64),ItemList.Energy_Cluster.get(32))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(800 * SECONDS)
@@ -143,37 +163,57 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         // 终极电池 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 2),
-                GT_OreDictUnificator.get(OrePrefixes.dustSmall, VA_GregtechMaterialPool.AstroInf, 64))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32746),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32730),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32737),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32738),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32739),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32740))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(128 * INGOTS),
-                Materials.Americium.getMolten(256 * INGOTS),
-                ALLOY.OCTIRON.getFluidStack(32 * INGOTS),
-                ALLOY.QUANTUM.getFluidStack(24 * INGOTS),
-                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160000))
-            .itemOutputs(ItemList.ZPM2.get(32))
+                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(96 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 80 * 1000),
+                Materials.Neutronium.getMolten(256 * INGOTS),
+                Materials.Infinity.getMolten(64 * INGOTS),
+                Materials.EnrichedNaquadria.getMolten(128 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160 * 1000))
+            .itemOutputs(ItemList.ZPM2.get(64))
             .noOptimize()
-            .eut(RECIPE_UEV)
+            .eut(RECIPE_UHV)
             .duration(1000 * SECONDS)
             .addTo(AM);
         // 真·终极电池 UMV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 3),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32704),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32703),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32701),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32707),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32708),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32709),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32710),
+                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32711))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(128 * INGOTS),
-                ALLOY.TRINIUM_TITANIUM.getFluidStack(123 * INGOTS),
-                ALLOY.OCTIRON.getFluidStack(128 * INGOTS),
-                ALLOY.QUANTUM.getFluidStack(64 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 120 * 1000),
+                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
+                Materials.Infinity.getMolten(128 * INGOTS),
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160000))
-            .itemOutputs(ItemList.ZPM3.get(16))
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(210 * 1000))
+            .itemOutputs(ItemList.ZPM3.get(32))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(16000 * 20)
+            .duration(950 * SECONDS)
             .addTo(AM);
+        /*
         // 极·终极电池 UXV
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -225,6 +265,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .eut(RECIPE_UXV)
             .duration(16000 * 20)
             .addTo(AM);
+            */
         // endregion
     }
 }
