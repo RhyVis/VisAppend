@@ -267,5 +267,33 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .addTo(AM);
             */
         // endregion
+
+        // region 杂项组装
+        // Magic 透镜
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                VA_GregtechMaterialPool.AstroMagic.getGems(64))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
+                VA_GregtechMaterialPool.Astro.getFluid(64000))
+            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(810 * SECONDS)
+            .addTo(AM);
+        // Inf 透镜
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                VA_GregtechMaterialPool.AstroMagic.getGems(64))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(256 * INGOTS),
+                VA_GregtechMaterialPool.Astro.getFluid(128000),
+                VA_GregtechMaterialPool.AstroInf.getFluid(48000))
+            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(750 * SECONDS)
+            .addTo(AM);
+        // endregion
     }
 }
