@@ -4,6 +4,9 @@ import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.*;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
+import net.minecraftforge.fluids.FluidRegistry;
+import net.minecraftforge.fluids.FluidStack;
+
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
@@ -21,10 +24,9 @@ import gregtech.api.util.GT_Recipe;
 import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 public class VASAssemblyMatrixRecipePool implements IRecipePool {
+
     final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
@@ -130,10 +132,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 Materials.Americium.getMolten(64 * INGOTS),
                 Materials.Neutronium.getMolten(48 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(48000))
-            .itemOutputs(
-                ItemList.Energy_Module.get(64),
-                ItemList.Energy_Module.get(64),
-                ItemList.Energy_Module.get(32))
+            .itemOutputs(ItemList.Energy_Module.get(64), ItemList.Energy_Module.get(64), ItemList.Energy_Module.get(32))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(615 * SECONDS)
@@ -158,7 +157,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 Materials.Naquadah.getMolten(128 * INGOTS),
                 ALLOY.QUANTUM.getFluidStack(16 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(96 * 1000))
-            .itemOutputs(ItemList.Energy_Cluster.get(64),ItemList.Energy_Cluster.get(64))
+            .itemOutputs(ItemList.Energy_Cluster.get(64), ItemList.Energy_Cluster.get(64))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(800 * SECONDS)
@@ -185,7 +184,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 Materials.Infinity.getMolten(64 * INGOTS),
                 Materials.NaquadahEnriched.getMolten(128 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160 * 1000))
-            .itemOutputs(ItemList.ZPM2.get(64),ItemList.ZPM2.get(32))
+            .itemOutputs(ItemList.ZPM2.get(64), ItemList.ZPM2.get(32))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(1000 * SECONDS)
@@ -217,65 +216,64 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .duration(950 * SECONDS)
             .addTo(AM);
         /*
-        // 极·终极电池 UXV
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 4),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-            .fluidInputs(
-                MaterialsUEVplus.Universium.getMolten(888),
-                MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-                Materials.Water.getMolten(444),
-                Materials.CosmicNeutronium.getMolten(1440000000),
-                MaterialsUEVplus.SpaceTime.getMolten(6666),
-                Materials.Infinity.getMolten(1440000000))
-            .itemOutputs(ItemList.ZPM4.get(8))
-            .noOptimize()
-            .eut(RECIPE_UIV)
-            .duration(16000 * 20)
-            .addTo(AM);
-        // 狂·终极电池 MAX
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.gem, VA_GregtechMaterialPool.AstroMagic, 5),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-            .fluidInputs(
-                MaterialsUEVplus.Universium.getMolten(888),
-                MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-                Materials.Neutronium.getMolten(444),
-                Materials.Gold.getMolten(1440000000),
-                MaterialsUEVplus.SpaceTime.getMolten(6666),
-                Materials.Infinity.getMolten(1440000000))
-            .itemOutputs(ItemList.ZPM5.get(4))
-            .noOptimize()
-            .eut(RECIPE_UMV)
-            .duration(16000 * 20)
-            .addTo(AM);
-        // 太·终极电池 ER
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.dust, VA_GregtechMaterialPool.AstroMagic, 6),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-            .fluidInputs(
-                MaterialsUEVplus.Universium.getMolten(888),
-                MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-                Materials.Iron.getMolten(444),
-                Materials.CosmicNeutronium.getMolten(1440000000),
-                MaterialsUEVplus.SpaceTime.getMolten(6666),
-                Materials.Infinity.getMolten(1440000000))
-            .itemOutputs(ItemList.ZPM6.get(1))
-            .noOptimize()
-            .eut(RECIPE_UXV)
-            .duration(16000 * 20)
-            .addTo(AM);
-            */
+         * // 极·终极电池 UXV
+         * GT_Values.RA.stdBuilder()
+         * .itemInputs(
+         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 4),
+         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
+         * .fluidInputs(
+         * MaterialsUEVplus.Universium.getMolten(888),
+         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
+         * Materials.Water.getMolten(444),
+         * Materials.CosmicNeutronium.getMolten(1440000000),
+         * MaterialsUEVplus.SpaceTime.getMolten(6666),
+         * Materials.Infinity.getMolten(1440000000))
+         * .itemOutputs(ItemList.ZPM4.get(8))
+         * .noOptimize()
+         * .eut(RECIPE_UIV)
+         * .duration(16000 * 20)
+         * .addTo(AM);
+         * // 狂·终极电池 MAX
+         * GT_Values.RA.stdBuilder()
+         * .itemInputs(
+         * GT_OreDictUnificator.get(OrePrefixes.gem, VA_GregtechMaterialPool.AstroMagic, 5),
+         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
+         * .fluidInputs(
+         * MaterialsUEVplus.Universium.getMolten(888),
+         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
+         * Materials.Neutronium.getMolten(444),
+         * Materials.Gold.getMolten(1440000000),
+         * MaterialsUEVplus.SpaceTime.getMolten(6666),
+         * Materials.Infinity.getMolten(1440000000))
+         * .itemOutputs(ItemList.ZPM5.get(4))
+         * .noOptimize()
+         * .eut(RECIPE_UMV)
+         * .duration(16000 * 20)
+         * .addTo(AM);
+         * // 太·终极电池 ER
+         * GT_Values.RA.stdBuilder()
+         * .itemInputs(
+         * GT_OreDictUnificator.get(OrePrefixes.dust, VA_GregtechMaterialPool.AstroMagic, 6),
+         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
+         * .fluidInputs(
+         * MaterialsUEVplus.Universium.getMolten(888),
+         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
+         * Materials.Iron.getMolten(444),
+         * Materials.CosmicNeutronium.getMolten(1440000000),
+         * MaterialsUEVplus.SpaceTime.getMolten(6666),
+         * Materials.Infinity.getMolten(1440000000))
+         * .itemOutputs(ItemList.ZPM6.get(1))
+         * .noOptimize()
+         * .eut(RECIPE_UXV)
+         * .duration(16000 * 20)
+         * .addTo(AM);
+         */
         // endregion
 
         // region 杂项组装
         // Magic 透镜
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                VA_GregtechMaterialPool.AstroMagic.getGems(64))
+            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
                 Materials.DraconiumAwakened.getMolten(48 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(64000))
@@ -286,8 +284,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .addTo(AM);
         // Inf 透镜
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                VA_GregtechMaterialPool.AstroMagic.getGems(64))
+            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(128000),
