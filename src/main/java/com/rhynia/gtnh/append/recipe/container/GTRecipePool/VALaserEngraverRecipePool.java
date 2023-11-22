@@ -100,9 +100,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VAItemList.ItemCrystalMatrix.get(1), lensInf)
             .fluidInputs(Materials.Americium.getMolten(16 * INGOTS))
-            .itemOutputs(
-                ItemList.Circuit_Chip_CrystalSoC.get(64),
-                ItemList.Circuit_Chip_CrystalSoC.get(32))
+            .itemOutputs(ItemList.Circuit_Chip_CrystalSoC.get(64), ItemList.Circuit_Chip_CrystalSoC.get(32))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(15 * SECONDS)
