@@ -10,9 +10,12 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 
+import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
+
 public class UtilValues {
 
     // 字段
+    public static final String VisAppend = MOD_ID;
     public static final String AddByAppend = "由 " + EnumChatFormatting.GREEN
         + "Vis Append"
         + EnumChatFormatting.GRAY
