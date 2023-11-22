@@ -499,22 +499,289 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_IV)
             .duration(12 * 20)
             .addTo(AF);
+        // 铂金属
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Platinum.getDust(64),
+                Materials.Platinum.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Ruthenium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Ruthenium.get(OrePrefixes.dust, 64))
+            .outputChances(8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 铱渣
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrLeachResidue.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Gold.getDust(64),
+                Materials.Gold.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64))
+            .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 6000, 6000, 6000, 6000, 3000, 3000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 锇渣
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.IrOsLeachResidue.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Gold.getDust(64),
+                Materials.Gold.getDust(64),
+                Materials.Silicon.getDust(64),
+                Materials.Silicon.getDust(64))
+            .outputChances(10000, 10000, 8000, 8000, 10000, 10000, 8000, 8000, 6000, 6000, 3000, 3000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 钯金属
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.PDMetallicPowder.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64),
+                Materials.Palladium.getDust(64))
+            .outputChances(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 6000, 6000, 6000, 6000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 氧化硅岩
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Naquadah.getDust(64),
+                Materials.Titanium.getDust(64),
+                Materials.Titanium.getDust(64),
+                Materials.Titanium.getDust(64),
+                Materials.Titanium.getDust(64),
+                Materials.Adamantium.getDust(64),
+                Materials.Adamantium.getDust(64),
+                Materials.Gallium.getDust(64),
+                Materials.Gallium.getDust(64))
+            .outputChances(
+                10000,
+                10000,
+                10000,
+                10000,
+                8000,
+                6000,
+                4000,
+                2000,
+                8000,
+                8000,
+                8000,
+                8000,
+                8000,
+                8000,
+                8000,
+                8000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 氧化富集硅岩
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadriaEarth.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Naquadria.getDust(64),
+                Materials.Barium.getDust(64),
+                Materials.Barium.getDust(64),
+                Materials.Barium.getDust(64),
+                Materials.Indium.getDust(64),
+                Materials.Indium.getDust(64),
+                Materials.Indium.getDust(64))
+            .outputChances(
+                10000,
+                10000,
+                10000,
+                10000,
+                8000,
+                8000,
+                8000,
+                8000,
+                6000,
+                6000,
+                8000,
+                6000,
+                6000,
+                8000,
+                6000,
+                6000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
+        // 超能硅岩
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                lensInf,
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.enrichedNaquadahEarth.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.NaquadahEnriched.getDust(64),
+                Materials.Trinium.getDust(64),
+                Materials.Trinium.getDust(64),
+                Materials.Trinium.getDust(64),
+                Materials.Trinium.getDust(64),
+                Materials.Chrome.getDust(64))
+            .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 8000, 8000, 6000, 6000, 6000, 6000, 6000, 6000, 4000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * 20)
+            .addTo(AF);
         // endregion
 
         // region 4号电路 合成
-        // 合成宇宙中子素 SpNt
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(4),
-                lensInf,
-                VA_GregtechMaterialPool.Astro.getDust(4),
-                Materials.BlackPlutonium.getDust(16))
-            .fluidInputs(Materials.Helium.getFluid(2000))
-            .itemOutputs(Materials.CosmicNeutronium.getDust(12))
-            .noOptimize()
-            .eut(RECIPE_ZPM)
-            .duration(30 * 20)
-            .addTo(AF);
 
         // 合成阳光化合物 Su
         GT_Values.RA.stdBuilder()
