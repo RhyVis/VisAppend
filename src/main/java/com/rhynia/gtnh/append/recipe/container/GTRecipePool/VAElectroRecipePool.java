@@ -109,12 +109,12 @@ public class VAElectroRecipePool implements IRecipePool {
             .addTo(EC);
         // 黑物质
         GT_Values.RA.stdBuilder()
-            .itemInputs(ELEMENT.STANDALONE.BLACK_METAL.getDust(20))
+            .itemInputs(ELEMENT.STANDALONE.BLACK_METAL.getDust(16))
             .itemOutputs(
                 Materials.Lead.getDust(3),
                 Materials.Manganese.getDust(5),
                 ELEMENT.getInstance().RHENIUM.getDust(4),
-                Materials.Carbon.getDust(4),
+                ELEMENT.getInstance().THALLIUM.getDust(4),
                 Materials.Copper.getDust(3),
                 Materials.Molybdenum.getDust(1))
             .fluidOutputs(Materials.Oxygen.getGas(200), Materials.Hydrogen.getGas(150))
