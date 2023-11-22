@@ -2,8 +2,7 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.enums.TierEU.*;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
@@ -93,8 +92,8 @@ public class VALaserEngraverRecipePool implements IRecipePool {
                 ItemList.Circuit_Chip_CrystalCPU.get(64),
                 ItemList.Circuit_Chip_CrystalCPU.get(64))
             .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(15 * SECONDS)
+            .eut(RECIPE_UV)
+            .duration(25 * SECONDS)
             .addTo(LE);
         // 晶体矩阵-红
         GT_Values.RA.stdBuilder()
