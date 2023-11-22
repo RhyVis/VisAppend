@@ -287,13 +287,14 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
+                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(128000),
                 VA_GregtechMaterialPool.AstroInf.getFluid(48000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
+            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(750 * SECONDS)
+            .duration(900 * SECONDS)
             .addTo(AM);
         // endregion
     }

@@ -23,6 +23,7 @@ import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
 public class VASUltimateHeaterRecipePool implements IRecipePool {
+
     final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
