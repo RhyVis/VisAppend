@@ -636,18 +636,18 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
                 lensInf,
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64),
-                MyMaterial.naquadahGoo.get(OrePrefixes.dust, 64))
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64),
+                MyMaterial.naquadahEarth.get(OrePrefixes.dust, 64))
             .itemOutputs(
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
@@ -686,7 +686,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_LuV)
             .duration(15 * 20)
             .addTo(AF);
-        // 氧化富集硅岩
+        // 超能硅岩
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
@@ -741,7 +741,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_LuV)
             .duration(15 * 20)
             .addTo(AF);
-        // 超能硅岩
+        // 富集硅岩
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(8),
