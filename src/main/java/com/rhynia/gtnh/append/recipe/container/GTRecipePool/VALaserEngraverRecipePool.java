@@ -4,6 +4,7 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
@@ -68,16 +69,40 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .addTo(LE);
         // endregion
 
-        // region 兰波顿
+        // region 矩阵
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemLapoMatrix.get(4), lensInf)
+            .itemInputs(VAItemList.ItemLapoMatrix.get(1), lensInf)
             .fluidInputs(Materials.EnergeticAlloy.getMolten(1440))
             .itemOutputs(
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(15 * SECONDS)
+            .addTo(LE);
+        // 晶体矩阵-绿
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VAItemList.ItemCrystalMatrix.get(1), lensInf)
+            .fluidInputs(Materials.Europium.getMolten(16 * INGOTS))
+            .itemOutputs(
+                ItemList.Circuit_Chip_CrystalCPU.get(64),
+                ItemList.Circuit_Chip_CrystalCPU.get(64),
+                ItemList.Circuit_Chip_CrystalCPU.get(64),
+                ItemList.Circuit_Chip_CrystalCPU.get(64))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(15 * SECONDS)
+            .addTo(LE);
+        // 晶体矩阵-红
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VAItemList.ItemCrystalMatrix.get(1), lensInf)
+            .fluidInputs(Materials.Americium.getMolten(16 * INGOTS))
+            .itemOutputs(
+                ItemList.Circuit_Chip_CrystalSoC.get(64),
+                ItemList.Circuit_Chip_CrystalSoC.get(32))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(15 * SECONDS)

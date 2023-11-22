@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
@@ -62,7 +63,7 @@ public class VAHammerRecipePool implements IRecipePool {
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
-            .itemOutputs(VAItemList.ItemLapoMatrix.get(16))
+            .itemOutputs(VAItemList.ItemLapoMatrix.get(4))
             .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
             .noOptimize()
             .eut(RECIPE_LuV)
@@ -71,8 +72,10 @@ public class VAHammerRecipePool implements IRecipePool {
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.GreenSapphire.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
-            .itemOutputs(VAItemList.ItemCrystalMatrix.get(32))
-            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4000))
+            .itemOutputs(VAItemList.ItemCrystalMatrix.get(16))
+            .fluidInputs(
+                Materials.Europium.getMolten(4 * INGOTS),
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4000))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
