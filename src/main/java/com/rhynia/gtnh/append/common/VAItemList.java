@@ -16,6 +16,7 @@ public enum VAItemList implements IItemContainer {
     // Item
     ItemUltimate,
     ItemLapoMatrix,
+    ItemCrystalMatrix,
     // Sig Block
     InfiniteLiquidAirHatch,
     InfiniteDistilledWaterHatch,

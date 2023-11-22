@@ -10,7 +10,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ItemRegister {
 
     public static void registryItems() {
-        Item[] itemsToReg = { ItemBasic.Ultimate, ItemBasic.LapoMatrix };
+        Item[] itemsToReg = { ItemBasic.Ultimate, ItemBasic.LapoMatrix, ItemBasic.CrystalMatrix };
 
         for (Item item : itemsToReg) {
             GameRegistry.registerItem(item, item.getUnlocalizedName());
@@ -22,6 +22,7 @@ public class ItemRegister {
     public static void registryItemContainers() {
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
         VAItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));
+        VAItemList.ItemCrystalMatrix.set(new ItemStack(ItemBasic.CrystalMatrix,1));
     }
     // spotless:on
     public static void registry() {

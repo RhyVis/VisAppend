@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.util;
 
+import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -9,8 +11,6 @@ import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
-
-import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 
 public class UtilValues {
 
