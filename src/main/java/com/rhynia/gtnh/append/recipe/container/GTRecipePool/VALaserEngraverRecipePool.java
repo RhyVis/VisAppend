@@ -4,6 +4,7 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -34,7 +35,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(LE);
         // 活性晶体
         GT_Values.RA.stdBuilder()
@@ -43,7 +44,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(50))
             .noOptimize()
             .eut(160000)
-            .duration(900)
+            .duration(45 * SECONDS)
             .addTo(LE);
         // 皮米晶圆
         GT_Values.RA.stdBuilder()
@@ -63,7 +64,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(1000))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(900)
+            .duration(45 * SECONDS)
             .addTo(LE);
         // endregion
 
@@ -79,7 +80,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(LE);
         // endregion
     }

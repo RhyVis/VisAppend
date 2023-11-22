@@ -4,6 +4,7 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -45,7 +46,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Lubricant.getFluid(256000))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(AF);
         // 不稳定金属
         GT_Values.RA.stdBuilder()
@@ -59,7 +60,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .itemOutputs(Materials.Unstable.getDust(64), Materials.Unstable.getDust(64))
             .noOptimize()
             .eut(RECIPE_IV)
-            .duration(20 * 20)
+            .duration(20 * SECONDS)
             .addTo(AF);
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
@@ -72,7 +73,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(48000))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(20 * 20)
+            .duration(20 * SECONDS)
             .addTo(AF);
         // endregion
 
@@ -104,7 +105,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 new ItemStack(Blocks.soul_sand, 64, 0))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(350)
+            .duration(18 * SECONDS)
             .addTo(AF);
         // 烈焰粉
         GT_Values.RA.stdBuilder()
@@ -121,7 +122,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 new ItemStack(Items.blaze_powder, 64, 0))
             .noOptimize()
             .eut(RECIPE_EV)
-            .duration(350)
+            .duration(18 * SECONDS)
             .addTo(AF);
         // 末影珍珠
         GT_Values.RA.stdBuilder()
@@ -138,7 +139,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 new ItemStack(Items.ender_pearl, 64, 0))
             .noOptimize()
             .eut(RECIPE_IV)
-            .duration(350)
+            .duration(18 * SECONDS)
             .addTo(AF);
         // 胶质云母
         GT_Values.RA.stdBuilder()
@@ -167,7 +168,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 CustomItemList.MicaBasedPulp.get(64))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(20 * 20)
+            .duration(20 * SECONDS)
             .addTo(AF);
         // endregion
 
@@ -183,7 +184,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.UUMatter.getFluid(32768))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // endregion
 
@@ -224,7 +225,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 二氧化硅
         GT_Values.RA.stdBuilder()
@@ -262,7 +263,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 赛特斯石英
         GT_Values.RA.stdBuilder()
@@ -300,7 +301,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 下界石英
         GT_Values.RA.stdBuilder()
@@ -338,7 +339,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 方解石
         GT_Values.RA.stdBuilder()
@@ -376,7 +377,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 磷酸盐
         GT_Values.RA.stdBuilder()
@@ -412,7 +413,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 硫酸钠
         final ItemStack Na2SO4 = WerkstoffLoader.Sodiumsulfate.get(OrePrefixes.dust, 64);
@@ -451,7 +452,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 钐
         final ItemStack SmMix = WerkstoffMaterialPool.SamariumOreConcentrate.get(OrePrefixes.dust, 64);
@@ -466,7 +467,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 富铈粉
         final ItemStack CeMix = WerkstoffMaterialPool.CeriumRichMixture.get(OrePrefixes.dust, 64);
@@ -482,7 +483,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
             .addTo(AF);
         // 稀土
         GT_Values.RA.stdBuilder()
@@ -497,7 +498,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 MISC_MATERIALS.RARE_EARTH_HIGH.getDust(32))
             .noOptimize()
             .eut(RECIPE_IV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(AF);
         // 铂金属
         GT_Values.RA.stdBuilder()
@@ -532,7 +533,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .outputChances(8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000, 8000, 3000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 铱渣
         GT_Values.RA.stdBuilder()
@@ -563,7 +564,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 6000, 6000, 6000, 6000, 3000, 3000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 锇渣
         GT_Values.RA.stdBuilder()
@@ -594,7 +595,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .outputChances(10000, 10000, 8000, 8000, 10000, 10000, 8000, 8000, 6000, 6000, 3000, 3000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 钯金属
         GT_Values.RA.stdBuilder()
@@ -629,7 +630,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .outputChances(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 6000, 6000, 6000, 6000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 氧化硅岩
         GT_Values.RA.stdBuilder()
@@ -684,7 +685,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 8000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 超能硅岩
         GT_Values.RA.stdBuilder()
@@ -739,7 +740,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 6000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // 富集硅岩
         GT_Values.RA.stdBuilder()
@@ -777,7 +778,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 8000, 8000, 6000, 6000, 6000, 6000, 6000, 6000, 4000)
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(AF);
         // endregion
 
@@ -798,7 +799,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Sunnarium.getDust(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(22 * 20)
+            .duration(22 * SECONDS)
             .addTo(AF);
 
         // 合成超能硅岩 Nq*
@@ -820,7 +821,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Naquadria.getDust(64))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(36 * 20)
+            .duration(36 * SECONDS)
             .addTo(AF);
 
         // 合成合成玉 Or
@@ -834,7 +835,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(100 * 20)
+            .duration(100 * SECONDS)
             .addTo(AF);
 
         // endregion

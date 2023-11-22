@@ -1,6 +1,8 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
+import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -31,7 +33,7 @@ public class VAHammerRecipePool implements IRecipePool {
             .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(125))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(25 * 20)
+            .duration(25 * SECONDS)
             .addTo(HM);
         // Nt
         GT_Values.RA.stdBuilder()
@@ -42,7 +44,7 @@ public class VAHammerRecipePool implements IRecipePool {
             .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(12), Materials.Neutronium.getMolten(2304))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(25 * 20)
+            .duration(25 * SECONDS)
             .addTo(HM);
         // Kevlar
         GT_Values.RA.stdBuilder()
@@ -52,11 +54,11 @@ public class VAHammerRecipePool implements IRecipePool {
                 new FluidStack(FluidRegistry.getFluid("molten.kevlar"), 4608))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(25 * 20)
+            .duration(25 * SECONDS)
             .addTo(HM);
         // endregion
 
-        // region 兰波顿
+        // region 矩阵
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
@@ -64,7 +66,16 @@ public class VAHammerRecipePool implements IRecipePool {
             .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(40 * 20)
+            .duration(40 * SECONDS)
+            .addTo(HM);
+        // 兰波顿矩阵
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.GreenSapphire.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
+            .itemOutputs(VAItemList.ItemCrystalMatrix.get(32))
+            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4000))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(45 * SECONDS)
             .addTo(HM);
         // endregion
     }

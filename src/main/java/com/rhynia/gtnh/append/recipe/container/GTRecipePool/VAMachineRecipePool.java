@@ -3,6 +3,7 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import static gregtech.api.util.GT_RecipeConstants.*;
 
 import com.rhynia.gtnh.append.common.VAItemList;
@@ -40,7 +41,7 @@ public class VAMachineRecipePool implements IRecipePool {
             .itemOutputs(VAItemList.InfiniteLiquidAirHatch.get(1))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(140 * 20)
+            .duration(140 * SECONDS)
             .addTo(AssemblyLine);
 
         // Astra Forge
@@ -63,7 +64,7 @@ public class VAMachineRecipePool implements IRecipePool {
             .itemOutputs(VAItemList.AstraForge.get(1))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(95 * 20)
+            .duration(95 * SECONDS)
             .addTo(AssemblyLine);
     }
 }

@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -32,7 +33,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
             .itemOutputs(Materials.TricalciumPhosphate.getGems(5))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(LCR);
         // 磷酸
         GT_Values.RA.stdBuilder()
@@ -41,7 +42,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
             .fluidOutputs(Materials.PhosphoricAcid.getFluid(10000))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(LCR);
         // 氟锑酸
         GT_Values.RA.stdBuilder()
@@ -52,7 +53,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
                 Materials.Hydrogen.getGas(80000))
             .noOptimize()
             .eut(RECIPE_EV)
-            .duration(45 * 20)
+            .duration(45 * SECONDS)
             .addTo(LCR);
         // 钯金属粉处理
         GT_Values.RA.stdBuilder()
@@ -60,7 +61,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
             .itemOutputs(WerkstoffLoader.PDRawPowder.get(OrePrefixes.dust, 8))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(LCR);
         // 干细胞
         GT_Values.RA.stdBuilder()
@@ -74,7 +75,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("bacterialsludge"), 4000))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(LCR);
         // endregion
     }

@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -25,7 +26,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Iron.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧铅粉
         GT_Values.RA.stdBuilder()
@@ -33,7 +34,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Lead.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧镍粉
         GT_Values.RA.stdBuilder()
@@ -41,7 +42,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Nickel.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧锌粉
         GT_Values.RA.stdBuilder()
@@ -49,7 +50,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Zinc.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧铜粉
         GT_Values.RA.stdBuilder()
@@ -57,7 +58,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Copper.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧钴粉
         GT_Values.RA.stdBuilder()
@@ -65,7 +66,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Cobalt.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧锑粉
         GT_Values.RA.stdBuilder()
@@ -73,7 +74,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Antimony.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 焙烧砷粉
         GT_Values.RA.stdBuilder()
@@ -81,7 +82,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .itemOutputs(Materials.Arsenic.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // endregion
 
@@ -93,7 +94,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(6000))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // endregion
 
@@ -105,7 +106,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(4500))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(EC);
         // 黑物质
         GT_Values.RA.stdBuilder()
@@ -120,7 +121,7 @@ public class VAElectroRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(200), Materials.Hydrogen.getGas(150))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(28 * 20)
+            .duration(28 * SECONDS)
             .addTo(EC);
         // endregion
     }

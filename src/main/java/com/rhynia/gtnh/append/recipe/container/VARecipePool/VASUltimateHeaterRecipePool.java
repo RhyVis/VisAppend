@@ -2,7 +2,9 @@ package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -21,6 +23,7 @@ import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
 public class VASUltimateHeaterRecipePool implements IRecipePool {
+    final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
     public void loadRecipes() {
@@ -38,7 +41,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8000))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(115 * 20)
+            .duration(115 * SECONDS)
             .addTo(UH);
         // endregion
 
@@ -48,78 +51,78 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(64))
             .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 144000))
             .noOptimize()
             .eut(RECIPE_UMV)
-            .duration(115 * 20)
+            .duration(115 * SECONDS)
             .addTo(UH);
         // 等离子 Nitinol
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(4))
             .fluidInputs(ALLOY.NITINOL_60.getFluidStack(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 144000))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(135 * 20)
+            .duration(135 * SECONDS)
             .addTo(UH);
         // 等离子 AstralTitanium
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Titanium.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.astraltitanium"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(120 * 20)
+            .duration(120 * SECONDS)
             .addTo(UH);
         // 等离子 ChromaticGlass
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Glass.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.chromaticglass"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(195 * 20)
+            .duration(195 * SECONDS)
             .addTo(UH);
         // 等离子 CelestialTungsten
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(8))
             .fluidInputs(Materials.Tungsten.getMolten(144000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.celestialtungsten"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(145 * 20)
+            .duration(145 * SECONDS)
             .addTo(UH);
         // 等离子 DragonBlood
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0),
+                esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(16))
             .fluidInputs(Materials.DraconiumAwakened.getMolten(144000), VA_GregtechMaterialPool.Astro.getFluid(12000))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 144000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(180 * 20)
+            .duration(180 * SECONDS)
             .addTo(UH);
         // endregion
 
@@ -131,7 +134,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Helium.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Ne
         GT_Values.RA.stdBuilder()
@@ -140,7 +143,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.neon"), 16000))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Ar
         GT_Values.RA.stdBuilder()
@@ -149,7 +152,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Argon.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Kr
         GT_Values.RA.stdBuilder()
@@ -158,7 +161,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.krypton"), 16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Xe
         GT_Values.RA.stdBuilder()
@@ -167,7 +170,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.xenon"), 16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Rn
         GT_Values.RA.stdBuilder()
@@ -176,7 +179,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Radon.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // endregion
         // region 第一二周期 UV-UEV
@@ -187,7 +190,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Hydrogen.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 氮等离子 N
         GT_Values.RA.stdBuilder()
@@ -196,7 +199,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Nitrogen.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 氧等离子 O
         GT_Values.RA.stdBuilder()
@@ -205,7 +208,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 氟等离子 F
         GT_Values.RA.stdBuilder()
@@ -214,7 +217,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Fluorine.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // endregion
         // region 第三周期 UEV
@@ -228,7 +231,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Sodium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Mg
         GT_Values.RA.stdBuilder()
@@ -240,7 +243,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Magnesium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Al
         GT_Values.RA.stdBuilder()
@@ -252,7 +255,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Aluminium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Si
         GT_Values.RA.stdBuilder()
@@ -264,7 +267,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Silicon.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 P
         GT_Values.RA.stdBuilder()
@@ -276,7 +279,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Phosphorus.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 S
         GT_Values.RA.stdBuilder()
@@ -288,7 +291,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Sulfur.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Cl
         GT_Values.RA.stdBuilder()
@@ -297,7 +300,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Chlorine.getPlasma(16000))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // endregion
         // region 第三周期+
@@ -308,7 +311,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Silver.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Ag
         GT_Values.RA.stdBuilder()
@@ -317,7 +320,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Gold.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Fe
         GT_Values.RA.stdBuilder()
@@ -326,7 +329,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Iron.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Ny
         GT_Values.RA.stdBuilder()
@@ -335,7 +338,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Neodymium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Pb
         GT_Values.RA.stdBuilder()
@@ -344,7 +347,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Lead.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Nq
         GT_Values.RA.stdBuilder()
@@ -353,7 +356,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Naquadah.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Nq
         GT_Values.RA.stdBuilder()
@@ -362,7 +365,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Nickel.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Rb
         GT_Values.RA.stdBuilder()
@@ -371,7 +374,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Rubidium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Sr
         GT_Values.RA.stdBuilder()
@@ -383,7 +386,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Strontium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Sn
         GT_Values.RA.stdBuilder()
@@ -392,7 +395,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Tin.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Ti
         GT_Values.RA.stdBuilder()
@@ -401,7 +404,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Titanium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 W
         GT_Values.RA.stdBuilder()
@@ -410,7 +413,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Tungsten.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Zn
         GT_Values.RA.stdBuilder()
@@ -419,7 +422,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Zinc.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Pt
         GT_Values.RA.stdBuilder()
@@ -428,7 +431,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Platinum.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UIV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // 等离子 Os
         GT_Values.RA.stdBuilder()
@@ -437,7 +440,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Osmium.getPlasma(144 * 128))
             .noOptimize()
             .eut(RECIPE_UIV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(UH);
         // endregion
 

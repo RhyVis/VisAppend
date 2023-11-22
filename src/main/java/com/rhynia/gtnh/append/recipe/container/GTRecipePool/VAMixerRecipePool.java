@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
@@ -26,7 +27,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .itemOutputs(Materials.ShadowIron.getDust(3))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(MX);
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
@@ -37,7 +38,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .itemOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(12 * 20)
+            .duration(12 * SECONDS)
             .addTo(MX);
         // endregion
 
@@ -52,7 +53,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .fluidOutputs(Materials.GrowthMediumRaw.getFluid(8000))
             .noOptimize()
             .eut(RECIPE_LuV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(MX);
         // 生物培养基
         GT_Values.RA.stdBuilder()
@@ -64,7 +65,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .fluidOutputs(Materials.BioMediumRaw.getFluid(8000))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(20 * 20)
+            .duration(20 * SECONDS)
             .addTo(MX);
         // endregion
     }
