@@ -69,9 +69,9 @@ public class VAHammerRecipePool implements IRecipePool {
             .eut(RECIPE_LuV)
             .duration(40 * SECONDS)
             .addTo(HM);
-        // 兰波顿矩阵
+        // 晶体矩阵
         GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.GreenSapphire.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
+            .itemInputs(Materials.Aluminiumoxide.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
             .itemOutputs(VAItemList.ItemCrystalMatrix.get(16))
             .fluidInputs(
                 Materials.Europium.getMolten(4 * INGOTS),
