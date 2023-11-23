@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.util;
 
+import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
+
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -13,6 +15,7 @@ import gregtech.api.util.GT_Utility;
 public class UtilValues {
 
     // 字段
+    public static final String VisAppend = MOD_ID;
     public static final String AddByAppend = "由 " + EnumChatFormatting.GREEN
         + "Vis Append"
         + EnumChatFormatting.GRAY

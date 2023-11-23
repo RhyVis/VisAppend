@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static goodgenerator.util.ItemRefer.*;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.*;
 import static gregtech.api.util.GT_RecipeBuilder.*;
@@ -287,13 +288,56 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
+                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(128000),
                 VA_GregtechMaterialPool.AstroInf.getFluid(48000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
+            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(750 * SECONDS)
+            .duration(900 * SECONDS)
+            .addTo(AM);
+        // endregion
+
+        // region 防辐射板
+        // 防辐射板
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64))
+            .fluidInputs(Materials.Lead.getMolten(512 * INGOTS))
+            .itemOutputs(Radiation_Protection_Plate.get(64))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(180 * SECONDS)
+            .addTo(AM);
+        // 进阶防辐射板
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.Lead.getPlates(64),
+                Materials.Lead.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.ElectrumFlux.getPlates(32),
+                Materials.Trinium.getPlates(32),
+                Materials.Osmiridium.getPlates(32),
+                Materials.VibrantAlloy.getPlates(32))
+            .fluidInputs(Materials.NaquadahEnriched.getMolten(32 * INGOTS))
+            .itemOutputs(Advanced_Radiation_Protection_Plate.get(8))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(360 * SECONDS)
             .addTo(AM);
         // endregion
     }

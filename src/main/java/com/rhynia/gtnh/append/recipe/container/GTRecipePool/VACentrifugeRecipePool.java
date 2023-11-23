@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
@@ -24,7 +25,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .itemOutputs(Materials.Coal.getDust(3))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 氟碳铈
         GT_Values.RA.stdBuilder()
@@ -37,7 +38,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(6000), Materials.Fluorine.getGas(2000))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 褐铜
         GT_Values.RA.stdBuilder()
@@ -50,7 +51,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 深空冰
         GT_Values.RA.stdBuilder()
@@ -61,7 +62,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(1))
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 离心秘银
         GT_Values.RA.stdBuilder()
@@ -72,7 +73,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(CF);
         // 离心深空秘银
         GT_Values.RA.stdBuilder()
@@ -85,7 +86,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(2))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(CF);
         // 离心方钍石
         GT_Values.RA.stdBuilder()
@@ -94,7 +95,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .outputChances(10000, 2000)
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(CF);
         // endregion
 
@@ -106,7 +107,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(2000))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 钨酸锂
         GT_Values.RA.stdBuilder()
@@ -115,7 +116,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(1500))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 钨铁
         GT_Values.RA.stdBuilder()
@@ -124,7 +125,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(1500))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // 钨酸锰
         GT_Values.RA.stdBuilder()
@@ -133,7 +134,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .fluidOutputs(Materials.Oxygen.getGas(2000))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(8 * 20)
+            .duration(8 * SECONDS)
             .addTo(CF);
         // endregion
     }

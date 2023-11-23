@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 
@@ -31,7 +32,7 @@ public class VACommonRecipePool implements IRecipePool {
             .itemOutputs(Materials.Iron.getDust(6), VA_GregtechMaterialPool.Astro.getDust(4))
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(21 * 20)
+            .duration(21 * SECONDS)
             .addTo(EMS);
         // 聚爆星辉
         GT_Values.RA.stdBuilder()
@@ -54,7 +55,7 @@ public class VACommonRecipePool implements IRecipePool {
             .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(15 * 20)
+            .duration(15 * SECONDS)
             .addTo(LE);
         // endregion
     }
