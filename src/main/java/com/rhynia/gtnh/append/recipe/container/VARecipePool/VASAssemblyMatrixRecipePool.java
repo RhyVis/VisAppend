@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static goodgenerator.util.ItemRefer.*;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.*;
 import static gregtech.api.util.GT_RecipeBuilder.*;
@@ -295,6 +296,48 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(900 * SECONDS)
+            .addTo(AM);
+        // endregion
+
+        // region 防辐射板
+        // 防辐射板
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64))
+            .fluidInputs(Materials.Lead.getMolten(512 * INGOTS))
+            .itemOutputs(Radiation_Protection_Plate.get(64))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(180 * SECONDS)
+            .addTo(AM);
+        // 进阶防辐射板
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.Lead.getPlates(64),
+                Materials.Lead.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.ElectrumFlux.getPlates(32),
+                Materials.Trinium.getPlates(32),
+                Materials.Osmiridium.getPlates(32),
+                Materials.VibrantAlloy.getPlates(32))
+            .fluidInputs(Materials.NaquadahEnriched.getMolten(32 * INGOTS))
+            .itemOutputs(Advanced_Radiation_Protection_Plate.get(8))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(360 * SECONDS)
             .addTo(AM);
         // endregion
     }
