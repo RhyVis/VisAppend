@@ -2,7 +2,13 @@ package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static goodgenerator.util.ItemRefer.*;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
-import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.enums.TierEU.RECIPE_EV;
+import static gregtech.api.enums.TierEU.RECIPE_LuV;
+import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.enums.TierEU.RECIPE_UV;
+import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_UEV;
+import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
 import net.minecraftforge.fluids.FluidRegistry;

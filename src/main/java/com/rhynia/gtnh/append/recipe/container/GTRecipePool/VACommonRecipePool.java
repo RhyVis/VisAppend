@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
-import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.enums.TierEU.RECIPE_MV;
+import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;

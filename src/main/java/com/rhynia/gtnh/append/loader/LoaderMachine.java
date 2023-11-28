@@ -29,32 +29,49 @@ public class LoaderMachine {
     // endregion
 
     public static void loadMachines() {
+        // region Multi claim
         AstraForge = new VA_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
-        VAItemList.AstraForge.set(AstraForge);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
-        VAItemList.UltimateHeater.set(UltimateHeater);
         AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
-        VAItemList.AssemblyMatrix.set(AssemblyMatrix);
+        // endregion
 
-        InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
-            .getStackForm(1);
+        // region Single claim
+        InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(
+            17401, "HatchInfiniteLiquidAir",
+            "无限压缩进气仓",
+            10).getStackForm(1);
         InfiniteDistilledWaterHatch = new VA_MetaTileEntity_Hatch_DistilledWater(
             17402,
             "HatchDistilledWaterHatch",
             "无限蒸馏仓",
             9).getStackForm(1);
-        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(17403, "HatchInfiniteLavaHatch", "无限熔岩仓", 8)
-            .getStackForm(1);
-        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOilHatch", "无限油泉仓", 8).getStackForm(1);
+        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(
+            17403,
+            "HatchInfiniteLavaHatch",
+            "无限熔岩仓",
+            8).getStackForm(1);
+        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(
+            17404, "HatchInfiniteOilHatch",
+            "无限油泉仓",
+            8).getStackForm(1);
+        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(
+            17450,
+            "MachineGeneratorZero",
+            "零点能发电机", 14).getStackForm(1L);
+        // endregion
 
-        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
-            .getStackForm(1L);
-
+        // region ItemList
+        // Multi
+        VAItemList.AstraForge.set(AstraForge);
+        VAItemList.UltimateHeater.set(UltimateHeater);
+        VAItemList.AssemblyMatrix.set(AssemblyMatrix);
+        // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
         VAItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
         VAItemList.InfiniteOilHatch.set(InfiniteOilHatch);
         VAItemList.ZeroGenerator.set(ZeroGenerator);
+        // endregion
     }
 
     // endregion
