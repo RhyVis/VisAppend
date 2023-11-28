@@ -2,8 +2,8 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;

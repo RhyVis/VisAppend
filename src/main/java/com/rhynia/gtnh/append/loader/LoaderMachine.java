@@ -36,28 +36,18 @@ public class LoaderMachine {
         // endregion
 
         // region Single claim
-        InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(
-            17401, "HatchInfiniteLiquidAir",
-            "无限压缩进气仓",
-            10).getStackForm(1);
+        InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
+            .getStackForm(1);
         InfiniteDistilledWaterHatch = new VA_MetaTileEntity_Hatch_DistilledWater(
             17402,
             "HatchDistilledWaterHatch",
             "无限蒸馏仓",
             9).getStackForm(1);
-        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(
-            17403,
-            "HatchInfiniteLavaHatch",
-            "无限熔岩仓",
-            8).getStackForm(1);
-        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(
-            17404, "HatchInfiniteOilHatch",
-            "无限油泉仓",
-            8).getStackForm(1);
-        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(
-            17450,
-            "MachineGeneratorZero",
-            "零点能发电机", 14).getStackForm(1L);
+        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(17403, "HatchInfiniteLavaHatch", "无限熔岩仓", 8)
+            .getStackForm(1);
+        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOilHatch", "无限油泉仓", 8).getStackForm(1);
+        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
+            .getStackForm(1L);
         // endregion
 
         // region ItemList

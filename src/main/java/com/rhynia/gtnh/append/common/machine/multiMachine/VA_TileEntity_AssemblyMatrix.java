@@ -1,7 +1,6 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Textures.BlockIcons.*;
@@ -200,7 +199,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
             .addOutputBus(BluePrintInfo, 1)
             .addMaintenanceHatch(BluePrintInfo, 3)
             .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(MOD_NAME);
+            .toolTipFinisher(VisAppendGigaFac);
         return tt;
     }
 

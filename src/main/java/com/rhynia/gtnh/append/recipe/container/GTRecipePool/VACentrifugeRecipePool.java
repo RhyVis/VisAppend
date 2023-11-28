@@ -1,8 +1,8 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
+import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
-import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;

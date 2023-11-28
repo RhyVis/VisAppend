@@ -15,7 +15,28 @@ import gregtech.api.util.GT_Utility;
 public class UtilValues {
 
     // 字段
-    public static final String VisAppend = MOD_ID;
+    public static final String VisAppendID = MOD_ID;
+    public static final String VisAppendMagical = EnumChatFormatting.AQUA + "Vis"
+        + EnumChatFormatting.RED
+        + "Append"
+        + EnumChatFormatting.GRAY
+        + " - "
+        + EnumChatFormatting.GREEN
+        + "Magical Reveal";
+    public static final String VisAppendNuclear = EnumChatFormatting.AQUA + "Vis"
+        + EnumChatFormatting.RED
+        + "Append"
+        + EnumChatFormatting.GRAY
+        + " - "
+        + EnumChatFormatting.GREEN
+        + "Thermonuclear Reaction";
+    public static final String VisAppendGigaFac = EnumChatFormatting.AQUA + "Vis"
+        + EnumChatFormatting.RED
+        + "Append"
+        + EnumChatFormatting.GRAY
+        + " - "
+        + EnumChatFormatting.GREEN
+        + "Giga Factory";
     public static final String AddByAppend = "由 " + EnumChatFormatting.GREEN
         + "Vis Append"
         + EnumChatFormatting.GRAY

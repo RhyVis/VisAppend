@@ -1,7 +1,6 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Materials.*;
@@ -214,7 +213,7 @@ public class VA_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addInfo("粒子宏的控制器")
             .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
-            .addInfo("需要星极透镜聚焦热量.")
+            .addInfo("需要透镜聚焦热量.")
             .addInfo("电压每提高1级, 并行翻倍.")
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
@@ -228,7 +227,7 @@ public class VA_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addOutputBus(BluePrintInfo, 1)
             .addMaintenanceHatch(BluePrintInfo, 3)
             .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(MOD_NAME);
+            .toolTipFinisher(VisAppendNuclear);
         return tt;
     }
 

@@ -2,7 +2,6 @@ package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Materials.Infinity;
@@ -167,7 +166,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("星光聚能器")
             .addInfo("星辉锻造台的控制器")
-            .addInfo("§c不要试图去理解祂的原理.")
+            .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("需要星极或星芒透镜辅助合成.")
             .addInfo("拥有与无损超频等效的并行(但有损超频).")
@@ -182,7 +181,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             .addOutputBus(BluePrintInfo, 1)
             .addMaintenanceHatch(BluePrintInfo, 3)
             .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(MOD_NAME);
+            .toolTipFinisher(VisAppendMagical);
         return tt;
     }
 
