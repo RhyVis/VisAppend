@@ -12,7 +12,6 @@ import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
-import gregtech.api.util.GT_OreDictUnificator;
 import gtPlusPlus.core.item.ModItems;
 import gtPlusPlus.core.util.minecraft.ItemUtils;
 import net.minecraft.init.Blocks;

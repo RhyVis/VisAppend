@@ -1,7 +1,10 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
-import static gregtech.api.enums.TierEU.*;
-import static gregtech.api.util.GT_RecipeBuilder.*;
+import static gregtech.api.enums.TierEU.RECIPE_MAX;
+import static gregtech.api.enums.TierEU.RECIPE_MV;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GT_RecipeBuilder.HOURS;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
@@ -46,8 +49,8 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
                 Materials.Helium.getMolten(16 * INGOTS))
             .itemOutputs(ItemList.Superconducting_Magnet_Solenoid_MV.get(1))
             .noOptimize()
-            .eut(RECIPE_MAX)
-            .duration(160 * HOURS)
+            .eut(RECIPE_MV)
+            .duration(160 * SECONDS)
             .addTo(SB);
         // endregion
     }

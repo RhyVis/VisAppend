@@ -4,6 +4,8 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
 
+import static gregtech.api.enums.OrePrefixes.*;
+
 public class VA_WerkstoffMaterialPool implements Runnable {
 
     protected static final int OffsetID = 24510;
@@ -16,7 +18,12 @@ public class VA_WerkstoffMaterialPool implements Runnable {
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
-            .addGems(),
+            .addGems()
+            .removePrefix(gemFlawless)
+            .removePrefix(gemChipped)
+            .removePrefix(gemExquisite)
+            .removePrefix(gemFlawed)
+            .removePrefix(toolHeadHammer),
         OffsetID + 1,
         TextureSet.SET_NETHERSTAR);
     // Originiums
@@ -27,7 +34,12 @@ public class VA_WerkstoffMaterialPool implements Runnable {
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
-            .addGems(),
+            .addGems()
+            .removePrefix(gemFlawless)
+            .removePrefix(gemChipped)
+            .removePrefix(gemExquisite)
+            .removePrefix(gemFlawed)
+            .removePrefix(toolHeadHammer),
         OffsetID + 2,
         TextureSet.SET_DIAMOND);
     // Astro Fuel MKI
