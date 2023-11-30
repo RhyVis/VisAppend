@@ -1,14 +1,14 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.*;
+
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+
 import gregtech.api.enums.*;
-
 import gregtech.api.util.GT_Recipe;
-
-import static gregtech.api.enums.TierEU.*;
-import static gregtech.api.util.GT_RecipeBuilder.*;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
@@ -19,9 +19,7 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
         final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                MaterialsUEVplus.Eternity.getNanite(64),
-                MaterialsUEVplus.Eternity.getNanite(64))
+            .itemInputs(MaterialsUEVplus.Eternity.getNanite(64), MaterialsUEVplus.Eternity.getNanite(64))
             .fluidInputs(
                 MaterialsUEVplus.Universium.getMolten(1440000000),
                 MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),

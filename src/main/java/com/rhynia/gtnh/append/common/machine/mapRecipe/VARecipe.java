@@ -424,10 +424,10 @@ public class VARecipe {
          * @param aNEIAllowed                if NEI is allowed to display this Recipe Handler in general.
          */
         public GTAppendSuperconductingBinderRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName,
-                                           String aLocalName, String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount,
-                                           int aUsualFluidInputCount, int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems,
-                                           int aMinimalInputFluids, int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier,
-                                           String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
+            String aLocalName, String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount,
+            int aUsualFluidInputCount, int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems,
+            int aMinimalInputFluids, int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier,
+            String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
             super(
                 aRecipeList,
                 aUnlocalizedName,
@@ -491,9 +491,9 @@ public class VARecipe {
 
         @Override
         public ModularWindow.Builder createNEITemplate(IItemHandlerModifiable itemInputsInventory,
-                                                       IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
-                                                       IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
-                                                       Supplier<Float> progressSupplier, Pos2d windowOffset) {
+            IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
+            IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
+            Supplier<Float> progressSupplier, Pos2d windowOffset) {
             setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,

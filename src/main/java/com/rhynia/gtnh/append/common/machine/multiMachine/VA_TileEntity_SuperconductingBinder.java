@@ -1,11 +1,25 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
+import static com.rhynia.gtnh.append.util.UtilValues.*;
+import static gregtech.api.enums.GT_HatchElement.*;
+import static gregtech.api.enums.Textures.BlockIcons.*;
+import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
+
+import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraftforge.common.util.ForgeDirection;
+
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -20,19 +34,9 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
-import net.minecraft.entity.player.EntityPlayerMP;
-import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
-import net.minecraftforge.common.util.ForgeDirection;
-import org.jetbrains.annotations.NotNull;
 
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
-import static com.rhynia.gtnh.append.util.UtilValues.*;
-import static gregtech.api.enums.GT_HatchElement.*;
-import static gregtech.api.enums.Textures.BlockIcons.*;
-import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
-
-public class VA_TileEntity_SuperconductingBinder extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_SuperconductingBinder>
+public class VA_TileEntity_SuperconductingBinder
+    extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_SuperconductingBinder>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
