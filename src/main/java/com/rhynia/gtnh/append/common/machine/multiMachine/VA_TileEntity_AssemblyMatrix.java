@@ -120,7 +120,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
                     // Warded Glass
                     ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
             .addElement(
                 'C',
                 GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()

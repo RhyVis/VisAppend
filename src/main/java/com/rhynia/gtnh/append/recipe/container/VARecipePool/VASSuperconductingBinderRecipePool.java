@@ -16,7 +16,7 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
+        final GT_Recipe.GT_Recipe_Map SB = VARecipe.instance.SuperconductingBinderRecipes;
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(MaterialsUEVplus.Eternity.getNanite(64), MaterialsUEVplus.Eternity.getNanite(64))
@@ -31,7 +31,7 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_MAX)
             .duration(160 * HOURS)
-            .addTo(AM);
+            .addTo(SB);
 
         // region 超导配方
         // endregion
