@@ -35,15 +35,16 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AssemblyMatrix>
+public class VA_TileEntity_SuperconductingBinder
+    extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_SuperconductingBinder>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
-    public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_SuperconductingBinder(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_AssemblyMatrix(String aName) {
+    public VA_TileEntity_SuperconductingBinder(String aName) {
         super(aName);
     }
     // endregion
@@ -72,7 +73,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VARecipe.instance.AssemblyMatrixRecipes;
+        return VARecipe.instance.SuperconductingBinderRecipes;
     }
 
     @Override
@@ -110,8 +111,8 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
+    public IStructureDefinition<VA_TileEntity_SuperconductingBinder> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_SuperconductingBinder>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement(
                 'A',
@@ -120,29 +121,29 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
                     // Warded Glass
                     ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
                     .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
                 'E',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
                     .atLeast(Maintenance)
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement(
                 'F',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
                     .atLeast(OutputBus)
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
@@ -183,11 +184,10 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("集成装配线")
-            .addInfo("组装矩阵的控制器")
-            .addInfo("现代化的组装机构.")
-            .addInfo("高效组装各类基础元件.")
-            .addInfo("再见，进阶装配线!")
+        tt.addMachineType("超导成型器")
+            .addInfo("超导装配线的控制器")
+            .addInfo("\"我不是很懂为什么超导烂大街了.\"")
+            .addInfo("直接将原料构建为超导线缆.")
             .addInfo("电压每提高1级, 并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
@@ -240,7 +240,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_AssemblyMatrix(this.mName);
+        return new VA_TileEntity_SuperconductingBinder(this.mName);
     }
 
     @Override

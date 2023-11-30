@@ -168,7 +168,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             .addInfo("星辉锻造台的控制器")
             .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
-            .addInfo("需要星极或星芒透镜辅助合成.")
+            .addInfo("需要透镜辅助合成.")
             .addInfo("拥有与无损超频等效的并行(但有损超频).")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()

@@ -2,23 +2,28 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
+import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.util.GTPP_Recipe;
 import gregtech.api.util.GT_Recipe;
+import gregtech.api.util.GT_Utility;
 
 public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
+        final GT_Recipe.GT_Recipe_Map CFGTPP = GTPP_Recipe.GTPP_Recipe_Map.sMultiblockCentrifugeRecipes_GT;
 
         // region 杂项系列
         // 褐煤制煤
@@ -41,7 +46,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * SECONDS)
-            .addTo(CF);
+            .addTo(CFGTPP);
         // 褐铜
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Rubracium.getDust(12))
@@ -138,6 +143,25 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .eut(RECIPE_MV)
             .duration(8 * SECONDS)
             .addTo(CF);
+        // endregion
+
+        // region 星辉燃料
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(1))
+            .fluidInputs(VA_WerkstoffMaterialPool.astroFuelMKIDepleted.getFluidOrGas(125))
+            .itemOutputs(
+                VA_GregtechMaterialPool.Astro.getDust(8),
+                VA_GregtechMaterialPool.AstroMagic.getDust(6),
+                VA_GregtechMaterialPool.AstroInf.getDust(2),
+                Materials.Naquadah.getDust(6),
+                Materials.Naquadria.getDust(6),
+                WerkstoffLoader.Tiberium.get(OrePrefixes.dust, 6))
+            .outputChances(8000, 6000, 4000, 5000, 5000, 5000)
+            .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(80), VA_GregtechMaterialPool.AstroInf.getFluid(20))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(7 * SECONDS)
+            .addTo(CFGTPP);
         // endregion
     }
 }

@@ -13,7 +13,7 @@ import gregtech.api.enums.TextureSet;
 
 public class VA_GregtechMaterialPool implements Runnable {
 
-    public static final Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_VERTICAL, "Astro")
+    public static final Materials Astro = new MaterialBuilder(250, TextureSet.SET_GEM_HORIZONTAL, "Astro")
         .setName("Astro")
         .setRGBA(30, 144, 252, 255)
         .addDustItems()
@@ -29,7 +29,7 @@ public class VA_GregtechMaterialPool implements Runnable {
                 new TC_AspectStack(TC_Aspects.VACUOS, 1)))
         .constructMaterial();
 
-    public static final Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_DIAMOND, "AstroInf")
+    public static final Materials AstroInf = new MaterialBuilder(251, TextureSet.SET_GEM_VERTICAL, "AstroInf")
         .setName("AstroInf")
         .setRGBA(0, 191, 255, 255)
         .addDustItems()

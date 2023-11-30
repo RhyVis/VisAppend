@@ -5,6 +5,7 @@ import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
@@ -17,9 +18,11 @@ import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
+import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 
@@ -67,6 +70,20 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
+            .addTo(LE);
+        // endregion
+
+        // region 星辉燃料
+        // 星辉燃料MKI
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0))
+            .fluidInputs(
+                Materials.Naquadria.getMolten(16 * INGOTS),
+                MyMaterial.naquadahBasedFuelMkI.getFluidOrGas(8 * BUCKETS))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroFuelMKI.getFluidOrGas(BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(25 * SECONDS)
             .addTo(LE);
         // endregion
 

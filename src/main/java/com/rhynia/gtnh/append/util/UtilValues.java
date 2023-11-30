@@ -60,6 +60,10 @@ public class UtilValues {
         .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1));
     public static final ItemStack lensInf = GT_Utility
         .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1));
+
+    // 数值
+    public static final int FullChance = 10000;
+
     // 图标
     public static final UITexture VA_LOGO_32 = UITexture.fullImage("append", "gui/picture/va_logo_32_t");
 }

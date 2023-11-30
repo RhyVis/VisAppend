@@ -1,15 +1,16 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
-import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
+import static com.rhynia.gtnh.append.util.UtilValues.*;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
+import static gregtech.api.enums.TierEU.RECIPE_UEV;
+import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GT_RecipeBuilder.*;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -30,7 +31,9 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.item.ModItems;
 import gtPlusPlus.core.material.MISC_MATERIALS;
+import gtPlusPlus.core.util.minecraft.ItemUtils;
 
 public class VASAstraForgeRecipePool implements IRecipePool {
 
@@ -193,6 +196,46 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .addTo(AF);
         // endregion
 
+        // region 9号电路 分离
+        // 净化水
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(9),
+                lensInf,
+                lensMagic,
+                WerkstoffLoader.Tiberium.get(OrePrefixes.lens, 0),
+                CustomItemList.MysteriousCrystalLens.get(0),
+                CustomItemList.ChromaticLens.get(0),
+                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0),
+                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 0),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
+            .fluidInputs(Materials.Water.getFluid(512 * BUCKETS), Materials.UUMatter.getFluid(16 * BUCKETS))
+            .itemOutputs(
+                ItemUtils.simpleMetaStack(ModItems.itemStandarParticleBase, 0, 1),
+                ItemUtils.simpleMetaStack(ModItems.itemStandarParticleBase, 7, 1),
+                ItemUtils.simpleMetaStack(ModItems.itemStandarParticleBase, 18, 1),
+                ItemUtils.simpleMetaStack(ModItems.itemStandarParticleBase, 24, 1),
+                VA_GregtechMaterialPool.AstroMagic.getDust(32),
+                VA_GregtechMaterialPool.AstroInf.getDust(32))
+            .outputChances(10, 10, 10, 5, 5000, 1000)
+            .fluidOutputs(
+                Materials.Grade1PurifiedWater.getFluid(128 * BUCKETS),
+                Materials.Grade2PurifiedWater.getFluid(128 * BUCKETS),
+                Materials.Grade3PurifiedWater.getFluid(64 * BUCKETS),
+                Materials.Grade4PurifiedWater.getFluid(64 * BUCKETS),
+                Materials.Grade5PurifiedWater.getFluid(32 * BUCKETS),
+                Materials.Grade6PurifiedWater.getFluid(32 * BUCKETS),
+                Materials.Grade7PurifiedWater.getFluid(32 * BUCKETS),
+                Materials.Grade8PurifiedWater.getFluid(32 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(80 * SECONDS)
+            .addTo(AF);
+        // endregion
+
         // region 8号电路 矿物处理
         // 石英岩
         GT_Values.RA.stdBuilder()
@@ -228,6 +271,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                7000,
+                7000,
+                7000,
+                7000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -266,6 +324,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                7000,
+                7000,
+                7000,
+                7000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -304,6 +377,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                7000,
+                7000,
+                7000,
+                7000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -342,6 +430,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.SiliconSG.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                7000,
+                7000,
+                7000,
+                7000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -380,6 +483,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Carbon.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                8000,
+                8000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -416,6 +534,19 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                8000,
+                8000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -455,6 +586,21 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Sulfur.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                8000,
+                8000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -470,6 +616,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Cerium.getDust(16),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(FullChance, FullChance, 9500, 9500, 7500, 7500)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -486,6 +633,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Gadolinium.getDust(16),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_GregtechMaterialPool.Astro.getDust(64))
+            .outputChances(FullChance, FullChance, 9500, 8000, 8000, 7500, 7500)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(40 * SECONDS)
@@ -566,7 +714,19 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Gold.getDust(64),
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64))
-            .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 6000, 6000, 6000, 6000, 3000, 3000)
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                8000,
+                8000,
+                6000,
+                6000,
+                6000,
+                6000,
+                3000,
+                3000)
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(15 * SECONDS)
@@ -597,7 +757,19 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Gold.getDust(64),
                 Materials.Silicon.getDust(64),
                 Materials.Silicon.getDust(64))
-            .outputChances(10000, 10000, 8000, 8000, 10000, 10000, 8000, 8000, 6000, 6000, 3000, 3000)
+            .outputChances(
+                FullChance,
+                FullChance,
+                8000,
+                8000,
+                FullChance,
+                FullChance,
+                8000,
+                8000,
+                6000,
+                6000,
+                3000,
+                3000)
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(15 * SECONDS)
@@ -632,7 +804,19 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Palladium.getDust(64),
                 Materials.Palladium.getDust(64),
                 Materials.Palladium.getDust(64))
-            .outputChances(10000, 10000, 10000, 10000, 10000, 10000, 10000, 10000, 6000, 6000, 6000, 6000)
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                6000,
+                6000,
+                6000,
+                6000)
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(15 * SECONDS)
@@ -672,10 +856,10 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Gallium.getDust(64),
                 Materials.Gallium.getDust(64))
             .outputChances(
-                10000,
-                10000,
-                10000,
-                10000,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
                 8000,
                 6000,
                 4000,
@@ -727,10 +911,10 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Indium.getDust(64),
                 Materials.Indium.getDust(64))
             .outputChances(
-                10000,
-                10000,
-                10000,
-                10000,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
                 8000,
                 8000,
                 8000,
@@ -780,7 +964,22 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Trinium.getDust(64),
                 Materials.Trinium.getDust(64),
                 Materials.Chrome.getDust(64))
-            .outputChances(10000, 10000, 10000, 10000, 8000, 8000, 8000, 8000, 6000, 6000, 6000, 6000, 6000, 6000, 4000)
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                8000,
+                8000,
+                8000,
+                8000,
+                6000,
+                6000,
+                6000,
+                6000,
+                6000,
+                6000,
+                4000)
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(15 * SECONDS)
@@ -836,11 +1035,31 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 lensInf,
                 VA_GregtechMaterialPool.Astro.getDust(60),
                 Materials.Naquadah.getDust(60))
-            .fluidInputs(Materials.Helium.getFluid(120000), Materials.Quantium.getFluid(40000))
+            .fluidInputs(Materials.Helium.getGas(120000), Materials.Quantium.getMolten(32 * INGOTS))
             .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(100 * SECONDS)
+            .addTo(AF);
+
+        // 合成源石
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(4),
+                lensMagic,
+                lensInf,
+                WerkstoffLoader.Tiberium.get(OrePrefixes.lens, 0),
+                MyMaterial.orundum.get(dust, 64),
+                MyMaterial.orundum.get(dust, 64),
+                MyMaterial.orundum.get(dust, 64),
+                MyMaterial.orundum.get(dust, 64),
+                Materials.Naquadah.getDust(60),
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_WerkstoffMaterialPool.astroCatalystBase.get(dust, 12))
+            .itemOutputs(VA_WerkstoffMaterialPool.Originiums.get(dust, 64))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(90 * SECONDS)
             .addTo(AF);
 
         // endregion
