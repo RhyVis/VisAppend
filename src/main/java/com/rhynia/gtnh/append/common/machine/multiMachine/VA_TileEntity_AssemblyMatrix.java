@@ -120,7 +120,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
                     ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
                     // Warded Glass
                     ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement(
                 'C',
                 GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
@@ -186,14 +186,14 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
         tt.addMachineType("集成装配线")
             .addInfo("组装矩阵的控制器")
             .addInfo("现代化的组装机构.")
-            .addInfo("高效组装电池等基础元件.")
+            .addInfo("高效组装各类基础元件.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 并行翻倍.")
+            .addInfo("电压每提高1级, 并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)
-            .beginStructureBlock(3, 12, 3, false)
+            .beginStructureBlock(3, 3, 7, false)
             .addInputHatch(BluePrintInfo, 1)
             .addInputBus(BluePrintInfo, 1)
             .addOutputBus(BluePrintInfo, 1)

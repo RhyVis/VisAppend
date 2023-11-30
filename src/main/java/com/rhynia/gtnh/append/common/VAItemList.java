@@ -26,7 +26,8 @@ public enum VAItemList implements IItemContainer {
     // Machine Controller
     AstraForge,
     UltimateHeater,
-    AssemblyMatrix;
+    AssemblyMatrix,
+    SuperconductingBinder;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

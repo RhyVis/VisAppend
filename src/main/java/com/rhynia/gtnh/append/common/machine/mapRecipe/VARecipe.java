@@ -19,7 +19,7 @@ public class VARecipe {
 
     public static final VARecipe instance = new VARecipe();
 
-    // Astra Forge
+    // region Astra Forge
     public static class GTAppendAstraForgeRecipeMap extends GT_Recipe.GT_Recipe_Map {
 
         /**
@@ -144,8 +144,9 @@ public class VARecipe {
         "",
         false,
         true);
+    // endregion
 
-    // Astra Forge
+    // region Assembly Matrix
     public static class GTAppendAssemblyMatrixRecipeMap extends GT_Recipe.GT_Recipe_Map {
 
         /**
@@ -270,8 +271,9 @@ public class VARecipe {
         "",
         false,
         true);
+    // endregion
 
-    // Ultimate Heater
+    // region Ultimate Heater
     public static class GTAppendUltimateHeaterRecipeMap extends GT_Recipe.GT_Recipe_Map {
 
         /**
@@ -396,4 +398,132 @@ public class VARecipe {
         "",
         false,
         true);
+    // endregion
+
+    // region Superconducting Binder
+    public static class GTAppendSuperconductingBinderRecipeMap extends GT_Recipe.GT_Recipe_Map {
+
+        /**
+         * Initialises a new type of Recipe Handler.
+         *
+         * @param aRecipeList                a List you specify as Recipe List. Usually just an ArrayList with a
+         *                                   pre-initialised Size.
+         * @param aUnlocalizedName           the unlocalised Name of this Recipe Handler, used mainly for NEI.
+         * @param aLocalName                 @deprecated the displayed Name of the NEI Recipe GUI title,
+         *                                   if null then use the aUnlocalizedName;
+         *                                   always is null, by using aUnlocalizedName with i18n.
+         * @param aNEIGUIPath                the displayed GUI Texture, usually just a Machine GUI. Auto-Attaches ".png"
+         *                                   if forgotten.
+         * @param aUsualInputCount           the usual amount of Input Slots this Recipe Class has.
+         * @param aUsualOutputCount          the usual amount of Output Slots this Recipe Class has.
+         * @param aUsualFluidInputCount      the usual amount of Fluid Input Slots this Recipe Class has.
+         * @param aUsualFluidOutputCount     the usual amount of Fluid Output Slots this Recipe Class has.
+         * @param aNEISpecialValuePre        the String in front of the Special Value in NEI.
+         * @param aNEISpecialValueMultiplier the Value the Special Value is getting Multiplied with before displaying
+         * @param aNEISpecialValuePost       the String after the Special Value. Usually for a Unit or something.
+         * @param aNEIAllowed                if NEI is allowed to display this Recipe Handler in general.
+         */
+        public GTAppendSuperconductingBinderRecipeMap(Collection<GT_Recipe> aRecipeList, String aUnlocalizedName,
+                                           String aLocalName, String aNEIName, String aNEIGUIPath, int aUsualInputCount, int aUsualOutputCount,
+                                           int aUsualFluidInputCount, int aUsualFluidOutputCount, boolean disableOptimize, int aMinimalInputItems,
+                                           int aMinimalInputFluids, int aAmperage, String aNEISpecialValuePre, int aNEISpecialValueMultiplier,
+                                           String aNEISpecialValuePost, boolean aShowVoltageAmperageInNEI, boolean aNEIAllowed) {
+            super(
+                aRecipeList,
+                aUnlocalizedName,
+                aLocalName,
+                aNEIName,
+                aNEIGUIPath,
+                aUsualInputCount,
+                aUsualOutputCount,
+                aMinimalInputItems,
+                aMinimalInputFluids,
+                aAmperage,
+                aNEISpecialValuePre,
+                aNEISpecialValueMultiplier,
+                aNEISpecialValuePost,
+                aShowVoltageAmperageInNEI,
+                aNEIAllowed);
+
+            useModularUI(true);
+            setLogo(VA_LOGO_32);
+            setLogoSize(17, 17);
+            setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18 - 8);
+            setProgressBar(PROGRESSBAR_ARROW_MULTIPLE);
+            setProgressBarPos(80, yOrigin + (getItemRowCount() - 2) * 18 - 9);
+            setProgressBarSize(15, 15);
+            setUsualFluidInputCount(aUsualFluidInputCount);
+            setUsualFluidOutputCount(aUsualFluidOutputCount);
+            setDisableOptimize(disableOptimize);
+
+        }
+
+        private static final int xDirMaxCount = 4;
+        private static final int yOrigin = 8;
+
+        private int getItemRowCount() {
+            return (Math.max(mUsualInputCount, mUsualOutputCount) - 1) / xDirMaxCount + 1;
+        }
+
+        private int getFluidRowCount() {
+            return (Math.max(getUsualFluidInputCount(), getUsualFluidOutputCount()) - 1) / xDirMaxCount + 1;
+        }
+
+        @Override
+        public List<Pos2d> getItemInputPositions(int itemInputCount) {
+            return UIHelper.getGridPositions(itemInputCount, 6, yOrigin, xDirMaxCount);
+        }
+
+        @Override
+        public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
+            return UIHelper.getGridPositions(itemOutputCount, 98, yOrigin, xDirMaxCount);
+        }
+
+        @Override
+        public List<Pos2d> getFluidInputPositions(int fluidInputCount) {
+            return UIHelper.getGridPositions(fluidInputCount, 6, yOrigin + getItemRowCount() * 18, xDirMaxCount);
+        }
+
+        @Override
+        public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
+            return UIHelper.getGridPositions(fluidOutputCount, 98, yOrigin + getItemRowCount() * 18, xDirMaxCount);
+        }
+
+        @Override
+        public ModularWindow.Builder createNEITemplate(IItemHandlerModifiable itemInputsInventory,
+                                                       IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
+                                                       IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
+                                                       Supplier<Float> progressSupplier, Pos2d windowOffset) {
+            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
+            return super.createNEITemplate(
+                itemInputsInventory,
+                itemOutputsInventory,
+                specialSlotInventory,
+                fluidInputsInventory,
+                fluidOutputsInventory,
+                progressSupplier,
+                windowOffset);
+        }
+    }
+
+    public final GTAppendSuperconductingBinderRecipeMap SuperconductingBinderRecipes = new GTAppendSuperconductingBinderRecipeMap(
+        new HashSet<>(),
+        "append.recipe.SuperconductingBinderRecipes",
+        "超导成型",
+        null,
+        "gregtech:textures/gui/basicmachines/LCRNEI",
+        4,
+        12,
+        8,
+        0,
+        true,
+        0,
+        0,
+        1,
+        "",
+        1,
+        "",
+        false,
+        true);
+    // endregion
 }

@@ -6,6 +6,7 @@ import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_UltimateHeater;
+import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_SuperconductingBinder;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
@@ -26,6 +27,7 @@ public class LoaderMachine {
     public static ItemStack AstraForge;
     public static ItemStack UltimateHeater;
     public static ItemStack AssemblyMatrix;
+    public static ItemStack SuperconductingBinder;
     // endregion
 
     public static void loadMachines() {
@@ -33,6 +35,7 @@ public class LoaderMachine {
         AstraForge = new VA_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
         AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
+        SuperconductingBinder = new VA_TileEntity_SuperconductingBinder(17504, "MultiSuperconductingBinder", "超导装配线").getStackForm(1);
         // endregion
 
         // region Single claim
@@ -55,6 +58,7 @@ public class LoaderMachine {
         VAItemList.AstraForge.set(AstraForge);
         VAItemList.UltimateHeater.set(UltimateHeater);
         VAItemList.AssemblyMatrix.set(AssemblyMatrix);
+        VAItemList.SuperconductingBinder.set(SuperconductingBinder);
         // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
