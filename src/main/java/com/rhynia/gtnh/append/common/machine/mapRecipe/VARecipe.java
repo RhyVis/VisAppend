@@ -448,7 +448,7 @@ public class VARecipe {
             useModularUI(true);
             setLogo(VA_LOGO_32);
             setLogoSize(17, 17);
-            setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18 - 8);
+            setLogoPos(79, (getItemRowCount() + getFluidRowCount()) * 18 - 26);
             setProgressBar(PROGRESSBAR_ARROW_MULTIPLE);
             setProgressBarPos(80, yOrigin + (getItemRowCount() - 2) * 18 - 9);
             setProgressBarSize(15, 15);
@@ -481,7 +481,7 @@ public class VARecipe {
 
         @Override
         public List<Pos2d> getFluidInputPositions(int fluidInputCount) {
-            return UIHelper.getGridPositions(fluidInputCount, 6, yOrigin + getItemRowCount() * 18, xDirMaxCount);
+            return UIHelper.getGridPositions(fluidInputCount, 6, yOrigin + 1 * 18, xDirMaxCount);
         }
 
         @Override
@@ -494,7 +494,7 @@ public class VARecipe {
             IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
             IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
             Supplier<Float> progressSupplier, Pos2d windowOffset) {
-            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
+            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount() - 2) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,
                 itemOutputsInventory,
