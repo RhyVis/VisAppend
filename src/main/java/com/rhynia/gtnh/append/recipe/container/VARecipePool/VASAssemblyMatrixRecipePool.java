@@ -279,6 +279,28 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         // endregion
 
         // region 杂项组装
+        // 源石 透镜
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.gem, 1))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
+                VA_GregtechMaterialPool.Astro.getFluid(64000))
+            .itemOutputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 1))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(810 * SECONDS)
+            .addTo(AM);
+        // 原石 透镜
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.gem, 1))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
+                VA_GregtechMaterialPool.Astro.getFluid(64000))
+            .itemOutputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 1))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(810 * SECONDS)
+            .addTo(AM);
         // Magic 透镜
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
@@ -292,7 +314,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .addTo(AM);
         // Inf 透镜
         GT_Values.RA.stdBuilder()
-            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
+            .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(256 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),

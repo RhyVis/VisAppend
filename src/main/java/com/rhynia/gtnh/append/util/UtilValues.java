@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.util;
 
 import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
@@ -60,6 +61,10 @@ public class UtilValues {
         .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1));
     public static final ItemStack lensInf = GT_Utility
         .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1));
+
+    // 数值
+    public static final int FullChance = 10000;
+
     // 图标
     public static final UITexture VA_LOGO_32 = UITexture.fullImage("append", "gui/picture/va_logo_32_t");
 }
