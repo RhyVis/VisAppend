@@ -7,7 +7,10 @@ import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
-import gregtech.api.enums.*;
+import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.ItemList;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.util.GT_Recipe;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
