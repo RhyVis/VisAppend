@@ -34,6 +34,18 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
             .addTo(SB);
 
         // region 超导配方
+
+        // 终极配方-测试
+        GT_Values.RA.stdBuilder()
+            .itemInputs(MaterialsUEVplus.BlackDwarfMatter.getNanite(64))
+            .fluidInputs(
+                Materials.Pentacadmiummagnesiumhexaoxid.getMolten(16 * INGOTS),
+                Materials.Helium.getMolten(16 * INGOTS))
+            .itemOutputs(ItemList.Superconducting_Magnet_Solenoid_MV.get(1))
+            .noOptimize()
+            .eut(RECIPE_MAX)
+            .duration(160 * HOURS)
+            .addTo(SB);
         // endregion
     }
 }
