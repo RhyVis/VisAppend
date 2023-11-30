@@ -2,8 +2,8 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
-import static gregtech.api.enums.TierEU.RECIPE_MV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
+import static gregtech.api.enums.TierEU.RECIPE_MV;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
@@ -157,8 +157,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.Naquadria.getDust(6),
                 WerkstoffLoader.Tiberium.get(OrePrefixes.dust, 6))
             .outputChances(8000, 6000, 4000, 5000, 5000, 5000)
-            .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(80),
-                VA_GregtechMaterialPool.AstroInf.getFluid(20))
+            .fluidOutputs(VA_GregtechMaterialPool.Astro.getFluid(80), VA_GregtechMaterialPool.AstroInf.getFluid(20))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(7 * SECONDS)

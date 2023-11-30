@@ -2,7 +2,6 @@ package com.rhynia.gtnh.append.util;
 
 import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
