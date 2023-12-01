@@ -10,7 +10,9 @@ import com.rhynia.gtnh.append.common.machine.multiMachine.VA_TileEntity_Ultimate
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Lubricant;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Oil;
+import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Steam;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 
 public class LoaderMachine {
@@ -20,6 +22,8 @@ public class LoaderMachine {
     public static ItemStack InfiniteDistilledWaterHatch;
     public static ItemStack InfiniteLavaHatch;
     public static ItemStack InfiniteOilHatch;
+    public static ItemStack InfiniteLubricantHatch;
+    public static ItemStack InfiniteSteamHatch;
     public static ItemStack ZeroGenerator;
     // endregion
 
@@ -50,6 +54,10 @@ public class LoaderMachine {
         InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(17403, "HatchInfiniteLavaHatch", "无限熔岩仓", 8)
             .getStackForm(1);
         InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOilHatch", "无限油泉仓", 8).getStackForm(1);
+        InfiniteLubricantHatch = new VA_MetaTileEntity_Hatch_Lubricant(17405, "HatchInfiniteLubricantHatch", "无限润滑仓", 8)
+            .getStackForm(1);
+        InfiniteSteamHatch = new VA_MetaTileEntity_Hatch_Steam(17406, "HatchInfiniteSteamHatch", "无限蒸汽仓", 8)
+            .getStackForm(1);
         ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
             .getStackForm(1L);
         // endregion
@@ -65,6 +73,8 @@ public class LoaderMachine {
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
         VAItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
         VAItemList.InfiniteOilHatch.set(InfiniteOilHatch);
+        VAItemList.InfiniteLubricantHatch.set(InfiniteLubricantHatch);
+        VAItemList.InfiniteSteamHatch.set(InfiniteSteamHatch);
         VAItemList.ZeroGenerator.set(ZeroGenerator);
         // endregion
     }

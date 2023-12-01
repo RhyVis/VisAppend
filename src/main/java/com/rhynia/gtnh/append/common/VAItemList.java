@@ -22,6 +22,8 @@ public enum VAItemList implements IItemContainer {
     InfiniteDistilledWaterHatch,
     InfiniteLavaHatch,
     InfiniteOilHatch,
+    InfiniteLubricantHatch,
+    InfiniteSteamHatch,
     ZeroGenerator,
     // Machine Controller
     AstraForge,
