@@ -46,18 +46,5 @@ public class VACommonRecipePool implements IRecipePool {
             .addTo(IMP);
         // endregion
 
-        // region 异氙光刻
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility
-                    .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1)),
-                VA_GregtechMaterialPool.AstroMagic.getDust(1))
-            .fluidInputs(Materials.UUMatter.getFluid(16), WerkstoffLoader.Xenon.getFluidOrGas(1000))
-            .fluidOutputs(FluidRegistry.getFluidStack("xenoxene", 500))
-            .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(15 * SECONDS)
-            .addTo(LE);
-        // endregion
     }
 }

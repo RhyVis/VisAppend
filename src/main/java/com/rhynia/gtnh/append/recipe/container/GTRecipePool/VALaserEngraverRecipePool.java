@@ -2,9 +2,11 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
 import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
@@ -48,7 +50,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .itemOutputs(GT_ModHandler.getModItem("gregtech", "gt.metaitem.01", 4, 32668))
             .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(50))
             .noOptimize()
-            .eut(160000)
+            .eut(RECIPE_UHV)
             .duration(45 * SECONDS)
             .addTo(LE);
         // 皮米晶圆
@@ -59,8 +61,26 @@ public class VALaserEngraverRecipePool implements IRecipePool {
                 VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(100),
                 Materials.Neutronium.getMolten(2 * 144))
             .noOptimize()
-            .eut(6000000)
-            .duration(300)
+            .eut(RECIPE_UEV)
+            .duration(15 * SECONDS)
+            .addTo(LE);
+        // 光子强化晶圆
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Circuit_Silicon_Wafer6.get(1L),
+                Materials.Glowstone.getNanite(1),
+                lensMagic,
+                GT_ModHandler.getModItem(SuperSolarPanels.ID, "solarsplitter", 0L, 0))
+            .itemOutputs(ItemList.Circuit_Silicon_Wafer7.get(4L))
+            .fluidInputs(
+                WerkstoffLoader.Oganesson.getFluidOrGas(2500),
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(800))
+            .fluidOutputs(
+                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(400),
+                VA_GregtechMaterialPool.Astro.getFluid(500))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(20 * SECONDS)
             .addTo(LE);
         // 激活催化剂
         GT_Values.RA.stdBuilder()
@@ -91,7 +111,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(VAItemList.ItemLapoMatrix.get(1), lensInf)
-            .fluidInputs(Materials.EnergeticAlloy.getMolten(1440))
+            .fluidInputs(Materials.EnergeticAlloy.getMolten(10 * INGOTS))
             .itemOutputs(
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
