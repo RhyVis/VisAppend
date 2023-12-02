@@ -47,4 +47,6 @@ dependencies {
     implementation('com.github.GTNewHorizons:Minetweaker-Gregtech-5-Addon:2.0.2:dev')
     implementation('com.github.GTNewHorizons:GTNH-Lanthanides:0.11.4:dev')
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.1')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-291-GTNH')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughEnergistics:1.4.2')
 }

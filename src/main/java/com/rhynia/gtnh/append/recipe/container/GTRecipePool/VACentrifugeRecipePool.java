@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
+import static com.rhynia.gtnh.append.util.UtilValues.FullChance;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -32,7 +33,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .itemOutputs(Materials.Coal.getDust(3))
             .noOptimize()
             .eut(RECIPE_LV)
-            .duration(8 * SECONDS)
+            .duration(4 * SECONDS)
             .addTo(CF);
         // 氟碳铈
         GT_Values.RA.stdBuilder()
@@ -56,6 +57,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 WerkstoffLoader.Roquesit.get(OrePrefixes.dust, 1),
                 Materials.Firestone.getDust(1),
                 VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, FullChance, FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * SECONDS)
@@ -67,6 +69,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.Ice.getDust(2),
                 Materials.Cryotheum.getDust(1),
                 VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(8 * SECONDS)
@@ -78,6 +81,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.Pyrotheum.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
                 VA_GregtechMaterialPool.Astro.getDust(2))
+            .outputChances(FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(21 * SECONDS)
@@ -91,6 +95,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.AstralSilver.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
                 VA_GregtechMaterialPool.Astro.getDust(2))
+            .outputChances(FullChance, FullChance, FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
             .duration(21 * SECONDS)
@@ -99,7 +104,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(WerkstoffLoader.Thorianit.get(OrePrefixes.dust, 8))
             .itemOutputs(Materials.Thorium.getDust(6), WerkstoffLoader.Thorium232.get(OrePrefixes.dust, 2))
-            .outputChances(10000, 2000)
+            .outputChances(FullChance, 2000)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(15 * SECONDS)

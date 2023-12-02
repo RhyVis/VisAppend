@@ -50,8 +50,8 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 lensMagic,
                 VA_GregtechMaterialPool.Astro.getDust(16),
                 Materials.Redstone.getDust(1))
-            .fluidInputs(Materials.Water.getFluid(32000))
-            .fluidOutputs(Materials.Lubricant.getFluid(256000))
+            .fluidInputs(Materials.Water.getFluid(32 * BUCKETS))
+            .fluidOutputs(Materials.Lubricant.getFluid(256 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * SECONDS)
@@ -78,7 +78,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 16))
             .itemOutputs(VA_GregtechMaterialPool.AstroInf.getDust(1))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(48000))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(48 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(20 * SECONDS)

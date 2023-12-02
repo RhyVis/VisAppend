@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
+import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
@@ -64,7 +65,7 @@ public class VAHammerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
             .itemOutputs(VAItemList.LapoMatrix.get(4))
-            .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
+            .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(40 * SECONDS)
@@ -75,7 +76,8 @@ public class VAHammerRecipePool implements IRecipePool {
             .itemOutputs(VAItemList.CrystalMatrix.get(16))
             .fluidInputs(
                 Materials.Europium.getMolten(4 * INGOTS),
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4000))
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4 * BUCKETS))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(2 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
