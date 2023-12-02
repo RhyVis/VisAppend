@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.common.item;
 
+import static com.rhynia.gtnh.append.common.item.registry.RegMetaItem01.initItem01;
+
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
@@ -7,12 +9,10 @@ import com.rhynia.gtnh.append.common.VAItemList;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 
-import static com.rhynia.gtnh.append.common.item.registry.RegMetaItem01.initItem01;
-
 public class ItemRegister {
 
     public static void registryItems() {
-        Item[] itemsToReg = { ItemBasic.Ultimate, ItemBasic.LapoMatrix, ItemBasic.CrystalMatrix };
+        Item[] itemsToReg = { ItemBasic.MetaItem01, ItemBasic.Ultimate, ItemBasic.LapoMatrix, ItemBasic.CrystalMatrix };
 
         for (Item item : itemsToReg) {
             GameRegistry.registerItem(item, item.getUnlocalizedName());

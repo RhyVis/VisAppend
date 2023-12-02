@@ -63,7 +63,7 @@ public class VAHammerRecipePool implements IRecipePool {
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
-            .itemOutputs(VAItemList.ItemLapoMatrix.get(4))
+            .itemOutputs(VAItemList.LapoMatrix.get(4))
             .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
             .noOptimize()
             .eut(RECIPE_LuV)
@@ -72,7 +72,7 @@ public class VAHammerRecipePool implements IRecipePool {
         // 晶体矩阵
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Aluminiumoxide.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
-            .itemOutputs(VAItemList.ItemCrystalMatrix.get(16))
+            .itemOutputs(VAItemList.CrystalMatrix.get(16))
             .fluidInputs(
                 Materials.Europium.getMolten(4 * INGOTS),
                 VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4000))

@@ -90,7 +90,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
         // region 矩阵
         // 兰波顿矩阵
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemLapoMatrix.get(1), lensInf)
+            .itemInputs(VAItemList.LapoMatrix.get(1), lensInf)
             .fluidInputs(Materials.EnergeticAlloy.getMolten(1440))
             .itemOutputs(
                 ItemList.Circuit_Parts_Crystal_Chip_Master.get(64),
@@ -103,7 +103,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .addTo(LE);
         // 晶体矩阵-绿
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemCrystalMatrix.get(1), lensInf)
+            .itemInputs(VAItemList.CrystalMatrix.get(1), lensInf)
             .fluidInputs(Materials.Europium.getMolten(16 * INGOTS))
             .itemOutputs(
                 ItemList.Circuit_Chip_CrystalCPU.get(64),
@@ -116,7 +116,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .addTo(LE);
         // 晶体矩阵-红
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemCrystalMatrix.get(1), lensInf)
+            .itemInputs(VAItemList.CrystalMatrix.get(1), lensInf)
             .fluidInputs(Materials.Americium.getMolten(16 * INGOTS))
             .itemOutputs(ItemList.Circuit_Chip_CrystalSoC.get(64), ItemList.Circuit_Chip_CrystalSoC.get(32))
             .noOptimize()

@@ -32,14 +32,9 @@ public class ItemLapo extends Item {
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
         if (isShiftKeyDown()) {
-            toolTip.add(
-                EnumChatFormatting.DARK_AQUA + "能量"
-                    + EnumChatFormatting.RED
-                    + "聚集"
-                    + EnumChatFormatting.DARK_AQUA
-                    + "于一小块芯片中.");
+            toolTip.add(EnumChatFormatting.DARK_RED + "已弃用!");
         } else {
-            toolTip.add("高级" + EnumChatFormatting.DARK_AQUA + "兰波顿" + EnumChatFormatting.GRAY + "矩阵.");
+            toolTip.add("已弃用!");
         }
     }
 

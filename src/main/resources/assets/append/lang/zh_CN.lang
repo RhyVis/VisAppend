@@ -2,5 +2,9 @@ ModName=Vis Append
 itemGroup.GTAppend=Vis Append
 
 item.Ultimate.name=无效证明
-item.LapoMatrix.name=兰波顿矩阵
-item.CrystalMatrix.name=晶体矩阵
+item.LapoMatrix.name=兰波顿矩阵(弃用)
+item.CrystalMatrix.name=晶体矩阵(弃用)
+
+MetaItem01.0.name=无效证明
+MetaItem01.1.name=兰波顿矩阵
+MetaItem01.2.name=晶体矩阵
