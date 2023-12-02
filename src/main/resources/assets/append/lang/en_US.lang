@@ -5,6 +5,6 @@ item.Ultimate.name=Useless
 item.LapoMatrix.name=Lapotron Matrix(Deprecated)
 item.CrystalMatrix.name=Crystal Matrix(Deprecated)
 
-MetaItem01.0.name=Test
-MetaItem01.1.name=Lapotron Matrix
-MetaItem01.2.name=Crystal Matrix
+va.MetaItem01.0.name=Test
+va.MetaItem01.1.name=Lapotron Matrix
+va.MetaItem01.2.name=Crystal Matrix

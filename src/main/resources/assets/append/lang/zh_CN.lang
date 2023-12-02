@@ -5,6 +5,6 @@ item.Ultimate.name=无效证明
 item.LapoMatrix.name=兰波顿矩阵(弃用)
 item.CrystalMatrix.name=晶体矩阵(弃用)
 
-MetaItem01.0.name=无效证明
-MetaItem01.1.name=兰波顿矩阵
-MetaItem01.2.name=晶体矩阵
+va.MetaItem01.0.name=测试物品
+va.MetaItem01.1.name=兰波顿矩阵
+va.MetaItem01.2.name=晶体矩阵
