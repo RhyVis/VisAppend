@@ -77,7 +77,7 @@ public class RegMetaItem01 extends RegItemBasic {
 
     @Override
     public String getUnlocalizedName(ItemStack aItemStack) {
-        return this.unlocalizedName + "." + aItemStack.getItemDamage();
+        return "va." + this.unlocalizedName + "." + aItemStack.getItemDamage();
     }
 
     @Override
