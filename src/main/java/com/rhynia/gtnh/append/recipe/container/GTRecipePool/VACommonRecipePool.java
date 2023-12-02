@@ -23,7 +23,6 @@ public class VACommonRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map EMS = GT_Recipe.GT_Recipe_Map.sElectroMagneticSeparatorRecipes;
-        final GT_Recipe.GT_Recipe_Map LE = GT_Recipe.GT_Recipe_Map.sLaserEngraverRecipes;
         final GT_Recipe.GT_Recipe_Map IMP = BWRecipes.instance.eicMap;
 
         // region 星辉

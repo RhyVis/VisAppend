@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
+import static com.rhynia.gtnh.append.util.UtilValues.FullChance;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
@@ -24,6 +25,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedIron.getDust(4))
             .itemOutputs(Materials.Iron.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -32,6 +34,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedLead.getDust(4))
             .itemOutputs(Materials.Lead.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -40,6 +43,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedNickel.getDust(4))
             .itemOutputs(Materials.Nickel.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -48,6 +52,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedZinc.getDust(4))
             .itemOutputs(Materials.Zinc.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -56,6 +61,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedCopper.getDust(4))
             .itemOutputs(Materials.Copper.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -64,6 +70,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedCobalt.getDust(4))
             .itemOutputs(Materials.Cobalt.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -72,6 +79,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedAntimony.getDust(4))
             .itemOutputs(Materials.Antimony.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
@@ -80,6 +88,7 @@ public class VAElectroRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.RoastedArsenic.getDust(4))
             .itemOutputs(Materials.Arsenic.getDust(4), VA_GregtechMaterialPool.Astro.getDust(1))
+            .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(8 * SECONDS)
