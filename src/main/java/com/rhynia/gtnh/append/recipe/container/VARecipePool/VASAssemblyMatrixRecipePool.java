@@ -370,5 +370,25 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .duration(360 * SECONDS)
             .addTo(AM);
         // endregion
+
+        // region 光学
+        // 光学内存
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_ModHandler.getModItem("OpenComputers", "item", 64, 39),
+                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32724),
+                GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 64, 15470),
+                GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 64, 15470),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64))
+            .fluidInputs(
+                Materials.Infinity.getMolten(64 * INGOTS),
+                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(96 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(80 * SECONDS)
+            .addTo(AM);
+        // endregion
     }
 }
