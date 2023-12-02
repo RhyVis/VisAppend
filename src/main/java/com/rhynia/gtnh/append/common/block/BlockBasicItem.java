@@ -25,7 +25,6 @@ public class BlockBasicItem extends ItemBlock {
     // region statics
 
     public static final Map<Integer, String[]> MetaBlockTooltipsMap01 = new HashMap<>();
-    // public static final Map<Integer, ItemStack> MetaBlockMap01 = new HashMap<>();
     public static final Set<Integer> MetaBlockSet01 = new HashSet<>();
 
     // endregion

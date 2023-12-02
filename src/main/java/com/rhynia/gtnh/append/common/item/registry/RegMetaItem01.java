@@ -23,7 +23,7 @@ import com.rhynia.gtnh.append.common.item.ItemStaticDataClientOnly;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class RegItem extends RegItemBasic {
+public class RegMetaItem01 extends RegItemBasic {
     /*
      * An Item Map for managing basic items
      */
@@ -40,7 +40,7 @@ public class RegItem extends RegItemBasic {
     /**
      * Create the basic item MetaItem01.
      */
-    public RegItem(String aName, String aMetaName, CreativeTabs aCreativeTabs) {
+    public RegMetaItem01(String aName, String aMetaName, CreativeTabs aCreativeTabs) {
         super(aName, aMetaName, aCreativeTabs);
         this.unlocalizedName = aMetaName;
     }
@@ -72,17 +72,12 @@ public class RegItem extends RegItemBasic {
     /**
      * Init the basic items at the game pre init.
      */
-    // public static void init() {
-    // for (String MetaName : Item01Map.keySet()) {
-    // GameRegistry.registerItem(Item01Map.get(MetaName), MetaName);
-    // }
-    // }
 
     // region Overrides
 
     @Override
     public String getUnlocalizedName(ItemStack aItemStack) {
-        return this.unlocalizedName + "." + aItemStack.getItemDamage();
+        return "va." + this.unlocalizedName + "." + aItemStack.getItemDamage();
     }
 
     @Override
