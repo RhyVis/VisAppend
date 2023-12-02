@@ -384,7 +384,9 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .fluidInputs(
                 Materials.Infinity.getMolten(64 * INGOTS),
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(96 * INGOTS))
-            .itemOutputs(GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725))
+            .itemOutputs(
+                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725),
+                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(80 * SECONDS)
