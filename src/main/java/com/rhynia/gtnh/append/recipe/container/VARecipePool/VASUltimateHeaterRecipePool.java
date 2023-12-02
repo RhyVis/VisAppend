@@ -43,7 +43,8 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
                 CustomItemList.LapotronDust.get(64),
                 CustomItemList.LapotronDust.get(64))
             .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(BUCKETS))
-            .fluidOutputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8 * BUCKETS),
+            .fluidOutputs(
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8 * BUCKETS),
                 VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(500))
             .noOptimize()
             .eut(RECIPE_UHV)
@@ -84,9 +85,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
                 lensInf,
                 esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(4))
-            .fluidInputs(
-                Materials.Nickel.getMolten(600 * INGOTS),
-                Materials.Titanium.getMolten(600 * INGOTS))
+            .fluidInputs(Materials.Nickel.getMolten(600 * INGOTS), Materials.Titanium.getMolten(600 * INGOTS))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
@@ -138,7 +137,9 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
                 lensInf,
                 esCata,
                 VA_GregtechMaterialPool.AstroInf.getGems(16))
-            .fluidInputs(Materials.DraconiumAwakened.getMolten(1000 * INGOTS), VA_GregtechMaterialPool.Astro.getFluid(12 * BUCKETS))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(1000 * INGOTS),
+                VA_GregtechMaterialPool.Astro.getFluid(12 * BUCKETS))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
