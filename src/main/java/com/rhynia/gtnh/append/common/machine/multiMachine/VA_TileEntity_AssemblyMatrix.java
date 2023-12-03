@@ -206,6 +206,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
+            .addInfo("使用螺丝刀切换模式.")
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)
