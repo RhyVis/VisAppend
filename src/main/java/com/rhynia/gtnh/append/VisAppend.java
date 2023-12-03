@@ -4,9 +4,9 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import com.rhynia.gtnh.append.common.machine.mapRecipe.crtsupport.AstraForge;
-import com.rhynia.gtnh.append.loader.LoaderMachine;
-import com.rhynia.gtnh.append.loader.LoaderMaterial;
-import com.rhynia.gtnh.append.loader.LoaderRecipe;
+import com.rhynia.gtnh.append.loader.MachineLoader;
+import com.rhynia.gtnh.append.loader.MaterialLoader;
+import com.rhynia.gtnh.append.loader.RecipeLoader;
 import com.rhynia.gtnh.append.nei.NEIHandler;
 import com.rhynia.gtnh.append.nei.NEIHandlerLong;
 
@@ -43,7 +43,7 @@ public class VisAppend {
     public void preInit(FMLPreInitializationEvent event) {
         VisAppend.LOG.info(MOD_NAME + " start preInit process at version " + VERSION);
         proxy.preInit(event);
-        LoaderMaterial.load();// Load Materials
+        MaterialLoader.load();// Load Materials
     }
 
     @Mod.EventHandler
@@ -51,20 +51,22 @@ public class VisAppend {
         proxy.init(event);
         MineTweakerAPI.registerClass(AstraForge.class);// MineTweaker Support
         VisAppend.LOG.info("Loading machines.");
-        LoaderMachine.loadMachines();// Load Machines
+        MachineLoader.loadMachines();// Load Machines
         NEIHandler.IMCSender();// NEI reg 2 each page
         NEIHandlerLong.IMCSender();// NEI reg 1 each page
-
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
+        VisAppend.LOG.info("Loading recipes stage 1/2.");
+        RecipeLoader.loadRecipesPostInit();// Init RecipeMap
     }
 
     @Mod.EventHandler
     public void completeInit(FMLLoadCompleteEvent event) {
-        LoaderRecipe.loadRecipes();
+        VisAppend.LOG.info("Loading recipes stage 2/2.");
+        RecipeLoader.loadRecipesCompleteInit();// Complete left recipes
     }
 
     @Mod.EventHandler

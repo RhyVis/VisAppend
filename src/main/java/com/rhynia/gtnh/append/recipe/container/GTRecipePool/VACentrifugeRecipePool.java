@@ -22,6 +22,9 @@ import gregtech.api.util.GT_Utility;
 public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
+    public void loadRecipesPostInit() {}
+
+    @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
         final GT_Recipe.GT_Recipe_Map CFGTPP = GTPP_Recipe.GTPP_Recipe_Map.sMultiblockCentrifugeRecipes_GT;

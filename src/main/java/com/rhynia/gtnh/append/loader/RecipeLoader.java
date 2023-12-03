@@ -14,15 +14,26 @@ import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASAstraForgeRecipeP
 import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASSuperconductingBinderRecipePool;
 import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASUltimateHeaterRecipePool;
 
-public class LoaderRecipe {
+public class RecipeLoader {
 
-    public static void loadRecipes() {
+    public static void loadRecipesPostInit() {
         IRecipePool[] recipePools = new IRecipePool[] {
+            // VA Special Recipe
+            new VASAssemblyMatrixRecipePool(), new VASSuperconductingBinderRecipePool(),
+            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(), };
+
+        for (IRecipePool recipePool : recipePools) {
+            recipePool.loadRecipesPostInit();
+        }
+    }
+
+    public static void loadRecipesCompleteInit() {
+        IRecipePool[] recipePools = new IRecipePool[] {
+            // VA Special Recipe
+            new VASAssemblyMatrixRecipePool(), new VASSuperconductingBinderRecipePool(),
+            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(),
             // Basic & Misc Recipe
             new VACommonRecipePool(), new VAMachineRecipePool(),
-            // VA Special Recipe
-            new VASAstraForgeRecipePool(), new VASUltimateHeaterRecipePool(), new VASAssemblyMatrixRecipePool(),
-            new VASSuperconductingBinderRecipePool(),
             // GT Recipe
             new VACentrifugeRecipePool(), new VAElectroRecipePool(), new VAMixerRecipePool(),
             new VAChemicalReactorRecipePool(), new VAHammerRecipePool(), new VALaserEngraverRecipePool() };

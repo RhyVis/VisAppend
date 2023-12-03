@@ -36,11 +36,11 @@ import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class VASAssemblyMatrixRecipePool implements IRecipePool {
 
+    final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
     final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
-    public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map AM = VARecipe.instance.AssemblyMatrixRecipes;
+    public void loadRecipesPostInit() {
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -68,7 +68,10 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .eut(RECIPE_MAX)
             .duration(160 * HOURS)
             .addTo(AM);
+    }
 
+    @Override
+    public void loadRecipes() {
         // region 电池配方
         // 兰波顿能量球 IV
         GT_Values.RA.stdBuilder()

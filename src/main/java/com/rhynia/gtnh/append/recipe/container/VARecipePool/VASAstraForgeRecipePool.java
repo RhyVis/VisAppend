@@ -37,12 +37,30 @@ import gtPlusPlus.core.util.minecraft.ItemUtils;
 
 public class VASAstraForgeRecipePool implements IRecipePool {
 
+    final GT_Recipe.GT_Recipe_Map AF = VARecipe.instance.AstraForgeRecipes;
+
+    @Override
+    public void loadRecipesPostInit() {
+        // region 10号电路 增殖
+        // UU增殖
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                VA_GregtechMaterialPool.Astro.getDust(64),
+                VA_GregtechMaterialPool.Astro.getDust(64))
+            .fluidInputs(Materials.UUMatter.getFluid(2048))
+            .fluidOutputs(Materials.UUMatter.getFluid(32768))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(40 * SECONDS)
+            .addTo(AF);
+        // endregion
+    }
+
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map AF = VARecipe.instance.AstraForgeRecipes;
-
         // region 12号电路
-
         // 润滑油
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -177,22 +195,6 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(20 * SECONDS)
-            .addTo(AF);
-        // endregion
-
-        // region 10号电路 增殖
-        // UU增殖
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(10),
-                lensInf,
-                VA_GregtechMaterialPool.Astro.getDust(64),
-                VA_GregtechMaterialPool.Astro.getDust(64))
-            .fluidInputs(Materials.UUMatter.getFluid(2048))
-            .fluidOutputs(Materials.UUMatter.getFluid(32768))
-            .noOptimize()
-            .eut(RECIPE_LuV)
-            .duration(40 * SECONDS)
             .addTo(AF);
         // endregion
 

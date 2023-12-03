@@ -31,6 +31,9 @@ import gregtech.api.util.GT_Recipe;
 public class VALaserEngraverRecipePool implements IRecipePool {
 
     @Override
+    public void loadRecipesPostInit() {}
+
+    @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map LE = GT_Recipe.GT_Recipe_Map.sLaserEngraverRecipes;
 

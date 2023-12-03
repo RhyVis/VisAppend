@@ -1,7 +1,5 @@
 package com.rhynia.gtnh.append.common.material;
 
-import static gregtech.api.enums.OrePrefixes.*;
-
 import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;

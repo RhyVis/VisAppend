@@ -15,7 +15,7 @@ import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hat
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Hatch_Steam;
 import com.rhynia.gtnh.append.common.machine.singleMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 
-public class LoaderMachine {
+public class MachineLoader {
 
     // region sig Machine
     public static ItemStack InfiniteLiquidAirHatch;
