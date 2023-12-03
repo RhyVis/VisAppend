@@ -9,7 +9,10 @@ import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
-import gregtech.api.enums.*;
+import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 
@@ -34,13 +37,15 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 MaterialsUEVplus.Eternity.getMolten(1440000000),
                 MaterialsUEVplus.SpaceTime.getMolten(1440000000),
                 Materials.Infinity.getMolten(1440000000))
-            .itemOutputs(VAItemList.ItemUltimate.get(1))
+            .itemOutputs(VAItemList.Test.get(1))
             .noOptimize()
             .eut(RECIPE_MAX)
-            .duration(160 * HOURS)
+            .duration(256 * HOURS)
             .addTo(AM);
     }
 
     @Override
-    public void loadRecipes() {}
+    public void loadRecipes() {
+
+    }
 }

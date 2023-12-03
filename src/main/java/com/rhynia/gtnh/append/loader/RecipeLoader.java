@@ -9,7 +9,11 @@ import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAHammerRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VALaserEngraverRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAMachineRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAMixerRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.*;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASAssemblyMatrixRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASAstraForgeRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASMicroAssemblyRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASSuperconductingBinderRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASUltimateHeaterRecipePool;
 
 public class RecipeLoader {
 
