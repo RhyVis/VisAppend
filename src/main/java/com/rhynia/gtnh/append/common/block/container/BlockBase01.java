@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.common.block.container;
 
-import static com.rhynia.gtnh.append.client.GTNHATab.tabMetaBlock01;
+import static com.rhynia.gtnh.append.client.VA_Tab.tabMetaBlock01;
 import static com.rhynia.gtnh.append.common.block.BlockBasicItem.MetaBlockSet01;
 import static com.rhynia.gtnh.append.common.block.container.BlockStaticDataClientOnly.iconsBlockMap01;
 

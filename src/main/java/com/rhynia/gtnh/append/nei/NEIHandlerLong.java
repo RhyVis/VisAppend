@@ -10,9 +10,9 @@ public class NEIHandlerLong {
 
     public static void IMCSender() {
         // Handler
-        sendHandler("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
+        sendHandler("append.recipe.astraForge", "gregtech:gt.blockmachines:17501");
         // Catalyst
-        sendCatalyst("append.recipe.AstraForgeRecipes", "gregtech:gt.blockmachines:17501");
+        sendCatalyst("append.recipe.astraForge", "gregtech:gt.blockmachines:17501");
     }
 
     private static void sendHandler(String aName, String aBlock) {

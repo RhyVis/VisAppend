@@ -7,7 +7,7 @@ import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -18,7 +18,7 @@ import gregtech.api.util.GT_Recipe;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map SB = VARecipe.instance.SuperconductingBinderRecipes;
+    final GT_Recipe.GT_Recipe_Map SB = VA_RecipeAdder.instance.sSuperconductingBinderRecipes;
     final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override

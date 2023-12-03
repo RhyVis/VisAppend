@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.common.material;
 
+import static com.github.bartimaeusnek.bartworks.util.BW_Util.subscriptNumbers;
+
 import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
@@ -12,7 +14,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff Primogem = new Werkstoff(
         new short[] { 0x87, 0xce, 0xeb },
         "Primogem",
-        "Maybe you were right, but...",
+        "Pr",
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
@@ -23,7 +25,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff Originiums = new Werkstoff(
         new short[] { 0xda, 0xa5, 0x20 },
         "Originiums",
-        "The Stone of Origins.",
+        "Or*",
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
@@ -85,7 +87,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff lapoActivatedFluid = new Werkstoff(
         new short[] { 0x64, 0x95, 0xed },
         "LapoActivatedFluid",
-        "为什么只用兰波顿储能？",
+        "-[-Lapo-Lapo-]-",
         new Werkstoff.Stats().setRadioactive(true)
             .setMeltingPoint(4888),
         Werkstoff.Types.COMPOUND,
@@ -93,6 +95,31 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .addCells()
             .enforceUnification(),
         OffsetID + 7,
+        TextureSet.SET_FLUID);
+    // SuperconductingFluxRaw
+    public static final Werkstoff superconductingFluxRaw = new Werkstoff(
+        new short[] { 0x69, 0x69, 0x69 },
+        "SuperconductingFluxRaw",
+        subscriptNumbers("(?AoⁿIf?)12D*12M11If*10SpNt8In7Nq+6Nq*5(⚷⚙⚷ Ni4Ti6)4(✧◇✧)4"),
+        new Werkstoff.Stats().setMeltingPoint(3),
+        Werkstoff.Types.MIXTURE,
+        new Werkstoff.GenerationFeatures().disable()
+            .onlyDust()
+            .addMolten()
+            .enforceUnification(),
+        OffsetID + 8,
+        TextureSet.SET_MAGNETIC);
+    // SuperconductingFluid
+    public static final Werkstoff superconductingFlux = new Werkstoff(
+        new short[] { 0xC0, 0xC0, 0xC0 },
+        "SuperconductingFlux",
+        "Sx",
+        new Werkstoff.Stats().setMeltingPoint(1),
+        Werkstoff.Types.ELEMENT,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 9,
         TextureSet.SET_FLUID);
 
     @Override

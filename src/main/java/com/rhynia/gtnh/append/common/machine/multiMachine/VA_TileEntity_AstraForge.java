@@ -23,7 +23,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
@@ -77,7 +77,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VARecipe.instance.AstraForgeRecipes;
+        return VA_RecipeAdder.instance.sAstraForgeRecipes;
     }
 
     @Override
@@ -169,7 +169,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlo
             .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("需要透镜辅助合成.")
-            .addInfo("拥有与无损超频等效的并行(但有损超频).")
+            .addInfo("电压每提高1级, 最大并行翻4倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

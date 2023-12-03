@@ -8,7 +8,7 @@ import com.rhynia.gtnh.append.common.item.ItemBasic;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
-public class GTNHATab {
+public class VA_Tab {
 
     /**
      * Creative Tab for MetaItem01

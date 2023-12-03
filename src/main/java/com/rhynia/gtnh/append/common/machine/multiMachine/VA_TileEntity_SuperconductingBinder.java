@@ -18,7 +18,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -73,7 +73,7 @@ public class VA_TileEntity_SuperconductingBinder
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VARecipe.instance.SuperconductingBinderRecipes;
+        return VA_RecipeAdder.instance.sSuperconductingBinderRecipes;
     }
 
     @Override
@@ -188,7 +188,7 @@ public class VA_TileEntity_SuperconductingBinder
             .addInfo("超导装配线的控制器")
             .addInfo("\"我不是很懂为什么超导烂大街了.\"")
             .addInfo("直接将原料构建为超导线缆.")
-            .addInfo("电压每提高1级, 并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

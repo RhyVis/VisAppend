@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.common.item;
 
-import static com.rhynia.gtnh.append.client.GTNHATab.tabMetaItem01;
+import static com.rhynia.gtnh.append.client.VA_Tab.tabMetaItem01;
 
 import net.minecraft.item.Item;
 

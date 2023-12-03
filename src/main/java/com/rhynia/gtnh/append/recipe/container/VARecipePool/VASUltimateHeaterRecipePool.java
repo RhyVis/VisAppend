@@ -14,13 +14,14 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -28,7 +29,7 @@ import gtPlusPlus.core.material.ALLOY;
 
 public class VASUltimateHeaterRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map UH = VARecipe.instance.UltimateHeaterRecipes;
+    final GT_Recipe.GT_Recipe_Map UH = VA_RecipeAdder.instance.sUltimateHeaterRecipes;
     final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
@@ -94,7 +95,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
 
-        // region 兰波顿
+        // region 特殊材料制造
         // 兰波顿核心
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -110,7 +111,25 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
             .addTo(UH);
+        // 超导通流
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 0),
+                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(32 * BUCKETS),
+                VA_WerkstoffMaterialPool.superconductingFluxRaw.getMolten(72 * INGOTS))
+            .fluidOutputs(
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(64 * INGOTS),
+                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(30 * SECONDS)
+            .addTo(UH);
         // endregion
+
         // region 聚变加热
         // MetaStableOg
         GT_Values.RA.stdBuilder()

@@ -10,13 +10,15 @@ public class NEIHandler {
 
     public static void IMCSender() {
         // Handler
-        sendHandler("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
-        sendHandler("append.recipe.AssemblyMatrixRecipes", "gregtech:gt.blockmachines:17503");
-        sendHandler("append.recipe.SuperconductingBinderRecipes", "gregtech:gt.blockmachines:17504");
+        sendHandler("append.recipe.ultimateHeater", "gregtech:gt.blockmachines:17502");
+        sendHandler("append.recipe.assemblyMatrix", "gregtech:gt.blockmachines:17503");
+        sendHandler("append.recipe.microAssembly", "gregtech:gt.blockmachines:17503");
+        sendHandler("append.recipe.superconductingBinder", "gregtech:gt.blockmachines:17504");
         // Catalyst
-        sendCatalyst("append.recipe.UltimateHeaterRecipes", "gregtech:gt.blockmachines:17502");
-        sendCatalyst("append.recipe.AssemblyMatrixRecipes", "gregtech:gt.blockmachines:17503");
-        sendCatalyst("append.recipe.SuperconductingBinderRecipes", "gregtech:gt.blockmachines:17504");
+        sendCatalyst("append.recipe.ultimateHeater", "gregtech:gt.blockmachines:17502");
+        sendCatalyst("append.recipe.assemblyMatrix", "gregtech:gt.blockmachines:17503");
+        sendCatalyst("append.recipe.microAssembly", "gregtech:gt.blockmachines:17503");
+        sendCatalyst("append.recipe.superconductingBinder", "gregtech:gt.blockmachines:17504");
 
     }
 
