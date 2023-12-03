@@ -18,7 +18,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VA_RecipeAdder;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -72,7 +72,7 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VARecipe.instance.AssemblyMatrixRecipes;
+        return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
     }
 
     @Override

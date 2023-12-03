@@ -18,7 +18,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VA_RecipeAdder;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -73,7 +73,7 @@ public class VA_TileEntity_SuperconductingBinder
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VARecipe.instance.SuperconductingBinderRecipes;
+        return VA_RecipeAdder.instance.sSuperconductingBinderRecipes;
     }
 
     @Override

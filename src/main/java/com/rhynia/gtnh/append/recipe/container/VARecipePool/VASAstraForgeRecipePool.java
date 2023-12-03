@@ -19,7 +19,7 @@ import net.minecraft.item.ItemStack;
 import com.dreammaster.gthandler.CustomItemList;
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.mapRecipe.VARecipe;
+import com.rhynia.gtnh.append.common.machine.mapRecipe.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -37,7 +37,7 @@ import gtPlusPlus.core.util.minecraft.ItemUtils;
 
 public class VASAstraForgeRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map AF = VARecipe.instance.AstraForgeRecipes;
+    final GT_Recipe.GT_Recipe_Map AF = VA_RecipeAdder.instance.sAstraForgeRecipes;
 
     @Override
     public void loadRecipesPostInit() {

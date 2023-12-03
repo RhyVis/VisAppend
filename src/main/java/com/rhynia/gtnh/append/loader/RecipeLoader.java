@@ -9,10 +9,7 @@ import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAHammerRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VALaserEngraverRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAMachineRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAMixerRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASAssemblyMatrixRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASAstraForgeRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASSuperconductingBinderRecipePool;
-import com.rhynia.gtnh.append.recipe.container.VARecipePool.VASUltimateHeaterRecipePool;
+import com.rhynia.gtnh.append.recipe.container.VARecipePool.*;
 
 public class RecipeLoader {
 
@@ -20,7 +17,7 @@ public class RecipeLoader {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
             new VASAssemblyMatrixRecipePool(), new VASSuperconductingBinderRecipePool(),
-            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(), };
+            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipesPostInit();
@@ -31,7 +28,7 @@ public class RecipeLoader {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
             new VASAssemblyMatrixRecipePool(), new VASSuperconductingBinderRecipePool(),
-            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(),
+            new VASUltimateHeaterRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool(),
             // Basic & Misc Recipe
             new VACommonRecipePool(), new VAMachineRecipePool(),
             // GT Recipe
