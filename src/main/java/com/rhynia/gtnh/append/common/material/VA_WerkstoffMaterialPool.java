@@ -94,6 +94,19 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .enforceUnification(),
         OffsetID + 7,
         TextureSet.SET_FLUID);
+    // SuperconductingFluid
+    public static final Werkstoff superconductingFluid = new Werkstoff(
+        new short[] { 0x69, 0x69, 0x69 },
+        "SuperconductingFluid",
+        "具有超导性质的流体",
+        new Werkstoff.Stats().setMeltingPoint(452),
+        Werkstoff.Types.COMPOUND,
+        new Werkstoff.GenerationFeatures().disable()
+            .onlyDust()
+            .addMolten()
+            .enforceUnification(),
+        OffsetID + 8,
+        TextureSet.SET_METALLIC);
 
     @Override
     public void run() {}
