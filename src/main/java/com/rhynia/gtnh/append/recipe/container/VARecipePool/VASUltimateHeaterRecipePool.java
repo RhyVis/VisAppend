@@ -8,7 +8,6 @@ import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
-import gregtech.api.enums.OrePrefixes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -22,6 +21,7 @@ import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -116,8 +116,8 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
-                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens,0),
-                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens,0))
+                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 0),
+                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0))
             .fluidInputs(
                 VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(32 * BUCKETS),
                 VA_WerkstoffMaterialPool.superconductingFluxRaw.getMolten(72 * INGOTS))

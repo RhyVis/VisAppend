@@ -54,7 +54,7 @@ public class VAMixerRecipePool implements IRecipePool {
         // 超导通流
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust,12),
+                VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 12),
                 Materials.TengamPurified.getDust(11),
                 Materials.Infinity.getDust(10),
                 Materials.CosmicNeutronium.getDust(8),
@@ -65,13 +65,11 @@ public class VAMixerRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(8))
             .itemOutputs(
                 VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 64),
-                VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 15)
-            )
+                VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 15))
             .fluidInputs(
                 Materials.Hydrogen.getPlasma(6 * BUCKETS),
                 Materials.DraconiumAwakened.getMolten(12 * INGOTS),
-                Materials.Indium.getMolten(7 * INGOTS)
-            )
+                Materials.Indium.getMolten(7 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(30 * SECONDS)
