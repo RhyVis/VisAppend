@@ -14,6 +14,9 @@ import gregtech.api.util.GT_Recipe;
 public class VACommonRecipePool implements IRecipePool {
 
     @Override
+    public void loadRecipesPostInit() {}
+
+    @Override
     public void loadRecipes() {
         final GT_Recipe.GT_Recipe_Map EMS = GT_Recipe.GT_Recipe_Map.sElectroMagneticSeparatorRecipes;
         final GT_Recipe.GT_Recipe_Map IMP = BWRecipes.instance.eicMap;

@@ -28,11 +28,71 @@ import gtPlusPlus.core.material.ALLOY;
 
 public class VASUltimateHeaterRecipePool implements IRecipePool {
 
+    final GT_Recipe.GT_Recipe_Map UH = VARecipe.instance.UltimateHeaterRecipes;
     final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
+    public void loadRecipesPostInit() {
+        // region 稀有气体
+        // 等离子 He
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(Materials.Helium.getGas(16 * BUCKETS))
+            .fluidOutputs(Materials.Helium.getPlasma(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Ne
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(WerkstoffLoader.Neon.getFluidOrGas(16 * BUCKETS))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.neon"), 16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Ar
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(Materials.Argon.getGas(16 * BUCKETS))
+            .fluidOutputs(Materials.Argon.getPlasma(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Kr
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(WerkstoffLoader.Krypton.getFluidOrGas(16 * BUCKETS))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.krypton"), 16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Xe
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(WerkstoffLoader.Xenon.getFluidOrGas(16 * BUCKETS))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.xenon"), 16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Rn
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
+            .fluidInputs(Materials.Radon.getGas(16 * BUCKETS))
+            .fluidOutputs(Materials.Radon.getPlasma(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // endregion
+    }
+
+    @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map UH = VARecipe.instance.UltimateHeaterRecipes;
 
         // region 兰波顿
         // 兰波顿核心
@@ -51,7 +111,6 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .duration(115 * SECONDS)
             .addTo(UH);
         // endregion
-
         // region 聚变加热
         // MetaStableOg
         GT_Values.RA.stdBuilder()
@@ -147,62 +206,6 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .addTo(UH);
         // endregion
 
-        // region 稀有气体
-        // 等离子 He
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(Materials.Helium.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Helium.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Ne
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(WerkstoffLoader.Neon.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.neon"), 16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Ar
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(Materials.Argon.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Argon.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Kr
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(WerkstoffLoader.Krypton.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.krypton"), 16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Xe
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(WerkstoffLoader.Xenon.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.xenon"), 16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Rn
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), lensInf)
-            .fluidInputs(Materials.Radon.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Radon.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // endregion
         // region 第一二周期 UV-UEV
         // 氢等离子 H
         GT_Values.RA.stdBuilder()

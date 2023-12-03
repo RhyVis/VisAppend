@@ -18,11 +18,11 @@ import gregtech.api.util.GT_Recipe;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
+    final GT_Recipe.GT_Recipe_Map SB = VARecipe.instance.SuperconductingBinderRecipes;
     final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
-    public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map SB = VARecipe.instance.SuperconductingBinderRecipes;
+    public void loadRecipesPostInit() {
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(MaterialsUEVplus.Eternity.getNanite(64), MaterialsUEVplus.Eternity.getNanite(64))
@@ -38,7 +38,10 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
             .eut(RECIPE_MAX)
             .duration(160 * HOURS)
             .addTo(SB);
+    }
 
+    @Override
+    public void loadRecipes() {
         // region 超导配方
 
         // 终极配方-测试

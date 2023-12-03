@@ -22,6 +22,9 @@ import gregtech.api.util.GT_OreDictUnificator;
 public class VAMachineRecipePool implements IRecipePool {
 
     @Override
+    public void loadRecipesPostInit() {}
+
+    @Override
     public void loadRecipes() {
         // Infinite Liquid Air Hatch
         GT_Values.RA.stdBuilder()
