@@ -8,6 +8,7 @@ import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.util.GT_RecipeBuilder.*;
 
+import gregtech.api.enums.OrePrefixes;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -94,7 +95,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
 
-        // region 兰波顿
+        // region 特殊材料制造
         // 兰波顿核心
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -110,7 +111,25 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
             .addTo(UH);
+        // 超导通流
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                lensInf,
+                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens,0),
+                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens,0))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(32 * BUCKETS),
+                VA_WerkstoffMaterialPool.superconductingFluxRaw.getMolten(72 * INGOTS))
+            .fluidOutputs(
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(64 * INGOTS),
+                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(30 * SECONDS)
+            .addTo(UH);
         // endregion
+
         // region 聚变加热
         // MetaStableOg
         GT_Values.RA.stdBuilder()

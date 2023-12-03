@@ -69,7 +69,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 Materials.Tritanium.getMolten(8 * INGOTS * Multiple),
                 Materials.Silicone.getMolten(16 * INGOTS * Multiple),
                 Materials.Polybenzimidazole.getMolten(16 * INGOTS * Multiple),
-                VA_WerkstoffMaterialPool.superconductingFluid.getMolten(16 * INGOTS * Multiple))
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * INGOTS * Multiple))
             .itemOutputs(ItemList.Circuit_Biomainframe.get(Multiple))
             .eut(RECIPE_UHV)
             .duration(150 * SECONDS * Multiple)
@@ -138,7 +138,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 Materials.Tritanium.getMolten(16 * INGOTS * Multiple),
                 Materials.Silicone.getMolten(32 * INGOTS * Multiple),
                 Materials.Polybenzimidazole.getMolten(32 * INGOTS * Multiple),
-                VA_WerkstoffMaterialPool.superconductingFluid.getMolten(64 * INGOTS * Multiple))
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(64 * INGOTS * Multiple))
             .itemOutputs(ItemList.Circuit_OpticalMainframe.get(Multiple))
             .eut(RECIPE_UEV)
             .duration(150 * SECONDS * Multiple)

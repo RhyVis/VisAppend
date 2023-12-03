@@ -4,6 +4,8 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
 
+import static com.github.bartimaeusnek.bartworks.util.BW_Util.subscriptNumbers;
+
 public class VA_WerkstoffMaterialPool implements Runnable {
 
     protected static final int OffsetID = 24510;
@@ -94,19 +96,31 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .enforceUnification(),
         OffsetID + 7,
         TextureSet.SET_FLUID);
-    // SuperconductingFluid
-    public static final Werkstoff superconductingFluid = new Werkstoff(
+    // SuperconductingFluxRaw
+    public static final Werkstoff superconductingFluxRaw = new Werkstoff(
         new short[] { 0x69, 0x69, 0x69 },
-        "SuperconductingFluid",
-        "具有超导性质的流体",
-        new Werkstoff.Stats().setMeltingPoint(452),
-        Werkstoff.Types.COMPOUND,
+        "SuperconductingFluxRaw",
+        subscriptNumbers("(?AoⁿIf?)12D*12M11If*10SpNt8In7Nq+6Nq*5(⚷⚙⚷ Ni4Ti6)4(✧◇✧)4"),
+        new Werkstoff.Stats().setMeltingPoint(3),
+        Werkstoff.Types.MIXTURE,
         new Werkstoff.GenerationFeatures().disable()
             .onlyDust()
             .addMolten()
             .enforceUnification(),
         OffsetID + 8,
-        TextureSet.SET_METALLIC);
+        TextureSet.SET_MAGNETIC);
+    // SuperconductingFluid
+    public static final Werkstoff superconductingFlux = new Werkstoff(
+        new short[] { 0xC0, 0xC0, 0xC0 },
+        "SuperconductingFlux",
+        "Sx",
+        new Werkstoff.Stats().setMeltingPoint(1),
+        Werkstoff.Types.ELEMENT,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 9,
+        TextureSet.SET_FLUID);
 
     @Override
     public void run() {}

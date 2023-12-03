@@ -4,6 +4,7 @@ import net.minecraft.item.ItemStack;
 
 import gregtech.api.util.GT_ModHandler;
 
+@SuppressWarnings("unused")
 public class BWChip {
 
     // region 封装
