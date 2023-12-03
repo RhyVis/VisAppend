@@ -293,9 +293,9 @@ public class VA_RecipeAdder extends GT_RecipeAdder {
 
         @Override
         public ModularWindow.Builder createNEITemplate(IItemHandlerModifiable itemInputsInventory,
-                                                       IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
-                                                       IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
-                                                       Supplier<Float> progressSupplier, Pos2d windowOffset) {
+            IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
+            IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
+            Supplier<Float> progressSupplier, Pos2d windowOffset) {
             setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount() - 2) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,

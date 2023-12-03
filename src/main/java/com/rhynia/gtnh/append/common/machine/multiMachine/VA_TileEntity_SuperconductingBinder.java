@@ -188,7 +188,7 @@ public class VA_TileEntity_SuperconductingBinder
             .addInfo("超导装配线的控制器")
             .addInfo("\"我不是很懂为什么超导烂大街了.\"")
             .addInfo("直接将原料构建为超导线缆.")
-            .addInfo("电压每提高1级, 并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

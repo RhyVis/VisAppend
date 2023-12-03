@@ -214,7 +214,7 @@ public class VA_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMult
             .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
             .addInfo("需要透镜聚焦热量.")
-            .addInfo("电压每提高1级, 并行翻倍.")
+            .addInfo("电压每提高1级, 最大并行翻2倍.")
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
             .addSeparator()

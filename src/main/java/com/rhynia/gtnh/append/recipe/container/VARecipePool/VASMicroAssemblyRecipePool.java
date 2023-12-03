@@ -1,16 +1,17 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static gregtech.api.enums.TierEU.*;
+import static gregtech.api.util.GT_RecipeBuilder.*;
+
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+
 import gregtech.api.enums.*;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
-
-import static gregtech.api.enums.TierEU.*;
-import static gregtech.api.util.GT_RecipeBuilder.*;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 

@@ -6,9 +6,11 @@ import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Textures.BlockIcons.*;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
@@ -37,6 +39,8 @@ import gregtech.common.blocks.GT_Block_Casings2;
 
 public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
+
+    public boolean mRecipeMode = false; // false-sAssemblyMatrixRecipes,true-sMicroAssemblyRecipes
 
     // region Class Constructor
     public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
@@ -72,7 +76,19 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+        if (mRecipeMode) return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
+        else return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+    }
+
+    @Override
+    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
+        if (getBaseMetaTileEntity().isServerSide()) {
+            this.mRecipeMode = !this.mRecipeMode;
+
+            GT_Utility.sendChatToPlayer(
+                aPlayer,
+                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + (this.mRecipeMode ? "0" : "1")));
+        }
     }
 
     @Override
@@ -183,12 +199,12 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("集成装配线")
+        tt.addMachineType("集成装配线 | 微加工装配线")
             .addInfo("组装矩阵的控制器")
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行翻3倍.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)
