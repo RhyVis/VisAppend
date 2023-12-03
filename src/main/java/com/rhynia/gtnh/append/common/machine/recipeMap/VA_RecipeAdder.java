@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.mapRecipe;
+package com.rhynia.gtnh.append.common.machine.recipeMap;
 
 import static com.rhynia.gtnh.append.util.UtilValues.VA_LOGO_32;
 import static gregtech.api.gui.modularui.GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE;

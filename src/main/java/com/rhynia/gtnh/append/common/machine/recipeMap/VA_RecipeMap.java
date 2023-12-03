@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.mapRecipe;
+package com.rhynia.gtnh.append.common.machine.recipeMap;
 
 import java.util.Collection;
 

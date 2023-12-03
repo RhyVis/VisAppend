@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.mapRecipe.crtsupport;
+package com.rhynia.gtnh.append.common.machine.recipeMap.crtsupport;
 
 import static gregtech.api.enums.GT_Values.RA;
 

@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.rhynia.gtnh.append.common.machine.mapRecipe.crtsupport.AstraForge;
+import com.rhynia.gtnh.append.common.machine.recipeMap.crtsupport.AstraForge;
 import com.rhynia.gtnh.append.loader.MachineLoader;
 import com.rhynia.gtnh.append.loader.MaterialLoader;
 import com.rhynia.gtnh.append.loader.RecipeLoader;
