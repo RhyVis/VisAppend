@@ -3,7 +3,6 @@ package com.rhynia.gtnh.append;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.rhynia.gtnh.append.common.machine.recipeMap.crtsupport.AstraForge;
 import com.rhynia.gtnh.append.loader.MachineLoader;
 import com.rhynia.gtnh.append.loader.MaterialLoader;
 import com.rhynia.gtnh.append.loader.RecipeLoader;
@@ -49,7 +48,6 @@ public class VisAppend {
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-        MineTweakerAPI.registerClass(AstraForge.class);// MineTweaker Support
         VisAppend.LOG.info("Loading machines.");
         MachineLoader.loadMachines();// Load Machines
         NEIHandler.IMCSender();// NEI reg 2 each page
