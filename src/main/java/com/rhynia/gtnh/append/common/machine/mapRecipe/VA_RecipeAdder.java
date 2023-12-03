@@ -283,7 +283,7 @@ public class VA_RecipeAdder extends GT_RecipeAdder {
 
         @Override
         public List<Pos2d> getFluidInputPositions(int fluidInputCount) {
-            return UIHelper.getGridPositions(fluidInputCount, 6, yOrigin + 18, xDirMaxCount);
+            return UIHelper.getGridPositions(fluidInputCount, 6, yOrigin + 36, xDirMaxCount);
         }
 
         @Override
