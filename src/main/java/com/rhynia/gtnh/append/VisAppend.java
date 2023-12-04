@@ -49,7 +49,7 @@ public class VisAppend {
         proxy.init(event);
         VisAppend.LOG.info("Loading machines.");
         MachineLoader.loadMachines();// Load Machines
-        VisAppend.LOG.info("Sending IMC.");
+        VisAppend.LOG.info("Handling IMC.");
         NEIHandler.IMCSender();// NEI Reg
     }
 

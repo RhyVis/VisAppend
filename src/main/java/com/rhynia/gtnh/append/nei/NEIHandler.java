@@ -45,6 +45,7 @@ public class NEIHandler {
         aNBT.setString("itemName", aStack);
         FMLInterModComms.sendMessage("NotEnoughItems", "registerCatalystInfo", aNBT);
     }
+
     private static void sendCatalyst(String aName, String aStack, int aPriority) {
         NBTTagCompound aNBT = new NBTTagCompound();
         aNBT.setString("handlerID", aName);
