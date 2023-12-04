@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.common.machine.implementations;
 
-import static com.rhynia.gtnh.append.util.UtilValues.AddByAppend;
+import static com.rhynia.gtnh.append.util.Values.AddByAppend;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

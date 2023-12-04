@@ -2,7 +2,7 @@ package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.util.UtilValues.*;
+import static com.rhynia.gtnh.append.util.Values.*;
 import static gregtech.api.enums.GT_HatchElement.*;
 import static gregtech.api.enums.Materials.Infinity;
 import static gregtech.api.enums.Materials.Neutronium;

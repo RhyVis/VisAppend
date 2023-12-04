@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append;
 
-import static com.rhynia.gtnh.append.VisAppend.*;
+import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
+import static com.rhynia.gtnh.append.VisAppend.VERSION;
 
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 

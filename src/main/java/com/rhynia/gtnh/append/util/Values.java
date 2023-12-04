@@ -12,7 +12,7 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 
-public class UtilValues {
+public class Values {
 
     // 字段
     public static final String VisAppendID = MOD_ID;
