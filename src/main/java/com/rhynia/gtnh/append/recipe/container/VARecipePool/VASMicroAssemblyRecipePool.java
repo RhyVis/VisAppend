@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
@@ -15,6 +16,7 @@ import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 import com.rhynia.gtnh.append.util.BWChip;
+import com.rhynia.gtnh.append.util.GGChip;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
@@ -22,6 +24,7 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.util.GT_Recipe;
+import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
@@ -44,8 +47,8 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(4 * Multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(4 * Multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_NOR, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_RAM, 4 * Multiple))
+                BWChip.getWrappedPart(BWChip.Part_NOR, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(10 * INGOTS * Multiple),
                 Materials.BioMediumSterilized.getFluid(10 * INGOTS * Multiple),
@@ -65,7 +68,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(6 * Multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(6 * Multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(6 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_RAM, 4 * Multiple))
+                BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(20 * INGOTS * Multiple),
                 Materials.BioMediumSterilized.getFluid(20 * INGOTS * Multiple),
@@ -79,6 +82,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .duration(150 * SECONDS * Multiple)
             .addTo(MA);
         // endregion
+
         // region 光学系
         // 光学集群 UHV
         GT_Values.RA.stdBuilder()
@@ -88,8 +92,8 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_InductorXSMD.get(16 * Multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(20 * Multiple),
                 ItemList.Circuit_Parts_ResistorXSMD.get(20 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_NOR, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_RAM, 4 * Multiple))
+                BWChip.getWrappedPart(BWChip.Part_NOR, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(10 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(10 * INGOTS * Multiple),
@@ -110,8 +114,8 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(24 * Multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(24 * Multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(24 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_NOR, 4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_ASOC, 2 * Multiple))
+                BWChip.getWrappedPart(BWChip.Part_NOR, 4 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_ASOC, 2 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(20 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(20 * INGOTS * Multiple),
@@ -128,12 +132,12 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Circuit_OpticalComputer.get(2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Inductor, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Transistor, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Resistor, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Capacitor, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Diode, 2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_ASOC, 2 * Multiple))
+                BWChip.getWrappedPart(BWChip.Opt_Inductor, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Transistor, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Resistor, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Capacitor, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Diode, 2 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_ASOC, 2 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(40 * INGOTS * Multiple),
@@ -154,11 +158,11 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 CustomItemList.PikoCircuit.get(2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Capacitor, 4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Diode, 4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Transistor, 4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Resistor, 4 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_IC_Q, 4 * Multiple))
+                BWChip.getWrappedPart(BWChip.Opt_Capacitor, 4 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Diode, 4 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Transistor, 4 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Resistor, 4 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_IC_Q, 4 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
                 Materials.UUMatter.getFluid(24 * BUCKETS * Multiple),
@@ -178,11 +182,11 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Board_Optical.get(Multiple),
                 CustomItemList.PicoWafer.get(4 * Multiple),
                 ItemList.Circuit_OpticalMainframe.get(2 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Transistor, 3 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Resistor, 3 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Capacitor, 3 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Opt_Diode, 3 * Multiple),
-                BWChip.getWrapCircuit(BWChip.Part_IC_P, 4 * Multiple))
+                BWChip.getWrappedPart(BWChip.Opt_Transistor, 3 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Resistor, 3 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Capacitor, 3 * Multiple),
+                BWChip.getWrappedPart(BWChip.Opt_Diode, 3 * Multiple),
+                BWChip.getWrappedPart(BWChip.Part_IC_P, 4 * Multiple))
             .fluidInputs(
                 MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
                 Materials.UUMatter.getFluid(8 * BUCKETS * Multiple),
@@ -194,6 +198,26 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemOutputs(CustomItemList.PikoCircuit.get(Multiple))
             .eut(RECIPE_UMV)
             .duration(400 * SECONDS * Multiple)
+            .addTo(MA);
+        // endregion
+
+        // region High Energy Flow Circuit
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                BWChip.getWrappedPart(BWChip.Elite_Board, 12),
+                GGChip.getWrappedCircuit(GGChip.ZPM, 24),
+                BWChip.getWrappedPart(BWChip.Part_IC_Q, 48))
+            .fluidInputs(
+                ALLOY.INDALLOY_140.getFluidStack(24 * INGOTS),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(6 * INGOTS),
+                Materials.Infinity.getMolten(4 * INGOTS))
+            .itemOutputs(
+                CustomItemList.HighEnergyFlowCircuit.get(64),
+                CustomItemList.HighEnergyFlowCircuit.get(64),
+                CustomItemList.HighEnergyFlowCircuit.get(64),
+                CustomItemList.HighEnergyFlowCircuit.get(64))
+            .eut(RECIPE_LuV)
+            .duration(1600 * SECONDS)
             .addTo(MA);
         // endregion
     }

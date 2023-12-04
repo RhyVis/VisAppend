@@ -8,7 +8,7 @@ import gregtech.api.util.GT_ModHandler;
 public class BWChip {
 
     // region 封装
-    public static ItemStack getWrapCircuit(int aIndex, int aAmount) {
+    public static ItemStack getWrappedPart(int aIndex, int aAmount) {
         return GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", aAmount, aIndex);
     }
 
