@@ -98,7 +98,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .enforceUnification(),
         OffsetID + 7,
         TextureSet.SET_FLUID);
-    // SuperconductingFluxRaw
+    // Superconducting Flux Raw
     public static final Werkstoff superconductingFluxRaw = new Werkstoff(
         new short[] { 0x69, 0x69, 0x69 },
         "SuperconductingFluxRaw",
@@ -122,6 +122,19 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .addCells()
             .enforceUnification(),
         OffsetID + 9,
+        TextureSet.SET_FLUID);
+    // Astro Residue
+    public static final Werkstoff astroResidue = new Werkstoff(
+        new short[] { 0x19, 0x19, 0x70 },
+        "AstroResidue",
+        "Ao°",
+        new Werkstoff.Stats().setMeltingPoint(1)
+            .setBoilingPoint(100000),
+        Werkstoff.Types.ELEMENT,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 10,
         TextureSet.SET_FLUID);
 
     @Override

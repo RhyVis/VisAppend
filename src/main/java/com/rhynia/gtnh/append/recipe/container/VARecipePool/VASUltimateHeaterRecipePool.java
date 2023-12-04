@@ -108,7 +108,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
             .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(BUCKETS))
             .fluidOutputs(
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8 * BUCKETS),
-                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(500))
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(500))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
@@ -125,7 +125,7 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
                 VA_WerkstoffMaterialPool.superconductingFluxRaw.getMolten(72 * INGOTS))
             .fluidOutputs(
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(64 * INGOTS),
-                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(16 * BUCKETS))
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(30 * SECONDS)
@@ -164,8 +164,8 @@ public class VASUltimateHeaterRecipePool implements IRecipePool {
                 GT_Utility.getIntegratedCircuit(10),
                 lensInf,
                 esCata,
-                VA_GregtechMaterialPool.AstroInf.getGems(4))
-            .fluidInputs(Materials.Nickel.getMolten(600 * INGOTS), Materials.Titanium.getMolten(600 * INGOTS))
+                VA_GregtechMaterialPool.AstroInf.getGems(8))
+            .fluidInputs(Materials.Nickel.getMolten(400 * INGOTS), Materials.Titanium.getMolten(600 * INGOTS))
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)

@@ -54,7 +54,7 @@ import gregtech.common.blocks.GT_Block_Casings2;
 public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
 
-    public boolean mRecipeMode = false; // false-sAssemblyMatrixRecipes,true-sMicroAssemblyRecipes
+    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
 
     // region Class Constructor
     public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
@@ -90,18 +90,19 @@ public class VA_TileEntity_AssemblyMatrix extends GT_MetaTileEntity_EnhancedMult
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        if (mRecipeMode) return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
-        else return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+        if (mRecipeMode == 1) {
+            return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+        }
+        return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
     }
 
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = !this.mRecipeMode;
-
+            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 3);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
-                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + (this.mRecipeMode ? "0" : "1")));
+                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
         }
     }
 

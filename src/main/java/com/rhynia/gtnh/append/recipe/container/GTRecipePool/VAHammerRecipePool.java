@@ -80,7 +80,7 @@ public class VAHammerRecipePool implements IRecipePool {
             .fluidInputs(
                 Materials.Europium.getMolten(4 * INGOTS),
                 VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4 * BUCKETS))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(2 * BUCKETS))
+            .fluidOutputs(VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(2 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)

@@ -79,7 +79,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
                 WerkstoffLoader.Oganesson.getFluidOrGas(2500),
                 VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(800))
             .fluidOutputs(
-                VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(400),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(400),
                 VA_GregtechMaterialPool.Astro.getFluid(500))
             .noOptimize()
             .eut(RECIPE_UEV)

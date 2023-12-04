@@ -1,15 +1,18 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_MV;
+import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.util.BWRecipes;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
+import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_Recipe;
+import gtPlusPlus.core.material.ELEMENT;
 
 public class VACommonRecipePool implements IRecipePool {
 
@@ -37,6 +40,15 @@ public class VACommonRecipePool implements IRecipePool {
             .itemOutputs(VA_GregtechMaterialPool.AstroInf.getGems(1))
             .noOptimize()
             .eut(6000000)
+            .duration(1)
+            .addTo(IMP);
+        // (临时)聚爆海珀珍
+        // TODO 为星辉残留提供新用法
+        GT_Values.RA.stdBuilder()
+            .fluidInputs(VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(256 * BUCKETS))
+            .itemOutputs(ELEMENT.STANDALONE.HYPOGEN.getDust(16))
+            .noOptimize()
+            .eut(8000000)
             .duration(1)
             .addTo(IMP);
         // endregion
