@@ -2,11 +2,14 @@ package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
+import com.dreammaster.gthandler.CustomItemList;
+import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
@@ -17,6 +20,7 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.util.GT_Recipe;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
@@ -142,6 +146,54 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemOutputs(ItemList.Circuit_OpticalMainframe.get(Multiple))
             .eut(RECIPE_UEV)
             .duration(150 * SECONDS * Multiple)
+            .addTo(MA);
+        // endregion
+
+        // region 量子-Piko电路 UXV-UMV
+        // Quantum UXV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                CustomItemList.PikoCircuit.get(2 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Capacitor, 4 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Diode, 4 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Transistor, 4 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Resistor, 4 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Part_IC_Q, 4 * Multiple))
+            .fluidInputs(
+                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
+                Materials.UUMatter.getFluid(24 * BUCKETS * Multiple),
+                Materials.Osmium.getMolten(16 * INGOTS * Multiple),
+                Materials.Neutronium.getMolten(8 * INGOTS * Multiple),
+                MyMaterial.shirabon.getMolten(8 * INGOTS * Multiple),
+                Materials.Indium.getMolten(8 * INGOTS * Multiple),
+                MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS * Multiple),
+                Materials.Lanthanum.getMolten(2 * INGOTS * Multiple))
+            .itemOutputs(CustomItemList.QuantumCircuit.get(Multiple))
+            .eut(RECIPE_UMV)
+            .duration(800 * SECONDS * Multiple)
+            .addTo(MA);
+        // Piko UMV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Circuit_Board_Optical.get(Multiple),
+                CustomItemList.PicoWafer.get(4 * Multiple),
+                ItemList.Circuit_OpticalMainframe.get(2 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Transistor, 3 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Resistor, 3 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Capacitor, 3 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Opt_Diode, 3 * Multiple),
+                BWChip.getWrapCircuit(BWChip.Part_IC_P, 4 * Multiple))
+            .fluidInputs(
+                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
+                Materials.UUMatter.getFluid(8 * BUCKETS * Multiple),
+                Materials.Osmium.getMolten(8 * INGOTS * Multiple),
+                GT_CoreModSupport.RadoxPolymer.getMolten(4 * INGOTS * Multiple),
+                MaterialsUEVplus.TranscendentMetal.getMolten(4 * INGOTS * Multiple),
+                Materials.Neutronium.getMolten(2 * INGOTS * Multiple),
+                Materials.Lanthanum.getMolten(8 * INGOTS * Multiple))
+            .itemOutputs(CustomItemList.PikoCircuit.get(Multiple))
+            .eut(RECIPE_UMV)
+            .duration(400 * SECONDS * Multiple)
             .addTo(MA);
         // endregion
     }

@@ -102,7 +102,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff superconductingFluxRaw = new Werkstoff(
         new short[] { 0x69, 0x69, 0x69 },
         "SuperconductingFluxRaw",
-        subscriptNumbers("(?Aoⁿ2If3?)*12D*12M11If*10SpNt8In7Nq+6Nq*5(⚷⚙⚷ Ni4Ti6)4(✧◇✧)4"),
+        subscriptNumbers("(?Aoⁿ2If3?)*12D*12M11If*10SpNt8In7Nq+6Nq*5Or5(⚷⚙⚷Ni4Ti6)4(✧◇✧)4"),
         new Werkstoff.Stats().setMeltingPoint(3),
         Werkstoff.Types.MIXTURE,
         new Werkstoff.GenerationFeatures().disable()

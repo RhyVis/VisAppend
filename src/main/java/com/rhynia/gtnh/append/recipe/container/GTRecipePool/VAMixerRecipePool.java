@@ -12,6 +12,7 @@ import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
+import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
@@ -60,14 +61,14 @@ public class VAMixerRecipePool implements IRecipePool {
                 Materials.CosmicNeutronium.getDust(8),
                 Materials.NaquadahEnriched.getDust(6),
                 Materials.Naquadria.getDust(5),
+                MyMaterial.orundum.get(OrePrefixes.dust, 5),
                 ELEMENT.STANDALONE.ADVANCED_NITINOL.getDust(4),
-                ELEMENT.STANDALONE.ASTRAL_TITANIUM.getDust(4),
-                GT_Utility.getIntegratedCircuit(8))
+                ELEMENT.STANDALONE.ASTRAL_TITANIUM.getDust(4))
             .itemOutputs(
                 VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 64),
                 VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 15))
             .fluidInputs(
-                Materials.Hydrogen.getPlasma(6 * BUCKETS),
+                Materials.Helium.getPlasma(6 * BUCKETS),
                 Materials.DraconiumAwakened.getMolten(12 * INGOTS),
                 Materials.Indium.getMolten(7 * INGOTS))
             .noOptimize()

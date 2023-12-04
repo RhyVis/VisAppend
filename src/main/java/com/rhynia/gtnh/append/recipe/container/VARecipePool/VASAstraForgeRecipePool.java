@@ -1062,7 +1062,9 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Naquadah.getDust(60),
                 VA_GregtechMaterialPool.Astro.getDust(64),
                 VA_WerkstoffMaterialPool.astroCatalystBase.get(dust, 12))
-            .itemOutputs(VA_WerkstoffMaterialPool.Originiums.get(dust, 64))
+            .itemOutputs(
+                VA_WerkstoffMaterialPool.Originiums.get(dust, 64),
+                VA_WerkstoffMaterialPool.Originiums.get(dust, 48))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(90 * SECONDS)
