@@ -91,16 +91,15 @@ public class VA_TileEntity_AssemblyMatrix
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        if (mRecipeMode == 1) {
+        if (mRecipeMode == 0) {
             return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
-        }
-        return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
+        } else return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
     }
 
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 3);
+            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
                 StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
