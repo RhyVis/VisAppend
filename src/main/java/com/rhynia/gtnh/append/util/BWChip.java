@@ -2,6 +2,8 @@ package com.rhynia.gtnh.append.util;
 
 import net.minecraft.item.ItemStack;
 
+import com.rhynia.gtnh.append.common.VAItemList;
+
 import gregtech.api.util.GT_ModHandler;
 
 @SuppressWarnings("unused")
@@ -9,7 +11,8 @@ public class BWChip {
 
     // region 封装
     public static ItemStack getWrappedPart(int aIndex, int aAmount) {
-        return GT_ModHandler.getModItem("bartworks", "gt.bwMetaGeneratedItem0", aAmount, aIndex);
+        return GT_ModHandler
+            .getModItem("bartworks", "gt.bwMetaGeneratedItem0", aAmount, aIndex, VAItemList.Test.get(1));
     }
 
     private static final int WrapCircuit_Offset = 32699;
