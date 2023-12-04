@@ -50,4 +50,5 @@ dependencies {
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.1')
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-291-GTNH')
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughEnergistics:1.4.2')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:GTNH-Intergalactic:1.2.4')
 }

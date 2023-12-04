@@ -8,6 +8,7 @@ item.CrystalMatrix.name=Crystal Matrix(Deprecated)
 va.MetaItem01.0.name=Test
 va.MetaItem01.1.name=Lapotron Matrix
 va.MetaItem01.2.name=Crystal Matrix
+va.MetaItem01.3.name=Dense Mica Insulator Foil
 
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode

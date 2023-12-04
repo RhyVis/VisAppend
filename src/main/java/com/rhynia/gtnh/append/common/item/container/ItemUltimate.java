@@ -13,6 +13,7 @@ import net.minecraft.util.EnumChatFormatting;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@SuppressWarnings("unchecked")
 public class ItemUltimate extends Item {
 
     public ItemUltimate(CreativeTabs aCreativeTabs) {

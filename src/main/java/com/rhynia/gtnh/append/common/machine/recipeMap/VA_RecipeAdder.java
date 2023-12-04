@@ -102,7 +102,7 @@ public class VA_RecipeAdder extends GT_RecipeAdder {
         0,
         0,
         0,
-        0,
+        1,
         "",
         1,
         "",

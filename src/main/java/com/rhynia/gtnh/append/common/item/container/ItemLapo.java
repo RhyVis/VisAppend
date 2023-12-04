@@ -1,7 +1,5 @@
 package com.rhynia.gtnh.append.common.item.container;
 
-import static net.minecraft.client.gui.GuiScreen.isShiftKeyDown;
-
 import java.util.List;
 
 import net.minecraft.creativetab.CreativeTabs;
@@ -13,6 +11,7 @@ import net.minecraft.util.EnumChatFormatting;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@SuppressWarnings("unchecked")
 public class ItemLapo extends Item {
 
     public ItemLapo(CreativeTabs aCreativeTabs) {
@@ -31,11 +30,7 @@ public class ItemLapo extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
-        if (isShiftKeyDown()) {
-            toolTip.add(EnumChatFormatting.DARK_RED + "已弃用!");
-        } else {
-            toolTip.add("已弃用!");
-        }
+        toolTip.add(EnumChatFormatting.RED + "已弃用!");
     }
 
 }

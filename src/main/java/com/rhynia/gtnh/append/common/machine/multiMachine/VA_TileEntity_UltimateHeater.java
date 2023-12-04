@@ -46,7 +46,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
@@ -56,7 +56,8 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
-public class VA_TileEntity_UltimateHeater extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_UltimateHeater>
+public class VA_TileEntity_UltimateHeater
+    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
 
     // region Definition

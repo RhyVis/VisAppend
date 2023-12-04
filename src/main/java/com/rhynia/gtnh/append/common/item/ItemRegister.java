@@ -26,6 +26,7 @@ public class ItemRegister {
         VAItemList.Test.set(initItem01("调试占位",0, new String[]{ "我相信它没什么用." }));
         VAItemList.LapoMatrix.set(initItem01("兰波顿矩阵",1, new String[]{ "兰波顿密度达到了极致." }));
         VAItemList.CrystalMatrix.set(initItem01("晶体矩阵",2, new String[]{ "用于批量生产各类晶体芯片." }));
+        VAItemList.DenseMicaInsulatorFoil.set(initItem01("致密绝缘云母",3, new String[]{ "16倍的绝缘性能!" }));
         // Special Item
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
         VAItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));

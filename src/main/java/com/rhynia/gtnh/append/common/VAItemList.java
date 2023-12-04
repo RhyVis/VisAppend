@@ -21,6 +21,7 @@ public enum VAItemList implements IItemContainer {
     Test,
     LapoMatrix,
     CrystalMatrix,
+    DenseMicaInsulatorFoil,
     // Sig Block
     InfiniteLiquidAirHatch,
     InfiniteDistilledWaterHatch,
