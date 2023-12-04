@@ -6,10 +6,12 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
+@SuppressWarnings("unchecked")
 public class ItemCrystalMatrix extends Item {
 
     public ItemCrystalMatrix(CreativeTabs aCreativeTabs) {
@@ -28,6 +30,6 @@ public class ItemCrystalMatrix extends Item {
     @SideOnly(Side.CLIENT)
     public void addInformation(final ItemStack itemStack, final EntityPlayer player, final List toolTip,
         final boolean advancedToolTips) {
-        toolTip.add("已弃用!");
+        toolTip.add(EnumChatFormatting.RED + "已弃用!");
     }
 }

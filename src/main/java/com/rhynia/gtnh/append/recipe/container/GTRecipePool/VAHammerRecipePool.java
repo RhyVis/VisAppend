@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
+import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
@@ -84,6 +85,17 @@ public class VAHammerRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
+            .addTo(HM);
+        // endregion
+
+        // region 致密云母
+        // 致密云母
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.MicaInsulatorSheet.get(4))
+            .itemOutputs(VAItemList.DenseMicaInsulatorFoil.get(1))
+            .noOptimize()
+            .eut(RECIPE_LV)
+            .duration(5 * SECONDS)
             .addTo(HM);
         // endregion
     }

@@ -17,11 +17,13 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.util.GGChip;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -394,6 +396,98 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(80 * SECONDS)
+            .addTo(AM);
+        // endregion
+
+        // region Coil UHV+
+        // Infinity
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_OreDictUnificator.get(OrePrefixes.circuit.get(Materials.Infinite), 1),
+                GT_OreDictUnificator.get(OrePrefixes.wireGt02, Materials.Infinity, 8),
+                GT_OreDictUnificator.get(OrePrefixes.screw, Materials.Infinity, 8),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(32))
+            .fluidInputs(Materials.DraconiumAwakened.getMolten(4 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Infinity.get(1))
+            .noOptimize()
+            .eut(8000000)
+            .duration(60 * SECONDS)
+            .addTo(AM);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UHV, 1),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(32))
+            .fluidInputs(
+                Materials.DraconiumAwakened.getMolten(16 * 4 * INGOTS),
+                Materials.Infinity.getMolten(16 * 9 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Infinity.get(16))
+            .noOptimize()
+            .eut(8000000)
+            .duration(12 * 60 * SECONDS)
+            .addTo(AM);
+        // Hypogen
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_OreDictUnificator.get(OrePrefixes.circuit.get(Materials.Bio), 1),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64))
+            .fluidInputs(Materials.Infinity.getMolten(4 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Hypogen.get(1))
+            .noOptimize()
+            .eut(8000000 * 4)
+            .duration(60 * SECONDS)
+            .addTo(AM);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UEV, 1),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64))
+            .fluidInputs(
+                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 9 * INGOTS),
+                Materials.Infinity.getMolten(16 * 4 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Hypogen.get(16))
+            .noOptimize()
+            .eut(8000000 * 4)
+            .duration(12 * 60 * SECONDS)
+            .addTo(AM);
+        // Eternal
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_OreDictUnificator.get(OrePrefixes.circuit.get(Materials.Optical), 1),
+                GT_OreDictUnificator.get(OrePrefixes.wireGt02, MaterialsUEVplus.SpaceTime, 8),
+                GT_OreDictUnificator.get(OrePrefixes.screw, MaterialsUEVplus.SpaceTime, 8),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64),
+                CustomItemList.MicaInsulatorFoil.get(64))
+            .fluidInputs(ELEMENT.STANDALONE.HYPOGEN.getFluidStack(4 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Eternal.get(1))
+            .noOptimize()
+            .eut(8000000 * 16)
+            .duration(60 * SECONDS)
+            .addTo(AM);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UIV, 1),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64),
+                VAItemList.DenseMicaInsulatorFoil.get(64))
+            .fluidInputs(
+                MaterialsUEVplus.SpaceTime.getMolten(16 * 9 * INGOTS),
+                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 4 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Eternal.get(16))
+            .noOptimize()
+            .eut(8000000 * 16)
+            .duration(12 * 60 * SECONDS)
             .addTo(AM);
         // endregion
     }
