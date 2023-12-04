@@ -34,7 +34,8 @@ public enum VAItemList implements IItemContainer {
     AstraForge,
     UltimateHeater,
     AssemblyMatrix,
-    SuperconductingBinder;
+    SuperconductingBinder,
+    HeatDeathSimulator;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

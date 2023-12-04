@@ -7,7 +7,6 @@ import com.rhynia.gtnh.append.loader.MachineLoader;
 import com.rhynia.gtnh.append.loader.MaterialLoader;
 import com.rhynia.gtnh.append.loader.RecipeLoader;
 import com.rhynia.gtnh.append.nei.NEIHandler;
-import com.rhynia.gtnh.append.nei.NEIHandlerLong;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -51,8 +50,7 @@ public class VisAppend {
         VisAppend.LOG.info("Loading machines.");
         MachineLoader.loadMachines();// Load Machines
         VisAppend.LOG.info("Sending IMC.");
-        NEIHandler.IMCSender();// NEI reg 2 each page
-        NEIHandlerLong.IMCSender();// NEI reg 1 each page
+        NEIHandler.IMCSender();// NEI Reg
     }
 
     @Mod.EventHandler
