@@ -33,7 +33,7 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
                 MaterialsUEVplus.Eternity.getMolten(1440000000),
                 MaterialsUEVplus.SpaceTime.getMolten(1440000000),
                 Materials.Infinity.getMolten(1440000000))
-            .itemOutputs(VAItemList.ItemUltimate.get(1))
+            .itemOutputs(VAItemList.Test.get(1))
             .noOptimize()
             .eut(RECIPE_MAX)
             .duration(160 * HOURS)

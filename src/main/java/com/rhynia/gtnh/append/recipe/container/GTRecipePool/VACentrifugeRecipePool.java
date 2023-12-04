@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.util.UtilValues.FullChance;
+import static com.rhynia.gtnh.append.util.Values.FullChance;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;

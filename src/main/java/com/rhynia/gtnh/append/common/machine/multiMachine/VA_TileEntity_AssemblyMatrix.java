@@ -1,9 +1,23 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.*;
-import static com.rhynia.gtnh.append.util.UtilValues.*;
-import static gregtech.api.enums.GT_HatchElement.*;
-import static gregtech.api.enums.Textures.BlockIcons.*;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
+import static com.rhynia.gtnh.append.util.Values.BluePrintInfo;
+import static com.rhynia.gtnh.append.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.util.Values.StructureTooComplex;
+import static com.rhynia.gtnh.append.util.Values.VisAppendGigaFac;
+import static gregtech.api.enums.GT_HatchElement.Energy;
+import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
+import static gregtech.api.enums.GT_HatchElement.InputBus;
+import static gregtech.api.enums.GT_HatchElement.InputHatch;
+import static gregtech.api.enums.GT_HatchElement.Maintenance;
+import static gregtech.api.enums.GT_HatchElement.OutputBus;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import net.minecraft.entity.player.EntityPlayer;

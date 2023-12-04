@@ -40,6 +40,7 @@ public class VisAppend {
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         VisAppend.LOG.info(MOD_NAME + " start preInit process at version " + VERSION);
+        VisAppend.LOG.info("Materials initializing.");
         proxy.preInit(event);
         MaterialLoader.load();// Load Materials
     }
@@ -49,6 +50,7 @@ public class VisAppend {
         proxy.init(event);
         VisAppend.LOG.info("Loading machines.");
         MachineLoader.loadMachines();// Load Machines
+        VisAppend.LOG.info("Sending IMC.");
         NEIHandler.IMCSender();// NEI reg 2 each page
         NEIHandlerLong.IMCSender();// NEI reg 1 each page
     }

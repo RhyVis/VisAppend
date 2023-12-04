@@ -1,12 +1,14 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
+import static com.rhynia.gtnh.append.util.Values.lensInf;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UIV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
-import static gregtech.api.util.GT_RecipeBuilder.*;
+import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;

@@ -1,7 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.util.UtilValues.lensInf;
-import static com.rhynia.gtnh.append.util.UtilValues.lensMagic;
+import static com.rhynia.gtnh.append.util.Values.lensInf;
+import static com.rhynia.gtnh.append.util.Values.lensMagic;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;

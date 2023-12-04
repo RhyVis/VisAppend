@@ -1,6 +1,8 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.util.UtilValues.*;
+import static com.rhynia.gtnh.append.util.Values.FullChance;
+import static com.rhynia.gtnh.append.util.Values.lensInf;
+import static com.rhynia.gtnh.append.util.Values.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
@@ -10,7 +12,9 @@ import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_RecipeBuilder.*;
+import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
+import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;

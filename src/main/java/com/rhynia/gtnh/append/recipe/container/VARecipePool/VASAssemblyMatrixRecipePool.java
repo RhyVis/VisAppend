@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
-import static goodgenerator.util.ItemRefer.*;
+import static goodgenerator.util.ItemRefer.Advanced_Radiation_Protection_Plate;
+import static goodgenerator.util.ItemRefer.Radiation_Protection_Plate;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;

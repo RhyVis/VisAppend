@@ -1,7 +1,7 @@
 package com.rhynia.gtnh.append.common.item.registry;
 
-import static com.rhynia.gtnh.append.util.UtilMetaItemStack.initMetaItemStack;
-import static com.rhynia.gtnh.append.util.UtilMetaItemStack.metaItemStackTooltipsAdd;
+import static com.rhynia.gtnh.append.util.MetaItemStack.initMetaItemStack;
+import static com.rhynia.gtnh.append.util.MetaItemStack.metaItemStackTooltipsAdd;
 
 import java.util.Arrays;
 import java.util.HashMap;
