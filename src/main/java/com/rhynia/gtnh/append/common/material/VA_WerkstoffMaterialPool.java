@@ -18,7 +18,8 @@ public class VA_WerkstoffMaterialPool implements Runnable {
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
-            .addGems(),
+            .addGems()
+            .enforceUnification(),
         OffsetID + 1,
         TextureSet.SET_NETHERSTAR);
     // Originiums
@@ -29,7 +30,8 @@ public class VA_WerkstoffMaterialPool implements Runnable {
         new Werkstoff.Stats(),
         Werkstoff.Types.ELEMENT,
         new Werkstoff.GenerationFeatures().disable()
-            .addGems(),
+            .addGems()
+            .enforceUnification(),
         OffsetID + 2,
         TextureSet.SET_DIAMOND);
     // Astro Fuel MKI
@@ -58,7 +60,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff astroCatalystBase = new Werkstoff(
         new short[] { 0x48, 0x3d, 0x8b },
         "AstroCatalystBase",
-        "?AoⁿIf?",
+        subscriptNumbers("Aoⁿ2If3"),
         new Werkstoff.Stats().setRadioactive(true)
             .setSublimation(true)
             .setBoilingPoint(570)
@@ -74,7 +76,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff astroCatalystActivated = new Werkstoff(
         new short[] { 0x6a, 0x5a, 0xcd },
         "AstroCatalystBaseActivated",
-        "(?AoⁿIf?)*",
+        subscriptNumbers("(?Aoⁿ2If3?)*"),
         new Werkstoff.Stats().setRadioactive(true)
             .setMeltingPoint(980),
         Werkstoff.Types.COMPOUND,
@@ -100,7 +102,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff superconductingFluxRaw = new Werkstoff(
         new short[] { 0x69, 0x69, 0x69 },
         "SuperconductingFluxRaw",
-        subscriptNumbers("(?AoⁿIf?)12D*12M11If*10SpNt8In7Nq+6Nq*5(⚷⚙⚷ Ni4Ti6)4(✧◇✧)4"),
+        subscriptNumbers("(?Aoⁿ2If3?)*12D*12M11If*10SpNt8In7Nq+6Nq*5(⚷⚙⚷ Ni4Ti6)4(✧◇✧)4"),
         new Werkstoff.Stats().setMeltingPoint(3),
         Werkstoff.Types.MIXTURE,
         new Werkstoff.GenerationFeatures().disable()
