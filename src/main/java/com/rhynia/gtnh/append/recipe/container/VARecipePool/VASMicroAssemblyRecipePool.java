@@ -1,10 +1,12 @@
 package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
+import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
+import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
@@ -20,11 +22,14 @@ import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.util.recipeHelper.Solder;
 
 import goodgenerator.items.MyMaterial;
+import goodgenerator.util.ItemRefer;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
+import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
+import gregtech.api.util.GT_Utility;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
@@ -217,6 +222,74 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 CustomItemList.HighEnergyFlowCircuit.get(64))
             .eut(RECIPE_LuV)
             .duration(1600 * SECONDS)
+            .addTo(MA);
+        // endregion
+
+        // region 高算力工作站
+        // T1
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                BWPart.getWrappedPart(BWPart.Elite_Board, 12),
+                GT_Utility
+                    .copyAmountUnsafe(16 * 16, GT_ModHandler.getModItem("dreamcraft", "item.EngravedGoldChip", 1)),
+                BWPart.getWrappedPart(BWPart.Part_ASOC, 8),
+                BWPart.getWrappedPart(BWPart.Part_NOR, 32))
+            .fluidInputs(
+                Solder.getSolder(1, 16 * 2 * INGOTS),
+                MyMaterial.signalium.getMolten(16 * 4 * INGOTS),
+                Materials.Aluminium.getMolten(16 * 4 * INGOTS),
+                Materials.TinAlloy.getMolten(16 * 4 * INGOTS))
+            .itemOutputs(ItemRefer.HiC_T1.get(16))
+            .eut(RECIPE_IV)
+            .duration(12 * 60 * SECONDS)
+            .addTo(MA);
+        // T2
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemRefer.HiC_T1.get(32),
+                GT_Utility.copyAmountUnsafe(16 * 8, CustomItemList.EngravedDiamondCrystalChip.get(1)),
+                BWPart.getWrappedPart(BWPart.Part_NAND, 16))
+            .fluidInputs(
+                Materials.Plastic.getMolten(16 * 2 * INGOTS),
+                MyMaterial.signalium.getMolten(16 * INGOTS),
+                MyMaterial.lumiium.getMolten(16 * 72),
+                Materials.Enderium.getMolten(16 * 72),
+                Materials.Aluminium.getMolten(16 * 8 * INGOTS))
+            .itemOutputs(ItemRefer.HiC_T2.get(16))
+            .eut(RECIPE_LuV)
+            .duration(12 * 5 * SECONDS)
+            .addTo(MA);
+        // T3
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemRefer.HiC_T2.get(32),
+                BWPart.getWrappedPart(BWPart.Lapotron, 8),
+                BWPart.getWrappedPart(BWPart.AdvCrystal_Raw, 1))
+            .fluidInputs(
+                MyMaterial.adamantiumAlloy.getMolten(16 * 4 * INGOTS),
+                MyMaterial.signalium.getMolten(16 * 2 * INGOTS),
+                MyMaterial.lumiium.getMolten(16 * INGOTS),
+                Materials.TungstenCarbide.getMolten(16 * 72),
+                Materials.StainlessSteel.getMolten(16 * 8 * INGOTS))
+            .itemOutputs(ItemRefer.HiC_T3.get(16))
+            .eut(RECIPE_ZPM)
+            .duration(12 * 5 * SECONDS)
+            .addTo(MA);
+        // T4
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemRefer.HiC_T3.get(8),
+                CustomItemList.EngravedEnergyChip.get(32),
+                BWPart.getWrappedPart(BWPart.Part_QBit, 16))
+            .fluidInputs(
+                MyMaterial.marM200.getMolten(4 * 8 * INGOTS),
+                MyMaterial.signalium.getMolten(4 * 4 * INGOTS),
+                MyMaterial.lumiium.getMolten(4 * 2 * INGOTS),
+                MyMaterial.artheriumSn.getMolten(4 * INGOTS),
+                Materials.EnergeticAlloy.getMolten(4 * 8 * INGOTS))
+            .itemOutputs(ItemRefer.HiC_T4.get(4))
+            .eut(RECIPE_UV)
+            .duration(3 * 5 * SECONDS)
             .addTo(MA);
         // endregion
     }

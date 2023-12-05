@@ -383,89 +383,47 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // endregion
 
         // region 防辐射板
-        // 防辐射板 16x
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(1),
-                Materials.Lanthanum.getPlates(16 * 4),
-                GT_Utility.copyAmountUnsafe(16 * 8, Materials.NaquadahAlloy.getPlates(1)))
-            .fluidInputs(Materials.Lead.getMolten(16 * 8 * INGOTS))
-            .itemOutputs(Radiation_Protection_Plate.get(16))
-            .noOptimize()
-            .eut(RECIPE_EV)
-            .duration(12 * 20 * SECONDS)
-            .addTo(IA);
         // 防辐射板 64x
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_Utility.getIntegratedCircuit(2),
-                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Lanthanum.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 8, Materials.NaquadahAlloy.getPlates(1)))
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.NaquadahAlloy.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64),
+                Materials.Lanthanum.getPlates(64))
             .fluidInputs(Materials.Lead.getMolten(64 * 8 * INGOTS))
             .itemOutputs(Radiation_Protection_Plate.get(64))
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(12 * 4 * 20 * SECONDS)
             .addTo(IA);
-        // 防辐射板 256x
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Lanthanum.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 8, Materials.NaquadahAlloy.getPlates(1)))
-            .fluidInputs(Materials.Lead.getMolten(256 * 8 * INGOTS))
-            .itemOutputs(GT_Utility.copyAmountUnsafe(256, Radiation_Protection_Plate.get(1)))
-            .noOptimize()
-            .eut(RECIPE_EV)
-            .duration(12 * 16 * 20 * SECONDS)
-            .addTo(IA);
         // 进阶防辐射板 16x
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_Utility.getIntegratedCircuit(1),
-                GT_Utility.copyAmountUnsafe(16 * 20, Materials.NaquadahAlloy.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(16 * 8, Materials.Lanthanum.getPlates(1)),
-                Materials.ElectrumFlux.getPlates(16 * 4),
-                Materials.Trinium.getPlates(16 * 4),
-                Materials.Osmiridium.getPlates(16 * 4),
-                Materials.VibrantAlloy.getPlates(16 * 4))
-            .fluidInputs(Solder.getSolder(2, 16 * 8 * INGOTS), Materials.Lead.getMolten(16 * 16 * INGOTS))
-            .itemOutputs(Advanced_Radiation_Protection_Plate.get(16))
+                Materials.ElectrumFlux.getPlates(64),
+                Materials.ElectrumFlux.getPlates(64),
+                Materials.Trinium.getPlates(64),
+                Materials.Trinium.getPlates(64),
+                Materials.Osmiridium.getPlates(64),
+                Materials.Osmiridium.getPlates(64),
+                Materials.VibrantAlloy.getPlates(64),
+                Materials.VibrantAlloy.getPlates(64))
+            .fluidInputs(
+                Solder.getSolder(2, 16 * 16 * INGOTS),
+                Materials.NaquadahAlloy.getMolten(10 * 64 * INGOTS),
+                Materials.Lanthanum.getMolten(4 * 64 * INGOTS),
+                Materials.Lead.getMolten(32 * 16 * INGOTS))
+            .itemOutputs(Advanced_Radiation_Protection_Plate.get(32))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(12 * 50 * SECONDS)
-            .addTo(IA);
-        // 进阶防辐射板 64x
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(2),
-                GT_Utility.copyAmountUnsafe(64 * 20, Materials.NaquadahAlloy.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 8, Materials.Lanthanum.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 4, Materials.ElectrumFlux.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Trinium.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Osmiridium.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(64 * 4, Materials.VibrantAlloy.getPlates(1)))
-            .fluidInputs(Solder.getSolder(2, 64 * 8 * INGOTS), Materials.Lead.getMolten(64 * 16 * INGOTS))
-            .itemOutputs(Advanced_Radiation_Protection_Plate.get(64))
-            .noOptimize()
-            .eut(RECIPE_ZPM)
-            .duration(12 * 4 * 50 * SECONDS)
-            .addTo(IA);
-        // 进阶防辐射板 256x
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(4),
-                GT_Utility.copyAmountUnsafe(256 * 20, Materials.NaquadahAlloy.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 8, Materials.Lanthanum.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 4, Materials.ElectrumFlux.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Trinium.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Osmiridium.getPlates(1)),
-                GT_Utility.copyAmountUnsafe(256 * 4, Materials.VibrantAlloy.getPlates(1)))
-            .fluidInputs(Solder.getSolder(2, 256 * 8 * INGOTS), Materials.Lead.getMolten(256 * 16 * INGOTS))
-            .itemOutputs(GT_Utility.copyAmountUnsafe(256, Advanced_Radiation_Protection_Plate.get(1)))
-            .noOptimize()
-            .eut(RECIPE_ZPM)
-            .duration(12 * 16 * 50 * SECONDS)
+            .duration(12 * 100 * SECONDS)
             .addTo(IA);
         // endregion
 
