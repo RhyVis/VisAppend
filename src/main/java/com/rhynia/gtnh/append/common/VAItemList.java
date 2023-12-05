@@ -35,7 +35,7 @@ public enum VAItemList implements IItemContainer {
     UltimateHeater,
     AssemblyMatrix,
     SuperconductingBinder,
-    HeatDeathSimulator;
+    KelvinTransformField;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

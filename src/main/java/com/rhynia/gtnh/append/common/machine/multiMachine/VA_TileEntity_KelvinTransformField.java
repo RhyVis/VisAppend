@@ -5,7 +5,7 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose
 import static com.rhynia.gtnh.append.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.util.Values.BluePrintTip;
 import static com.rhynia.gtnh.append.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.util.Values.VisAppendGigaFac;
+import static com.rhynia.gtnh.append.util.Values.VisAppendNuclear;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
@@ -50,18 +50,18 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-public class VA_TileEntity_HeatDeathSimulator
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_HeatDeathSimulator>
+public class VA_TileEntity_KelvinTransformField
+    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_KelvinTransformField>
     implements IConstructable, ISurvivalConstructable {
 
     public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
 
     // region Class Constructor
-    public VA_TileEntity_HeatDeathSimulator(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_KelvinTransformField(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_HeatDeathSimulator(String aName) {
+    public VA_TileEntity_KelvinTransformField(String aName) {
         super(aName);
     }
     // endregion
@@ -105,7 +105,7 @@ public class VA_TileEntity_HeatDeathSimulator
             this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
-                StatCollector.translateToLocal("append.HeatDeathSimulator.mRecipeMode." + this.mRecipeMode));
+                StatCollector.translateToLocal("append.KelvinTransformField.mRecipeMode." + this.mRecipeMode));
         }
     }
 
@@ -144,15 +144,15 @@ public class VA_TileEntity_HeatDeathSimulator
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<VA_TileEntity_HeatDeathSimulator> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_HeatDeathSimulator>builder()
+    public IStructureDefinition<VA_TileEntity_KelvinTransformField> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_KelvinTransformField>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings4, 7))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_HeatDeathSimulator>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_KelvinTransformField>builder()
                     .atLeast(InputBus, InputHatch, OutputBus, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_HeatDeathSimulator::addToMachineList)
+                    .adder(VA_TileEntity_KelvinTransformField::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(1))
                     .buildAndChain(GregTech_API.sBlockCasings2, 1))
@@ -192,18 +192,18 @@ public class VA_TileEntity_HeatDeathSimulator
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("真空冷冻机 | 热寂加速器")
-            .addInfo("热寂衰变场的控制器")
+        tt.addMachineType("真空冷冻机 | 热动力学解析")
+            .addInfo("开尔文变换场的控制器")
             .addInfo(
                 EnumChatFormatting.RED + "\"万物都有"
                     + EnumChatFormatting.DARK_RED
                     + "终结"
                     + EnumChatFormatting.RED
-                    + "，我不过是加速了它.\"")
-            .addInfo("将一切炽热冻结为寂静.")
+                    + "，我不过是定义了它的到来.\"")
+            .addInfo("指挥粒子做它该做的热运动.")
             .addInfo("真空冷冻机模式下，最大并行为2048.")
             .addInfo("且电压每提高1级, 降低5%配方耗时(叠乘计算).")
-            .addInfo("热寂加速器模式下，基础最大并行为64.")
+            .addInfo("热动力学解析模式下，基础最大并行为64.")
             .addInfo("且电压每提高1级, 增加16并行.")
             .addInfo("使用螺丝刀切换模式.")
             .addSeparator()
@@ -216,7 +216,7 @@ public class VA_TileEntity_HeatDeathSimulator
             .addOutputHatch(BluePrintInfo, 1)
             .addMaintenanceHatch(BluePrintInfo, 3)
             .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(VisAppendGigaFac);
+            .toolTipFinisher(VisAppendNuclear);
         return tt;
     }
 
@@ -257,7 +257,7 @@ public class VA_TileEntity_HeatDeathSimulator
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_HeatDeathSimulator(this.mName);
+        return new VA_TileEntity_KelvinTransformField(this.mName);
     }
 
     @Override
