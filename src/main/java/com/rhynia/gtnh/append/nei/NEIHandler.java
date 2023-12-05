@@ -6,6 +6,7 @@ import com.rhynia.gtnh.append.Tags;
 
 import cpw.mods.fml.common.event.FMLInterModComms;
 
+@SuppressWarnings("SpellCheckingInspection")
 public class NEIHandler {
 
     public static void IMCSender() {

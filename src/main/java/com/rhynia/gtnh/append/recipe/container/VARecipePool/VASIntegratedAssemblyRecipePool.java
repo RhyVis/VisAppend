@@ -2,12 +2,13 @@ package com.rhynia.gtnh.append.recipe.container.VARecipePool;
 
 import static goodgenerator.util.ItemRefer.Advanced_Radiation_Protection_Plate;
 import static goodgenerator.util.ItemRefer.Radiation_Protection_Plate;
-import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_UIV;
+import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
@@ -37,13 +38,12 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
+import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ELEMENT;
-import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
     final GT_Recipe.GT_Recipe_Map IA = VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
-    final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
     public void loadRecipesPostInit() {
@@ -98,8 +98,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 BWPart.getWrappedPart(BWPart.Delicate_Board, 1),
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64),
+                GT_Utility.copyAmountUnsafe(128, ItemList.Energy_LapotronicOrb.get(1)),
                 BWPart.getWrappedPart(BWPart.Part_IC_H, 4),
                 BWPart.getWrappedPart(BWPart.Part_QBit, 2))
             .fluidInputs(
@@ -134,11 +133,10 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GGChip.getWrappedCircuit(GGChip.ZPM, 4),
-                ItemList.Energy_LapotronicOrb2.get(64),
-                ItemList.Energy_LapotronicOrb2.get(64),
-                BWPart.getWrappedPart(BWPart.Part_QBit, 48),
-                BWPart.getWrappedPart(BWPart.Adv_Transistor, 8),
-                ItemList.Field_Generator_LuV.get(32))
+                GT_Utility.copyAmountUnsafe(128, ItemList.Energy_LapotronicOrb2.get(1)),
+                ItemList.Field_Generator_LuV.get(32),
+                GT_Utility.copyAmountUnsafe(6 * 64, BWPart.getWrappedPart(BWPart.Part_ASOC, 1)),
+                BWPart.getWrappedPart(BWPart.Adv_Transistor, 8))
             .fluidInputs(
                 Solder.getSolder(2, 16 * 20 * INGOTS),
                 Materials.Europium.getMolten(16 * 16 * INGOTS),
@@ -172,11 +170,10 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GGChip.getWrappedCircuit(GGChip.UV, 4),
-                ItemList.Energy_Module.get(64),
-                ItemList.Energy_Module.get(64),
-                BWPart.getWrappedPart(BWPart.Part_IC_UH, 64),
-                BWPart.getWrappedPart(BWPart.Adv_Diode, 16),
-                ItemList.Field_Generator_ZPM.get(32))
+                GT_Utility.copyAmountUnsafe(128, ItemList.Energy_Module.get(1)),
+                ItemList.Field_Generator_ZPM.get(32),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_H, 1)),
+                BWPart.getWrappedPart(BWPart.Adv_Diode, 16))
             .fluidInputs(
                 Solder.getSolder(2, 16 * 20 * INGOTS),
                 Materials.Americium.getMolten(16 * 16 * INGOTS),
@@ -209,6 +206,23 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 终极电池 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UHV, 4),
+                GT_Utility.copyAmountUnsafe(128, ItemList.Energy_Cluster.get(1)),
+                ItemList.Field_Generator_UV.get(32),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_H, 1)),
+                BWPart.getWrappedPart(BWPart.Adv_Diode, 32))
+            .fluidInputs(
+                Solder.getSolder(2, 16 * 20 * INGOTS),
+                Materials.Tritanium.getMolten(16 * 64 * INGOTS),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 4 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
+            .itemOutputs(ItemList.ZPM2.get(16))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(12 * 150 * SECONDS)
+            .addTo(IA);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
                 BWPart.getWrappedPart(BWPart.Opt_Board, 1),
                 GGChip.getWrappedCircuit(GGChip.UHV, 4),
                 BWPart.getWrappedPart(BWPart.Part_IC_P, 64),
@@ -231,83 +245,88 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 真·终极电池 UMV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32704),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32703),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32701),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32707),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32708),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32709),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32710),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32711))
+                GGChip.getWrappedCircuit(GGChip.UEV, 4),
+                GT_Utility.copyAmountUnsafe(128, ItemList.ZPM2.get(1)),
+                ItemList.Field_Generator_UHV.get(64),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_UH, 1)),
+                GT_Utility.copyAmountUnsafe(3 * 64, BWPart.getWrappedPart(BWPart.Part_ASOC, 1)),
+                BWPart.getWrappedPart(BWPart.Adv_Diode, 64))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(128 * INGOTS),
-                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 120 * 1000),
-                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
-                Materials.Infinity.getMolten(128 * INGOTS),
-                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(210 * 1000))
-            .itemOutputs(ItemList.ZPM3.get(32))
+                Solder.getSolder(3, 16 * 4608),
+                Materials.Neutronium.getMolten(16 * 128 * INGOTS),
+                Materials.Naquadria.getMolten(16 * 9216),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 16 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 32000))
+            .itemOutputs(ItemList.ZPM3.get(16))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * 200 * SECONDS)
+            .addTo(IA);
+        // 极·终极电池 UXV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UIV, 4),
+                GT_Utility.copyAmountUnsafe(128, ItemList.ZPM3.get(1)),
+                ItemList.Field_Generator_UEV.get(64),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_P, 1)),
+                GT_Utility.copyAmountUnsafe(6 * 64, BWPart.getWrappedPart(BWPart.Part_ASOC, 1)),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 64))
+            .fluidInputs(
+                Solder.getSolder(3, 16 * 9216),
+                Materials.InfinityCatalyst.getMolten(16 * 128 * INGOTS),
+                Materials.Quantium.getMolten(16 * 18432),
+                Materials.Naquadria.getMolten(16 * 18432),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 64 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 64000))
+            .itemOutputs(ItemList.ZPM4.get(16))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(950 * SECONDS)
+            .duration(12 * 250 * SECONDS)
             .addTo(IA);
-        // TODO 添加UXV+配方
-        /*
-         * // 极·终极电池 UXV
-         * GT_Values.RA.stdBuilder()
-         * .itemInputs(
-         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 4),
-         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-         * .fluidInputs(
-         * MaterialsUEVplus.Universium.getMolten(888),
-         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-         * Materials.Water.getMolten(444),
-         * Materials.CosmicNeutronium.getMolten(1440000000),
-         * MaterialsUEVplus.SpaceTime.getMolten(6666),
-         * Materials.Infinity.getMolten(1440000000))
-         * .itemOutputs(ItemList.ZPM4.get(8))
-         * .noOptimize()
-         * .eut(RECIPE_UIV)
-         * .duration(16000 * 20)
-         * .addTo(AM);
-         * // 狂·终极电池 MAX
-         * GT_Values.RA.stdBuilder()
-         * .itemInputs(
-         * GT_OreDictUnificator.get(OrePrefixes.gem, VA_GregtechMaterialPool.AstroMagic, 5),
-         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-         * .fluidInputs(
-         * MaterialsUEVplus.Universium.getMolten(888),
-         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-         * Materials.Neutronium.getMolten(444),
-         * Materials.Gold.getMolten(1440000000),
-         * MaterialsUEVplus.SpaceTime.getMolten(6666),
-         * Materials.Infinity.getMolten(1440000000))
-         * .itemOutputs(ItemList.ZPM5.get(4))
-         * .noOptimize()
-         * .eut(RECIPE_UMV)
-         * .duration(16000 * 20)
-         * .addTo(AM);
-         * // 太·终极电池 ER
-         * GT_Values.RA.stdBuilder()
-         * .itemInputs(
-         * GT_OreDictUnificator.get(OrePrefixes.dust, VA_GregtechMaterialPool.AstroMagic, 6),
-         * GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64))
-         * .fluidInputs(
-         * MaterialsUEVplus.Universium.getMolten(888),
-         * MaterialsUEVplus.ExcitedDTSC.getFluid(1200000000),
-         * Materials.Iron.getMolten(444),
-         * Materials.CosmicNeutronium.getMolten(1440000000),
-         * MaterialsUEVplus.SpaceTime.getMolten(6666),
-         * Materials.Infinity.getMolten(1440000000))
-         * .itemOutputs(ItemList.ZPM6.get(1))
-         * .noOptimize()
-         * .eut(RECIPE_UXV)
-         * .duration(16000 * 20)
-         * .addTo(AM);
-         */
+        // 狂·终极电池 MAX
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UMV, 4),
+                GT_Utility.copyAmountUnsafe(128, ItemList.ZPM4.get(1)),
+                ItemList.Field_Generator_UIV.get(64),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_Q, 1)),
+                GT_Utility.copyAmountUnsafe(16 * 64, CustomItemList.RawPicoWafer.get(1)),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Inductor, 32))
+            .fluidInputs(
+                Solder.getSolder(3, 16 * 18432),
+                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 128 * INGOTS),
+                ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(18_432),
+                Materials.Quantium.getMolten(16 * 18432),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 128 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 128000))
+            .itemOutputs(ItemList.ZPM5.get(16))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(12 * 300 * SECONDS)
+            .addTo(IA);
+        // 太·终极电池 ER
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UXV, 4),
+                GT_Utility.copyAmountUnsafe(128, ItemList.ZPM5.get(1)),
+                ItemList.Field_Generator_UMV.get(64),
+                GT_Utility.copyAmountUnsafe(256, BWPart.getWrappedPart(BWPart.Part_IC_Q, 1)),
+                GT_Utility.copyAmountUnsafe(16 * 64, CustomItemList.RawPicoWafer.get(1)),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Inductor, 64))
+            .fluidInputs(
+                Solder.getSolder(3, 16 * 36864),
+                ELEMENT.STANDALONE.DRAGON_METAL.getFluidStack(16 * 128 * INGOTS),
+                ELEMENT.STANDALONE.ASTRAL_TITANIUM.getFluidStack(16 * 36864),
+                ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(16 * 36864),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 256 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 256000))
+            .itemOutputs(ItemList.ZPM6.get(16))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(12 * 350 * SECONDS)
+            .addTo(IA);
         // endregion
 
         // region 杂项组装
@@ -364,44 +383,89 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // endregion
 
         // region 防辐射板
-        // 防辐射板
+        // 防辐射板 16x
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64))
-            .fluidInputs(Materials.Lead.getMolten(512 * INGOTS))
+                GT_Utility.getIntegratedCircuit(1),
+                Materials.Lanthanum.getPlates(16 * 4),
+                GT_Utility.copyAmountUnsafe(16 * 8, Materials.NaquadahAlloy.getPlates(1)))
+            .fluidInputs(Materials.Lead.getMolten(16 * 8 * INGOTS))
+            .itemOutputs(Radiation_Protection_Plate.get(16))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(12 * 20 * SECONDS)
+            .addTo(IA);
+        // 防辐射板 64x
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(2),
+                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Lanthanum.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 8, Materials.NaquadahAlloy.getPlates(1)))
+            .fluidInputs(Materials.Lead.getMolten(64 * 8 * INGOTS))
             .itemOutputs(Radiation_Protection_Plate.get(64))
             .noOptimize()
             .eut(RECIPE_EV)
-            .duration(180 * SECONDS)
+            .duration(12 * 4 * 20 * SECONDS)
             .addTo(IA);
-        // 进阶防辐射板
+        // 防辐射板 256x
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.Lead.getPlates(64),
-                Materials.Lead.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.ElectrumFlux.getPlates(32),
-                Materials.Trinium.getPlates(32),
-                Materials.Osmiridium.getPlates(32),
-                Materials.VibrantAlloy.getPlates(32))
-            .fluidInputs(Materials.NaquadahEnriched.getMolten(32 * INGOTS))
-            .itemOutputs(Advanced_Radiation_Protection_Plate.get(8))
+                GT_Utility.getIntegratedCircuit(4),
+                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Lanthanum.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 8, Materials.NaquadahAlloy.getPlates(1)))
+            .fluidInputs(Materials.Lead.getMolten(256 * 8 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, Radiation_Protection_Plate.get(1)))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(12 * 16 * 20 * SECONDS)
+            .addTo(IA);
+        // 进阶防辐射板 16x
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(1),
+                GT_Utility.copyAmountUnsafe(16 * 20, Materials.NaquadahAlloy.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(16 * 8, Materials.Lanthanum.getPlates(1)),
+                Materials.ElectrumFlux.getPlates(16 * 4),
+                Materials.Trinium.getPlates(16 * 4),
+                Materials.Osmiridium.getPlates(16 * 4),
+                Materials.VibrantAlloy.getPlates(16 * 4))
+            .fluidInputs(Solder.getSolder(2, 16 * 8 * INGOTS), Materials.Lead.getMolten(16 * 16 * INGOTS))
+            .itemOutputs(Advanced_Radiation_Protection_Plate.get(16))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(360 * SECONDS)
+            .duration(12 * 50 * SECONDS)
+            .addTo(IA);
+        // 进阶防辐射板 64x
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(2),
+                GT_Utility.copyAmountUnsafe(64 * 20, Materials.NaquadahAlloy.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 8, Materials.Lanthanum.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 4, Materials.ElectrumFlux.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Trinium.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 4, Materials.Osmiridium.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(64 * 4, Materials.VibrantAlloy.getPlates(1)))
+            .fluidInputs(Solder.getSolder(2, 64 * 8 * INGOTS), Materials.Lead.getMolten(64 * 16 * INGOTS))
+            .itemOutputs(Advanced_Radiation_Protection_Plate.get(64))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 4 * 50 * SECONDS)
+            .addTo(IA);
+        // 进阶防辐射板 256x
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(4),
+                GT_Utility.copyAmountUnsafe(256 * 20, Materials.NaquadahAlloy.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 8, Materials.Lanthanum.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 4, Materials.ElectrumFlux.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Trinium.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 4, Materials.Osmiridium.getPlates(1)),
+                GT_Utility.copyAmountUnsafe(256 * 4, Materials.VibrantAlloy.getPlates(1)))
+            .fluidInputs(Solder.getSolder(2, 256 * 8 * INGOTS), Materials.Lead.getMolten(256 * 16 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, Advanced_Radiation_Protection_Plate.get(1)))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 16 * 50 * SECONDS)
             .addTo(IA);
         // endregion
 

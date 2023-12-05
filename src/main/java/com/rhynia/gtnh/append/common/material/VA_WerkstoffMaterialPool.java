@@ -112,6 +112,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
         OffsetID + 8,
         TextureSet.SET_MAGNETIC);
     // SuperconductingFluid
+    // We regard 64UHV, 16UEV, 4UIV, 1UMV SC as 4 Ingots of SX
     public static final Werkstoff superconductingFlux = new Werkstoff(
         new short[] { 0xC0, 0xC0, 0xC0 },
         "SuperconductingFlux",
