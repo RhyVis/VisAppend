@@ -46,9 +46,4 @@ dependencies {
     implementation('com.github.GTNewHorizons:Universal-Singularities:8.6.7:dev')
     implementation('com.github.GTNewHorizons:BlockRenderer6343:1.0.3:dev')
     implementation('com.github.GTNewHorizons:GTNH-Lanthanides:0.11.4:dev')
-
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.1')
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:Applied-Energistics-2-Unofficial:rv3-beta-291-GTNH')
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:NotEnoughEnergistics:1.4.2')
-    runtimeOnlyNonPublishable('com.github.GTNewHorizons:GTNH-Intergalactic:1.2.4')
 }
