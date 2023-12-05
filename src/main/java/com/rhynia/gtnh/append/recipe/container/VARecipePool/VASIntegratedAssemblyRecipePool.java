@@ -4,6 +4,7 @@ import static goodgenerator.util.ItemRefer.Advanced_Radiation_Protection_Plate;
 import static goodgenerator.util.ItemRefer.Radiation_Protection_Plate;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
+import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
@@ -96,6 +97,22 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 兰波顿能量簇 LUV
         GT_Values.RA.stdBuilder()
             .itemInputs(
+                BWPart.getWrappedPart(BWPart.Delicate_Board, 1),
+                ItemList.Energy_LapotronicOrb.get(64),
+                ItemList.Energy_LapotronicOrb.get(64),
+                BWPart.getWrappedPart(BWPart.Part_IC_H, 4),
+                BWPart.getWrappedPart(BWPart.Part_QBit, 2))
+            .fluidInputs(
+                Solder.getSolder(2, 16 * 5 * INGOTS),
+                Materials.NiobiumTitanium.getMolten(16 * 2 * INGOTS),
+                Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS))
+            .itemOutputs(ItemList.Energy_LapotronicOrb2.get(16))
+            .noOptimize()
+            .eut(RECIPE_IV)
+            .duration(12 * (51 * SECONDS + 4 * TICKS))
+            .addTo(IA);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
                 BWPart.getWrappedPart(BWPart.Elite_Board, 1),
                 GGChip.getWrappedCircuit(GGChip.LuV, 4),
                 BWPart.getWrappedPart(BWPart.Part_IC_H, 64),
@@ -116,6 +133,24 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 能量模块 ZPM
         GT_Values.RA.stdBuilder()
             .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.ZPM, 4),
+                ItemList.Energy_LapotronicOrb2.get(64),
+                ItemList.Energy_LapotronicOrb2.get(64),
+                BWPart.getWrappedPart(BWPart.Part_QBit, 48),
+                BWPart.getWrappedPart(BWPart.Adv_Transistor, 8),
+                ItemList.Field_Generator_LuV.get(32))
+            .fluidInputs(
+                Solder.getSolder(2, 16 * 20 * INGOTS),
+                Materials.Europium.getMolten(16 * 16 * INGOTS),
+                Materials.Naquadah.getMolten(16 * 16 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
+            .itemOutputs(ItemList.Energy_Module.get(16))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 100 * SECONDS)
+            .addTo(IA);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
                 BWPart.getWrappedPart(BWPart.Wetware_Board, 1),
                 GGChip.getWrappedCircuit(GGChip.ZPM, 4),
                 BWPart.getWrappedPart(BWPart.Part_IC_UH, 64),
@@ -131,9 +166,27 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemOutputs(ItemList.Energy_Module.get(16))
             .noOptimize()
             .eut(RECIPE_UV)
-            .duration(16 * 50 * SECONDS)
+            .duration(12 * 50 * SECONDS)
             .addTo(IA);
         // 能量簇 UV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GGChip.getWrappedCircuit(GGChip.UV, 4),
+                ItemList.Energy_Module.get(64),
+                ItemList.Energy_Module.get(64),
+                BWPart.getWrappedPart(BWPart.Part_IC_UH, 64),
+                BWPart.getWrappedPart(BWPart.Adv_Diode, 16),
+                ItemList.Field_Generator_ZPM.get(32))
+            .fluidInputs(
+                Solder.getSolder(2, 16 * 20 * INGOTS),
+                Materials.Americium.getMolten(16 * 16 * INGOTS),
+                Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS),
+                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
+            .itemOutputs(ItemList.Energy_Cluster.get(16))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(12 * 100 * SECONDS)
+            .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 BWPart.getWrappedPart(BWPart.Bio_Board, 1),
