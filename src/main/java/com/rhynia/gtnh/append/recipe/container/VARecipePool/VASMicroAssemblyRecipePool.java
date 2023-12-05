@@ -15,8 +15,9 @@ import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
-import com.rhynia.gtnh.append.util.BWChip;
-import com.rhynia.gtnh.append.util.GGChip;
+import com.rhynia.gtnh.append.util.recipeHelper.BWChip;
+import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
+import com.rhynia.gtnh.append.util.recipeHelper.Solder;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
@@ -24,8 +25,6 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.util.GT_Recipe;
-import gtPlusPlus.core.material.ALLOY;
-import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
@@ -50,7 +49,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Part_NOR, 2 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(10 * INGOTS * Multiple),
+                Solder.getSolder(3, 10 * INGOTS * Multiple),
                 Materials.BioMediumSterilized.getFluid(10 * INGOTS * Multiple),
                 Materials.SuperCoolant.getFluid(10 * BUCKETS * Multiple),
                 Materials.NiobiumTitanium.getMolten(4 * INGOTS * Multiple),
@@ -70,7 +69,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_DiodeXSMD.get(6 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(20 * INGOTS * Multiple),
+                Solder.getSolder(3, 20 * INGOTS * Multiple),
                 Materials.BioMediumSterilized.getFluid(20 * INGOTS * Multiple),
                 Materials.SuperCoolant.getFluid(20 * BUCKETS * Multiple),
                 Materials.Tritanium.getMolten(8 * INGOTS * Multiple),
@@ -95,7 +94,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Part_NOR, 2 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_RAM, 4 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(10 * INGOTS * Multiple),
+                Solder.getSolder(3, 10 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(10 * INGOTS * Multiple),
                 Materials.SuperCoolant.getFluid(10 * BUCKETS * Multiple),
                 WerkstoffLoader.Oganesson.getFluidOrGas(500 * Multiple),
@@ -117,7 +116,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Part_NOR, 4 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_ASOC, 2 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(20 * INGOTS * Multiple),
+                Solder.getSolder(3, 20 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(20 * INGOTS * Multiple),
                 Materials.SuperCoolant.getFluid(20 * BUCKETS * Multiple),
                 WerkstoffLoader.Oganesson.getFluidOrGas(BUCKETS * Multiple),
@@ -139,7 +138,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Opt_Diode, 2 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_ASOC, 2 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
+                Solder.getSolder(3, 26 * INGOTS * Multiple),
                 Materials.Radon.getPlasma(40 * INGOTS * Multiple),
                 Materials.SuperCoolant.getFluid(40 * BUCKETS),
                 WerkstoffLoader.Oganesson.getFluidOrGas(2 * BUCKETS * Multiple),
@@ -164,7 +163,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Opt_Resistor, 4 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_IC_Q, 4 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
+                Solder.getSolder(3, 26 * INGOTS * Multiple),
                 Materials.UUMatter.getFluid(24 * BUCKETS * Multiple),
                 Materials.Osmium.getMolten(16 * INGOTS * Multiple),
                 Materials.Neutronium.getMolten(8 * INGOTS * Multiple),
@@ -188,7 +187,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWChip.getWrappedPart(BWChip.Opt_Diode, 3 * Multiple),
                 BWChip.getWrappedPart(BWChip.Part_IC_P, 4 * Multiple))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(26 * INGOTS * Multiple),
+                Solder.getSolder(3, 26 * INGOTS * Multiple),
                 Materials.UUMatter.getFluid(8 * BUCKETS * Multiple),
                 Materials.Osmium.getMolten(8 * INGOTS * Multiple),
                 GT_CoreModSupport.RadoxPolymer.getMolten(4 * INGOTS * Multiple),
@@ -208,7 +207,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 GGChip.getWrappedCircuit(GGChip.ZPM, 24),
                 BWChip.getWrappedPart(BWChip.Part_IC_Q, 48))
             .fluidInputs(
-                ALLOY.INDALLOY_140.getFluidStack(24 * INGOTS),
+                Solder.getSolder(2, 24 * INGOTS),
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(6 * INGOTS),
                 Materials.Infinity.getMolten(4 * INGOTS))
             .itemOutputs(

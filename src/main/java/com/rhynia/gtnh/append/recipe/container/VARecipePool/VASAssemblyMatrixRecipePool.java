@@ -23,7 +23,8 @@ import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
-import com.rhynia.gtnh.append.util.GGChip;
+import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
+import com.rhynia.gtnh.append.util.recipeHelper.Solder;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -291,6 +292,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.gem, 1))
             .fluidInputs(
+                Solder.getSolder(3, 32 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(48 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(64000))
             .itemOutputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 1))
@@ -302,6 +304,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.gem, 1))
             .fluidInputs(
+                Solder.getSolder(3, 32 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(48 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(64000))
             .itemOutputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 1))
@@ -313,6 +316,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
+                Solder.getSolder(3, 32 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(48 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(64000))
             .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
@@ -324,6 +328,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
             .fluidInputs(
+                Solder.getSolder(3, 32 * INGOTS),
                 Materials.CosmicNeutronium.getMolten(256 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(128000),
@@ -387,9 +392,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
                 GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 64, 15470),
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64),
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64))
-            .fluidInputs(
-                Materials.Infinity.getMolten(64 * INGOTS),
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(96 * INGOTS))
+            .fluidInputs(Materials.Infinity.getMolten(64 * INGOTS), Solder.getSolder(3, 96 * INGOTS))
             .itemOutputs(
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725),
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725))
