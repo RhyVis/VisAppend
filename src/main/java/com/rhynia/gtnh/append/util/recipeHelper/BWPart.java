@@ -7,13 +7,13 @@ import com.rhynia.gtnh.append.common.VAItemList;
 import gregtech.api.util.GT_ModHandler;
 
 @SuppressWarnings("unused")
-public class BWChip {
+public class BWPart {
 
     // region 封装
     /**
      * Get a ItemStack of BW generated wrapped parts
-     * 
-     * @param aIndex  The meta of it, see BWChip
+     *
+     * @param aIndex  The meta of it, see BWPart
      * @param aAmount The amount of ItemStack
      * @author Rhynia
      * @since 0.6.13-pre

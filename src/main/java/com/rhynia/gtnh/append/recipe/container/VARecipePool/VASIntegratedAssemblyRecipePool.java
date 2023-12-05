@@ -4,7 +4,6 @@ import static goodgenerator.util.ItemRefer.Advanced_Radiation_Protection_Plate;
 import static goodgenerator.util.ItemRefer.Radiation_Protection_Plate;
 import static gregtech.api.enums.Mods.Names.BART_WORKS;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
@@ -13,6 +12,7 @@ import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static gregtech.api.util.GT_RecipeBuilder.TICKS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
@@ -23,9 +23,11 @@ import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.util.recipeHelper.BWPart;
 import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.util.recipeHelper.Solder;
 
+import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
@@ -34,7 +36,6 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
-import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
@@ -80,130 +81,99 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 兰波顿能量球 IV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32754),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32729),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32729),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32737),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32738),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32739),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 8, 32740))
+                BWPart.getWrappedPart(BWPart.Delicate_Board, 1),
+                BWPart.getWrappedPart(BWPart.Part_IC, 4),
+                BWPart.getWrappedPart(BWPart.Part_NanoCPU, 2))
             .fluidInputs(
-                Materials.SolderingAlloy.getMolten(160 * INGOTS),
-                Materials.Platinum.getMolten(128 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12000))
-            .itemOutputs(
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64),
-                ItemList.Energy_LapotronicOrb.get(64))
+                Solder.getSolder(1, 16 * INGOTS),
+                Materials.Platinum.getMolten(160 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(6400))
+            .itemOutputs(ItemList.Energy_LapotronicOrb.get(16))
             .noOptimize()
             .eut(RECIPE_EV)
-            .duration(480 * SECONDS)
+            .duration(12 * (25 * SECONDS + 12 * TICKS))
             .addTo(IA);
         // 兰波顿能量簇 LUV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32750),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32727),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32727),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32731),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32737),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32738),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32739),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 16, 32740))
+                BWPart.getWrappedPart(BWPart.Elite_Board, 1),
+                GGChip.getWrappedCircuit(GGChip.LuV, 4),
+                BWPart.getWrappedPart(BWPart.Part_IC_H, 64),
+                BWPart.getWrappedPart(BWPart.Adv_Diode, 8),
+                BWPart.getWrappedPart(BWPart.Adv_Capacitor, 8),
+                BWPart.getWrappedPart(BWPart.Adv_Resistor, 8),
+                BWPart.getWrappedPart(BWPart.Adv_Transistor, 8))
             .fluidInputs(
-                ALLOY.INDALLOY_140.getFluidStack(128 * INGOTS),
-                Materials.NaquadahAlloy.getMolten(48 * INGOTS),
-                Materials.Platinum.getMolten(48 * INGOTS),
-                Materials.Osmium.getMolten(96 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(26000))
-            .itemOutputs(
-                ItemList.Energy_LapotronicOrb2.get(64),
-                ItemList.Energy_LapotronicOrb2.get(64),
-                ItemList.Energy_LapotronicOrb2.get(64),
-                ItemList.Energy_LapotronicOrb2.get(64))
+                Solder.getSolder(2, 16 * 5 * INGOTS),
+                Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS),
+                Materials.Platinum.getMolten(16 * 8 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 800))
+            .itemOutputs(ItemList.Energy_LapotronicOrb2.get(16))
             .noOptimize()
-            .eut(RECIPE_LuV)
-            .duration(500 * SECONDS)
+            .eut(RECIPE_ZPM)
+            .duration(12 * 50 * SECONDS)
             .addTo(IA);
         // 能量模块 ZPM
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32750),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32722),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32723),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32723),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32723),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32730),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32737),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32738),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32739),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 32, 32740))
+                BWPart.getWrappedPart(BWPart.Wetware_Board, 1),
+                GGChip.getWrappedCircuit(GGChip.ZPM, 4),
+                BWPart.getWrappedPart(BWPart.Part_IC_UH, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 8),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 8),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 8),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 8))
             .fluidInputs(
-                ALLOY.INDALLOY_140.getFluidStack(256 * INGOTS),
-                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 1000),
-                Materials.Europium.getMolten(128 * INGOTS),
-                Materials.Americium.getMolten(64 * INGOTS),
-                Materials.Neutronium.getMolten(48 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(48000))
-            .itemOutputs(ItemList.Energy_Module.get(64), ItemList.Energy_Module.get(64), ItemList.Energy_Module.get(32))
+                Solder.getSolder(3, 16 * 5 * INGOTS),
+                Materials.Bedrockium.getMolten(16 * 16 * INGOTS),
+                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 6 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 1000))
+            .itemOutputs(ItemList.Energy_Module.get(16))
             .noOptimize()
-            .eut(RECIPE_ZPM)
-            .duration(615 * SECONDS)
+            .eut(RECIPE_UV)
+            .duration(16 * 50 * SECONDS)
             .addTo(IA);
         // 能量簇 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32746),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32730),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32737),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32738),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32739),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 48, 32740))
+                BWPart.getWrappedPart(BWPart.Bio_Board, 1),
+                GGChip.getWrappedCircuit(GGChip.UV, 4),
+                BWPart.getWrappedPart(BWPart.Part_IC_N, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 32),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 32),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 32),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 32))
             .fluidInputs(
-                ALLOY.INDALLOY_140.getFluidStack(256 * INGOTS),
-                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 48 * 1000),
-                ELEMENT.STANDALONE.ADVANCED_NITINOL.getFluidStack(90 * 1000),
-                Materials.Naquadah.getMolten(128 * INGOTS),
-                ALLOY.QUANTUM.getFluidStack(16 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(96 * 1000))
-            .itemOutputs(ItemList.Energy_Cluster.get(64), ItemList.Energy_Cluster.get(64))
+                Solder.getSolder(3, 16 * 10 * INGOTS),
+                Materials.CosmicNeutronium.getMolten(16 * 16 * INGOTS),
+                MaterialsUEVplus.SpaceTime.getMolten(16 * 6 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 2000))
+            .itemOutputs(ItemList.Energy_Cluster.get(16))
             .noOptimize()
             .eut(RECIPE_UHV)
-            .duration(800 * SECONDS)
+            .duration(12 * 50 * SECONDS)
             .addTo(IA);
         // 终极电池 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32746),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32721),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32722),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32730),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32737),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32738),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32739),
-                GT_ModHandler.getModItem(BART_WORKS, BWMI0, 64, 32740))
+                BWPart.getWrappedPart(BWPart.Opt_Board, 1),
+                GGChip.getWrappedCircuit(GGChip.UHV, 4),
+                BWPart.getWrappedPart(BWPart.Part_IC_P, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 64),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 64))
             .fluidInputs(
-                MISC_MATERIALS.MUTATED_LIVING_SOLDER.getFluidStack(96 * INGOTS),
-                new FluidStack(FluidRegistry.getFluid("ic2coolant"), 80 * 1000),
-                Materials.Neutronium.getMolten(256 * INGOTS),
-                Materials.Infinity.getMolten(64 * INGOTS),
-                Materials.NaquadahEnriched.getMolten(128 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(160 * 1000))
-            .itemOutputs(ItemList.ZPM2.get(64), ItemList.ZPM2.get(32))
+                Solder.getSolder(3, 16 * 20 * INGOTS),
+                MyMaterial.shirabon.getMolten(16 * 16 * INGOTS),
+                MaterialsUEVplus.WhiteDwarfMatter.getMolten(16 * 4 * INGOTS),
+                MaterialsUEVplus.BlackDwarfMatter.getMolten(16 * 4 * INGOTS),
+                MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(8 * INGOTS),
+                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 5000))
+            .itemOutputs(ItemList.ZPM2.get(16))
             .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(1000 * SECONDS)
+            .eut(RECIPE_UEV)
+            .duration(12 * 50 * SECONDS)
             .addTo(IA);
         // 真·终极电池 UMV
         GT_Values.RA.stdBuilder()

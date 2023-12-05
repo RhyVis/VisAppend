@@ -21,7 +21,7 @@ public class NEIHandler {
         sendCatalyst("append.recipe.integratedAssembly", "gregtech:gt.blockmachines:17503");
         sendCatalyst("append.recipe.microAssembly", "gregtech:gt.blockmachines:17503");
         sendCatalyst("append.recipe.superconductingBinder", "gregtech:gt.blockmachines:17504");
-        sendCatalyst("gt.recipe.vacuumfreezer", "gregtech:gt.blockmachines:17505", -10);
+        sendCatalyst("gt.recipe.vacuumfreezer", "gregtech:gt.blockmachines:17505", -15);
 
     }
 
