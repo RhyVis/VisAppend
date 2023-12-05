@@ -168,9 +168,9 @@ public class VA_RecipeAdder extends GT_RecipeAdder {
         .setUsualFluidOutputCount(4)
         .setDisableOptimize(true);
 
-    public VA_RecipeMap sAssemblyMatrixRecipes = (VA_RecipeMap) new VA_RecipeMap(
+    public VA_RecipeMap sIntegratedAssemblyRecipes = (VA_RecipeMap) new VA_RecipeMap(
         new HashSet<>(),
-        "append.recipe.assemblyMatrix",
+        "append.recipe.integratedAssembly",
         "集成组装",
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",

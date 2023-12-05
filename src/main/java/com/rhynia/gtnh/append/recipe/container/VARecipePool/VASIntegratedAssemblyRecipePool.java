@@ -38,9 +38,9 @@ import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
-public class VASAssemblyMatrixRecipePool implements IRecipePool {
+public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map AM = VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+    final GT_Recipe.GT_Recipe_Map IA = VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
     final String BWMI0 = "gt.bwMetaGeneratedItem0";
 
     @Override
@@ -71,7 +71,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_MAX)
             .duration(160 * HOURS)
-            .addTo(AM);
+            .addTo(IA);
     }
 
     @Override
@@ -101,7 +101,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(480 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 兰波顿能量簇 LUV
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -127,7 +127,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(500 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 能量模块 ZPM
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -152,7 +152,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(615 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 能量簇 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -177,7 +177,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(800 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 终极电池 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -204,7 +204,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(1000 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 真·终极电池 UMV
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -230,7 +230,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(950 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // TODO 添加UXV+配方
         /*
          * // 极·终极电池 UXV
@@ -299,7 +299,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(810 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 原石 透镜
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.gem, 1))
@@ -311,7 +311,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(810 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // Magic 透镜
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
@@ -323,7 +323,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(810 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // Inf 透镜
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
@@ -337,7 +337,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(900 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // endregion
 
         // region 防辐射板
@@ -361,7 +361,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(180 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // 进阶防辐射板
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -379,7 +379,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(360 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // endregion
 
         // region 光学
@@ -399,7 +399,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(80 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // endregion
 
         // region Coil UHV+
@@ -416,7 +416,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000)
             .duration(60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GGChip.getWrappedCircuit(GGChip.UHV, 1),
@@ -429,7 +429,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000)
             .duration(12 * 60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // Hypogen
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -442,7 +442,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000 * 4)
             .duration(60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GGChip.getWrappedCircuit(GGChip.UEV, 1),
@@ -456,7 +456,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000 * 4)
             .duration(12 * 60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // Eternal
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -474,7 +474,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000 * 16)
             .duration(60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GGChip.getWrappedCircuit(GGChip.UIV, 1),
@@ -491,7 +491,7 @@ public class VASAssemblyMatrixRecipePool implements IRecipePool {
             .noOptimize()
             .eut(8000000 * 16)
             .duration(12 * 60 * SECONDS)
-            .addTo(AM);
+            .addTo(IA);
         // endregion
     }
 }

@@ -92,7 +92,7 @@ public class VA_TileEntity_AssemblyMatrix
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
         if (mRecipeMode == 0) {
-            return VA_RecipeAdder.instance.sAssemblyMatrixRecipes;
+            return VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
         } else return VA_RecipeAdder.instance.sMicroAssemblyRecipes;
     }
 
