@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.util;
+package com.rhynia.gtnh.append.util.recipeHelper;
 
 import net.minecraft.item.ItemStack;
 
@@ -10,6 +10,14 @@ import gregtech.api.util.GT_ModHandler;
 public class BWChip {
 
     // region 封装
+    /**
+     * Get a ItemStack of BW generated wrapped parts
+     * 
+     * @param aIndex  The meta of it, see BWChip
+     * @param aAmount The amount of ItemStack
+     * @author Rhynia
+     * @since 0.6.13-pre
+     */
     public static ItemStack getWrappedPart(int aIndex, int aAmount) {
         return GT_ModHandler
             .getModItem("bartworks", "gt.bwMetaGeneratedItem0", aAmount, aIndex, VAItemList.Test.get(1));
@@ -33,8 +41,8 @@ public class BWChip {
     public static final int Stem_Cell = WrapCircuit_Offset + 14;
     public static final int Bio_Processor = WrapCircuit_Offset + 15;
     public static final int Stem_Processor = WrapCircuit_Offset + 16;
-    public static final int AdvCystal_Raw = WrapCircuit_Offset + 17;
-    public static final int AdvCystal_SOC = WrapCircuit_Offset + 18;
+    public static final int AdvCrystal_Raw = WrapCircuit_Offset + 17;
+    public static final int AdvCrystal_SOC = WrapCircuit_Offset + 18;
     public static final int Crystal_CPU = WrapCircuit_Offset + 19;
     public static final int Part_QBit = WrapCircuit_Offset + 20;
     public static final int Part_NanoCPU = WrapCircuit_Offset + 21;

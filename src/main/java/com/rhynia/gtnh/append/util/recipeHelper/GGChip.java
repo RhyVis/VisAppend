@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.util;
+package com.rhynia.gtnh.append.util.recipeHelper;
 
 import net.minecraft.item.ItemStack;
 
@@ -9,6 +9,14 @@ import gregtech.api.util.GT_ModHandler;
 @SuppressWarnings("unused")
 public class GGChip {
 
+    /**
+     * Get a ItemStack of GG generated wrapped parts
+     * 
+     * @param aIndex  The tier of it, see GGChip
+     * @param aAmount The amount of ItemStack
+     * @author Rhynia
+     * @since 0.6.14-pre
+     */
     public static ItemStack getWrappedCircuit(int aIndex, int aAmount) {
         return GT_ModHandler.getModItem("GoodGenerator", "circuitWrap", aAmount, aIndex, VAItemList.Test.get(1));
     }
