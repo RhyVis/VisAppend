@@ -43,7 +43,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_EnhancedMultiBlockBase;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
@@ -51,7 +51,7 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
-public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_EnhancedMultiBlockBase<VA_TileEntity_AstraForge>
+public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AstraForge>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor

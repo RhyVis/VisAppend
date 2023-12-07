@@ -13,12 +13,14 @@ public class NEIHandler {
         // Handler
         sendHandler("append.recipe.astraForge", "gregtech:gt.blockmachines:17501", 1);
         sendHandler("append.recipe.ultimateHeater", "gregtech:gt.blockmachines:17502", 2);
+        sendHandler("append.recipe.transcendentReactor", "gregtech:gt.blockmachines:17502", 1);
         sendHandler("append.recipe.integratedAssembly", "gregtech:gt.blockmachines:17503", 2);
         sendHandler("append.recipe.microAssembly", "gregtech:gt.blockmachines:17503", 2);
         sendHandler("append.recipe.superconductingBinder", "gregtech:gt.blockmachines:17504", 2);
         // Catalyst
         sendCatalyst("append.recipe.astraForge", "gregtech:gt.blockmachines:17501");
         sendCatalyst("append.recipe.ultimateHeater", "gregtech:gt.blockmachines:17502");
+        sendCatalyst("append.recipe.transcendentReactor", "gregtech:gt.blockmachines:17502");
         sendCatalyst("append.recipe.integratedAssembly", "gregtech:gt.blockmachines:17503");
         sendCatalyst("append.recipe.microAssembly", "gregtech:gt.blockmachines:17503");
         sendCatalyst("append.recipe.superconductingBinder", "gregtech:gt.blockmachines:17504");

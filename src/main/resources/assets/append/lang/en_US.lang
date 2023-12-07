@@ -13,5 +13,8 @@ va.MetaItem01.3.name=Dense Mica Insulator Foil
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode
 
+append.UltimateHeater.mRecipeMode.0=Ultimate Heater Mode
+append.UltimateHeater.mRecipeMode.1=Transcendent Reactor Mode
+
 append.HeatDeathSimulator.mRecipeMode.0=Vacuum Mode
 append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
