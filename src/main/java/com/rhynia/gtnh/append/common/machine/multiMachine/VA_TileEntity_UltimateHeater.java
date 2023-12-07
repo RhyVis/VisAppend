@@ -25,9 +25,11 @@ import static gregtech.api.util.GT_StructureUtility.ofCoil;
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
@@ -49,6 +51,7 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -59,6 +62,8 @@ import gregtech.common.blocks.GT_Block_Casings8;
 public class VA_TileEntity_UltimateHeater
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
+
+    public byte mRecipeMode = 0; // 0-sUltimateHeaterRecipes,1-sTranscendentReactorRecipes
 
     // region Definition
     private HeatingCoilLevel coilLevel;
@@ -78,29 +83,59 @@ public class VA_TileEntity_UltimateHeater
     // region Processing Logic
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
+        if (mRecipeMode == 1) {
+            // TR
+            return new ProcessingLogic() {
+
+                @NotNull
+                @Override
+                protected CheckRecipeResult validateRecipe(@NotNull GT_Recipe recipe) {
+                    return recipe.mSpecialValue <= coilLevel.getHeat() ? CheckRecipeResultRegistry.SUCCESSFUL
+                        : CheckRecipeResultRegistry.insufficientHeat(recipe.mSpecialValue);
+                }
+            }.setSpeedBonus(getSpeedBonus())
+                .setOverclock(coilLevel.getTier() > 11 ? 2 : 1, 2)
+                .setMaxParallelSupplier(this::getMaxParallelRecipes);
+            // UH
+        } else return new ProcessingLogic() {
 
             @NotNull
             @Override
             public CheckRecipeResult process() {
                 setSpeedBonus(getSpeedBonus());
-                setOverclock(coilLevel.getTier() > 12 ? 2 : 1, 2);
+                setOverclock(coilLevel.getTier() > 11 ? 2 : 1, 2);
                 return super.process();
             }
         }.setMaxParallelSupplier(this::getMaxParallelRecipes);
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(2, GT_Utility.getTier(this.getMaxInputVoltage())));
+        if (mRecipeMode == 0) {
+            return (int) (Math.pow(2, GT_Utility.getTier(this.getMaxInputVoltage())));
+        } else return 256;
     }
 
     public float getSpeedBonus() {
-        return (float) Math.pow(0.95, coilLevel.getTier());
+        if (mRecipeMode == 0) {
+            return (float) Math.pow(0.95, coilLevel.getTier());
+        } else return (float) Math.pow(0.90, coilLevel.getTier() - 10);
     }
 
     @Override
     public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VA_RecipeAdder.instance.sUltimateHeaterRecipes;
+        if (mRecipeMode == 0) {
+            return VA_RecipeAdder.instance.sUltimateHeaterRecipes;
+        } else return VA_RecipeAdder.instance.sTranscendentReactorRecipes;
+    }
+
+    @Override
+    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
+        if (getBaseMetaTileEntity().isServerSide()) {
+            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
+            GT_Utility.sendChatToPlayer(
+                aPlayer,
+                StatCollector.translateToLocal("append.UltimateHeater.mRecipeMode." + this.mRecipeMode));
+        }
     }
 
     @Override
@@ -225,13 +260,15 @@ public class VA_TileEntity_UltimateHeater
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("热核控制场")
+        tt.addMachineType("热核控制场 | 超维度反应堆")
             .addInfo("粒子宏的控制器")
             .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
-            .addInfo("需要透镜聚焦热量.")
-            .addInfo("电压每提高1级, 最大并行翻2倍.")
+            .addInfo("热核控制模式下，电压每提高1级, 最大并行翻2倍.")
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
+            .addInfo("超维度反应模式下，最大并行固定为256.")
+            .addInfo("线圈每比觉醒龙高1级，额外减少10%配方耗时(叠乘).")
+            .addInfo("在任何模式下")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
             .addSeparator()
             .addInfo(StructureTooComplex)

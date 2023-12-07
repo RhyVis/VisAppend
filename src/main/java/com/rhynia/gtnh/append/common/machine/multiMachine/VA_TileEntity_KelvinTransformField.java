@@ -54,7 +54,7 @@ public class VA_TileEntity_KelvinTransformField
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_KelvinTransformField>
     implements IConstructable, ISurvivalConstructable {
 
-    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
+    public byte mRecipeMode = 0; // 0-sVacuumRecipes,1-?
 
     // region Class Constructor
     public VA_TileEntity_KelvinTransformField(int aID, String aName, String aNameRegional) {
@@ -111,6 +111,12 @@ public class VA_TileEntity_KelvinTransformField
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
+        mHardHammer = true;
+        mSoftHammer = true;
+        mScrewdriver = true;
+        mCrowbar = true;
+        mSolderingTool = true;
+        mWrench = true;
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
