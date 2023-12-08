@@ -41,7 +41,7 @@ import gtPlusPlus.core.util.minecraft.ItemUtils;
 
 public class VASAstraForgeRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map AF = VA_RecipeAdder.instance.sAstraForgeRecipes;
+    private final GT_Recipe.GT_Recipe_Map AF = VA_RecipeAdder.instance.sAstraForgeRecipes;
 
     @Override
     public void loadRecipesPostInit() {

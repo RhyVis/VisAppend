@@ -43,7 +43,7 @@ import gtPlusPlus.core.material.ELEMENT;
 
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map IA = VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
+    private final GT_Recipe.GT_Recipe_Map IA = VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {

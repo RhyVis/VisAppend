@@ -18,8 +18,7 @@ import gregtech.api.util.GT_Recipe;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map SB = VA_RecipeAdder.instance.sSuperconductingBinderRecipes;
-    final String BWMI0 = "gt.bwMetaGeneratedItem0";
+    private final GT_Recipe.GT_Recipe_Map SB = VA_RecipeAdder.instance.sSuperconductingBinderRecipes;
 
     @Override
     public void loadRecipesPostInit() {

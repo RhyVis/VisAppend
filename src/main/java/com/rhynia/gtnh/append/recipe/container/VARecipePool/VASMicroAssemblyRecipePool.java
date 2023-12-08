@@ -33,57 +33,57 @@ import gregtech.api.util.GT_Utility;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map MA = VA_RecipeAdder.instance.sMicroAssemblyRecipes;
-    final int Multiple = 1;
+    private final GT_Recipe.GT_Recipe_Map MA = VA_RecipeAdder.instance.sMicroAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {}
 
     @Override
     public void loadRecipes() {
+        int multiple = 1;
         // region 生物系
         // 生物超级电脑 UHV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Board_Bio_Ultra.get(2 * Multiple),
-                ItemList.Circuit_Biowarecomputer.get(2 * Multiple),
-                ItemList.Circuit_Parts_TransistorXSMD.get(4 * Multiple),
-                ItemList.Circuit_Parts_ResistorXSMD.get(4 * Multiple),
-                ItemList.Circuit_Parts_CapacitorXSMD.get(4 * Multiple),
-                ItemList.Circuit_Parts_DiodeXSMD.get(4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * Multiple))
+                ItemList.Circuit_Board_Bio_Ultra.get(2 * multiple),
+                ItemList.Circuit_Biowarecomputer.get(2 * multiple),
+                ItemList.Circuit_Parts_TransistorXSMD.get(4 * multiple),
+                ItemList.Circuit_Parts_ResistorXSMD.get(4 * multiple),
+                ItemList.Circuit_Parts_CapacitorXSMD.get(4 * multiple),
+                ItemList.Circuit_Parts_DiodeXSMD.get(4 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 10 * INGOTS * Multiple),
-                Materials.BioMediumSterilized.getFluid(10 * INGOTS * Multiple),
-                Materials.SuperCoolant.getFluid(10 * BUCKETS * Multiple),
-                Materials.NiobiumTitanium.getMolten(4 * INGOTS * Multiple),
-                Materials.Silicone.getMolten(16 * INGOTS * Multiple))
-            .itemOutputs(ItemList.Circuit_Biowaresupercomputer.get(Multiple))
+                Solder.getSolder(3, 10 * INGOTS * multiple),
+                Materials.BioMediumSterilized.getFluid(10 * INGOTS * multiple),
+                Materials.SuperCoolant.getFluid(10 * BUCKETS * multiple),
+                Materials.NiobiumTitanium.getMolten(4 * INGOTS * multiple),
+                Materials.Silicone.getMolten(16 * INGOTS * multiple))
+            .itemOutputs(ItemList.Circuit_Biowaresupercomputer.get(multiple))
             .eut(RECIPE_UV)
-            .duration(100 * SECONDS * Multiple)
+            .duration(100 * SECONDS * multiple)
             .addTo(MA);
         // 生物主机 UEV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Biowaresupercomputer.get(2 * Multiple),
-                ItemList.Circuit_Parts_InductorXSMD.get(6 * Multiple),
-                ItemList.Circuit_Parts_TransistorXSMD.get(6 * Multiple),
-                ItemList.Circuit_Parts_ResistorXSMD.get(6 * Multiple),
-                ItemList.Circuit_Parts_CapacitorXSMD.get(6 * Multiple),
-                ItemList.Circuit_Parts_DiodeXSMD.get(6 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * Multiple))
+                ItemList.Circuit_Biowaresupercomputer.get(2 * multiple),
+                ItemList.Circuit_Parts_InductorXSMD.get(6 * multiple),
+                ItemList.Circuit_Parts_TransistorXSMD.get(6 * multiple),
+                ItemList.Circuit_Parts_ResistorXSMD.get(6 * multiple),
+                ItemList.Circuit_Parts_CapacitorXSMD.get(6 * multiple),
+                ItemList.Circuit_Parts_DiodeXSMD.get(6 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 20 * INGOTS * Multiple),
-                Materials.BioMediumSterilized.getFluid(20 * INGOTS * Multiple),
-                Materials.SuperCoolant.getFluid(20 * BUCKETS * Multiple),
-                Materials.Tritanium.getMolten(8 * INGOTS * Multiple),
-                Materials.Silicone.getMolten(16 * INGOTS * Multiple),
-                Materials.Polybenzimidazole.getMolten(16 * INGOTS * Multiple),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(4 * INGOTS * Multiple))
-            .itemOutputs(ItemList.Circuit_Biomainframe.get(Multiple))
+                Solder.getSolder(3, 20 * INGOTS * multiple),
+                Materials.BioMediumSterilized.getFluid(20 * INGOTS * multiple),
+                Materials.SuperCoolant.getFluid(20 * BUCKETS * multiple),
+                Materials.Tritanium.getMolten(8 * INGOTS * multiple),
+                Materials.Silicone.getMolten(16 * INGOTS * multiple),
+                Materials.Polybenzimidazole.getMolten(16 * INGOTS * multiple),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(4 * INGOTS * multiple))
+            .itemOutputs(ItemList.Circuit_Biomainframe.get(multiple))
             .eut(RECIPE_UHV)
-            .duration(150 * SECONDS * Multiple)
+            .duration(150 * SECONDS * multiple)
             .addTo(MA);
         // endregion
 
@@ -91,69 +91,69 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         // 光学集群 UHV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Board_Optical.get(Multiple),
-                ItemList.Circuit_OpticalProcessor.get(2 * Multiple),
-                ItemList.Circuit_Parts_InductorXSMD.get(16 * Multiple),
-                ItemList.Circuit_Parts_CapacitorXSMD.get(20 * Multiple),
-                ItemList.Circuit_Parts_ResistorXSMD.get(20 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * Multiple))
+                ItemList.Circuit_Board_Optical.get(multiple),
+                ItemList.Circuit_OpticalProcessor.get(2 * multiple),
+                ItemList.Circuit_Parts_InductorXSMD.get(16 * multiple),
+                ItemList.Circuit_Parts_CapacitorXSMD.get(20 * multiple),
+                ItemList.Circuit_Parts_ResistorXSMD.get(20 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 10 * INGOTS * Multiple),
-                Materials.Radon.getPlasma(10 * INGOTS * Multiple),
-                Materials.SuperCoolant.getFluid(10 * BUCKETS * Multiple),
-                WerkstoffLoader.Oganesson.getFluidOrGas(500 * Multiple),
-                MyMaterial.lumiium.getMolten(3 * INGOTS * Multiple),
-                Materials.Silicone.getMolten(16 * INGOTS * Multiple))
-            .itemOutputs(ItemList.Circuit_OpticalAssembly.get(Multiple))
+                Solder.getSolder(3, 10 * INGOTS * multiple),
+                Materials.Radon.getPlasma(10 * INGOTS * multiple),
+                Materials.SuperCoolant.getFluid(10 * BUCKETS * multiple),
+                WerkstoffLoader.Oganesson.getFluidOrGas(500 * multiple),
+                MyMaterial.lumiium.getMolten(3 * INGOTS * multiple),
+                Materials.Silicone.getMolten(16 * INGOTS * multiple))
+            .itemOutputs(ItemList.Circuit_OpticalAssembly.get(multiple))
             .eut(RECIPE_UHV)
-            .duration(10 * SECONDS * Multiple)
+            .duration(10 * SECONDS * multiple)
             .addTo(MA);
         // 光学超级电脑 UEV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Board_Optical.get(2 * Multiple),
-                ItemList.Circuit_OpticalAssembly.get(2 * Multiple),
-                ItemList.Circuit_Parts_TransistorXSMD.get(24 * Multiple),
-                ItemList.Circuit_Parts_ResistorXSMD.get(24 * Multiple),
-                ItemList.Circuit_Parts_CapacitorXSMD.get(24 * Multiple),
-                ItemList.Circuit_Parts_DiodeXSMD.get(24 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * Multiple))
+                ItemList.Circuit_Board_Optical.get(2 * multiple),
+                ItemList.Circuit_OpticalAssembly.get(2 * multiple),
+                ItemList.Circuit_Parts_TransistorXSMD.get(24 * multiple),
+                ItemList.Circuit_Parts_ResistorXSMD.get(24 * multiple),
+                ItemList.Circuit_Parts_CapacitorXSMD.get(24 * multiple),
+                ItemList.Circuit_Parts_DiodeXSMD.get(24 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_NOR, 4 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 20 * INGOTS * Multiple),
-                Materials.Radon.getPlasma(20 * INGOTS * Multiple),
-                Materials.SuperCoolant.getFluid(20 * BUCKETS * Multiple),
-                WerkstoffLoader.Oganesson.getFluidOrGas(BUCKETS * Multiple),
-                MyMaterial.lumiium.getMolten(4 * INGOTS * Multiple),
-                Materials.Silicone.getMolten(16 * INGOTS * Multiple),
-                Materials.Polybenzimidazole.getMolten(16 * INGOTS * Multiple))
-            .itemOutputs(ItemList.Circuit_OpticalComputer.get(Multiple))
+                Solder.getSolder(3, 20 * INGOTS * multiple),
+                Materials.Radon.getPlasma(20 * INGOTS * multiple),
+                Materials.SuperCoolant.getFluid(20 * BUCKETS * multiple),
+                WerkstoffLoader.Oganesson.getFluidOrGas(BUCKETS * multiple),
+                MyMaterial.lumiium.getMolten(4 * INGOTS * multiple),
+                Materials.Silicone.getMolten(16 * INGOTS * multiple),
+                Materials.Polybenzimidazole.getMolten(16 * INGOTS * multiple))
+            .itemOutputs(ItemList.Circuit_OpticalComputer.get(multiple))
             .eut(RECIPE_UHV)
-            .duration(100 * SECONDS * Multiple)
+            .duration(100 * SECONDS * multiple)
             .addTo(MA);
         // 光学主机 UIV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_OpticalComputer.get(2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Inductor, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * Multiple))
+                ItemList.Circuit_OpticalComputer.get(2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Inductor, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 2 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * Multiple),
-                Materials.Radon.getPlasma(40 * INGOTS * Multiple),
+                Solder.getSolder(3, 26 * INGOTS * multiple),
+                Materials.Radon.getPlasma(40 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(40 * BUCKETS),
-                WerkstoffLoader.Oganesson.getFluidOrGas(2 * BUCKETS * Multiple),
-                Materials.Tritanium.getMolten(16 * INGOTS * Multiple),
-                Materials.Silicone.getMolten(32 * INGOTS * Multiple),
-                Materials.Polybenzimidazole.getMolten(32 * INGOTS * Multiple),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * INGOTS * Multiple))
-            .itemOutputs(ItemList.Circuit_OpticalMainframe.get(Multiple))
+                WerkstoffLoader.Oganesson.getFluidOrGas(2 * BUCKETS * multiple),
+                Materials.Tritanium.getMolten(16 * INGOTS * multiple),
+                Materials.Silicone.getMolten(32 * INGOTS * multiple),
+                Materials.Polybenzimidazole.getMolten(32 * INGOTS * multiple),
+                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * INGOTS * multiple))
+            .itemOutputs(ItemList.Circuit_OpticalMainframe.get(multiple))
             .eut(RECIPE_UEV)
-            .duration(150 * SECONDS * Multiple)
+            .duration(150 * SECONDS * multiple)
             .addTo(MA);
         // endregion
 
@@ -161,47 +161,47 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         // Quantum UXV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                CustomItemList.PikoCircuit.get(2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 4 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_IC_Q, 4 * Multiple))
+                CustomItemList.PikoCircuit.get(2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 4 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 4 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 4 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 4 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_IC_Q, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * Multiple),
-                Materials.UUMatter.getFluid(24 * BUCKETS * Multiple),
-                Materials.Osmium.getMolten(16 * INGOTS * Multiple),
-                Materials.Neutronium.getMolten(8 * INGOTS * Multiple),
-                MyMaterial.shirabon.getMolten(8 * INGOTS * Multiple),
-                Materials.Indium.getMolten(8 * INGOTS * Multiple),
-                MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS * Multiple),
-                Materials.Lanthanum.getMolten(2 * INGOTS * Multiple))
-            .itemOutputs(CustomItemList.QuantumCircuit.get(Multiple))
+                Solder.getSolder(3, 26 * INGOTS * multiple),
+                Materials.UUMatter.getFluid(24 * BUCKETS * multiple),
+                Materials.Osmium.getMolten(16 * INGOTS * multiple),
+                Materials.Neutronium.getMolten(8 * INGOTS * multiple),
+                MyMaterial.shirabon.getMolten(8 * INGOTS * multiple),
+                Materials.Indium.getMolten(8 * INGOTS * multiple),
+                MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS * multiple),
+                Materials.Lanthanum.getMolten(2 * INGOTS * multiple))
+            .itemOutputs(CustomItemList.QuantumCircuit.get(multiple))
             .eut(RECIPE_UMV)
-            .duration(800 * SECONDS * Multiple)
+            .duration(800 * SECONDS * multiple)
             .addTo(MA);
         // Piko UMV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Board_Optical.get(Multiple),
-                CustomItemList.PicoWafer.get(4 * Multiple),
-                ItemList.Circuit_OpticalMainframe.get(2 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 3 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 3 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 3 * Multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 3 * Multiple),
-                BWPart.getWrappedPart(BWPart.Part_IC_P, 4 * Multiple))
+                ItemList.Circuit_Board_Optical.get(multiple),
+                CustomItemList.PicoWafer.get(4 * multiple),
+                ItemList.Circuit_OpticalMainframe.get(2 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Transistor, 3 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Resistor, 3 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 3 * multiple),
+                BWPart.getWrappedPart(BWPart.Opt_Diode, 3 * multiple),
+                BWPart.getWrappedPart(BWPart.Part_IC_P, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * Multiple),
-                Materials.UUMatter.getFluid(8 * BUCKETS * Multiple),
-                Materials.Osmium.getMolten(8 * INGOTS * Multiple),
-                GT_CoreModSupport.RadoxPolymer.getMolten(4 * INGOTS * Multiple),
-                MaterialsUEVplus.TranscendentMetal.getMolten(4 * INGOTS * Multiple),
-                Materials.Neutronium.getMolten(2 * INGOTS * Multiple),
-                Materials.Lanthanum.getMolten(8 * INGOTS * Multiple))
-            .itemOutputs(CustomItemList.PikoCircuit.get(Multiple))
+                Solder.getSolder(3, 26 * INGOTS * multiple),
+                Materials.UUMatter.getFluid(8 * BUCKETS * multiple),
+                Materials.Osmium.getMolten(8 * INGOTS * multiple),
+                GT_CoreModSupport.RadoxPolymer.getMolten(4 * INGOTS * multiple),
+                MaterialsUEVplus.TranscendentMetal.getMolten(4 * INGOTS * multiple),
+                Materials.Neutronium.getMolten(2 * INGOTS * multiple),
+                Materials.Lanthanum.getMolten(8 * INGOTS * multiple))
+            .itemOutputs(CustomItemList.PikoCircuit.get(multiple))
             .eut(RECIPE_UMV)
-            .duration(400 * SECONDS * Multiple)
+            .duration(400 * SECONDS * multiple)
             .addTo(MA);
         // endregion
 

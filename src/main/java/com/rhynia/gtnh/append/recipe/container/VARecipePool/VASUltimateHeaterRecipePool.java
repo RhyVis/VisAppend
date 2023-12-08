@@ -31,8 +31,8 @@ import gtPlusPlus.core.material.ALLOY;
 
 public class VASUltimateHeaterRecipePool implements IRecipePool {
 
-    final GT_Recipe.GT_Recipe_Map UH = VA_RecipeAdder.instance.sUltimateHeaterRecipes;
-    final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
+    private final GT_Recipe.GT_Recipe_Map UH = VA_RecipeAdder.instance.sUltimateHeaterRecipes;
+    private final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
     public void loadRecipesPostInit() {
