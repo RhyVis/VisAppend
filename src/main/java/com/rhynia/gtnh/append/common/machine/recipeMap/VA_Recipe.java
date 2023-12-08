@@ -15,9 +15,9 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import gregtech.common.GT_RecipeAdder;
 import gregtech.common.gui.modularui.UIHelper;
 
-public class VA_RecipeAdder extends GT_RecipeAdder {
+public class VA_Recipe extends GT_RecipeAdder {
 
-    public static VA_RecipeAdder instance = new VA_RecipeAdder();
+    public static VA_Recipe instance = new VA_Recipe();
     public VA_RecipeMap sAstraForgeRecipes = (VA_RecipeMap) new VA_RecipeMap(
         new HashSet<>(),
         "append.recipe.astraForge",
@@ -92,9 +92,9 @@ public class VA_RecipeAdder extends GT_RecipeAdder {
         .setUsualFluidOutputCount(8)
         .setDisableOptimize(true);
 
-    public VA_RecipeMap sUltimateHeaterRecipes = (VA_RecipeMap) new VA_RecipeMap(
+    public VA_RecipeMap sThermonuclearControlRecipes = (VA_RecipeMap) new VA_RecipeMap(
         new HashSet<>(),
-        "append.recipe.ultimateHeater",
+        "append.recipe.thermonuclearControl",
         "热核控制过程",
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",

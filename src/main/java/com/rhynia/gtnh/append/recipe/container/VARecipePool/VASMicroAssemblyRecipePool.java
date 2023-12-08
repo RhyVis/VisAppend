@@ -14,7 +14,7 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 import com.rhynia.gtnh.append.util.recipeHelper.BWPart;
@@ -33,7 +33,7 @@ import gregtech.api.util.GT_Utility;
 
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map MA = VA_RecipeAdder.instance.sMicroAssemblyRecipes;
+    private final GT_Recipe.GT_Recipe_Map MA = VA_Recipe.instance.sMicroAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {}

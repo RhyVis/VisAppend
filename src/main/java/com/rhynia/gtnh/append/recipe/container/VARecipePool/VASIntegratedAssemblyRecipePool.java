@@ -21,7 +21,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -43,7 +43,7 @@ import gtPlusPlus.core.material.ELEMENT;
 
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map IA = VA_RecipeAdder.instance.sIntegratedAssemblyRecipes;
+    private final GT_Recipe.GT_Recipe_Map IA = VA_Recipe.instance.sIntegratedAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {

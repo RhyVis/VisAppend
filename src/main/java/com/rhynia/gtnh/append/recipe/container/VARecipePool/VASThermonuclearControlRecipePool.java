@@ -16,7 +16,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
@@ -29,9 +29,9 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
-public class VASUltimateHeaterRecipePool implements IRecipePool {
+public class VASThermonuclearControlRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map UH = VA_RecipeAdder.instance.sUltimateHeaterRecipes;
+    private final GT_Recipe.GT_Recipe_Map UH = VA_Recipe.instance.sThermonuclearControlRecipes;
     private final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override

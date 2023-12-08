@@ -8,7 +8,7 @@ import static gregtech.api.enums.TierEU.RECIPE_UXV;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_RecipeAdder;
+import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.recipe.IRecipePool;
 
@@ -22,7 +22,7 @@ import gregtech.api.util.GT_Utility;
 @SuppressWarnings("SpellCheckingInspection")
 public class VASTranscendentReactorRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map TR = VA_RecipeAdder.instance.sTranscendentReactorRecipes;
+    private final GT_Recipe.GT_Recipe_Map TR = VA_Recipe.instance.sTranscendentReactorRecipes;
     final int RecipeMult = 32;
     final int OutputMult = 250;
     final int CataMult = 16;
