@@ -89,7 +89,7 @@ public class VA_WerkstoffMaterialPool implements Runnable {
     public static final Werkstoff lapoActivatedFluid = new Werkstoff(
         new short[] { 0x64, 0x95, 0xed },
         "LapoActivatedFluid",
-        "-[-Lapo-Lapo-]-",
+        "[-Lapo-Lapo-]",
         new Werkstoff.Stats().setRadioactive(true)
             .setMeltingPoint(4888),
         Werkstoff.Types.COMPOUND,
@@ -136,6 +136,19 @@ public class VA_WerkstoffMaterialPool implements Runnable {
             .addCells()
             .enforceUnification(),
         OffsetID + 10,
+        TextureSet.SET_FLUID);
+    // Astro Catalyst Reforged
+    public static final Werkstoff astroCatalystReforged = new Werkstoff(
+        new short[] { 0x41, 0x69, 0xe1 },
+        "AstroCatalystReforged",
+        subscriptNumbers("Aoⁿ4?3"),
+        new Werkstoff.Stats().setMeltingPoint(1)
+            .setBoilingPoint(100000),
+        Werkstoff.Types.ELEMENT,
+        new Werkstoff.GenerationFeatures().disable()
+            .addCells()
+            .enforceUnification(),
+        OffsetID + 11,
         TextureSet.SET_FLUID);
 
     @Override

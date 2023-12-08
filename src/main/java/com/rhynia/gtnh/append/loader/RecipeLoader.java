@@ -5,6 +5,7 @@ import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VACentrifugeRecipePo
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAChemicalReactorRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VACommonRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAElectroRecipePool;
+import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAFusionRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAHammerRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VALaserEngraverRecipePool;
 import com.rhynia.gtnh.append.recipe.container.GTRecipePool.VAMachineRecipePool;
@@ -39,7 +40,8 @@ public class RecipeLoader {
             new VACommonRecipePool(), new VAMachineRecipePool(),
             // GT Recipe
             new VACentrifugeRecipePool(), new VAElectroRecipePool(), new VAMixerRecipePool(),
-            new VAChemicalReactorRecipePool(), new VAHammerRecipePool(), new VALaserEngraverRecipePool() };
+            new VAChemicalReactorRecipePool(), new VAHammerRecipePool(), new VALaserEngraverRecipePool(),
+            new VAFusionRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipes();

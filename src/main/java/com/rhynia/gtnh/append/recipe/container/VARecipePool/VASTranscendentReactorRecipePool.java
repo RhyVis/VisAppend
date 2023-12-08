@@ -33,7 +33,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
     @Override
     public void loadRecipes() {
 
-        // region 特殊材料制造
+        // region 催化剂
         // DTCC
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -47,6 +47,24 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .fluidOutputs(
                 MaterialsUEVplus.DimensionallyTranscendentCrudeCatalyst.getFluid(RecipeMult * OutputMult),
                 VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 500))
+            .specialValue((int) HeatingCoilLevel.UEV.getHeat())
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(10 * SECONDS)
+            .addTo(TR);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(11),
+                Materials.Iron.getDust(RecipeMult),
+                Materials.Calcium.getDust(RecipeMult),
+                Materials.Niobium.getDust(RecipeMult))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(CataMult * 1000),
+                VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(CataMult * 500),
+                Materials.Helium.getGas(RecipeMult * INGOTS))
+            .fluidOutputs(
+                MaterialsUEVplus.ExcitedDTCC.getFluid(RecipeMult * OutputMult),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 750))
             .specialValue((int) HeatingCoilLevel.UEV.getHeat())
             .noOptimize()
             .eut(RECIPE_UEV)
@@ -74,6 +92,28 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .eut(RECIPE_UIV)
             .duration(10 * SECONDS)
             .addTo(TR);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(12),
+                Materials.Iron.getDust(RecipeMult),
+                Materials.Calcium.getDust(RecipeMult),
+                Materials.Niobium.getDust(RecipeMult),
+                Materials.Nickel.getDust(RecipeMult),
+                Materials.Boron.getDust(RecipeMult),
+                Materials.Sulfur.getDust(RecipeMult))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(CataMult * 1000),
+                VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(CataMult * 500),
+                Materials.Helium.getGas(RecipeMult * INGOTS),
+                Materials.Radon.getGas(RecipeMult * INGOTS))
+            .fluidOutputs(
+                MaterialsUEVplus.ExcitedDTPC.getFluid(RecipeMult * OutputMult),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 750))
+            .specialValue((int) HeatingCoilLevel.UIV.getHeat())
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(10 * SECONDS)
+            .addTo(TR);
         // DTRC
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -95,6 +135,32 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .fluidOutputs(
                 MaterialsUEVplus.DimensionallyTranscendentResplendentCatalyst.getFluid(RecipeMult * OutputMult),
                 VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 500))
+            .specialValue((int) HeatingCoilLevel.UMV.getHeat())
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(10 * SECONDS)
+            .addTo(TR);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(13),
+                Materials.Iron.getDust(RecipeMult),
+                Materials.Calcium.getDust(RecipeMult),
+                Materials.Niobium.getDust(RecipeMult),
+                Materials.Nickel.getDust(RecipeMult),
+                Materials.Boron.getDust(RecipeMult),
+                Materials.Sulfur.getDust(RecipeMult),
+                Materials.Zinc.getDust(RecipeMult),
+                Materials.Silver.getDust(RecipeMult),
+                Materials.Titanium.getDust(RecipeMult))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(CataMult * 1000),
+                VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(CataMult * 500),
+                Materials.Helium.getGas(RecipeMult * INGOTS),
+                Materials.Radon.getGas(RecipeMult * INGOTS),
+                Materials.Nitrogen.getGas(RecipeMult * INGOTS))
+            .fluidOutputs(
+                MaterialsUEVplus.ExcitedDTRC.getFluid(RecipeMult * OutputMult),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 750))
             .specialValue((int) HeatingCoilLevel.UMV.getHeat())
             .noOptimize()
             .eut(RECIPE_UMV)
@@ -130,6 +196,36 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .eut(RECIPE_UXV)
             .duration(10 * SECONDS)
             .addTo(TR);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(14),
+                Materials.Iron.getDust(RecipeMult),
+                Materials.Calcium.getDust(RecipeMult),
+                Materials.Niobium.getDust(RecipeMult),
+                Materials.Nickel.getDust(RecipeMult),
+                Materials.Boron.getDust(RecipeMult),
+                Materials.Sulfur.getDust(RecipeMult),
+                Materials.Zinc.getDust(RecipeMult),
+                Materials.Silver.getDust(RecipeMult),
+                Materials.Titanium.getDust(RecipeMult),
+                Materials.Americium.getDust(RecipeMult),
+                Materials.Bismuth.getDust(RecipeMult),
+                Materials.Tin.getDust(RecipeMult))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(CataMult * 1000),
+                VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(CataMult * 500),
+                Materials.Helium.getGas(RecipeMult * INGOTS),
+                Materials.Radon.getGas(RecipeMult * INGOTS),
+                Materials.Nitrogen.getGas(RecipeMult * INGOTS),
+                Materials.Oxygen.getGas(RecipeMult * INGOTS))
+            .fluidOutputs(
+                MaterialsUEVplus.ExcitedDTEC.getFluid(RecipeMult * OutputMult),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 750))
+            .specialValue((int) HeatingCoilLevel.UXV.getHeat())
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(10 * SECONDS)
+            .addTo(TR);
         // DTSC
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -159,6 +255,40 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .fluidOutputs(
                 MaterialsUEVplus.DimensionallyTranscendentStellarCatalyst.getFluid(RecipeMult * OutputMult),
                 VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 500))
+            .specialValue((int) HeatingCoilLevel.MAX.getHeat())
+            .noOptimize()
+            .eut(RECIPE_MAX)
+            .duration(10 * SECONDS)
+            .addTo(TR);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(15),
+                Materials.Iron.getDust(RecipeMult),
+                Materials.Calcium.getDust(RecipeMult),
+                Materials.Niobium.getDust(RecipeMult),
+                Materials.Nickel.getDust(RecipeMult),
+                Materials.Boron.getDust(RecipeMult),
+                Materials.Sulfur.getDust(RecipeMult),
+                Materials.Zinc.getDust(RecipeMult),
+                Materials.Silver.getDust(RecipeMult),
+                Materials.Titanium.getDust(RecipeMult),
+                Materials.Americium.getDust(RecipeMult),
+                Materials.Bismuth.getDust(RecipeMult),
+                Materials.Tin.getDust(RecipeMult),
+                Materials.Lead.getDust(RecipeMult),
+                Materials.Thorium.getDust(RecipeMult),
+                Materials.Plutonium241.getDust(RecipeMult))
+            .fluidInputs(
+                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(CataMult * 1000),
+                VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(CataMult * 500),
+                Materials.Helium.getGas(RecipeMult * INGOTS),
+                Materials.Radon.getGas(RecipeMult * INGOTS),
+                Materials.Nitrogen.getGas(RecipeMult * INGOTS),
+                Materials.Oxygen.getGas(RecipeMult * INGOTS),
+                MaterialsUEVplus.RawStarMatter.getFluid(200L))
+            .fluidOutputs(
+                MaterialsUEVplus.ExcitedDTSC.getFluid(RecipeMult * OutputMult),
+                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(CataMult * 750))
             .specialValue((int) HeatingCoilLevel.MAX.getHeat())
             .noOptimize()
             .eut(RECIPE_MAX)
