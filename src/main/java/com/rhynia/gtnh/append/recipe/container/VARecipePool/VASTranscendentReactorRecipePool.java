@@ -24,6 +24,7 @@ import gregtech.api.util.GT_Utility;
 public class VASTranscendentReactorRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map TR = VA_Recipe.instance.sTranscendentReactorRecipes;
+    final boolean EnableDTCRecipes = Config.Reccipe_TR_DTC_Enable;
     final int RecipeMult = Config.Recipe_TR_RecipeMult;
     final int OutputMult = Config.Recipe_TR_OutputMult;
     final int CatalystACA = Config.Recipe_TR_CatalystACAMult;
@@ -34,6 +35,13 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
+        // DTC Conf
+        if (EnableDTCRecipes) {
+            loadTRDTCRecipes();
+        }
+    }
+
+    public void loadTRDTCRecipes() {
 
         // region 催化剂
         // DTCC

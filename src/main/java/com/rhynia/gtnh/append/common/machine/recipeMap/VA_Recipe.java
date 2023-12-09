@@ -11,9 +11,11 @@ import java.util.function.Supplier;
 import com.gtnewhorizons.modularui.api.forge.IItemHandlerModifiable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 
 import gregtech.common.GT_RecipeAdder;
 import gregtech.common.gui.modularui.UIHelper;
+import gregtech.nei.HeatingCoilSpecialValueFormatter;
 
 public class VA_Recipe extends GT_RecipeAdder {
 
@@ -161,7 +163,7 @@ public class VA_Recipe extends GT_RecipeAdder {
         .setLogo(VA_LOGO_32)
         .setLogoSize(17, 17)
         .setLogoPos(79, 52)
-        .setProgressBar(PROGRESSBAR_MIXER)
+        .setProgressBar(PROGRESSBAR_MIXER, ProgressBar.Direction.CIRCULAR_CW)
         .setProgressBarPos(79, 27)
         .setProgressBarSize(17, 17)
         .setUsualFluidInputCount(2)
@@ -178,9 +180,9 @@ public class VA_Recipe extends GT_RecipeAdder {
         0,
         0,
         1,
-        "热通量",
+        "热通量: ",
         1,
-        "K",
+        " K",
         false,
         true) {
 
@@ -243,6 +245,7 @@ public class VA_Recipe extends GT_RecipeAdder {
         .setProgressBar(PROGRESSBAR_ARROW_MULTIPLE)
         .setProgressBarPos(5 + 80, 27)
         .setProgressBarSize(15, 15)
+        .setNEISpecialInfoFormatter(HeatingCoilSpecialValueFormatter.INSTANCE)
         .setUsualFluidInputCount(8)
         .setUsualFluidOutputCount(6)
         .setDisableOptimize(true);
@@ -254,7 +257,7 @@ public class VA_Recipe extends GT_RecipeAdder {
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         12,
-        6,
+        1,
         0,
         0,
         1,
@@ -264,12 +267,12 @@ public class VA_Recipe extends GT_RecipeAdder {
         false,
         true) {
 
-        private static final int xDirMaxCount = 6;
-        private static final int xDirOutputMaxCount = 2;
+        private static final int xDirMaxCount = 4;
+        private static final int xDirOutputMaxCount = 1;
         private static final int yOrigin = 8;
 
         private int getItemRowCount() {
-            return (Math.max(mUsualInputCount, mUsualOutputCount) - 1) / xDirMaxCount + 1;
+            return (mUsualInputCount - 1) / xDirMaxCount + 1;
         }
 
         private int getFluidRowCount() {
@@ -283,7 +286,7 @@ public class VA_Recipe extends GT_RecipeAdder {
 
         @Override
         public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
-            return UIHelper.getGridPositions(itemOutputCount, 134, yOrigin, xDirOutputMaxCount);
+            return UIHelper.getGridPositions(itemOutputCount, 98 + 18, yOrigin + 18, xDirOutputMaxCount);
         }
 
         @Override
@@ -293,7 +296,7 @@ public class VA_Recipe extends GT_RecipeAdder {
 
         @Override
         public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
-            return UIHelper.getGridPositions(fluidOutputCount, 134, yOrigin + 9 + getItemRowCount() * 18, xDirMaxCount);
+            return UIHelper.getGridPositions(fluidOutputCount, 116, yOrigin + getItemRowCount() * 18, xDirMaxCount);
         }
 
         @Override
@@ -314,11 +317,11 @@ public class VA_Recipe extends GT_RecipeAdder {
     }.useModularUI(true)
         .setLogo(VA_LOGO_32)
         .setLogoSize(17, 17)
-        .setLogoPos(116, 46)
+        .setLogoPos(79 + 18 * 4, 8 + 18 * 4)
         .setProgressBar(PROGRESSBAR_ARROW_MULTIPLE)
-        .setProgressBarPos(116, 23)
+        .setProgressBarPos(79 + 9, 8 + 18 + 1)
         .setProgressBarSize(17, 17)
-        .setUsualFluidInputCount(6)
+        .setUsualFluidInputCount(8)
         .setUsualFluidOutputCount(0)
         .setDisableOptimize(true);
 
@@ -329,7 +332,7 @@ public class VA_Recipe extends GT_RecipeAdder {
         null,
         "gregtech:textures/gui/basicmachines/LCRNEI",
         8,
-        16,
+        1,
         0,
         0,
         1,
@@ -357,7 +360,7 @@ public class VA_Recipe extends GT_RecipeAdder {
 
         @Override
         public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
-            return UIHelper.getGridPositions(itemOutputCount, 98, yOrigin, xDirMaxCount);
+            return UIHelper.getGridPositions(itemOutputCount, 98 + 18, yOrigin + 18, xDirMaxCount);
         }
 
         @Override
@@ -375,7 +378,7 @@ public class VA_Recipe extends GT_RecipeAdder {
             IItemHandlerModifiable itemOutputsInventory, IItemHandlerModifiable specialSlotInventory,
             IItemHandlerModifiable fluidInputsInventory, IItemHandlerModifiable fluidOutputsInventory,
             Supplier<Float> progressSupplier, Pos2d windowOffset) {
-            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount() - 2) * 18);
+            setNEIBackgroundSize(172, 10 + (getItemRowCount() + getFluidRowCount()) * 18);
             return super.createNEITemplate(
                 itemInputsInventory,
                 itemOutputsInventory,
@@ -388,9 +391,9 @@ public class VA_Recipe extends GT_RecipeAdder {
     }.useModularUI(true)
         .setLogo(VA_LOGO_32)
         .setLogoSize(17, 17)
-        .setLogoPos(79, 46)
+        .setLogoPos(79 + 18 * 4, 8 + 18 * 3)
         .setProgressBar(PROGRESSBAR_ARROW_MULTIPLE)
-        .setProgressBarPos(79, 27)
+        .setProgressBarPos(79 + 9, 8 + 18 + 1)
         .setProgressBarSize(17, 17)
         .setUsualFluidInputCount(8)
         .setUsualFluidOutputCount(0)
