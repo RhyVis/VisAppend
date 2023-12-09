@@ -11,6 +11,7 @@ import java.util.function.Supplier;
 import com.gtnewhorizons.modularui.api.forge.IItemHandlerModifiable;
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 
 import gregtech.common.GT_RecipeAdder;
 import gregtech.common.gui.modularui.UIHelper;
@@ -161,7 +162,7 @@ public class VA_Recipe extends GT_RecipeAdder {
         .setLogo(VA_LOGO_32)
         .setLogoSize(17, 17)
         .setLogoPos(79, 52)
-        .setProgressBar(PROGRESSBAR_MIXER)
+        .setProgressBar(PROGRESSBAR_MIXER, ProgressBar.Direction.CIRCULAR_CW)
         .setProgressBarPos(79, 27)
         .setProgressBarSize(17, 17)
         .setUsualFluidInputCount(2)
