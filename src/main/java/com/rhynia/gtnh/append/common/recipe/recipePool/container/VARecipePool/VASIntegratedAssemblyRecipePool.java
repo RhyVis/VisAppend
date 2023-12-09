@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipe.recipePool.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
@@ -21,10 +21,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
+import com.rhynia.gtnh.append.common.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.common.recipe.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.util.recipeHelper.BWPart;
 import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.util.recipeHelper.Solder;

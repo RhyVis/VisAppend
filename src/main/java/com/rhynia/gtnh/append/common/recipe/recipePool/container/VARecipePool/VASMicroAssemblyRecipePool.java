@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipe.recipePool.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -14,9 +14,9 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
+import com.rhynia.gtnh.append.common.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.common.recipe.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.util.recipeHelper.BWPart;
 import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.util.recipeHelper.Solder;
