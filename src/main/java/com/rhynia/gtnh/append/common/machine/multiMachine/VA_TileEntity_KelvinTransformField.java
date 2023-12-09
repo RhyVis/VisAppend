@@ -23,6 +23,7 @@ import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_Fusi
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -296,6 +297,20 @@ public class VA_TileEntity_KelvinTransformField
                     .build() };
         }
         return new ITexture[] { casingTexturePages[0][17] };
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+
+        aNBT.setInteger("mRecipeMode", mRecipeMode);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+
+        mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
     }
 
     // endregion
