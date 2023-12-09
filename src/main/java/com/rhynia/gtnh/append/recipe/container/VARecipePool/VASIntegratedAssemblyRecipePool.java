@@ -479,6 +479,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_OreDictUnificator.get(OrePrefixes.circuit.get(Materials.Bio), 1),
+                ELEMENT.STANDALONE.HYPOGEN.getWire02(8),
+                ELEMENT.STANDALONE.HYPOGEN.getScrew(8),
                 CustomItemList.MicaInsulatorFoil.get(64),
                 CustomItemList.MicaInsulatorFoil.get(64),
                 CustomItemList.MicaInsulatorFoil.get(64))

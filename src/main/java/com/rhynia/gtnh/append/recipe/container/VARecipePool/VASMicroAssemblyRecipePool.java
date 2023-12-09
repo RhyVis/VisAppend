@@ -229,7 +229,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         // T1
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(BWPart.Elite_Board, 12),
+                BWPart.getWrappedPart(BWPart.Elite_Board, 1),
                 GT_Utility
                     .copyAmountUnsafe(16 * 16, GT_ModHandler.getModItem("dreamcraft", "item.EngravedGoldChip", 1)),
                 BWPart.getWrappedPart(BWPart.Part_ASOC, 8),
@@ -280,7 +280,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 ItemRefer.HiC_T3.get(8),
                 CustomItemList.EngravedEnergyChip.get(32),
-                BWPart.getWrappedPart(BWPart.Part_QBit, 16))
+                BWPart.getWrappedPart(BWPart.Part_QBit, 4))
             .fluidInputs(
                 MyMaterial.marM200.getMolten(4 * 8 * INGOTS),
                 MyMaterial.signalium.getMolten(4 * 4 * INGOTS),
