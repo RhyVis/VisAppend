@@ -215,11 +215,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 Solder.getSolder(2, 24 * INGOTS),
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(6 * INGOTS),
                 Materials.Infinity.getMolten(4 * INGOTS))
-            .itemOutputs(
-                CustomItemList.HighEnergyFlowCircuit.get(64),
-                CustomItemList.HighEnergyFlowCircuit.get(64),
-                CustomItemList.HighEnergyFlowCircuit.get(64),
-                CustomItemList.HighEnergyFlowCircuit.get(64))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, CustomItemList.HighEnergyFlowCircuit.get(1)))
             .eut(RECIPE_LuV)
             .duration(1600 * SECONDS)
             .addTo(MA);

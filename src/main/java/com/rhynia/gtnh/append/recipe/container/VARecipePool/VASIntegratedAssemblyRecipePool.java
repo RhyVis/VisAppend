@@ -348,30 +348,6 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // endregion
 
         // region 杂项组装
-        // 源石 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.gem, 1))
-            .fluidInputs(
-                Solder.getSolder(3, 32 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(64000))
-            .itemOutputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 1))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(810 * SECONDS)
-            .addTo(IA);
-        // 原石 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.gem, 1))
-            .fluidInputs(
-                Solder.getSolder(3, 32 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(64000))
-            .itemOutputs(VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 1))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(810 * SECONDS)
-            .addTo(IA);
         // Magic 透镜
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
@@ -457,8 +433,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64))
             .fluidInputs(Materials.Infinity.getMolten(64 * INGOTS), Solder.getSolder(3, 96 * INGOTS))
             .itemOutputs(
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32725))
+                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 1, 32725)))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(80 * SECONDS)
@@ -655,7 +630,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 GregtechItemList.Casing_Fusion_Internal.get(48),
                 ItemRefer.HiC_T5.get(16),
-                GregtechItemList.Energy_Buffer_1by1_HV.get(16))
+                GT_ModHandler.getModItem("miscutils", "item.itemBufferCore4", 16))
             .fluidInputs(ALLOY.ENERGYCRYSTAL.getFluidStack(16 * 8 * INGOTS), ALLOY.LAURENIUM.getFluidStack(16 * INGOTS))
             .itemOutputs(ItemRefer.Compact_Fusion_Coil_T3.get(16))
             .noOptimize()
@@ -668,7 +643,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 GregtechItemList.Casing_Fusion_Internal2.get(48),
                 ItemRefer.HiC_T5.get(64),
                 GGChip.getWrappedCircuit(GGChip.UEV, 1),
-                GregtechItemList.Energy_Buffer_1by1_IV.get(16))
+                GT_ModHandler.getModItem("miscutils", "item.itemBufferCore5", 16))
             .fluidInputs(
                 ALLOY.BLACK_TITANIUM.getFluidStack(16 * 8 * INGOTS),
                 MyMaterial.metastableOganesson.getMolten(16 * 4 * INGOTS))
@@ -676,6 +651,48 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * 100 * SECONDS)
+            .addTo(IA);
+        // endregion
+
+        // region Casing Fusion
+        // Compact Casing Fusion Coil III
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Casing_Fusion2.get(16),
+                GGChip.getWrappedCircuit(GGChip.EV, 16),
+                GGChip.getWrappedCircuit(GGChip.IV, 8),
+                ItemList.Electric_Motor_UHV.get(32),
+                ItemList.Electric_Piston_UHV.get(16))
+            .fluidInputs(
+                Materials.TungstenCarbide.getMolten(16 * 8 * 9 * INGOTS),
+                Materials.Neutronium.getMolten(16 * 8 * INGOTS),
+                Materials.UUMatter.getFluid(16 * BUCKETS),
+                ALLOY.CINOBITE.getFluidStack(16 * 4 * INGOTS),
+                ALLOY.OCTIRON.getFluidStack(16 * 4 * INGOTS),
+                ELEMENT.STANDALONE.ASTRAL_TITANIUM.getFluidStack(16 * 4 * INGOTS))
+            .itemOutputs(GregtechItemList.Casing_Fusion_External.get(16))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * 15 * SECONDS)
+            .addTo(IA);
+        // Compact Casing Fusion Coil IV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GregtechItemList.Casing_Fusion_External.get(16),
+                GGChip.getWrappedCircuit(GGChip.IV, 16),
+                GGChip.getWrappedCircuit(GGChip.LuV, 8),
+                ItemList.Electric_Motor_UEV.get(32),
+                ItemList.Electric_Piston_UEV.get(16))
+            .fluidInputs(
+                Materials.NaquadahAlloy.getMolten(16 * 8 * 9 * INGOTS),
+                ELEMENT.STANDALONE.CHRONOMATIC_GLASS.getFluidStack(16 * 16 * INGOTS),
+                ELEMENT.getInstance().FERMIUM.getFluidStack(16 * 8 * INGOTS),
+                ALLOY.ABYSSAL.getFluidStack(16 * 8 * INGOTS),
+                ELEMENT.STANDALONE.DRAGON_METAL.getFluidStack(16 * 8 * INGOTS))
+            .itemOutputs(GregtechItemList.Casing_Fusion_External2.get(16))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * 15 * SECONDS)
             .addTo(IA);
         // endregion
     }
