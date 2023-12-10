@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.recipe;
+package com.rhynia.gtnh.append.common.recipePool;
 
 public interface IRecipePool {
 

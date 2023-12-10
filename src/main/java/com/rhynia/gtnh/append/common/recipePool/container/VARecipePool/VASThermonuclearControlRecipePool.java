@@ -1,6 +1,6 @@
-package com.rhynia.gtnh.append.recipe.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.util.Values.lensInf;
+import static com.rhynia.gtnh.append.api.util.Values.lensInf;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
 import static gregtech.api.enums.TierEU.RECIPE_UIV;
@@ -16,10 +16,10 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
@@ -29,6 +29,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
+@SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map UH = VA_Recipe.instance.sThermonuclearControlRecipes;

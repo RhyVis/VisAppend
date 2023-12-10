@@ -1,9 +1,9 @@
 package com.rhynia.gtnh.append.common.block;
 
+import static com.rhynia.gtnh.append.api.util.MetaItemStack.initMetaItemStack;
+import static com.rhynia.gtnh.append.api.util.MetaItemStack.metaItemStackTooltipsAdd;
 import static com.rhynia.gtnh.append.client.VA_Tab.tabMetaBlock01;
 import static com.rhynia.gtnh.append.common.block.BlockBasic.MetaBlock01;
-import static com.rhynia.gtnh.append.util.MetaItemStack.initMetaItemStack;
-import static com.rhynia.gtnh.append.util.MetaItemStack.metaItemStackTooltipsAdd;
 
 import java.util.Arrays;
 import java.util.HashMap;

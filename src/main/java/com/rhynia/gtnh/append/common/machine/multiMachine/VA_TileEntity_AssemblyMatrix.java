@@ -4,10 +4,10 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.util.Values.VisAppendGigaFac;
+import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
+import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
+import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
@@ -23,6 +23,7 @@ import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_Fusi
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
@@ -34,7 +35,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -308,5 +309,18 @@ public class VA_TileEntity_AssemblyMatrix
             .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
     }
 
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+
+        aNBT.setInteger("mRecipeMode", mRecipeMode);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+
+        mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
+    }
     // endregion
 }

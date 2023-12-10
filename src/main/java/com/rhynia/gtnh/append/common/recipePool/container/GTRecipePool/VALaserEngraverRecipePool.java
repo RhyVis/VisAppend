@@ -1,7 +1,7 @@
-package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.util.Values.lensInf;
-import static com.rhynia.gtnh.append.util.Values.lensMagic;
+import static com.rhynia.gtnh.append.api.util.Values.lensInf;
+import static com.rhynia.gtnh.append.api.util.Values.lensMagic;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
@@ -18,7 +18,7 @@ import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;

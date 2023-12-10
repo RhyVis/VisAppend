@@ -1,6 +1,6 @@
-package com.rhynia.gtnh.append.recipe.container.GTRecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.util.Values.FullChance;
+import static com.rhynia.gtnh.append.api.util.Values.FullChance;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -10,7 +10,7 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.recipe.IRecipePool;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;

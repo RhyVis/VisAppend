@@ -2,10 +2,10 @@ package com.rhynia.gtnh.append.common.machine.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.util.Values.VisAppendMagical;
+import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
+import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
+import static com.rhynia.gtnh.append.api.util.Values.VisAppendMagical;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
@@ -34,7 +34,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.machine.recipeMap.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
