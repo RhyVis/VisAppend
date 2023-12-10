@@ -67,8 +67,9 @@ public class VA_TileEntity_UltimateHeater
     public byte mRecipeMode = 0; // 0-sUltimateHeaterRecipes,1-sTranscendentReactorRecipes
 
     // region Definition
-    private HeatingCoilLevel coilLevel;
-    public byte glassTier;
+    private HeatingCoilLevel mCoilLevel;
+    private int mHeatingCapacity;
+    private byte mGlassTier;
     // endregion
 
     // region Class Constructor
@@ -91,11 +92,11 @@ public class VA_TileEntity_UltimateHeater
                 @NotNull
                 @Override
                 protected CheckRecipeResult validateRecipe(@NotNull GT_Recipe recipe) {
-                    return recipe.mSpecialValue <= coilLevel.getHeat() ? CheckRecipeResultRegistry.SUCCESSFUL
+                    return recipe.mSpecialValue <= mHeatingCapacity ? CheckRecipeResultRegistry.SUCCESSFUL
                         : CheckRecipeResultRegistry.insufficientHeat(recipe.mSpecialValue);
                 }
             }.setSpeedBonus(getSpeedBonus())
-                .setOverclock(coilLevel.getTier() > 11 ? 2 : 1, 2)
+                .setOverclock(mCoilLevel.getTier() > 11 ? 2 : 1, 2)
                 .setMaxParallelSupplier(this::getMaxParallelRecipes);
             // UH
         } else return new ProcessingLogic() {
@@ -104,7 +105,7 @@ public class VA_TileEntity_UltimateHeater
             @Override
             public CheckRecipeResult process() {
                 setSpeedBonus(getSpeedBonus());
-                setOverclock(coilLevel.getTier() > 11 ? 2 : 1, 2);
+                setOverclock(mCoilLevel.getTier() > 11 ? 2 : 1, 2);
                 return super.process();
             }
         }.setMaxParallelSupplier(this::getMaxParallelRecipes);
@@ -118,8 +119,8 @@ public class VA_TileEntity_UltimateHeater
 
     public float getSpeedBonus() {
         if (mRecipeMode == 0) {
-            return (float) Math.pow(0.95, coilLevel.getTier());
-        } else return (float) Math.pow(0.90, coilLevel.getTier() - 10);
+            return (float) Math.pow(0.95, mCoilLevel.getTier());
+        } else return (float) Math.pow(0.90, mCoilLevel.getTier() - 10);
     }
 
     @Override
@@ -141,17 +142,19 @@ public class VA_TileEntity_UltimateHeater
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        this.glassTier = 0;
+        this.mGlassTier = 0;
+        this.mHeatingCapacity = 0;
         if (!checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet)) {
             return false;
         }
-        if (glassTier < 12) {
+        if (mGlassTier < 12) {
             for (GT_MetaTileEntity_Hatch hatch : this.mExoticEnergyHatches) {
-                if (this.glassTier < hatch.mTier) {
+                if (this.mGlassTier < hatch.mTier) {
                     return false;
                 }
             }
         }
+        this.mHeatingCapacity = (int) mCoilLevel.getHeat();
         return true;
     }
 
@@ -196,15 +199,15 @@ public class VA_TileEntity_UltimateHeater
                         (byte) 0,
                         (byte) 1,
                         Byte.MAX_VALUE,
-                        (te, t) -> te.glassTier = t,
-                        te -> te.glassTier)))
+                        (te, t) -> te.mGlassTier = t,
+                        te -> te.mGlassTier)))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement('C', ofBlock(GregTech_API.sBlockCasings4, 7))
             .addElement(
                 'D',
                 withChannel(
                     "coil",
-                    ofCoil(VA_TileEntity_UltimateHeater::setCoilLevel, VA_TileEntity_UltimateHeater::getCoilLevel)))
+                    ofCoil(VA_TileEntity_UltimateHeater::setmCoilLevel, VA_TileEntity_UltimateHeater::getmCoilLevel)))
             .addElement(
                 'E',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
@@ -380,12 +383,12 @@ public class VA_TileEntity_UltimateHeater
     // endregion
 
     // region Selector
-    public void setCoilLevel(HeatingCoilLevel aCoilLevel) {
-        this.coilLevel = aCoilLevel;
+    public void setmCoilLevel(HeatingCoilLevel aCoilLevel) {
+        this.mCoilLevel = aCoilLevel;
     }
 
-    public HeatingCoilLevel getCoilLevel() {
-        return this.coilLevel;
+    public HeatingCoilLevel getmCoilLevel() {
+        return this.mCoilLevel;
     }
     // endregion
 }
