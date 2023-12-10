@@ -1,42 +1,5 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Adv_Capacitor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Adv_Diode;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Adv_Resistor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Adv_Transistor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Bio_Board;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Delicate_Board;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Elite_Board;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Board;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Capacitor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Diode;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Inductor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Resistor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Transistor;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_ASOC;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_H;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_N;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_P;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_Q;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_UH;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_ILC;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_NanoCPU;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_QBit;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Wetware_Board;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.EV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.IV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.LuV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UEV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UHV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UIV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UMV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.UXV;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.ZPM;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.IndaAlloy;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.MutatedLivingAlloy;
-import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.SolderingAlloy;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -137,11 +100,11 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 兰波顿能量球 IV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Delicate_Board, 1),
-                BWPart.getWrappedPart(Part_IC, 4),
-                BWPart.getWrappedPart(Part_NanoCPU, 2))
+                BWPart.Delicate_Board.getWrapped(1),
+                BWPart.Part_IC.getWrapped(4),
+                BWPart.Part_NanoCPU.getWrapped(2))
             .fluidInputs(
-                SolderMaterial.getSolder(SolderingAlloy, 16 * INGOTS),
+                SolderMaterial.SolderingAlloy.getFluidStack(16 * INGOTS),
                 Materials.Platinum.getMolten(160 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(6400))
             .itemOutputs(ItemList.Energy_LapotronicOrb.get(16))
@@ -152,12 +115,12 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 兰波顿能量簇 LUV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Delicate_Board, 1),
+                BWPart.Delicate_Board.getWrapped(1),
                 GT_Utility.copyAmountUnsafe(128, ItemList.Energy_LapotronicOrb.get(1)),
-                BWPart.getWrappedPart(Part_IC_H, 4),
-                BWPart.getWrappedPart(Part_QBit, 2))
+                BWPart.Part_IC_H.getWrapped(4),
+                BWPart.Part_QBit.getWrapped(2))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 5 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 5 * INGOTS),
                 Materials.NiobiumTitanium.getMolten(16 * 2 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS))
             .itemOutputs(ItemList.Energy_LapotronicOrb2.get(16))
@@ -167,15 +130,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Elite_Board, 1),
-                GGChip.getWrappedCircuit(LuV, 4),
-                BWPart.getWrappedPart(Part_IC_H, 64),
-                BWPart.getWrappedPart(Adv_Diode, 8),
-                BWPart.getWrappedPart(Adv_Capacitor, 8),
-                BWPart.getWrappedPart(Adv_Resistor, 8),
-                BWPart.getWrappedPart(Adv_Transistor, 8))
+                BWPart.Elite_Board.getWrapped(1),
+                GGChip.LuV.getWrapped(4),
+                BWPart.Part_IC_H.getWrapped(64),
+                BWPart.Adv_Diode.getWrapped(8),
+                BWPart.Adv_Capacitor.getWrapped(8),
+                BWPart.Adv_Resistor.getWrapped(8),
+                BWPart.Adv_Transistor.getWrapped(8))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 5 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 5 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS),
                 Materials.Platinum.getMolten(16 * 8 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 800))
@@ -187,13 +150,13 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 能量模块 ZPM
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(ZPM, 4),
+                GGChip.ZPM.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.Energy_LapotronicOrb2.get(1)),
                 ItemList.Field_Generator_LuV.get(32),
-                GT_Utility.copyAmountUnsafe(6 * 64, BWPart.getWrappedPart(Part_ASOC, 1)),
-                BWPart.getWrappedPart(Adv_Transistor, 8))
+                GT_Utility.copyAmountUnsafe(6 * 64, BWPart.Part_ASOC.getWrapped(1)),
+                BWPart.Adv_Transistor.getWrapped(8))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 20 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 20 * INGOTS),
                 Materials.Europium.getMolten(16 * 16 * INGOTS),
                 Materials.Naquadah.getMolten(16 * 16 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
@@ -204,15 +167,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Wetware_Board, 1),
-                GGChip.getWrappedCircuit(ZPM, 4),
-                BWPart.getWrappedPart(Part_IC_UH, 64),
-                BWPart.getWrappedPart(Opt_Diode, 8),
-                BWPart.getWrappedPart(Opt_Capacitor, 8),
-                BWPart.getWrappedPart(Opt_Resistor, 8),
-                BWPart.getWrappedPart(Opt_Transistor, 8))
+                BWPart.Wetware_Board.getWrapped(1),
+                GGChip.ZPM.getWrapped(4),
+                BWPart.Part_IC_UH.getWrapped(64),
+                BWPart.Opt_Diode.getWrapped(8),
+                BWPart.Opt_Capacitor.getWrapped(8),
+                BWPart.Opt_Resistor.getWrapped(8),
+                BWPart.Opt_Transistor.getWrapped(8))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 5 * INGOTS),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 5 * INGOTS),
                 Materials.Bedrockium.getMolten(16 * 16 * INGOTS),
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 6 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 1000))
@@ -224,13 +187,13 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 能量簇 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UV, 4),
+                GGChip.UV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.Energy_Module.get(1)),
                 ItemList.Field_Generator_ZPM.get(32),
-                BWPart.getWrappedPart(Part_IC_H, 256),
-                BWPart.getWrappedPart(Adv_Diode, 16))
+                BWPart.Part_IC_H.getWrapped(256),
+                BWPart.Adv_Diode.getWrapped(16))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 20 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 20 * INGOTS),
                 Materials.Americium.getMolten(16 * 16 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
@@ -241,15 +204,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Bio_Board, 1),
-                GGChip.getWrappedCircuit(UV, 4),
-                BWPart.getWrappedPart(Part_IC_N, 64),
-                BWPart.getWrappedPart(Opt_Diode, 32),
-                BWPart.getWrappedPart(Opt_Capacitor, 32),
-                BWPart.getWrappedPart(Opt_Resistor, 32),
-                BWPart.getWrappedPart(Opt_Transistor, 32))
+                BWPart.Bio_Board.getWrapped(1),
+                GGChip.UV.getWrapped(4),
+                BWPart.Part_IC_N.getWrapped(64),
+                BWPart.Opt_Diode.getWrapped(32),
+                BWPart.Opt_Capacitor.getWrapped(32),
+                BWPart.Opt_Resistor.getWrapped(32),
+                BWPart.Opt_Transistor.getWrapped(32))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 10 * INGOTS),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 10 * INGOTS),
                 Materials.CosmicNeutronium.getMolten(16 * 16 * INGOTS),
                 MaterialsUEVplus.SpaceTime.getMolten(16 * 6 * INGOTS),
                 VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 2000))
@@ -261,13 +224,13 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 终极电池 UV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UHV, 4),
+                GGChip.UHV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.Energy_Cluster.get(1)),
                 ItemList.Field_Generator_UV.get(32),
-                BWPart.getWrappedPart(Part_IC_H, 256),
-                BWPart.getWrappedPart(Adv_Diode, 32))
+                BWPart.Part_IC_H.getWrapped(256),
+                BWPart.Adv_Diode.getWrapped(32))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 20 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 20 * INGOTS),
                 Materials.Tritanium.getMolten(16 * 64 * INGOTS),
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 4 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
@@ -278,15 +241,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(Opt_Board, 1),
-                GGChip.getWrappedCircuit(UHV, 4),
-                BWPart.getWrappedPart(Part_IC_P, 64),
-                BWPart.getWrappedPart(Opt_Diode, 64),
-                BWPart.getWrappedPart(Opt_Capacitor, 64),
-                BWPart.getWrappedPart(Opt_Resistor, 64),
-                BWPart.getWrappedPart(Opt_Transistor, 64))
+                BWPart.Opt_Board.getWrapped(1),
+                GGChip.UHV.getWrapped(4),
+                BWPart.Part_IC_P.getWrapped(64),
+                BWPart.Opt_Diode.getWrapped(64),
+                BWPart.Opt_Capacitor.getWrapped(64),
+                BWPart.Opt_Resistor.getWrapped(64),
+                BWPart.Opt_Transistor.getWrapped(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 20 * INGOTS),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 20 * INGOTS),
                 MyMaterial.shirabon.getMolten(16 * 16 * INGOTS),
                 MaterialsUEVplus.WhiteDwarfMatter.getMolten(16 * 4 * INGOTS),
                 MaterialsUEVplus.BlackDwarfMatter.getMolten(16 * 4 * INGOTS),
@@ -300,14 +263,14 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 真·终极电池 UMV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UEV, 4),
+                GGChip.UEV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.ZPM2.get(1)),
                 ItemList.Field_Generator_UHV.get(64),
-                BWPart.getWrappedPart(Part_IC_UH, 256),
-                BWPart.getWrappedPart(Part_ASOC, 3 * 64),
-                BWPart.getWrappedPart(Adv_Diode, 64))
+                BWPart.Part_IC_UH.getWrapped(256),
+                BWPart.Part_ASOC.getWrapped(3 * 64),
+                BWPart.Adv_Diode.getWrapped(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 4608),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 4608),
                 Materials.Neutronium.getMolten(16 * 128 * INGOTS),
                 Materials.Naquadria.getMolten(16 * 9216),
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 16 * INGOTS),
@@ -320,14 +283,14 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 极·终极电池 UXV
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UIV, 4),
+                GGChip.UIV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.ZPM3.get(1)),
                 ItemList.Field_Generator_UEV.get(64),
-                BWPart.getWrappedPart(Part_IC_P, 256),
-                BWPart.getWrappedPart(Part_ASOC, 6 * 64),
-                BWPart.getWrappedPart(Opt_Diode, 64))
+                BWPart.Part_IC_P.getWrapped(256),
+                BWPart.Part_ASOC.getWrapped(6 * 64),
+                BWPart.Opt_Diode.getWrapped(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 9216),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 9216),
                 Materials.InfinityCatalyst.getMolten(16 * 128 * INGOTS),
                 Materials.Quantium.getMolten(16 * 18432),
                 Materials.Naquadria.getMolten(16 * 18432),
@@ -341,15 +304,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 狂·终极电池 MAX
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UMV, 4),
+                GGChip.UMV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.ZPM4.get(1)),
                 ItemList.Field_Generator_UIV.get(64),
-                BWPart.getWrappedPart(Part_IC_Q, 256),
+                BWPart.Part_IC_Q.getWrapped(256),
                 GT_Utility.copyAmountUnsafe(16 * 64, CustomItemList.RawPicoWafer.get(1)),
-                BWPart.getWrappedPart(Opt_Diode, 64),
-                BWPart.getWrappedPart(Opt_Inductor, 32))
+                BWPart.Opt_Diode.getWrapped(64),
+                BWPart.Opt_Inductor.getWrapped(32))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 18432),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 18432),
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 128 * INGOTS),
                 ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(18_432),
                 Materials.Quantium.getMolten(16 * 18432),
@@ -363,15 +326,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 太·终极电池 ER
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UXV, 4),
+                GGChip.UXV.getWrapped(4),
                 GT_Utility.copyAmountUnsafe(128, ItemList.ZPM5.get(1)),
                 ItemList.Field_Generator_UMV.get(64),
-                BWPart.getWrappedPart(Part_IC_Q, 256),
+                BWPart.Part_IC_Q.getWrapped(256),
                 GT_Utility.copyAmountUnsafe(16 * 64, CustomItemList.RawPicoWafer.get(1)),
-                BWPart.getWrappedPart(Opt_Diode, 64),
-                BWPart.getWrappedPart(Opt_Inductor, 64))
+                BWPart.Opt_Diode.getWrapped(64),
+                BWPart.Opt_Inductor.getWrapped(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 16 * 36864),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 36864),
                 ELEMENT.STANDALONE.DRAGON_METAL.getFluidStack(16 * 128 * INGOTS),
                 ELEMENT.STANDALONE.ASTRAL_TITANIUM.getFluidStack(16 * 36864),
                 ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(16 * 36864),
@@ -389,7 +352,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 32 * INGOTS),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(48 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(64000))
             .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
@@ -401,7 +364,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
             .fluidInputs(
-                SolderMaterial.getSolder(MutatedLivingAlloy, 32 * INGOTS),
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
                 Materials.CosmicNeutronium.getMolten(256 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(256 * INGOTS),
                 VA_GregtechMaterialPool.Astro.getFluid(128000),
@@ -447,7 +410,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 Materials.VibrantAlloy.getPlates(64),
                 Materials.VibrantAlloy.getPlates(64))
             .fluidInputs(
-                SolderMaterial.getSolder(IndaAlloy, 16 * 16 * INGOTS),
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 16 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(10 * 64 * INGOTS),
                 Materials.Lanthanum.getMolten(4 * 64 * INGOTS),
                 Materials.Lead.getMolten(32 * 16 * INGOTS))
@@ -470,7 +433,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64))
             .fluidInputs(
                 Materials.Infinity.getMolten(64 * INGOTS),
-                SolderMaterial.getSolder(MutatedLivingAlloy, 96 * INGOTS))
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(96 * INGOTS))
             .itemOutputs(
                 GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 1, 32725)))
             .noOptimize()
@@ -496,7 +459,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UHV, 1),
+                GGChip.UHV.getWrapped(1),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
                 VAItemList.DenseMicaInsulatorFoil.get(32))
             .fluidInputs(
@@ -524,7 +487,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UEV, 1),
+                GGChip.UEV.getWrapped(1),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
                 VAItemList.DenseMicaInsulatorFoil.get(64))
@@ -556,7 +519,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.getWrappedCircuit(UIV, 1),
+                GGChip.UIV.getWrapped(1),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
                 VAItemList.DenseMicaInsulatorFoil.get(64),
@@ -578,7 +541,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Casing_Coil_Superconductor.get(16),
-                GGChip.getWrappedCircuit(LuV, 4),
+                GGChip.LuV.getWrapped(4),
                 ItemList.Field_Generator_MV.get(32))
             .fluidInputs(
                 Materials.Iridium.getMolten(12 * 8 * INGOTS),
@@ -595,8 +558,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 ItemList.Casing_Fusion_Coil.get(16),
                 GT_Utility.copyAmountUnsafe(16 * 16, ItemList.Energy_LapotronicOrb2.get(1)),
-                GGChip.getWrappedCircuit(LuV, 16),
-                GGChip.getWrappedCircuit(UV, 8),
+                GGChip.LuV.getWrapped(16),
+                GGChip.UV.getWrapped(8),
                 ItemList.Emitter_UHV.get(16),
                 ItemList.Sensor_UHV.get(16))
             .fluidInputs(
@@ -616,8 +579,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 ItemRefer.Compact_Fusion_Coil_T2.get(16),
                 ItemList.Casing_Fusion_Coil.get(16),
                 GT_Utility.copyAmountUnsafe(16 * 16, ItemList.Energy_Module.get(1)),
-                GGChip.getWrappedCircuit(ZPM, 16),
-                GGChip.getWrappedCircuit(UHV, 8),
+                GGChip.ZPM.getWrapped(16),
+                GGChip.UHV.getWrapped(8),
                 ItemList.Emitter_UHV.get(16),
                 ItemList.Sensor_UHV.get(16))
             .fluidInputs(
@@ -637,8 +600,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 ItemList.Casing_Fusion_Coil.get(48),
                 ItemRefer.HiC_T3.get(16),
-                BWPart.getWrappedPart(Part_ILC, 8),
-                BWPart.getWrappedPart(Part_IC, 1),
+                BWPart.Part_ILC.getWrapped(8),
+                BWPart.Part_IC.getWrapped(1),
                 ItemList.IV_Coil.get(1))
             .fluidInputs(
                 MyMaterial.artheriumSn.getMolten(16 * 4 * INGOTS),
@@ -681,7 +644,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 GregtechItemList.Casing_Fusion_Internal2.get(48),
                 ItemRefer.HiC_T5.get(64),
-                GGChip.getWrappedCircuit(UEV, 1),
+                GGChip.UEV.getWrapped(1),
                 GT_ModHandler.getModItem("miscutils", "item.itemBufferCore5", 16))
             .fluidInputs(
                 ALLOY.BLACK_TITANIUM.getFluidStack(16 * 8 * INGOTS),
@@ -698,8 +661,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Casing_Fusion2.get(16),
-                GGChip.getWrappedCircuit(EV, 16),
-                GGChip.getWrappedCircuit(IV, 8),
+                GGChip.EV.getWrapped(16),
+                GGChip.IV.getWrapped(8),
                 ItemList.Electric_Motor_UHV.get(32),
                 ItemList.Electric_Piston_UHV.get(16))
             .fluidInputs(
@@ -718,8 +681,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GregtechItemList.Casing_Fusion_External.get(16),
-                GGChip.getWrappedCircuit(IV, 16),
-                GGChip.getWrappedCircuit(LuV, 8),
+                GGChip.IV.getWrapped(16),
+                GGChip.LuV.getWrapped(8),
                 ItemList.Electric_Motor_UEV.get(32),
                 ItemList.Electric_Piston_UEV.get(16))
             .fluidInputs(
