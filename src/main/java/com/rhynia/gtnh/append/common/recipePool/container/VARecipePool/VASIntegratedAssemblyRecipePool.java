@@ -44,6 +44,7 @@ import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 
+@SuppressWarnings({ "SpellCheckingInspection" })
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map IA = VA_Recipe.instance.sIntegratedAssemblyRecipes;

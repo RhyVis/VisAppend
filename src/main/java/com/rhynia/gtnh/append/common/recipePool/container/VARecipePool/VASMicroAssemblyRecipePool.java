@@ -31,6 +31,7 @@ import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
+@SuppressWarnings({ "SpellCheckingInspection" })
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map MA = VA_Recipe.instance.sMicroAssemblyRecipes;

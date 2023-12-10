@@ -29,6 +29,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
+@SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map UH = VA_Recipe.instance.sThermonuclearControlRecipes;
