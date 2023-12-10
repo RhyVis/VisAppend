@@ -3,6 +3,7 @@ package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 import static gregtech.api.enums.TierEU.RECIPE_LV;
 import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.enums.TierEU.RECIPE_MV;
+import static gregtech.api.util.GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
@@ -68,49 +69,49 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroInf.getDust(64))
             .itemOutputs(VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_GregtechMaterialPool.AstroMagic.getDust(64))
             .itemOutputs(VAMaterials.AstriumMagic.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .itemInputs(VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 1))
             .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 1))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(250))
             .fluidOutputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(250))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .fluidInputs(VA_GregtechMaterialPool.Astro.getFluid(250))
             .fluidOutputs(VAMaterials.Astrium.getMolten(250))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
         GT_Values.RA.stdBuilder()
             .fluidInputs(VA_GregtechMaterialPool.AstroInf.getFluid(250))
             .fluidOutputs(VAMaterials.AstriumInfinity.getMolten(250))
             .noOptimize()
             .eut(RECIPE_LV)
             .duration(1)
-            .addTo(SB);
+            .addTo(sCentrifugeRecipes);
     }
 
 }
