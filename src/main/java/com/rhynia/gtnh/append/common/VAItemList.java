@@ -22,6 +22,12 @@ public enum VAItemList implements IItemContainer {
     LapoMatrix,
     CrystalMatrix,
     DenseMicaInsulatorFoil,
+    // Meta-Item 02
+    AstriumInfinityGem,
+    LensAstriumInfinity,
+    LensAstriumMagic,
+    LensPrimoium,
+    LensOriginium,
     // Sig Block
     InfiniteLiquidAirHatch,
     InfiniteDistilledWaterHatch,

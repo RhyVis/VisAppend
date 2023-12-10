@@ -17,13 +17,13 @@ import net.minecraftforge.fluids.FluidStack;
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
@@ -106,10 +106,10 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 lensInf,
                 CustomItemList.LapotronDust.get(64),
                 CustomItemList.LapotronDust.get(64))
-            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(BUCKETS))
+            .fluidInputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(BUCKETS))
             .fluidOutputs(
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(8 * BUCKETS),
-                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(500))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(8 * BUCKETS),
+                VAMaterials.AstralResidue.getFluidOrGas(500))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
@@ -118,15 +118,15 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                lensInf,
-                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 0),
-                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0))
+                esCata,
+                VAItemList.LensOriginium.get(0),
+                VAItemList.LensAstriumMagic.get(0))
             .fluidInputs(
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(32 * BUCKETS),
-                VA_WerkstoffMaterialPool.superconductingFluxRaw.getMolten(72 * INGOTS))
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(32 * BUCKETS),
+                VAMaterials.SuperconductorFluxRaw.getMolten(72 * INGOTS))
             .fluidOutputs(
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(64 * INGOTS),
-                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(16 * BUCKETS))
+                VAMaterials.SuperconductorFlux.getFluidOrGas(64 * INGOTS),
+                VAMaterials.AstralResidue.getFluidOrGas(16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(30 * SECONDS)

@@ -6,34 +6,11 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
 
+@Deprecated
 public class VA_WerkstoffMaterialPool implements Runnable {
 
     protected static final int OffsetID = 24510;
 
-    // Primogem
-    public static final Werkstoff Primogem = new Werkstoff(
-        new short[] { 0x87, 0xce, 0xeb },
-        "Primogem",
-        "Pr",
-        new Werkstoff.Stats(),
-        Werkstoff.Types.ELEMENT,
-        new Werkstoff.GenerationFeatures().disable()
-            .addGems()
-            .enforceUnification(),
-        OffsetID + 1,
-        TextureSet.SET_NETHERSTAR);
-    // Originiums
-    public static final Werkstoff Originiums = new Werkstoff(
-        new short[] { 0xda, 0xa5, 0x20 },
-        "Originiums",
-        "Or*",
-        new Werkstoff.Stats(),
-        Werkstoff.Types.ELEMENT,
-        new Werkstoff.GenerationFeatures().disable()
-            .addGems()
-            .enforceUnification(),
-        OffsetID + 2,
-        TextureSet.SET_DIAMOND);
     // Astro Fuel MKI
     public static final Werkstoff astroFuelMKI = new Werkstoff(
         new short[] { 0x00, 0xcd, 0xcd },

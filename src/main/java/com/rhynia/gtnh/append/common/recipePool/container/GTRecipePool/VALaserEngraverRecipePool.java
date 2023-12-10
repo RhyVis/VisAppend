@@ -16,15 +16,14 @@ import net.minecraftforge.fluids.FluidRegistry;
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
-import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Recipe;
 
@@ -61,8 +60,9 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .itemInputs(CustomItemList.RawPicoWafer.get(1), lensInf)
             .itemOutputs(CustomItemList.PicoWafer.get(4))
             .fluidInputs(
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(100),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(100),
                 Materials.Neutronium.getMolten(2 * 144))
+            .fluidOutputs(VAMaterials.AstralResidue.getFluidOrGas(50))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(15 * SECONDS)
@@ -77,10 +77,8 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .itemOutputs(ItemList.Circuit_Silicon_Wafer7.get(4L))
             .fluidInputs(
                 WerkstoffLoader.Oganesson.getFluidOrGas(2500),
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(800))
-            .fluidOutputs(
-                VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(400),
-                VA_GregtechMaterialPool.Astro.getFluid(500))
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(800))
+            .fluidOutputs(VAMaterials.AstralResidue.getFluidOrGas(400), VA_GregtechMaterialPool.Astro.getFluid(500))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(20 * SECONDS)
@@ -88,8 +86,8 @@ public class VALaserEngraverRecipePool implements IRecipePool {
         // 激活催化剂
         GT_Values.RA.stdBuilder()
             .itemInputs(lensInf)
-            .fluidInputs(VA_WerkstoffMaterialPool.astroCatalystBase.getFluidOrGas(1000))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(1000))
+            .fluidInputs(VAMaterials.AstralCatalystBase.getFluidOrGas(1000))
+            .fluidOutputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(1000))
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
@@ -99,11 +97,11 @@ public class VALaserEngraverRecipePool implements IRecipePool {
         // region 星辉燃料
         // 星辉燃料MKI
         GT_Values.RA.stdBuilder()
-            .itemInputs(VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 0))
+            .itemInputs(VAItemList.LensOriginium.get(0))
             .fluidInputs(
                 Materials.Naquadria.getMolten(16 * INGOTS),
                 MyMaterial.naquadahBasedFuelMkI.getFluidOrGas(8 * BUCKETS))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroFuelMKI.getFluidOrGas(BUCKETS))
+            .fluidOutputs(VAMaterials.AstralFuelMkI.getFluidOrGas(BUCKETS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(25 * SECONDS)

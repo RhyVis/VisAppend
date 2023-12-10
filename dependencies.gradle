@@ -46,4 +46,6 @@ dependencies {
     implementation('com.github.GTNewHorizons:Universal-Singularities:8.6.7:dev')
     implementation('com.github.GTNewHorizons:BlockRenderer6343:1.0.3:dev')
     implementation('com.github.GTNewHorizons:GTNH-Lanthanides:0.11.4:dev')
+
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:nei-custom-diagram:1.5.11')
 }

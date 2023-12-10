@@ -5,8 +5,8 @@ import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.util.BWRecipes;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -45,7 +45,7 @@ public class VACommonRecipePool implements IRecipePool {
         // (临时)聚爆海珀珍
         // TODO 为星辉残留提供新用法
         GT_Values.RA.stdBuilder()
-            .fluidInputs(VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(256 * BUCKETS))
+            .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(256 * BUCKETS))
             .itemOutputs(ELEMENT.STANDALONE.HYPOGEN.getDust(16))
             .noOptimize()
             .eut(8000000)

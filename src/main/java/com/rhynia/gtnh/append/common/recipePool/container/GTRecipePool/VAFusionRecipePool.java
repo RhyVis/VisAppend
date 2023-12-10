@@ -4,7 +4,7 @@ import static gregtech.api.enums.TierEU.RECIPE_ZPM;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import static gregtech.api.util.GT_RecipeConstants.FUSION_THRESHOLD;
 
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
@@ -21,10 +21,8 @@ public class VAFusionRecipePool implements IRecipePool {
         final GT_Recipe.GT_Recipe_Map FS = GT_Recipe.GT_Recipe_Map.sFusionRecipes;
         // ACR
         GT_Values.RA.stdBuilder()
-            .fluidInputs(
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(500),
-                MyMaterial.orundum.getMolten(288))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroCatalystReforged.getFluidOrGas(125))
+            .fluidInputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(500), MyMaterial.orundum.getMolten(288))
+            .fluidOutputs(VAMaterials.AstralCatalystReforged.getFluidOrGas(125))
             .duration(2 * SECONDS)
             .eut(RECIPE_ZPM)
             .metadata(FUSION_THRESHOLD, 400000000)

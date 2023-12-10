@@ -12,8 +12,8 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
@@ -69,7 +69,7 @@ public class VAHammerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.LapotronDust.get(64), VA_GregtechMaterialPool.Astro.getDust(16))
             .itemOutputs(VAItemList.LapoMatrix.get(4))
-            .fluidInputs(VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(12 * BUCKETS))
+            .fluidInputs(VAMaterials.LapotronEnhancedFluid.getFluidOrGas(12 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(40 * SECONDS)
@@ -78,10 +78,8 @@ public class VAHammerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Aluminiumoxide.getDust(64), VA_GregtechMaterialPool.Astro.getDust(16))
             .itemOutputs(VAItemList.CrystalMatrix.get(16))
-            .fluidInputs(
-                Materials.Europium.getMolten(4 * INGOTS),
-                VA_WerkstoffMaterialPool.astroCatalystActivated.getFluidOrGas(4 * BUCKETS))
-            .fluidOutputs(VA_WerkstoffMaterialPool.astroResidue.getFluidOrGas(2 * BUCKETS))
+            .fluidInputs(Materials.Europium.getMolten(4 * INGOTS), Materials.Americium.getMolten(4 * INGOTS))
+            .fluidOutputs()
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(45 * SECONDS)
