@@ -1,8 +1,8 @@
-package com.rhynia.gtnh.append.common.recipe.recipePool.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.util.Values.FullChance;
-import static com.rhynia.gtnh.append.util.Values.lensInf;
-import static com.rhynia.gtnh.append.util.Values.lensMagic;
+import static com.rhynia.gtnh.append.api.util.Values.FullChance;
+import static com.rhynia.gtnh.append.api.util.Values.lensInf;
+import static com.rhynia.gtnh.append.api.util.Values.lensMagic;
 import static gregtech.api.enums.OrePrefixes.dust;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_HV;
@@ -23,10 +23,10 @@ import net.minecraft.item.ItemStack;
 import com.dreammaster.gthandler.CustomItemList;
 import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.common.recipe.VA_Recipe;
-import com.rhynia.gtnh.append.common.recipe.recipePool.IRecipePool;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;

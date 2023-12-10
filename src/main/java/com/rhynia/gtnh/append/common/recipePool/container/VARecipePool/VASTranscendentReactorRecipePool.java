@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.recipe.recipePool.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_MAX;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
@@ -8,9 +8,9 @@ import static gregtech.api.enums.TierEU.RECIPE_UXV;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.common.recipe.VA_Recipe;
-import com.rhynia.gtnh.append.common.recipe.recipePool.IRecipePool;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.config.Config;
 
 import gregtech.api.enums.GT_Values;

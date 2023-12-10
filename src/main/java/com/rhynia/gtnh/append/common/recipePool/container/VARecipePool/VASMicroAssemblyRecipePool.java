@@ -1,5 +1,24 @@
-package com.rhynia.gtnh.append.common.recipe.recipePool.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.AdvCrystal_Raw;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Elite_Board;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Lapotron;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Capacitor;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Diode;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Inductor;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Resistor;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Opt_Transistor;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_ASOC;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_P;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_IC_Q;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_NAND;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_NOR;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_QBit;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.BWPart.WrappedPart.Part_RAM;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.GGChip.Tier.ZPM;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.IndaAlloy;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.MutatedLivingAlloy;
+import static com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial.Solder.SolderingAlloy;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
@@ -14,12 +33,12 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
+import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.util.recipeHelper.BWPart;
+import com.rhynia.gtnh.append.api.util.recipeHelper.GGChip;
+import com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial;
 import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
-import com.rhynia.gtnh.append.common.recipe.VA_Recipe;
-import com.rhynia.gtnh.append.common.recipe.recipePool.IRecipePool;
-import com.rhynia.gtnh.append.util.recipeHelper.BWPart;
-import com.rhynia.gtnh.append.util.recipeHelper.GGChip;
-import com.rhynia.gtnh.append.util.recipeHelper.Solder;
+import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import goodgenerator.util.ItemRefer;
@@ -51,10 +70,10 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(4 * multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(4 * multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(4 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
+                BWPart.getWrappedPart(Part_NOR, 2 * multiple),
+                BWPart.getWrappedPart(Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 10 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 10 * INGOTS * multiple),
                 Materials.BioMediumSterilized.getFluid(10 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(10 * BUCKETS * multiple),
                 Materials.NiobiumTitanium.getMolten(4 * INGOTS * multiple),
@@ -72,9 +91,9 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(6 * multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(6 * multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(6 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
+                BWPart.getWrappedPart(Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 20 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 20 * INGOTS * multiple),
                 Materials.BioMediumSterilized.getFluid(20 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(20 * BUCKETS * multiple),
                 Materials.Tritanium.getMolten(8 * INGOTS * multiple),
@@ -96,10 +115,10 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_InductorXSMD.get(16 * multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(20 * multiple),
                 ItemList.Circuit_Parts_ResistorXSMD.get(20 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_RAM, 4 * multiple))
+                BWPart.getWrappedPart(Part_NOR, 2 * multiple),
+                BWPart.getWrappedPart(Part_RAM, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 10 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 10 * INGOTS * multiple),
                 Materials.Radon.getPlasma(10 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(10 * BUCKETS * multiple),
                 WerkstoffLoader.Oganesson.getFluidOrGas(500 * multiple),
@@ -118,10 +137,10 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Parts_ResistorXSMD.get(24 * multiple),
                 ItemList.Circuit_Parts_CapacitorXSMD.get(24 * multiple),
                 ItemList.Circuit_Parts_DiodeXSMD.get(24 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 4 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * multiple))
+                BWPart.getWrappedPart(Part_NOR, 4 * multiple),
+                BWPart.getWrappedPart(Part_ASOC, 2 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 20 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 20 * INGOTS * multiple),
                 Materials.Radon.getPlasma(20 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(20 * BUCKETS * multiple),
                 WerkstoffLoader.Oganesson.getFluidOrGas(BUCKETS * multiple),
@@ -136,14 +155,14 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Circuit_OpticalComputer.get(2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Inductor, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 2 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_ASOC, 2 * multiple))
+                BWPart.getWrappedPart(Opt_Inductor, 2 * multiple),
+                BWPart.getWrappedPart(Opt_Transistor, 2 * multiple),
+                BWPart.getWrappedPart(Opt_Resistor, 2 * multiple),
+                BWPart.getWrappedPart(Opt_Capacitor, 2 * multiple),
+                BWPart.getWrappedPart(Opt_Diode, 2 * multiple),
+                BWPart.getWrappedPart(Part_ASOC, 2 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 26 * INGOTS * multiple),
                 Materials.Radon.getPlasma(40 * INGOTS * multiple),
                 Materials.SuperCoolant.getFluid(40 * BUCKETS),
                 WerkstoffLoader.Oganesson.getFluidOrGas(2 * BUCKETS * multiple),
@@ -162,13 +181,13 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 CustomItemList.PikoCircuit.get(2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 4 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 4 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 4 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 4 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_IC_Q, 4 * multiple))
+                BWPart.getWrappedPart(Opt_Capacitor, 4 * multiple),
+                BWPart.getWrappedPart(Opt_Diode, 4 * multiple),
+                BWPart.getWrappedPart(Opt_Transistor, 4 * multiple),
+                BWPart.getWrappedPart(Opt_Resistor, 4 * multiple),
+                BWPart.getWrappedPart(Part_IC_Q, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 26 * INGOTS * multiple),
                 Materials.UUMatter.getFluid(24 * BUCKETS * multiple),
                 Materials.Osmium.getMolten(16 * INGOTS * multiple),
                 Materials.Neutronium.getMolten(8 * INGOTS * multiple),
@@ -186,13 +205,13 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 ItemList.Circuit_Board_Optical.get(multiple),
                 CustomItemList.PicoWafer.get(4 * multiple),
                 ItemList.Circuit_OpticalMainframe.get(2 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Transistor, 3 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Resistor, 3 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Capacitor, 3 * multiple),
-                BWPart.getWrappedPart(BWPart.Opt_Diode, 3 * multiple),
-                BWPart.getWrappedPart(BWPart.Part_IC_P, 4 * multiple))
+                BWPart.getWrappedPart(Opt_Transistor, 3 * multiple),
+                BWPart.getWrappedPart(Opt_Resistor, 3 * multiple),
+                BWPart.getWrappedPart(Opt_Capacitor, 3 * multiple),
+                BWPart.getWrappedPart(Opt_Diode, 3 * multiple),
+                BWPart.getWrappedPart(Part_IC_P, 4 * multiple))
             .fluidInputs(
-                Solder.getSolder(3, 26 * INGOTS * multiple),
+                SolderMaterial.getSolder(MutatedLivingAlloy, 26 * INGOTS * multiple),
                 Materials.UUMatter.getFluid(8 * BUCKETS * multiple),
                 Materials.Osmium.getMolten(8 * INGOTS * multiple),
                 GT_CoreModSupport.RadoxPolymer.getMolten(4 * INGOTS * multiple),
@@ -208,11 +227,11 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         // region High Energy Flow Circuit
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(BWPart.Elite_Board, 12),
-                GGChip.getWrappedCircuit(GGChip.ZPM, 24),
-                BWPart.getWrappedPart(BWPart.Part_IC_Q, 48))
+                BWPart.getWrappedPart(Elite_Board, 12),
+                GGChip.getWrappedCircuit(ZPM, 24),
+                BWPart.getWrappedPart(Part_IC_Q, 48))
             .fluidInputs(
-                Solder.getSolder(2, 24 * INGOTS),
+                SolderMaterial.getSolder(IndaAlloy, 24 * INGOTS),
                 VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(6 * INGOTS),
                 Materials.Infinity.getMolten(4 * INGOTS))
             .itemOutputs(GT_Utility.copyAmountUnsafe(256, CustomItemList.HighEnergyFlowCircuit.get(1)))
@@ -225,13 +244,13 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         // T1
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                BWPart.getWrappedPart(BWPart.Elite_Board, 1),
+                BWPart.getWrappedPart(Elite_Board, 1),
                 GT_Utility
                     .copyAmountUnsafe(16 * 16, GT_ModHandler.getModItem("dreamcraft", "item.EngravedGoldChip", 1)),
-                BWPart.getWrappedPart(BWPart.Part_ASOC, 8),
-                BWPart.getWrappedPart(BWPart.Part_NOR, 32))
+                BWPart.getWrappedPart(Part_ASOC, 8),
+                BWPart.getWrappedPart(Part_NOR, 32))
             .fluidInputs(
-                Solder.getSolder(1, 16 * 2 * INGOTS),
+                SolderMaterial.getSolder(SolderingAlloy, 16 * 2 * INGOTS),
                 MyMaterial.signalium.getMolten(16 * 4 * INGOTS),
                 Materials.Aluminium.getMolten(16 * 4 * INGOTS),
                 Materials.TinAlloy.getMolten(16 * 4 * INGOTS))
@@ -244,7 +263,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 ItemRefer.HiC_T1.get(32),
                 GT_Utility.copyAmountUnsafe(16 * 8, CustomItemList.EngravedDiamondCrystalChip.get(1)),
-                BWPart.getWrappedPart(BWPart.Part_NAND, 16))
+                BWPart.getWrappedPart(Part_NAND, 16))
             .fluidInputs(
                 Materials.Plastic.getMolten(16 * 2 * INGOTS),
                 MyMaterial.signalium.getMolten(16 * INGOTS),
@@ -259,8 +278,8 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemRefer.HiC_T2.get(32),
-                BWPart.getWrappedPart(BWPart.Lapotron, 8),
-                BWPart.getWrappedPart(BWPart.AdvCrystal_Raw, 1))
+                BWPart.getWrappedPart(Lapotron, 8),
+                BWPart.getWrappedPart(AdvCrystal_Raw, 1))
             .fluidInputs(
                 MyMaterial.adamantiumAlloy.getMolten(16 * 4 * INGOTS),
                 MyMaterial.signalium.getMolten(16 * 2 * INGOTS),
@@ -276,7 +295,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 ItemRefer.HiC_T3.get(8),
                 CustomItemList.EngravedEnergyChip.get(32),
-                BWPart.getWrappedPart(BWPart.Part_QBit, 4))
+                BWPart.getWrappedPart(Part_QBit, 4))
             .fluidInputs(
                 MyMaterial.marM200.getMolten(4 * 8 * INGOTS),
                 MyMaterial.signalium.getMolten(4 * 4 * INGOTS),

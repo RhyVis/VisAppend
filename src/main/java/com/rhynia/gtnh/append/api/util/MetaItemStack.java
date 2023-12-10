@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.util;
+package com.rhynia.gtnh.append.api.util;
 
 import java.util.Map;
 import java.util.Set;

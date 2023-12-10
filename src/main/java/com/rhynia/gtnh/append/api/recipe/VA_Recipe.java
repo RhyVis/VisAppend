@@ -1,6 +1,6 @@
-package com.rhynia.gtnh.append.common.recipe;
+package com.rhynia.gtnh.append.api.recipe;
 
-import static com.rhynia.gtnh.append.util.Values.VA_LOGO_32;
+import static com.rhynia.gtnh.append.api.util.Values.VA_LOGO_32;
 import static gregtech.api.gui.modularui.GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE;
 import static gregtech.api.gui.modularui.GT_UITextures.PROGRESSBAR_MIXER;
 
