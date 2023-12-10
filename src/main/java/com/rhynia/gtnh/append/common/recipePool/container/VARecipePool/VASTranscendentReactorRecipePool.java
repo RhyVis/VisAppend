@@ -11,7 +11,6 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
-import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.config.Config;
 
@@ -327,7 +326,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 MyMaterial.orundum.get(OrePrefixes.dust, 5),
                 ELEMENT.STANDALONE.ADVANCED_NITINOL.getDust(4),
                 ELEMENT.STANDALONE.ASTRAL_TITANIUM.getDust(4))
-            .itemOutputs(VA_GregtechMaterialPool.AstroMagic.getDust(16))
+            .itemOutputs(VAMaterials.AstriumMagic.get(OrePrefixes.dust, 16))
             .fluidInputs(
                 VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(48 * BUCKETS),
                 Materials.Helium.getPlasma(6 * BUCKETS),

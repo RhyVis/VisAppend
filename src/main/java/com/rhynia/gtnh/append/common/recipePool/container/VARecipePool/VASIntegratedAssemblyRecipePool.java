@@ -26,7 +26,6 @@ import com.rhynia.gtnh.append.api.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
-import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
@@ -54,16 +53,12 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64),
                 VAMaterials.Primoium.get(OrePrefixes.dust, 64),
                 VAMaterials.Originium.get(OrePrefixes.dust, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 64),
-                VA_GregtechMaterialPool.Astro.getDust(64),
-                VA_GregtechMaterialPool.Astro.getDust(64),
-                VA_GregtechMaterialPool.AstroInf.getGems(64),
-                VA_GregtechMaterialPool.AstroInf.getGems(64),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAItemList.AstriumInfinityGem.get(64),
+                VAItemList.AstriumInfinityGem.get(64),
                 MaterialsUEVplus.Eternity.getNanite(64),
                 MaterialsUEVplus.Eternity.getNanite(64))
             .fluidInputs(
@@ -349,32 +344,6 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // endregion
 
         // region 杂项组装
-        // Magic 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
-            .fluidInputs(
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(64000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(810 * SECONDS)
-            .addTo(IA);
-        // Inf 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
-            .fluidInputs(
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
-                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(256 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(128000),
-                VA_GregtechMaterialPool.AstroInf.getFluid(48000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(900 * SECONDS)
-            .addTo(IA);
         // endregion
 
         // region 防辐射板
