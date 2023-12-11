@@ -92,6 +92,57 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         // endregion
 
+        // region LENSES
+        // Astrium MAGIC
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.MysteriousCrystalLens.get(32), VAItemList.AstriumInfinityGem.get(16))
+            .fluidInputs(
+                VAMaterials.Astrium.getMolten(32 * INGOTS),
+                Materials.Glass.getMolten(128 * INGOTS),
+                Materials.Neutronium.getMolten(64 * INGOTS))
+            .itemOutputs(VAItemList.LensAstriumMagic.get(1))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(120 * SECONDS)
+            .addTo(IA);
+        // Astrium INF
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.ChromaticLens.get(32), VAItemList.AstriumInfinityGem.get(32))
+            .fluidInputs(
+                VAMaterials.Astrium.getMolten(128 * INGOTS),
+                Materials.Glass.getMolten(1024 * INGOTS),
+                Materials.CosmicNeutronium.getMolten(512 * INGOTS))
+            .itemOutputs(VAItemList.LensAstriumInfinity.get(1))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(120 * SECONDS)
+            .addTo(IA);
+        // Or
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.ReinforcedGlassLense.get(64), VAMaterials.Originium.get(OrePrefixes.dust, 64))
+            .fluidInputs(
+                VAMaterials.Originium.getMolten(128 * INGOTS),
+                Materials.Glass.getMolten(64 * INGOTS),
+                MyMaterial.orundum.getMolten(64 * INGOTS))
+            .itemOutputs(VAItemList.LensOriginium.get(1))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(120 * SECONDS)
+            .addTo(IA);
+        // Pr
+        GT_Values.RA.stdBuilder()
+            .itemInputs(CustomItemList.ReinforcedGlassLense.get(64), VAMaterials.Primoium.get(OrePrefixes.dust, 64))
+            .fluidInputs(
+                VAMaterials.Originium.getMolten(128 * INGOTS),
+                Materials.Glass.getMolten(64 * INGOTS),
+                Materials.DraconiumAwakened.getMolten(64 * INGOTS))
+            .itemOutputs(VAItemList.LensPrimoium.get(1))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(120 * SECONDS)
+            .addTo(IA);
+        // endregion
+
         // region 电池配方
         // 兰波顿能量球 IV
         GT_Values.RA.stdBuilder()

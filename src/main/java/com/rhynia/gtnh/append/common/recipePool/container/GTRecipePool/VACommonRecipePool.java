@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_MV;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
+import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.util.BWRecipes;
@@ -36,8 +37,8 @@ public class VACommonRecipePool implements IRecipePool {
             .addTo(EMS);
         // 聚爆星辉
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 1))
-            .fluidInputs(VAMaterials.Astrium.getMolten(125))
+            .itemInputs(VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8))
+            .fluidInputs(VAMaterials.Astrium.getMolten(2 * INGOTS))
             .itemOutputs(VAItemList.AstriumInfinityGem.get(1))
             .noOptimize()
             .eut(6000000)
