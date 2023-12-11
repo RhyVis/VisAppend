@@ -46,7 +46,7 @@ public class VACommonRecipePool implements IRecipePool {
         // (临时)聚爆海珀珍
         // TODO 为星辉残留提供新用法
         GT_Values.RA.stdBuilder()
-            .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(256 * BUCKETS))
+            .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(32 * BUCKETS))
             .itemOutputs(ELEMENT.STANDALONE.HYPOGEN.getDust(16))
             .noOptimize()
             .eut(8000000)

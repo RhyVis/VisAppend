@@ -103,12 +103,6 @@ public class RegMetaItem01 extends RegItemBasic {
             : ItemStaticDataClientOnly.iconsMap01.get(0);
     }
 
-    /**
-     * Handle the tooltips.
-     *
-     * @param aItemStack
-     * @param theTooltipsList
-     */
     @SideOnly(Side.CLIENT)
 
     @Override
@@ -122,13 +116,6 @@ public class RegMetaItem01 extends RegItemBasic {
         }
     }
 
-    /**
-     * Override this method to show all ItemStack of MetaItem01.
-     *
-     * @param aItem
-     * @param aCreativeTabs
-     * @param aList
-     */
     @Override
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item aItem, CreativeTabs aCreativeTabs, List aList) {
