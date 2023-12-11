@@ -123,7 +123,7 @@ public class VAMaterials implements Runnable {
     public static final Werkstoff AstralCatalystBaseExcited = new Werkstoff(
         new short[] { 0x6a, 0x5a, 0xcd },
         "AstralCatalystBaseExcited",
-        subscriptNumbers("(?Aoⁿ2If3?)*"),
+        subscriptNumbers("(?Aμⁿ2If3?)*"),
         new Werkstoff.Stats(),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
