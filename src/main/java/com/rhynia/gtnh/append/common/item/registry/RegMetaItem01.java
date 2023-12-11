@@ -117,6 +117,7 @@ public class RegMetaItem01 extends RegItemBasic {
     }
 
     @Override
+    @SuppressWarnings({ "unchecked" })
     @SideOnly(Side.CLIENT)
     public void getSubItems(Item aItem, CreativeTabs aCreativeTabs, List aList) {
         for (int Meta : Meta01Set) {
