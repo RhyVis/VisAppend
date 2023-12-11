@@ -8,8 +8,7 @@ import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
-import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
@@ -44,10 +43,10 @@ public class VAMixerRecipePool implements IRecipePool {
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                VA_GregtechMaterialPool.AstroInf.getDust(8),
+                VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8),
                 Materials.InfinityCatalyst.getDust(12),
                 GT_Utility.getIntegratedCircuit(12))
-            .itemOutputs(VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 64))
+            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 20))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
@@ -55,7 +54,7 @@ public class VAMixerRecipePool implements IRecipePool {
         // 超导通流
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                VA_WerkstoffMaterialPool.astroCatalystBase.get(OrePrefixes.dust, 12),
+                VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 12),
                 Materials.TengamPurified.getDust(11),
                 Materials.Infinity.getDust(10),
                 Materials.CosmicNeutronium.getDust(8),
@@ -65,8 +64,8 @@ public class VAMixerRecipePool implements IRecipePool {
                 ELEMENT.STANDALONE.ADVANCED_NITINOL.getDust(4),
                 ELEMENT.STANDALONE.ASTRAL_TITANIUM.getDust(4))
             .itemOutputs(
-                VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 64),
-                VA_WerkstoffMaterialPool.superconductingFluxRaw.get(OrePrefixes.dust, 15))
+                VAMaterials.SuperconductorFluxRaw.get(OrePrefixes.dust, 64),
+                VAMaterials.SuperconductorFluxRaw.get(OrePrefixes.dust, 15))
             .fluidInputs(
                 Materials.Helium.getPlasma(6 * BUCKETS),
                 Materials.DraconiumAwakened.getMolten(12 * INGOTS),
@@ -82,7 +81,7 @@ public class VAMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.Calcium.getDust(3),
-                VA_GregtechMaterialPool.Astro.getDust(4),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 4),
                 GT_Utility.getIntegratedCircuit(15))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.GrowthMediumRaw.getFluid(8000))
@@ -94,7 +93,7 @@ public class VAMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.NetherStar.getDust(2),
-                VA_GregtechMaterialPool.Astro.getDust(6),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 6),
                 GT_Utility.getIntegratedCircuit(16))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.BioMediumRaw.getFluid(8000))

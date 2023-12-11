@@ -25,8 +25,7 @@ import com.rhynia.gtnh.append.api.util.recipeHelper.BWPart;
 import com.rhynia.gtnh.append.api.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial;
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-import com.rhynia.gtnh.append.common.material.VA_WerkstoffMaterialPool;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
@@ -54,16 +53,12 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 终极配方-测试
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 64),
-                VA_WerkstoffMaterialPool.Primogem.get(OrePrefixes.lens, 64),
-                VA_WerkstoffMaterialPool.Originiums.get(OrePrefixes.lens, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 64),
-                GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 64),
-                VA_GregtechMaterialPool.Astro.getDust(64),
-                VA_GregtechMaterialPool.Astro.getDust(64),
-                VA_GregtechMaterialPool.AstroInf.getGems(64),
-                VA_GregtechMaterialPool.AstroInf.getGems(64),
+                VAMaterials.Primoium.get(OrePrefixes.dust, 64),
+                VAMaterials.Originium.get(OrePrefixes.dust, 64),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAItemList.AstriumInfinityGem.get(64),
+                VAItemList.AstriumInfinityGem.get(64),
                 MaterialsUEVplus.Eternity.getNanite(64),
                 MaterialsUEVplus.Eternity.getNanite(64))
             .fluidInputs(
@@ -107,7 +102,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .fluidInputs(
                 SolderMaterial.SolderingAlloy.getFluidStack(16 * INGOTS),
                 Materials.Platinum.getMolten(160 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(6400))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(6400))
             .itemOutputs(ItemList.Energy_LapotronicOrb.get(16))
             .noOptimize()
             .eut(RECIPE_EV)
@@ -142,7 +137,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 SolderMaterial.IndaAlloy.getFluidStack(16 * 5 * INGOTS),
                 Materials.NaquadahAlloy.getMolten(16 * 16 * INGOTS),
                 Materials.Platinum.getMolten(16 * 8 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 800))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(16 * 800))
             .itemOutputs(ItemList.Energy_LapotronicOrb2.get(16))
             .noOptimize()
             .eut(RECIPE_ZPM)
@@ -179,7 +174,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 5 * INGOTS),
                 Materials.Bedrockium.getMolten(16 * 16 * INGOTS),
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 6 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 1000))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(16 * 1000))
             .itemOutputs(ItemList.Energy_Module.get(16))
             .noOptimize()
             .eut(RECIPE_UV)
@@ -216,7 +211,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 10 * INGOTS),
                 Materials.CosmicNeutronium.getMolten(16 * 16 * INGOTS),
                 MaterialsUEVplus.SpaceTime.getMolten(16 * 6 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 2000))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(16 * 2000))
             .itemOutputs(ItemList.Energy_Cluster.get(16))
             .noOptimize()
             .eut(RECIPE_UHV)
@@ -233,7 +228,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .fluidInputs(
                 SolderMaterial.IndaAlloy.getFluidStack(16 * 20 * INGOTS),
                 Materials.Tritanium.getMolten(16 * 64 * INGOTS),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 4 * INGOTS),
+                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * 4 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 16000))
             .itemOutputs(ItemList.ZPM2.get(16))
             .noOptimize()
@@ -255,7 +250,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 MaterialsUEVplus.WhiteDwarfMatter.getMolten(16 * 4 * INGOTS),
                 MaterialsUEVplus.BlackDwarfMatter.getMolten(16 * 4 * INGOTS),
                 MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(8 * INGOTS),
-                VA_WerkstoffMaterialPool.lapoActivatedFluid.getFluidOrGas(16 * 5000))
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(16 * 5000))
             .itemOutputs(ItemList.ZPM2.get(16))
             .noOptimize()
             .eut(RECIPE_UEV)
@@ -274,7 +269,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 4608),
                 Materials.Neutronium.getMolten(16 * 128 * INGOTS),
                 Materials.Naquadria.getMolten(16 * 9216),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 16 * INGOTS),
+                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * 16 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 32000))
             .itemOutputs(ItemList.ZPM3.get(16))
             .noOptimize()
@@ -295,7 +290,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 Materials.InfinityCatalyst.getMolten(16 * 128 * INGOTS),
                 Materials.Quantium.getMolten(16 * 18432),
                 Materials.Naquadria.getMolten(16 * 18432),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 64 * INGOTS),
+                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * 64 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 64000))
             .itemOutputs(ItemList.ZPM4.get(16))
             .noOptimize()
@@ -317,7 +312,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * 128 * INGOTS),
                 ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(18_432),
                 Materials.Quantium.getMolten(16 * 18432),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 128 * INGOTS),
+                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * 128 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 128000))
             .itemOutputs(ItemList.ZPM5.get(16))
             .noOptimize()
@@ -339,7 +334,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 ELEMENT.STANDALONE.DRAGON_METAL.getFluidStack(16 * 128 * INGOTS),
                 ELEMENT.STANDALONE.ASTRAL_TITANIUM.getFluidStack(16 * 36864),
                 ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(16 * 36864),
-                VA_WerkstoffMaterialPool.superconductingFlux.getFluidOrGas(16 * 256 * INGOTS),
+                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * 256 * INGOTS),
                 new FluidStack(FluidRegistry.getFluid("ic2coolant"), 16 * 256000))
             .itemOutputs(ItemList.ZPM6.get(16))
             .noOptimize()
@@ -349,32 +344,6 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // endregion
 
         // region 杂项组装
-        // Magic 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_GregtechMaterialPool.AstroMagic.getGems(64))
-            .fluidInputs(
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(48 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(64000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(810 * SECONDS)
-            .addTo(IA);
-        // Inf 透镜
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VA_GregtechMaterialPool.AstroInf.getGems(64))
-            .fluidInputs(
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(32 * INGOTS),
-                Materials.CosmicNeutronium.getMolten(256 * INGOTS),
-                Materials.DraconiumAwakened.getMolten(256 * INGOTS),
-                VA_GregtechMaterialPool.Astro.getFluid(128000),
-                VA_GregtechMaterialPool.AstroInf.getFluid(48000))
-            .itemOutputs(GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(900 * SECONDS)
-            .addTo(IA);
         // endregion
 
         // region 防辐射板

@@ -2,15 +2,9 @@ package com.rhynia.gtnh.append.api.util;
 
 import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 
-import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
 import com.gtnewhorizons.modularui.api.drawable.UITexture;
-import com.rhynia.gtnh.append.common.material.VA_GregtechMaterialPool;
-
-import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_OreDictUnificator;
-import gregtech.api.util.GT_Utility;
 
 public class Values {
 
@@ -54,12 +48,6 @@ public class Values {
         + EnumChatFormatting.GRAY
         + "全息投影，构建主体结构";
     public static final String StructureTooComplex = "结构太复杂了!";
-
-    // 物品
-    public static final ItemStack lensMagic = GT_Utility
-        .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroMagic, 1));
-    public static final ItemStack lensInf = GT_Utility
-        .copyAmount(0, GT_OreDictUnificator.get(OrePrefixes.lens, VA_GregtechMaterialPool.AstroInf, 1));
 
     // 数值
     public static final int FullChance = 10000;

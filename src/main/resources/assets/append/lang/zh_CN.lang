@@ -10,6 +10,13 @@ va.MetaItem01.1.name=兰波顿矩阵
 va.MetaItem01.2.name=晶体矩阵
 va.MetaItem01.3.name=致密绝缘云母
 
+va.MetaItem01.51.name=星极
+
+va.MetaItem01.101.name=星极天体透镜
+va.MetaItem01.102.name=星芒魔力透镜
+va.MetaItem01.103.name=原石透镜
+va.MetaItem01.104.name=源石透镜
+
 append.AssemblyMatrix.mRecipeMode.0=集成组装模式
 append.AssemblyMatrix.mRecipeMode.1=微加工组装模式
 
