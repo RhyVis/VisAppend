@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
+import static com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -16,6 +17,7 @@ import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import static gregtech.api.util.GT_RecipeBuilder.TICKS;
 
+import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -47,6 +49,7 @@ import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
     private final GT_Recipe.GT_Recipe_Map IA = VA_Recipe.instance.sIntegratedAssemblyRecipes;
+    final boolean EnableWirelessRecipes = true;
 
     @Override
     public void loadRecipesPostInit() {
@@ -77,6 +80,14 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
+        if (EnableWirelessRecipes) {
+            loadWirelessHatchRecipes();
+        }
+        loadMainRecipes();
+
+    }
+
+    public void loadMainRecipes() {
         // region MISC
         // 光辉玻璃板
         GT_Values.RA.stdBuilder()
@@ -463,6 +474,39 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         // endregion
 
+        // region Coil Misc
+        // SC Coil
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Trinium, 64),
+                VAItemList.DenseMicaInsulatorFoil.get(64))
+            .fluidInputs(VAMaterials.SuperconductorFlux.getFluidOrGas(64 * INGOTS))
+            .itemOutputs(ItemList.Casing_Coil_Superconductor.get(64))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(12 * 40 * SECONDS)
+            .addTo(IA);
+        // Adv SC Coil (GG)
+        GT_Values.RA.stdBuilder()
+            .itemInputs(ItemList.Casing_Coil_Superconductor.get(48), ItemRefer.HiC_T2.get(16))
+            .fluidInputs(
+                MyMaterial.marM200.getMolten(16 * 8 * INGOTS),
+                MyMaterial.zircaloy4.getMolten(26 * 2 * INGOTS),
+                Materials.Aluminium.getMolten(24 * INGOTS))
+            .itemOutputs(ItemRefer.Compact_Fusion_Coil_T0.get(16))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(12 * 60 * SECONDS)
+            .addTo(IA);
+        // endregion
+
         // region Coil UHV+
         // Infinity
         GT_Values.RA.stdBuilder()
@@ -718,5 +762,288 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .duration(12 * 15 * SECONDS)
             .addTo(IA);
         // endregion
+    }
+
+    // region Wireless Buffed Recipes
+    public void loadWirelessHatchRecipes() {
+
+        int recipeDuration = 20 * SECONDS;
+        int recipeEU = 128_000_000;
+
+        ItemStack[] energyHatches = { ItemList.Hatch_Energy_ULV.get(1), ItemList.Hatch_Energy_LV.get(1),
+            ItemList.Hatch_Energy_MV.get(1), ItemList.Hatch_Energy_HV.get(1), ItemList.Hatch_Energy_EV.get(1),
+            ItemList.Hatch_Energy_IV.get(1), ItemList.Hatch_Energy_LuV.get(1), ItemList.Hatch_Energy_ZPM.get(1),
+            ItemList.Hatch_Energy_UV.get(1), ItemList.Hatch_Energy_MAX.get(1),
+            getItemContainer("Hatch_Energy_UEV").get(1L), getItemContainer("Hatch_Energy_UIV").get(1L),
+            getItemContainer("Hatch_Energy_UMV").get(1L), getItemContainer("Hatch_Energy_UXV").get(1L) };
+
+        ItemStack[] energyHatches_4A = { com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti4_UXV.get(1) };
+
+        ItemStack[] energyHatches_16A = { com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti16_UXV.get(1) };
+
+        ItemStack[] energyHatches_64A = { com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyMulti64_UXV.get(1) };
+
+        ItemStack[] laserTargets_UXV = { com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel1_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel2_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel3_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel4_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel5_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel6_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyTunnel7_UXV.get(1) };
+
+        ItemStack[] dynamoHatches = { ItemList.Hatch_Dynamo_ULV.get(1), ItemList.Hatch_Dynamo_LV.get(1),
+            ItemList.Hatch_Dynamo_MV.get(1), ItemList.Hatch_Dynamo_HV.get(1), ItemList.Hatch_Dynamo_EV.get(1),
+            ItemList.Hatch_Dynamo_IV.get(1), ItemList.Hatch_Dynamo_LuV.get(1), ItemList.Hatch_Dynamo_ZPM.get(1),
+            ItemList.Hatch_Dynamo_UV.get(1), ItemList.Hatch_Dynamo_MAX.get(1),
+            getItemContainer("Hatch_Dynamo_UEV").get(1L), getItemContainer("Hatch_Dynamo_UIV").get(1L),
+            getItemContainer("Hatch_Dynamo_UMV").get(1L), getItemContainer("Hatch_Dynamo_UXV").get(1L) };
+
+        Object[] circuitsTierPlusTwo = { new Object[] { OrePrefixes.circuit.get(Materials.Good), 1L }, // MV
+            new Object[] { OrePrefixes.circuit.get(Materials.Advanced), 1L }, // HV
+            new Object[] { OrePrefixes.circuit.get(Materials.Data), 1L }, // EV
+            new Object[] { OrePrefixes.circuit.get(Materials.Elite), 1L }, // IV
+            new Object[] { OrePrefixes.circuit.get(Materials.Master), 1L }, // LuV
+            new Object[] { OrePrefixes.circuit.get(Materials.Ultimate), 1L }, // ZPM
+            new Object[] { OrePrefixes.circuit.get(Materials.SuperconductorUHV), 1L }, // UV
+            new Object[] { OrePrefixes.circuit.get(Materials.Infinite), 1L }, // UHV
+            new Object[] { OrePrefixes.circuit.get(Materials.Bio), 1L }, // UEV
+            new Object[] { OrePrefixes.circuit.get(Materials.Optical), 1L }, // UIV
+            new Object[] { OrePrefixes.circuit.get(Materials.Piko), 1L }, // UMV
+            new Object[] { OrePrefixes.circuit.get(Materials.Quantum), 1L }, // UXV
+            new Object[] { OrePrefixes.circuit.get(Materials.Quantum), 4L }, // MAX
+            new Object[] { OrePrefixes.circuit.get(Materials.Quantum), 16L } // MAX
+        };
+
+        ItemStack[] wirelessHatches = { ItemList.Wireless_Hatch_Energy_ULV.get(1),
+            ItemList.Wireless_Hatch_Energy_LV.get(1), ItemList.Wireless_Hatch_Energy_MV.get(1),
+            ItemList.Wireless_Hatch_Energy_HV.get(1), ItemList.Wireless_Hatch_Energy_EV.get(1),
+            ItemList.Wireless_Hatch_Energy_IV.get(1), ItemList.Wireless_Hatch_Energy_LuV.get(1),
+            ItemList.Wireless_Hatch_Energy_ZPM.get(1), ItemList.Wireless_Hatch_Energy_UV.get(1),
+            ItemList.Wireless_Hatch_Energy_UHV.get(1), ItemList.Wireless_Hatch_Energy_UEV.get(1),
+            ItemList.Wireless_Hatch_Energy_UIV.get(1), ItemList.Wireless_Hatch_Energy_UMV.get(1),
+            ItemList.Wireless_Hatch_Energy_UXV.get(1) };
+
+        ItemStack[] wirelessHatches_4A = {
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti4_UXV.get(1) };
+
+        ItemStack[] wirelessHatches_16A = {
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti16_UXV.get(1) };
+
+        ItemStack[] wirelessHatches_64A = {
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_EV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_IV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_LuV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_ZPM.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UHV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UEV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UIV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UMV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessMulti64_UXV.get(1) };
+
+        ItemStack[] wirelessLasers = {
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel1_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel2_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel3_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel4_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel5_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel6_UXV.get(1),
+            com.github.technus.tectech.thing.CustomItemList.eM_energyWirelessTunnel7_UXV.get(1) };
+
+        ItemStack[] wirelessDynamos = { ItemList.Wireless_Dynamo_Energy_ULV.get(1),
+            ItemList.Wireless_Dynamo_Energy_LV.get(1), ItemList.Wireless_Dynamo_Energy_MV.get(1),
+            ItemList.Wireless_Dynamo_Energy_HV.get(1), ItemList.Wireless_Dynamo_Energy_EV.get(1),
+            ItemList.Wireless_Dynamo_Energy_IV.get(1), ItemList.Wireless_Dynamo_Energy_LuV.get(1),
+            ItemList.Wireless_Dynamo_Energy_ZPM.get(1), ItemList.Wireless_Dynamo_Energy_UV.get(1),
+            ItemList.Wireless_Dynamo_Energy_UHV.get(1), ItemList.Wireless_Dynamo_Energy_UEV.get(1),
+            ItemList.Wireless_Dynamo_Energy_UIV.get(1), ItemList.Wireless_Dynamo_Energy_UMV.get(1),
+            ItemList.Wireless_Dynamo_Energy_UXV.get(1) };
+
+        // ------------------------ Wireless EU hatches ------------------------
+
+        for (int i = 0; i < wirelessHatches.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    energyHatches[i],
+                    ItemRefer.Compact_Fusion_Coil_T0.get(1),
+                    ItemList.Casing_Coil_Superconductor.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(2),
+                    circuitsTierPlusTwo[i],
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(9 * INGOTS),
+                    Materials.Infinity.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(72),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(500))
+                .itemOutputs(wirelessHatches[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
+
+        // ------------------------ 4A Wireless EU hatches ------------------------
+
+        for (int i = 0; i < wirelessHatches_4A.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    energyHatches_4A[i],
+                    ItemRefer.Compact_Fusion_Coil_T1.get(1),
+                    ItemList.Casing_Coil_Superconductor.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(4),
+                    circuitsTierPlusTwo[i + 4],
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(4 * 9 * INGOTS),
+                    Materials.Flerovium.getMolten(32 * INGOTS),
+                    MyMaterial.shirabon.getMolten(12 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(2 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(4 * 500))
+                .itemOutputs(wirelessHatches_4A[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
+
+        // ------------------------ 16A Wireless EU hatches ------------------------
+
+        for (int i = 0; i < wirelessHatches_16A.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    energyHatches_16A[i],
+                    ItemRefer.Compact_Fusion_Coil_T2.get(1),
+                    ItemList.Casing_Coil_Superconductor.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(16),
+                    circuitsTierPlusTwo[i + 4],
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 9 * INGOTS),
+                    MyMaterial.shirabon.getMolten(48 * INGOTS),
+                    MaterialsUEVplus.TranscendentMetal.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(16 * 500))
+                .itemOutputs(wirelessHatches_16A[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
+
+        // ------------------------ 64A Wireless EU hatches ------------------------
+
+        for (int i = 0; i < wirelessHatches_64A.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    energyHatches_64A[i],
+                    ItemRefer.Compact_Fusion_Coil_T3.get(1),
+                    ItemList.Casing_Coil_Superconductor.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(64),
+                    circuitsTierPlusTwo[i + 4],
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(64 * 9 * INGOTS),
+                    MyMaterial.shirabon.getMolten(192 * INGOTS),
+                    MyMaterial.metastableOganesson.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(64 * 500))
+                .itemOutputs(wirelessHatches_64A[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
+
+        // ------------------------ Wireless UXV Lasers ------------------------
+
+        for (int i = 0; i < wirelessLasers.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    laserTargets_UXV[i],
+                    ItemRefer.Compact_Fusion_Coil_T4.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.LASERpipeBlock.get(64),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(64),
+                    GT_OreDictUnificator.get(OrePrefixes.circuit, Materials.Quantum, 16L),
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(256 * 9 * INGOTS),
+                    MaterialsUEVplus.Eternity.getMolten(32 * 8 * INGOTS),
+                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(16 * 8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(512 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTSC.getFluid(64 * 500))
+                .itemOutputs(wirelessLasers[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
+
+        // ------------------------ Wireless EU dynamos ------------------------
+
+        for (int i = 0; i < wirelessHatches.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    dynamoHatches[i],
+                    ItemRefer.Compact_Fusion_Coil_T0.get(1),
+                    ItemList.Casing_Coil_Superconductor.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.eM_Power.get(2),
+                    circuitsTierPlusTwo[i],
+                    ItemList.EnergisedTesseract.get(1))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(9 * INGOTS),
+                    Materials.Infinity.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(72),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(500))
+                .itemOutputs(wirelessDynamos[i])
+                .eut(recipeEU)
+                .duration(recipeDuration)
+                .addTo(IA);
+        }
     }
 }
