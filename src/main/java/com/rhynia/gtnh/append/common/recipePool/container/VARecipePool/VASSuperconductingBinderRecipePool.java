@@ -6,7 +6,7 @@ import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
@@ -14,11 +14,12 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
-import gregtech.api.util.GT_Recipe;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map SB = VA_Recipe.instance.sSuperconductingBinderRecipes;
+    private final RecipeMap<RecipeMapBackend> SB = AppendRecipeMaps.superconductingAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {

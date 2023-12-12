@@ -15,6 +15,13 @@ va.MetaItem01.6.name=Astral Magical Lens
 va.MetaItem01.7.name=Primoium Lens
 va.MetaItem01.8.name=Originium Lens
 
+va.recipe.astralForge=Astra Forge
+va.recipe.thermonuclearControl=Thermonuclear Control
+va.recipe.transcendentReactor=Transcendent Reactor
+va.recipe.integratedAssembly=Integrated Assembly
+va.recipe.microAssembly=Micro Assembly
+va.recipe.superconductingAssembly=Superconducting Assembly
+
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode
 

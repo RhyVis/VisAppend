@@ -34,7 +34,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
@@ -44,11 +44,11 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
 public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AstraForge>
@@ -87,8 +87,8 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VA_Recipe.instance.sAstraForgeRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        return AppendRecipeMaps.astralForgeRecipes;
     }
 
     @Override

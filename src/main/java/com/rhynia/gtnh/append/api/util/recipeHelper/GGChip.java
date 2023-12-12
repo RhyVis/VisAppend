@@ -34,7 +34,6 @@ public enum GGChip implements IRecipeHelper {
      * with stack larger than 64 are also supported
      *
      * @param aAmount The amount of ItemStack
-     * @author Rhynia
      * @since 0.6.14-pre
      */
     @Override

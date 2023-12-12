@@ -15,22 +15,23 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.util.GT_ModHandler;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map UH = VA_Recipe.instance.sThermonuclearControlRecipes;
+    private final RecipeMap<RecipeMapBackend> UH = AppendRecipeMaps.thermonuclearControlRecipes;
     private final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override

@@ -20,6 +20,11 @@ import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE
 import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -35,7 +40,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -44,11 +49,11 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
@@ -91,10 +96,16 @@ public class VA_TileEntity_AssemblyMatrix
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        if (mRecipeMode == 0) {
-            return VA_Recipe.instance.sIntegratedAssemblyRecipes;
-        } else return VA_Recipe.instance.sMicroAssemblyRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        if (this.mRecipeMode == 0) {
+            return AppendRecipeMaps.integratedAssemblyRecipes;
+        } else return AppendRecipeMaps.microAssemblyRecipes;
+    }
+
+    @Nonnull
+    @Override
+    public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
+        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
     }
 
     @Override
