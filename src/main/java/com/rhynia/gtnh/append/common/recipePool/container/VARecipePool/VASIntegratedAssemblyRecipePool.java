@@ -1,8 +1,6 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer;
-import static gregtech.api.enums.Mods.GalaxySpace;
-import static gregtech.api.enums.Mods.GoodGenerator;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -13,7 +11,6 @@ import static gregtech.api.enums.TierEU.RECIPE_UIV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_ModHandler.getModItem;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.HOURS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
@@ -21,7 +18,6 @@ import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 import static gregtech.api.util.GT_RecipeBuilder.TICKS;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -504,7 +500,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 MyMaterial.marM200.getMolten(16 * 8 * INGOTS),
                 MyMaterial.zircaloy4.getMolten(26 * 2 * INGOTS),
                 Materials.Aluminium.getMolten(24 * INGOTS))
-            .itemOutputs(ItemRefer.SC_Turbine_Casing.get(16))
+            .itemOutputs(ItemRefer.Compact_Fusion_Coil_T0.get(16))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(12 * 60 * SECONDS)
@@ -771,8 +767,6 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
     // region Wireless Buffed Recipes
     public void loadWirelessHatchRecipes() {
 
-        Fluid solderUEV = FluidRegistry.getFluid("molten.mutatedlivingsolder");
-
         int recipeDuration = 20 * SECONDS;
         int recipeEU = 128_000_000;
 
@@ -916,15 +910,17 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     energyHatches[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1),
+                    ItemRefer.Compact_Fusion_Coil_T0.get(1),
                     ItemList.Casing_Coil_Superconductor.get(1),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, MaterialsUEVplus.SpaceTime, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.Infinity, 1),
                     circuitsTierPlusTwo[i],
                     ItemList.EnergisedTesseract.get(1))
-                .fluidInputs(new FluidStack(solderUEV, 1296), MaterialsUEVplus.ExcitedDTEC.getFluid(500L))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(9 * INGOTS),
+                    Materials.Infinity.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(72),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(500))
                 .itemOutputs(wirelessHatches[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
@@ -937,16 +933,18 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     energyHatches_4A[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1, 1),
+                    ItemRefer.Compact_Fusion_Coil_T1.get(1),
                     ItemList.Casing_Coil_Superconductor.get(1),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(4),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, MaterialsUEVplus.SpaceTime, 4),
-                    GT_OreDictUnificator.get("plateTripleShirabon", 4L),
-                    GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.Flerovium, 4),
                     circuitsTierPlusTwo[i + 4],
                     ItemList.EnergisedTesseract.get(1))
-                .fluidInputs(new FluidStack(solderUEV, 1_296 * 4), MaterialsUEVplus.ExcitedDTEC.getFluid(500L * 4))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(4 * 9 * INGOTS),
+                    Materials.Flerovium.getMolten(32 * INGOTS),
+                    MyMaterial.shirabon.getMolten(12 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(2 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(4 * 500))
                 .itemOutputs(wirelessHatches_4A[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
@@ -959,16 +957,18 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     energyHatches_16A[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1, 2),
+                    ItemRefer.Compact_Fusion_Coil_T2.get(1),
                     ItemList.Casing_Coil_Superconductor.get(1),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(16),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, MaterialsUEVplus.SpaceTime, 16),
-                    GT_OreDictUnificator.get("plateTripleShirabon", 16L),
-                    GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.TranscendentMetal, 4),
                     circuitsTierPlusTwo[i + 4],
                     ItemList.EnergisedTesseract.get(1))
-                .fluidInputs(new FluidStack(solderUEV, 1_296 * 16), MaterialsUEVplus.ExcitedDTEC.getFluid(500L * 16))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 9 * INGOTS),
+                    MyMaterial.shirabon.getMolten(48 * INGOTS),
+                    MaterialsUEVplus.TranscendentMetal.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(16 * 500))
                 .itemOutputs(wirelessHatches_16A[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
@@ -981,16 +981,18 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     energyHatches_64A[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1, 3),
+                    ItemRefer.Compact_Fusion_Coil_T3.get(1),
                     ItemList.Casing_Coil_Superconductor.get(1),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(64),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, MaterialsUEVplus.SpaceTime, 64),
-                    GT_OreDictUnificator.get("plateTripleShirabon", 64L),
-                    GT_OreDictUnificator.get("plateDenseMetastableOganesson", 4),
                     circuitsTierPlusTwo[i + 4],
                     ItemList.EnergisedTesseract.get(1))
-                .fluidInputs(new FluidStack(solderUEV, 1_296 * 64), MaterialsUEVplus.ExcitedDTEC.getFluid(500L * 64))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(64 * 9 * INGOTS),
+                    MyMaterial.shirabon.getMolten(192 * INGOTS),
+                    MyMaterial.metastableOganesson.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(32 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(64 * 500))
                 .itemOutputs(wirelessHatches_64A[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
@@ -1003,20 +1005,18 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     laserTargets_UXV[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1, 4),
-                    // Dyson Swarm Module Deployment Unit Superconducting Magnet
-                    getModItem(GalaxySpace.ID, "dysonswarmparts", 1, 4),
+                    ItemRefer.Compact_Fusion_Coil_T4.get(1),
+                    com.github.technus.tectech.thing.CustomItemList.LASERpipeBlock.get(64),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(64),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt16, MaterialsUEVplus.SpaceTime, 64),
-                    GT_OreDictUnificator.get(OrePrefixes.plateDense, MaterialsUEVplus.Eternity, 32),
-                    GT_OreDictUnificator
-                        .get(OrePrefixes.plateDense, MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter, 16),
                     GT_OreDictUnificator.get(OrePrefixes.circuit, Materials.Quantum, 16L),
                     ItemList.EnergisedTesseract.get(1))
                 .fluidInputs(
-                    new FluidStack(solderUEV, 1_296 * 64 * 4),
-                    MaterialsUEVplus.ExcitedDTSC.getFluid(500L * 64))
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(256 * 9 * INGOTS),
+                    MaterialsUEVplus.Eternity.getMolten(32 * 8 * INGOTS),
+                    MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getMolten(16 * 8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(512 * INGOTS),
+                    MaterialsUEVplus.ExcitedDTSC.getFluid(64 * 500))
                 .itemOutputs(wirelessLasers[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
@@ -1029,15 +1029,17 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     dynamoHatches[i],
-                    getModItem(GoodGenerator.ID, "compactFusionCoil", 1),
+                    ItemRefer.Compact_Fusion_Coil_T0.get(1),
                     ItemList.Casing_Coil_Superconductor.get(1),
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(2),
-                    GT_OreDictUnificator.get(OrePrefixes.wireGt01, MaterialsUEVplus.SpaceTime, 2),
-                    GT_OreDictUnificator.get(OrePrefixes.plateDense, Materials.Infinity, 1),
                     circuitsTierPlusTwo[i],
                     ItemList.EnergisedTesseract.get(1))
-                .fluidInputs(new FluidStack(solderUEV, 1296), MaterialsUEVplus.ExcitedDTEC.getFluid(500L))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(9 * INGOTS),
+                    Materials.Infinity.getMolten(8 * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(72),
+                    MaterialsUEVplus.ExcitedDTEC.getFluid(500))
                 .itemOutputs(wirelessDynamos[i])
                 .eut(recipeEU)
                 .duration(recipeDuration)
