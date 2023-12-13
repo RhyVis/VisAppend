@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
+import static com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.withChannel;
@@ -207,7 +208,7 @@ public class VA_TileEntity_UltimateHeater
                 'A',
                 withChannel(
                     "glass",
-                    com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass(
+                    ofBoroGlass(
                         (byte) 0,
                         (byte) 1,
                         Byte.MAX_VALUE,
@@ -294,8 +295,8 @@ public class VA_TileEntity_UltimateHeater
             .addOutputHatch(BluePrintInfo, 1)
             .addInputBus(BluePrintInfo, 1)
             .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 3)
-            .addEnergyHatch(BluePrintInfo, 2)
+            .addMaintenanceHatch(BluePrintInfo, 1)
+            .addEnergyHatch(BluePrintInfo, 1)
             .toolTipFinisher(VisAppendNuclear);
         return tt;
     }
