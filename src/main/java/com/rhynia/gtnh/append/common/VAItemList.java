@@ -28,6 +28,7 @@ public enum VAItemList implements IItemContainer {
     LensAstriumMagic,
     LensPrimoium,
     LensOriginium,
+    PreTesseract,
     // Sig Block
     InfiniteLiquidAirHatch,
     InfiniteDistilledWaterHatch,
