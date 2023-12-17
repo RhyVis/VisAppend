@@ -32,12 +32,13 @@ public class ItemRegister {
         VAItemList.LensAstriumMagic.set(initItem01("星芒魔力透镜", 6, new String[]{ "我想它能自行产生魔力" }));
         VAItemList.LensPrimoium.set(initItem01("原石透镜", 7, new String[]{ "异世界的能量?" }));
         VAItemList.LensOriginium.set(initItem01("源石透镜", 8, new String[]{ "操作时请注意源石尘" }));
+        VAItemList.PreTesseract.set(initItem01("准超立方体", 9, new String[]{ "即将达到高维工程学" }));
         // Special Item
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
         VAItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));
         VAItemList.ItemCrystalMatrix.set(new ItemStack(ItemBasic.CrystalMatrix,1));
     }
-    // spotless:on
+    //spotless:on
     public static void registry() {
         registryItems();
         registryItemContainers();

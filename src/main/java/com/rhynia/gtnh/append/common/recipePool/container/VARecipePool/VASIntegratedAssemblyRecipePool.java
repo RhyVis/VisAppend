@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer;
+import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.TierEU.RECIPE_EV;
 import static gregtech.api.enums.TierEU.RECIPE_IV;
 import static gregtech.api.enums.TierEU.RECIPE_LuV;
@@ -100,6 +101,33 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(20 * SECONDS)
+            .addTo(IA);
+        // PreTesseract v1
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VAItemList.AstriumInfinityGem.get(1), GGChip.ZPM.getWrapped(1))
+            .fluidInputs(
+                Materials.CosmicNeutronium.getMolten(16 * 4 * INGOTS),
+                ALLOY.OCTIRON.getFluidStack(16 * 4 * INGOTS),
+                MyMaterial.tairitsu.getMolten(16 * 4 * INGOTS),
+                Materials.Sunnarium.getMolten(16 * 4 * INGOTS),
+                ALLOY.ABYSSAL.getFluidStack(16 * 24 * INGOTS),
+                ALLOY.BOTMIUM.getFluidStack(16 * 2 * INGOTS))
+            .itemOutputs(VAItemList.PreTesseract.get(64))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(25 * SECONDS)
+            .addTo(IA);
+        // PreTesseract v2
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Tesseract.get(0),
+                VAItemList.AstriumInfinityGem.get(4),
+                GT_ModHandler.getModItem(GTPlusPlus.ID, "MU-metaitem.01", 16L, 32105))
+            .fluidInputs(MaterialsUEVplus.TranscendentMetal.getMolten(256 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, VAItemList.PreTesseract.get(1)))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(25 * SECONDS)
             .addTo(IA);
         // endregion
 
