@@ -33,21 +33,6 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
         final RecipeMap<RecipeMapBackend> LCR = RecipeMaps.multiblockChemicalReactorRecipes;
 
         // region 杂项
-        // 临时！！！转换物品到MetaItem
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemLapoMatrix.get(1))
-            .itemOutputs(VAItemList.LapoMatrix.get(1))
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(1)
-            .addTo(LCR);
-        GT_Values.RA.stdBuilder()
-            .itemInputs(VAItemList.ItemCrystalMatrix.get(1))
-            .itemOutputs(VAItemList.CrystalMatrix.get(1))
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(1)
-            .addTo(LCR);
         // 磷化钙
         GT_Values.RA.stdBuilder()
             .itemInputs(
