@@ -10,6 +10,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 
 public class VAFusionRecipePool implements IRecipePool {
@@ -19,7 +20,7 @@ public class VAFusionRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> FS = RecipeMaps.fusionRecipes;
+        final RecipeMap<RecipeMapBackend> FS = RecipeMaps.fusionRecipes;
         // ACR
         GT_Values.RA.stdBuilder()
             .fluidInputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(500), MyMaterial.orundum.getMolten(288))

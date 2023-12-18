@@ -12,6 +12,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
@@ -23,7 +24,7 @@ public class VAElectroRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> EC = RecipeMaps.electrolyzerNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> EC = RecipeMaps.electrolyzerNonCellRecipes;
 
         // region 焙烧粉还原
         // 焙烧铁粉

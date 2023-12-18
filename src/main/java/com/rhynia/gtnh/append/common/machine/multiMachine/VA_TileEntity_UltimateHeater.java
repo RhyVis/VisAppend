@@ -208,12 +208,7 @@ public class VA_TileEntity_UltimateHeater
                 'A',
                 withChannel(
                     "glass",
-                    ofBoroGlass(
-                        (byte) 0,
-                        (byte) 1,
-                        Byte.MAX_VALUE,
-                        (te, t) -> te.mGlassTier = t,
-                        te -> te.mGlassTier)))
+                    ofBoroGlass((byte) 0, (byte) 1, Byte.MAX_VALUE, (te, t) -> te.mGlassTier = t, te -> te.mGlassTier)))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement('C', ofBlock(GregTech_API.sBlockCasings4, 7))
             .addElement(

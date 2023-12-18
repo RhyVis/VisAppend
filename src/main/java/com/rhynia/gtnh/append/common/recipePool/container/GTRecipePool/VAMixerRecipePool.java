@@ -16,6 +16,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
@@ -29,8 +30,8 @@ public class VAMixerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> MX = RecipeMaps.mixerNonCellRecipes;
-        final RecipeMap<?> MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> MX = RecipeMaps.mixerNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
 
         // region 杂项
         // 深渊铁

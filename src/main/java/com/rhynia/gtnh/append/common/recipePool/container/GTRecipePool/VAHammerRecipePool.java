@@ -19,6 +19,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.common.items.CombType;
 import gregtech.loaders.misc.GT_Bees;
@@ -30,7 +31,7 @@ public class VAHammerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> HM = RecipeMaps.hammerRecipes;
+        final RecipeMap<RecipeMapBackend> HM = RecipeMaps.hammerRecipes;
 
         // region 杂项
         // Am

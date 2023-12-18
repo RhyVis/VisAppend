@@ -14,6 +14,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 import gtPlusPlus.core.material.ELEMENT;
 
@@ -24,8 +25,8 @@ public class VACommonRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> EMS = RecipeMaps.electroMagneticSeparatorRecipes;
-        final RecipeMap<?> IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;
+        final RecipeMap<RecipeMapBackend> EMS = RecipeMaps.electroMagneticSeparatorRecipes;
+        final RecipeMap<RecipeMapBackend> IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;
 
         // region 星辉
         // 磁析神秘

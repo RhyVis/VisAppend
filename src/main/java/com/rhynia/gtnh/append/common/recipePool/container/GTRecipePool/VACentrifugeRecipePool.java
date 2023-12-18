@@ -15,6 +15,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.api.recipe.GTPPRecipeMaps;
@@ -26,8 +27,8 @@ public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<?> CF = RecipeMaps.centrifugeNonCellRecipes;
-        final RecipeMap<?> CFGTPP = GTPPRecipeMaps.centrifugeNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> CF = RecipeMaps.centrifugeNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> CFGTPP = GTPPRecipeMaps.centrifugeNonCellRecipes;
 
         // region 杂项系列
         // 褐煤制煤
