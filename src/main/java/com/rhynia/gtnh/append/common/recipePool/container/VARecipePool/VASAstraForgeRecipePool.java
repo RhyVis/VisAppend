@@ -1034,7 +1034,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64),
                 Materials.Naquadah.getDust(64))
-            .fluidInputs(Materials.NaquadahEnriched.getFluid(144 * 32))
+            .fluidInputs(Materials.NaquadahEnriched.getMolten(144 * 32))
             .itemOutputs(
                 Materials.Naquadria.getDust(64),
                 Materials.Naquadria.getDust(64),
