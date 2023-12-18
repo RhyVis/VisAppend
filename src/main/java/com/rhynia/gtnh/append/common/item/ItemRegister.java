@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.common.item;
 
-import static com.rhynia.gtnh.append.common.item.registry.RegMetaItem01.initItem01;
+import static com.rhynia.gtnh.append.common.item.container.RegMetaItem01.initItem01;
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;

@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.item.registry;
+package com.rhynia.gtnh.append.common.item.container;
 
 import static com.rhynia.gtnh.append.api.util.MetaItemStack.initMetaItemStack;
 import static com.rhynia.gtnh.append.api.util.MetaItemStack.metaItemStackTooltipsAdd;
@@ -18,7 +18,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
 import com.rhynia.gtnh.append.common.item.ItemBasic;
-import com.rhynia.gtnh.append.common.item.ItemStaticDataClientOnly;
+import com.rhynia.gtnh.append.common.item.registry.ItemStaticDataClientOnly;
+import com.rhynia.gtnh.append.common.item.registry.RegItemBasic;
 
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
