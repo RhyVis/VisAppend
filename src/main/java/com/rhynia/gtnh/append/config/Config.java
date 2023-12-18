@@ -35,12 +35,12 @@ public class Config {
         Recipe_TR_CatalystACAMult = configuration.getInt(
             "Recipe_TR_CatalystACAMult",
             RECIPE,
-            16000,
-            1,
-            Integer.MAX_VALUE,
+            8000,
+            16,
+            Integer.MAX_VALUE / 16 - 1,
             "TR进行单次合成时的ACA催化剂消耗，不受合成倍率影响，单位L");
         Recipe_TR_CatalystACRMult = configuration
-            .getInt("Recipe_TR_CatalystACRMult", RECIPE, 2000, 1, Integer.MAX_VALUE, "TR进行单次合成时的ACR催化剂消耗，不受合成倍率影响，单位L");
+            .getInt("Recipe_TR_CatalystACRMult", RECIPE, 250, 1, Integer.MAX_VALUE, "TR进行单次合成时的ACR催化剂消耗，不受合成倍率影响，单位L");
 
         if (configuration.hasChanged()) {
             configuration.save();

@@ -58,7 +58,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Calcium.getDust(RecipeMult),
                 Materials.Niobium.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA / 16),
                 Materials.Helium.getGas(RecipeMult * INGOTS))
             .fluidOutputs(
                 MaterialsUEVplus.DimensionallyTranscendentCrudeCatalyst.getFluid(RecipeMult * OutputMult),
@@ -75,7 +75,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Calcium.getDust(RecipeMult),
                 Materials.Niobium.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA / 16),
                 VAMaterials.AstralCatalystReforged.getFluidOrGas(CatalystACR),
                 Materials.Helium.getGas(RecipeMult * INGOTS))
             .fluidOutputs(
@@ -97,7 +97,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Boron.getDust(RecipeMult),
                 Materials.Sulfur.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA / 4),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS))
             .fluidOutputs(
@@ -118,7 +118,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Boron.getDust(RecipeMult),
                 Materials.Sulfur.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA / 4),
                 VAMaterials.AstralCatalystReforged.getFluidOrGas(CatalystACR),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS))
@@ -199,7 +199,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Bismuth.getDust(RecipeMult),
                 Materials.Tin.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA * 4),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS),
                 Materials.Nitrogen.getGas(RecipeMult * INGOTS),
@@ -228,7 +228,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Bismuth.getDust(RecipeMult),
                 Materials.Tin.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA * 4),
                 VAMaterials.AstralCatalystReforged.getFluidOrGas(CatalystACR),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS),
@@ -262,7 +262,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Thorium.getDust(RecipeMult),
                 Materials.Plutonium241.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA * 16),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS),
                 Materials.Nitrogen.getGas(RecipeMult * INGOTS),
@@ -295,7 +295,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 Materials.Thorium.getDust(RecipeMult),
                 Materials.Plutonium241.getDust(RecipeMult))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(CatalystACA * 16),
                 VAMaterials.AstralCatalystReforged.getFluidOrGas(CatalystACR),
                 Materials.Helium.getGas(RecipeMult * INGOTS),
                 Materials.Radon.getGas(RecipeMult * INGOTS),
