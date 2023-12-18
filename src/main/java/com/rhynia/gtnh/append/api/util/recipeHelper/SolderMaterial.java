@@ -25,7 +25,6 @@ public enum SolderMaterial implements IRecipeHelper {
      * Get a FluidStack of Solder
      *
      * @param aAmount The amount of FluidStack
-     * @author Rhynia
      * @since 0.6.17-pre
      */
     @Override

@@ -23,7 +23,7 @@ import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.util.recipeHelper.BWPart;
 import com.rhynia.gtnh.append.api.util.recipeHelper.GGChip;
 import com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial;
@@ -38,9 +38,10 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
@@ -49,7 +50,7 @@ import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map IA = VA_Recipe.instance.sIntegratedAssemblyRecipes;
+    private final RecipeMap<RecipeMapBackend> IA = AppendRecipeMaps.integratedAssemblyRecipes;
     final boolean EnableWirelessRecipes = true;
 
     @Override

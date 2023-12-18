@@ -34,7 +34,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
@@ -44,13 +44,14 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AstraForge>
     implements IConstructable, ISurvivalConstructable {
 
@@ -79,7 +80,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(4, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return 64 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
@@ -87,8 +88,8 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VA_Recipe.instance.sAstraForgeRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        return AppendRecipeMaps.astralForgeRecipes;
     }
 
     @Override
@@ -180,7 +181,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
             .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("需要透镜辅助合成.")
-            .addInfo("电压每提高1级, 最大并行翻4倍.")
+            .addInfo("电压每提高1级, 最大并行增加64.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

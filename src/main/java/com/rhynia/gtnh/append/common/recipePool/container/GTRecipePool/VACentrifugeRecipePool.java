@@ -14,9 +14,11 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GTPP_Recipe;
-import gregtech.api.util.GT_Recipe;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.api.recipe.GTPPRecipeMaps;
 
 public class VACentrifugeRecipePool implements IRecipePool {
 
@@ -25,8 +27,8 @@ public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map CF = GT_Recipe.GT_Recipe_Map.sCentrifugeRecipes;
-        final GT_Recipe.GT_Recipe_Map CFGTPP = GTPP_Recipe.GTPP_Recipe_Map.sMultiblockCentrifugeRecipes_GT;
+        final RecipeMap<RecipeMapBackend> CF = RecipeMaps.centrifugeNonCellRecipes;
+        final RecipeMap<RecipeMapBackend> CFGTPP = GTPPRecipeMaps.centrifugeNonCellRecipes;
 
         // region 杂项系列
         // 褐煤制煤

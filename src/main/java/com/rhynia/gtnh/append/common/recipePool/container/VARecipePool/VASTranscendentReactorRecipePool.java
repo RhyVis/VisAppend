@@ -9,7 +9,7 @@ import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
 import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.config.Config;
@@ -20,14 +20,15 @@ import gregtech.api.enums.HeatingCoilLevel;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.util.GT_Recipe;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ELEMENT;
 
 @SuppressWarnings({ "SpellCheckingInspection", "IntegerMultiplicationImplicitCastToLong" })
 public class VASTranscendentReactorRecipePool implements IRecipePool {
 
-    private final GT_Recipe.GT_Recipe_Map TR = VA_Recipe.instance.sTranscendentReactorRecipes;
+    private final RecipeMap<RecipeMapBackend> TR = AppendRecipeMaps.transcendentReactorRecipes;
     final boolean EnableDTCRecipes = Config.Reccipe_TR_DTC_Enable;
     final int RecipeMult = Config.Recipe_TR_RecipeMult;
     final int OutputMult = Config.Recipe_TR_OutputMult;

@@ -6,6 +6,7 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
 import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
 import static gregtech.api.enums.GT_HatchElement.Energy;
@@ -19,6 +20,11 @@ import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE
 import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
 import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
+
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.annotation.Nonnull;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -35,7 +41,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -44,14 +50,15 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_AssemblyMatrix
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
@@ -83,7 +90,7 @@ public class VA_TileEntity_AssemblyMatrix
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(3, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
@@ -91,10 +98,16 @@ public class VA_TileEntity_AssemblyMatrix
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        if (mRecipeMode == 0) {
-            return VA_Recipe.instance.sIntegratedAssemblyRecipes;
-        } else return VA_Recipe.instance.sMicroAssemblyRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        if (this.mRecipeMode == 0) {
+            return AppendRecipeMaps.integratedAssemblyRecipes;
+        } else return AppendRecipeMaps.microAssemblyRecipes;
+    }
+
+    @Nonnull
+    @Override
+    public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
+        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
     }
 
     @Override
@@ -220,9 +233,9 @@ public class VA_TileEntity_AssemblyMatrix
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 最大并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行增加32.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo("使用螺丝刀切换模式.")
+            .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)

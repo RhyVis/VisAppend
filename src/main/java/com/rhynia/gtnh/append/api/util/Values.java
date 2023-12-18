@@ -48,6 +48,7 @@ public class Values {
         + EnumChatFormatting.GRAY
         + "全息投影，构建主体结构";
     public static final String StructureTooComplex = "结构太复杂了!";
+    public static final String ChangeModeByScrewdriver = "使用螺丝刀切换模式.";
 
     // 数值
     public static final int FullChance = 10000;

@@ -1,10 +1,12 @@
 package com.rhynia.gtnh.append.common.machine.multiMachine;
 
+import static com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.withChannel;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
 import static com.rhynia.gtnh.append.api.util.Values.VisAppendNuclear;
 import static gregtech.api.enums.GT_HatchElement.Energy;
@@ -25,6 +27,11 @@ import static gregtech.api.util.GT_StructureUtility.ofCoil;
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import java.util.Arrays;
+import java.util.Collection;
+
+import javax.annotation.Nonnull;
+
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -40,7 +47,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.HeatingCoilLevel;
@@ -51,6 +58,7 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
@@ -60,6 +68,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_UltimateHeater
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
@@ -85,7 +94,7 @@ public class VA_TileEntity_UltimateHeater
     // region Processing Logic
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        if (mRecipeMode == 1) {
+        if (this.mRecipeMode == 1) {
             // TR
             return new ProcessingLogic() {
 
@@ -112,22 +121,28 @@ public class VA_TileEntity_UltimateHeater
     }
 
     public int getMaxParallelRecipes() {
-        if (mRecipeMode == 0) {
-            return (int) (Math.pow(2, GT_Utility.getTier(this.getMaxInputVoltage())));
+        if (this.mRecipeMode == 0) {
+            return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
         } else return 256;
     }
 
     public float getSpeedBonus() {
-        if (mRecipeMode == 0) {
+        if (this.mRecipeMode == 0) {
             return (float) Math.pow(0.95, mCoilLevel.getTier());
         } else return (float) Math.pow(0.90, mCoilLevel.getTier() - 10);
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        if (mRecipeMode == 0) {
-            return VA_Recipe.instance.sThermonuclearControlRecipes;
-        } else return VA_Recipe.instance.sTranscendentReactorRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        if (this.mRecipeMode == 0) {
+            return AppendRecipeMaps.thermonuclearControlRecipes;
+        } else return AppendRecipeMaps.transcendentReactorRecipes;
+    }
+
+    @Nonnull
+    @Override
+    public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
+        return Arrays.asList(AppendRecipeMaps.thermonuclearControlRecipes, AppendRecipeMaps.transcendentReactorRecipes);
     }
 
     @Override
@@ -195,12 +210,7 @@ public class VA_TileEntity_UltimateHeater
                 'A',
                 withChannel(
                     "glass",
-                    com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass(
-                        (byte) 0,
-                        (byte) 1,
-                        Byte.MAX_VALUE,
-                        (te, t) -> te.mGlassTier = t,
-                        te -> te.mGlassTier)))
+                    ofBoroGlass((byte) 0, (byte) 1, Byte.MAX_VALUE, (te, t) -> te.mGlassTier = t, te -> te.mGlassTier)))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement('C', ofBlock(GregTech_API.sBlockCasings4, 7))
             .addElement(
@@ -268,12 +278,13 @@ public class VA_TileEntity_UltimateHeater
             .addInfo("粒子宏的控制器")
             .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
-            .addInfo("热核控制模式下，电压每提高1级, 最大并行翻2倍.")
+            .addInfo("热核控制模式下，电压每提高1级, 最大并行增加32.")
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
             .addInfo("超维度反应模式下，最大并行固定为256.")
-            .addInfo("线圈每比觉醒龙高1级，额外减少10%配方耗时(叠乘).")
-            .addInfo("在任何模式下")
+            .addInfo("线圈每比觉醒龙锭高1级，额外减少10%配方耗时(叠乘).")
+            .addInfo("在任何模式下:")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
+            .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)
@@ -282,8 +293,8 @@ public class VA_TileEntity_UltimateHeater
             .addOutputHatch(BluePrintInfo, 1)
             .addInputBus(BluePrintInfo, 1)
             .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 3)
-            .addEnergyHatch(BluePrintInfo, 2)
+            .addMaintenanceHatch(BluePrintInfo, 1)
+            .addEnergyHatch(BluePrintInfo, 1)
             .toolTipFinisher(VisAppendNuclear);
         return tt;
     }

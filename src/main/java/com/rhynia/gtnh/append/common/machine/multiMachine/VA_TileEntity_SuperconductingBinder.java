@@ -32,7 +32,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.VA_Recipe;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -41,14 +41,15 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_SuperconductingBinder
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_SuperconductingBinder>
     implements IConstructable, ISurvivalConstructable {
@@ -78,7 +79,7 @@ public class VA_TileEntity_SuperconductingBinder
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(3, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
@@ -86,8 +87,8 @@ public class VA_TileEntity_SuperconductingBinder
     }
 
     @Override
-    public GT_Recipe.GT_Recipe_Map getRecipeMap() {
-        return VA_Recipe.instance.sSuperconductingBinderRecipes;
+    public RecipeMap<?> getRecipeMap() {
+        return AppendRecipeMaps.superconductingAssemblyRecipes;
     }
 
     @Override
@@ -202,7 +203,7 @@ public class VA_TileEntity_SuperconductingBinder
             .addInfo("超导装配线的控制器")
             .addInfo("\"我不是很懂为什么超导烂大街了.\"")
             .addInfo("直接将原料构建为超导线缆.")
-            .addInfo("电压每提高1级, 最大并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行增加16.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

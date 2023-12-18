@@ -16,6 +16,13 @@ va.MetaItem01.7.name=原石透镜
 va.MetaItem01.8.name=源石透镜
 va.MetaItem01.9.name=准超立方体
 
+va.recipe.astralForge=星辉聚能转化
+va.recipe.thermonuclearControl=热核控制过程
+va.recipe.transcendentReactor=超维度反应
+va.recipe.integratedAssembly=集成组装
+va.recipe.microAssembly=微加工组装
+va.recipe.superconductingAssembly=超导组装
+
 append.AssemblyMatrix.mRecipeMode.0=集成组装模式
 append.AssemblyMatrix.mRecipeMode.1=微加工组装模式
 

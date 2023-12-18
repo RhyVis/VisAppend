@@ -11,13 +11,15 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.MaterialsUEVplus;
-import gregtech.api.util.GT_Recipe;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.recipe.RecipeMaps;
 
 public class VAPlasmaForgeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final GT_Recipe.GT_Recipe_Map PF = GT_Recipe.GT_Recipe_Map.sPlasmaForgeRecipes;
+        final RecipeMap<RecipeMapBackend> PF = RecipeMaps.plasmaForgeRecipes;
         GT_Values.RA.stdBuilder()
             .itemInputs(VAItemList.PreTesseract.get(4))
             .itemOutputs(ItemList.Tesseract.get(4))
