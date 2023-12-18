@@ -51,6 +51,7 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AstraForge>
     implements IConstructable, ISurvivalConstructable {
 
@@ -79,7 +80,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(4, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return 64 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
@@ -180,7 +181,7 @@ public class VA_TileEntity_AstraForge extends GT_MetaTileEntity_ExtendedPowerMul
             .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("需要透镜辅助合成.")
-            .addInfo("电压每提高1级, 最大并行翻4倍.")
+            .addInfo("电压每提高1级, 最大并行增加64.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addSeparator()
             .addInfo(StructureTooComplex)

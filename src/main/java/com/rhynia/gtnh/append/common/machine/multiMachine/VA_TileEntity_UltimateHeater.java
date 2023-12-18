@@ -6,6 +6,7 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.withChannel;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
 import static com.rhynia.gtnh.append.api.util.Values.VisAppendNuclear;
 import static gregtech.api.enums.GT_HatchElement.Energy;
@@ -67,6 +68,7 @@ import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_UltimateHeater
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_UltimateHeater>
     implements IConstructable, ISurvivalConstructable {
@@ -120,7 +122,7 @@ public class VA_TileEntity_UltimateHeater
 
     public int getMaxParallelRecipes() {
         if (this.mRecipeMode == 0) {
-            return (int) (Math.pow(2, GT_Utility.getTier(this.getMaxInputVoltage())));
+            return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
         } else return 256;
     }
 
@@ -276,12 +278,13 @@ public class VA_TileEntity_UltimateHeater
             .addInfo("粒子宏的控制器")
             .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
-            .addInfo("热核控制模式下，电压每提高1级, 最大并行翻2倍.")
+            .addInfo("热核控制模式下，电压每提高1级, 最大并行增加32.")
             .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
             .addInfo("超维度反应模式下，最大并行固定为256.")
-            .addInfo("线圈每比觉醒龙高1级，额外减少10%配方耗时(叠乘).")
-            .addInfo("在任何模式下")
+            .addInfo("线圈每比觉醒龙锭高1级，额外减少10%配方耗时(叠乘).")
+            .addInfo("在任何模式下:")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
+            .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)

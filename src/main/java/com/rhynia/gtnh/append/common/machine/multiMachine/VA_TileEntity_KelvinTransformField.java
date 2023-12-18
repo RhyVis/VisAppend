@@ -4,6 +4,7 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
 import static com.rhynia.gtnh.append.api.util.Values.VisAppendNuclear;
 import static gregtech.api.enums.GT_HatchElement.Energy;
@@ -58,6 +59,7 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 import gtPlusPlus.api.recipe.GTPPRecipeMaps;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_KelvinTransformField
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_KelvinTransformField>
     implements IConstructable, ISurvivalConstructable {
@@ -230,7 +232,7 @@ public class VA_TileEntity_KelvinTransformField
             .addInfo("且电压每提高1级, 降低5%配方耗时(叠乘计算).")
             .addInfo("热动力学解析模式下，基础最大并行为64.")
             .addInfo("且电压每提高1级, 增加16并行.")
-            .addInfo("使用螺丝刀切换模式.")
+            .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)

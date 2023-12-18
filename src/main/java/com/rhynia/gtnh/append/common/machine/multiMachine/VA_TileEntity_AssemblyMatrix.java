@@ -6,6 +6,7 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
+import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
 import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
 import static gregtech.api.enums.GT_HatchElement.Energy;
@@ -57,6 +58,7 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
+@SuppressWarnings("deprecation")
 public class VA_TileEntity_AssemblyMatrix
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
@@ -88,7 +90,7 @@ public class VA_TileEntity_AssemblyMatrix
     }
 
     public int getMaxParallelRecipes() {
-        return (int) (Math.pow(3, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
@@ -231,9 +233,9 @@ public class VA_TileEntity_AssemblyMatrix
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 最大并行翻3倍.")
+            .addInfo("电压每提高1级, 最大并行增加32.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo("使用螺丝刀切换模式.")
+            .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)
