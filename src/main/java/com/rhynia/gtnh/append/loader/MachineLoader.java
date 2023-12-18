@@ -52,16 +52,14 @@ public class MachineLoader {
             .getStackForm(1);
         InfiniteDistilledWaterHatch = new VA_MetaTileEntity_Hatch_DistilledWater(
             17402,
-            "HatchDistilledWaterHatch",
+            "HatchInfiniteDistilledWater",
             "无限蒸馏仓",
             9).getStackForm(1);
-        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(17403, "HatchInfiniteLavaHatch", "无限熔岩仓", 8)
+        InfiniteLavaHatch = new VA_MetaTileEntity_Hatch_Lava(17403, "HatchInfiniteLava", "无限熔岩仓", 8).getStackForm(1);
+        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOil", "无限油泉仓", 8).getStackForm(1);
+        InfiniteLubricantHatch = new VA_MetaTileEntity_Hatch_Lubricant(17405, "HatchInfiniteLubricant", "无限润滑仓", 10)
             .getStackForm(1);
-        InfiniteOilHatch = new VA_MetaTileEntity_Hatch_Oil(17404, "HatchInfiniteOilHatch", "无限油泉仓", 8).getStackForm(1);
-        InfiniteLubricantHatch = new VA_MetaTileEntity_Hatch_Lubricant(17405, "HatchInfiniteLubricantHatch", "无限润滑仓", 8)
-            .getStackForm(1);
-        InfiniteSteamHatch = new VA_MetaTileEntity_Hatch_Steam(17406, "HatchInfiniteSteamHatch", "无限蒸汽仓", 8)
-            .getStackForm(1);
+        InfiniteSteamHatch = new VA_MetaTileEntity_Hatch_Steam(17406, "HatchInfiniteSteam", "无限蒸汽仓", 8).getStackForm(1);
         ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
             .getStackForm(1L);
         // endregion

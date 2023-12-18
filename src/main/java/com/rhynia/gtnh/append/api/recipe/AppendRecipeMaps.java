@@ -7,6 +7,7 @@ import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
 import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.common.VAItemList;
 
 import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.recipe.RecipeMap;
@@ -26,6 +27,9 @@ public class AppendRecipeMaps {
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(15, 15)
         .progressBarPos(80, 30)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.AstraForge.get(1))
+                .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 6 * 18)
         .frontend(AstralForgeFrontend::new)
         .build();
@@ -40,6 +44,9 @@ public class AppendRecipeMaps {
         .progressBar(GT_UITextures.PROGRESSBAR_MIXER, ProgressBar.Direction.CIRCULAR_CW)
         .progressBarSize(17, 17)
         .progressBarPos(79, 27)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.UltimateHeater.get(1))
+                .setMaxRecipesPerPage(2))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(ThermonuclearControlFrontend::new)
         .build();
@@ -54,6 +61,9 @@ public class AppendRecipeMaps {
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(15, 15)
         .progressBarPos(85, 27)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.UltimateHeater.get(1))
+                .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 6 * 18)
         .frontend(TranscendentReactorFrontend::new)
         .build();
@@ -67,7 +77,11 @@ public class AppendRecipeMaps {
         .logoPos(79 + 18 * 4, 8 + 18 * 4)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(17, 17)
-        .progressBarPos(88, 27)
+        .progressBarPos(9 + 88, 27)
+        .neiTransferRect(9 + 88, 27, 17, 17)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+                .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 5 * 18)
         .frontend(IntegratedAssemblyFrontend::new)
         .build();
@@ -81,7 +95,11 @@ public class AppendRecipeMaps {
         .logoPos(79 + 18 * 4, 8 + 18 * 3)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(17, 17)
-        .progressBarPos(88, 27)
+        .progressBarPos(9 + 88, 27)
+        .neiTransferRect(9 + 88, 27, 17, 17)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+                .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)
         .build();
@@ -95,7 +113,11 @@ public class AppendRecipeMaps {
         .logoPos(79 + 18 * 4, 8 + 18 * 3)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(17, 17)
-        .progressBarPos(88, 27)
+        .progressBarPos(9 + 88, 27)
+        .neiTransferRect(9 + 88, 27, 17, 17)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.SuperconductingBinder.get(1))
+                .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)
         .build();

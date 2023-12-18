@@ -7,7 +7,7 @@ import net.minecraft.item.Item;
 import com.rhynia.gtnh.append.common.item.container.ItemCrystalMatrix;
 import com.rhynia.gtnh.append.common.item.container.ItemLapo;
 import com.rhynia.gtnh.append.common.item.container.ItemUltimate;
-import com.rhynia.gtnh.append.common.item.registry.RegMetaItem01;
+import com.rhynia.gtnh.append.common.item.container.RegMetaItem01;
 
 public final class ItemBasic {
 

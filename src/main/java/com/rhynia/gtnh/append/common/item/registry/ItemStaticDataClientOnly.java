@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.item;
+package com.rhynia.gtnh.append.common.item.registry;
 
 import java.util.HashMap;
 import java.util.Map;
