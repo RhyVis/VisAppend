@@ -1012,7 +1012,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VAItemList.LensAstriumInfinity.get(0),
                 VAMaterials.Astrium.get(OrePrefixes.dust, 64),
                 Materials.Glowstone.getDust(64))
-            .fluidInputs(Materials.Hydrogen.getFluid(48000))
+            .fluidInputs(Materials.Hydrogen.getGas(48000))
             .itemOutputs(
                 Materials.Sunnarium.getDust(64),
                 Materials.Sunnarium.getDust(64),
