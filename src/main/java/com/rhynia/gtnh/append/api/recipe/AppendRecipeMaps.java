@@ -18,7 +18,7 @@ public class AppendRecipeMaps {
 
     /** Astral Forge (AF) Recipe */
     public static final RecipeMap<RecipeMapBackend> astralForgeRecipes = RecipeMapBuilder.of("va.recipe.astralForge")
-        .maxIO(16, 16, 8, 8)
+        .maxIO(18, 18, 9, 9)
         .minInputs(1, 0)
         .logo(Values.VA_LOGO_32)
         .logoSize(17, 17)
@@ -30,7 +30,7 @@ public class AppendRecipeMaps {
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.AstraForge.get(1))
                 .setMaxRecipesPerPage(1))
-        .neiRecipeBackgroundSize(170, 10 + 6 * 18)
+        .neiRecipeBackgroundSize(170, 10 + 9 * 18)
         .frontend(AstralForgeFrontend::new)
         .build();
     /** Thermonuclear Control (TC) Recipe */

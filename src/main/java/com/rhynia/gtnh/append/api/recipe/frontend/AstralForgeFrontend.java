@@ -21,23 +21,29 @@ public class AstralForgeFrontend extends RecipeMapFrontend {
         super(uiPropertiesBuilder, neiPropertiesBuilder);
     }
 
+    private final int yOrigin = 8;
+    private final int xOriginLeft = 6;
+    private final int xOriginRight = 98;
+    private final int rowWidth = 18;
+    private final int xDirMaxCount = 3;
+
     @Override
     public List<Pos2d> getItemInputPositions(int itemInputCount) {
-        return UIHelper.getGridPositions(itemInputCount, 6, 8, 4);
+        return UIHelper.getGridPositions(itemInputCount, xOriginLeft + 9, yOrigin, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
-        return UIHelper.getGridPositions(itemOutputCount, 98, 8, 4);
+        return UIHelper.getGridPositions(itemOutputCount, xOriginRight + 9, yOrigin, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getFluidInputPositions(int fluidInputCount) {
-        return UIHelper.getGridPositions(fluidInputCount, 6, 8 + 4 * 18, 4);
+        return UIHelper.getGridPositions(fluidInputCount, xOriginLeft + 9, yOrigin + 6 * rowWidth, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
-        return UIHelper.getGridPositions(fluidOutputCount, 98, 8 + 4 * 18, 4);
+        return UIHelper.getGridPositions(fluidOutputCount, xOriginRight + 9, yOrigin + 6 * rowWidth, xDirMaxCount);
     }
 }
