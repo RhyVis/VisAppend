@@ -116,6 +116,7 @@ public class VAMaterials implements Runnable {
         new Werkstoff.Stats(),
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
+            .onlyDust()
             .addCells(),
         Offset_Mix + 3,
         TextureSet.SET_FLUID);

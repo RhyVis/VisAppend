@@ -25,25 +25,25 @@ public class AstralForgeFrontend extends RecipeMapFrontend {
     private final int xOriginLeft = 6;
     private final int xOriginRight = 98;
     private final int rowWidth = 18;
-    private final int xDirMaxCount = 3;
+    private final int xDirMaxCount = 4;
 
     @Override
     public List<Pos2d> getItemInputPositions(int itemInputCount) {
-        return UIHelper.getGridPositions(itemInputCount, xOriginLeft + 9, yOrigin, xDirMaxCount);
+        return UIHelper.getGridPositions(itemInputCount, xOriginLeft, yOrigin, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getItemOutputPositions(int itemOutputCount) {
-        return UIHelper.getGridPositions(itemOutputCount, xOriginRight + 9, yOrigin, xDirMaxCount);
+        return UIHelper.getGridPositions(itemOutputCount, xOriginRight, yOrigin, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getFluidInputPositions(int fluidInputCount) {
-        return UIHelper.getGridPositions(fluidInputCount, xOriginLeft + 9, yOrigin + 6 * rowWidth, xDirMaxCount);
+        return UIHelper.getGridPositions(fluidInputCount, xOriginLeft, yOrigin + 4 * rowWidth, xDirMaxCount);
     }
 
     @Override
     public List<Pos2d> getFluidOutputPositions(int fluidOutputCount) {
-        return UIHelper.getGridPositions(fluidOutputCount, xOriginRight + 9, yOrigin + 6 * rowWidth, xDirMaxCount);
+        return UIHelper.getGridPositions(fluidOutputCount, xOriginRight, yOrigin + 4 * rowWidth, xDirMaxCount);
     }
 }

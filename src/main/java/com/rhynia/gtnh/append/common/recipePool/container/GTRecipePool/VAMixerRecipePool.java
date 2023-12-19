@@ -46,9 +46,9 @@ public class VAMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8),
-                Materials.InfinityCatalyst.getDust(12),
-                GT_Utility.getIntegratedCircuit(12))
-            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 20))
+                Materials.InfinityCatalyst.getDust(17),
+                GT_Utility.getIntegratedCircuit(14))
+            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 25))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
