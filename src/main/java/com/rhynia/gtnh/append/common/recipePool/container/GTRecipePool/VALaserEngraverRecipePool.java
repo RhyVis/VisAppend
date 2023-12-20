@@ -85,6 +85,14 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(20 * SECONDS)
             .addTo(LE);
+        // 增殖星辉
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VAMaterials.Astrium.get(OrePrefixes.dust, 64), VAItemList.LensAstriumInfinity.get(0))
+            .fluidOutputs(VAMaterials.Astrium.getMolten(96 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(60 * SECONDS)
+            .addTo(LE);
         // 激活催化剂
         GT_Values.RA.stdBuilder()
             .itemInputs(VAItemList.LensAstriumInfinity.get(0))

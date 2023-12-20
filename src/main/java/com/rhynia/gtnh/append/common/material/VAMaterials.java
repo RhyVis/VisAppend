@@ -29,7 +29,7 @@ public class VAMaterials implements Runnable {
         TextureSet.SET_GEM_HORIZONTAL);
     // AstriumInfinity
     public static final Werkstoff AstriumInfinity = new Werkstoff(
-        new short[] { 30, 144, 252, 255 },
+        new short[] { 0, 191, 255, 255 },
         "AstriumInfinity",
         "Aμⁿ",
         new Werkstoff.Stats().setProtons(191)
