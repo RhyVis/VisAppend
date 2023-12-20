@@ -18,8 +18,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.common.items.CombType;
 import gregtech.loaders.misc.GT_Bees;
@@ -31,7 +30,7 @@ public class VAHammerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<RecipeMapBackend> HM = RecipeMaps.hammerRecipes;
+        final IRecipeMap HM = RecipeMaps.hammerRecipes;
 
         // region 杂项
         // Am

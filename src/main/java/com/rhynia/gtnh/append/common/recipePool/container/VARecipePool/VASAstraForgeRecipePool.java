@@ -30,8 +30,7 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.item.ModItems;
@@ -40,7 +39,7 @@ import gtPlusPlus.core.util.minecraft.ItemUtils;
 
 public class VASAstraForgeRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> AF = AppendRecipeMaps.astralForgeRecipes;
+    private final IRecipeMap AF = AppendRecipeMaps.astralForgeRecipes;
 
     @Override
     public void loadRecipesPostInit() {

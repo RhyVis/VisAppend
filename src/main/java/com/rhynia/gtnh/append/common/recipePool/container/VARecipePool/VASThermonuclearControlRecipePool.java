@@ -22,8 +22,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
@@ -31,7 +30,7 @@ import gtPlusPlus.core.material.ALLOY;
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> UH = AppendRecipeMaps.thermonuclearControlRecipes;
+    private final IRecipeMap UH = AppendRecipeMaps.thermonuclearControlRecipes;
     private final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override

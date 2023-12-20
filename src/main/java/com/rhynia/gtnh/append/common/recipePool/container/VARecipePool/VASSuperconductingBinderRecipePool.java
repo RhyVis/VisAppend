@@ -11,12 +11,11 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> SB = AppendRecipeMaps.superconductingAssemblyRecipes;
+    private final IRecipeMap SB = AppendRecipeMaps.superconductingAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {}

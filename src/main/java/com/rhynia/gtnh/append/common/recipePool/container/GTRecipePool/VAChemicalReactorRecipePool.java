@@ -16,8 +16,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
@@ -29,7 +28,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<RecipeMapBackend> LCR = RecipeMaps.multiblockChemicalReactorRecipes;
+        final IRecipeMap LCR = RecipeMaps.multiblockChemicalReactorRecipes;
 
         // region 杂项
         // 磷化钙

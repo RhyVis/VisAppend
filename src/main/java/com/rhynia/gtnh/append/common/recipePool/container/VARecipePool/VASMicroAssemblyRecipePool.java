@@ -27,15 +27,14 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> MA = AppendRecipeMaps.microAssemblyRecipes;
+    private final IRecipeMap MA = AppendRecipeMaps.microAssemblyRecipes;
 
     @Override
     public void loadRecipesPostInit() {}
