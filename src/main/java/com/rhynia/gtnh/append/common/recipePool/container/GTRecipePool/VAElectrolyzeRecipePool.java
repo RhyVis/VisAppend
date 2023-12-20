@@ -16,14 +16,14 @@ import gregtech.api.recipe.RecipeMaps;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.core.material.MISC_MATERIALS;
 
-public class VAElectroRecipePool implements IRecipePool {
+public class VAElectrolyzeRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipesPostInit() {}
 
     @Override
     public void loadRecipes() {
-        final IRecipeMap EC = RecipeMaps.electrolyzerNonCellRecipes;
+        final IRecipeMap EC = RecipeMaps.electrolyzerRecipes;
 
         // region 焙烧粉还原
         // 焙烧铁粉
