@@ -29,7 +29,7 @@ public class VAMaterials implements Runnable {
         TextureSet.SET_GEM_HORIZONTAL);
     // AstriumInfinity
     public static final Werkstoff AstriumInfinity = new Werkstoff(
-        new short[] { 30, 144, 252, 255 },
+        new short[] { 0, 191, 255, 255 },
         "AstriumInfinity",
         "Aμⁿ",
         new Werkstoff.Stats().setProtons(191)
@@ -117,7 +117,8 @@ public class VAMaterials implements Runnable {
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .onlyDust()
-            .addCells(),
+            .addCells()
+            .enforceUnification(),
         Offset_Mix + 3,
         TextureSet.SET_FLUID);
     // Astral Catalyst Base Excited

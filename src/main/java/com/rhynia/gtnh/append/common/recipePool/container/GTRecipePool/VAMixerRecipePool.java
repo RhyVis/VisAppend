@@ -44,15 +44,13 @@ public class VAMixerRecipePool implements IRecipePool {
             .addTo(MX);
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
-            .itemInputs(
-                VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8),
-                Materials.InfinityCatalyst.getDust(17),
-                GT_Utility.getIntegratedCircuit(14))
-            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 25))
+            .itemInputs(VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8), Materials.InfinityCatalyst.getDust(17))
+            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 50))
+            .fluidInputs(Materials.Helium.getGas(12 * BUCKETS), VAMaterials.Astrium.getMolten(4 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
-            .addTo(MX);
+            .addTo(MXGTPP);
         // 超导通流
         GT_Values.RA.stdBuilder()
             .itemInputs(
