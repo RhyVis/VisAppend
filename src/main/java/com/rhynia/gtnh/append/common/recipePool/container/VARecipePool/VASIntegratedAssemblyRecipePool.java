@@ -38,8 +38,7 @@ import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
@@ -50,7 +49,7 @@ import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> IA = AppendRecipeMaps.integratedAssemblyRecipes;
+    private final IRecipeMap IA = AppendRecipeMaps.integratedAssemblyRecipes;
     final boolean EnableWirelessRecipes = true;
 
     @Override

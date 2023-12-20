@@ -20,15 +20,14 @@ import gregtech.api.enums.HeatingCoilLevel;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ELEMENT;
 
 @SuppressWarnings({ "SpellCheckingInspection", "IntegerMultiplicationImplicitCastToLong" })
 public class VASTranscendentReactorRecipePool implements IRecipePool {
 
-    private final RecipeMap<RecipeMapBackend> TR = AppendRecipeMaps.transcendentReactorRecipes;
+    private final IRecipeMap TR = AppendRecipeMaps.transcendentReactorRecipes;
     final boolean EnableDTCRecipes = Config.Reccipe_TR_DTC_Enable;
     final int RecipeMult = Config.Recipe_TR_RecipeMult;
     final int OutputMult = Config.Recipe_TR_OutputMult;

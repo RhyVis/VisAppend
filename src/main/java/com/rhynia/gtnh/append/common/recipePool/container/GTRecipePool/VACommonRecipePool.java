@@ -13,8 +13,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gtPlusPlus.core.material.ELEMENT;
 
@@ -25,8 +24,8 @@ public class VACommonRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<RecipeMapBackend> EMS = RecipeMaps.electroMagneticSeparatorRecipes;
-        final RecipeMap<RecipeMapBackend> IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;
+        final IRecipeMap EMS = RecipeMaps.electroMagneticSeparatorRecipes;
+        final IRecipeMap IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;
 
         // region 星辉
         // 磁析神秘

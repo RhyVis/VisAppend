@@ -15,8 +15,7 @@ import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
@@ -30,8 +29,8 @@ public class VAMixerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<RecipeMapBackend> MX = RecipeMaps.mixerNonCellRecipes;
-        final RecipeMap<RecipeMapBackend> MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
+        final IRecipeMap MX = RecipeMaps.mixerRecipes;
+        final IRecipeMap MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
 
         // region 杂项
         // 深渊铁

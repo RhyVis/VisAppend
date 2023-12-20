@@ -22,8 +22,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
 
@@ -34,7 +33,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipes() {
-        final RecipeMap<RecipeMapBackend> LE = RecipeMaps.laserEngraverRecipes;
+        final IRecipeMap LE = RecipeMaps.laserEngraverRecipes;
 
         // region 光刻
         // 异氙
