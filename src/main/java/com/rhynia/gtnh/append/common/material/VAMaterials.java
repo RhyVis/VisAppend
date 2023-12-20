@@ -117,7 +117,8 @@ public class VAMaterials implements Runnable {
         Werkstoff.Types.COMPOUND,
         new Werkstoff.GenerationFeatures().disable()
             .onlyDust()
-            .addCells(),
+            .addCells()
+            .enforceUnification(),
         Offset_Mix + 3,
         TextureSet.SET_FLUID);
     // Astral Catalyst Base Excited
