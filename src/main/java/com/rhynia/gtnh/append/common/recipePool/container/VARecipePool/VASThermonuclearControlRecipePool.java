@@ -236,6 +236,15 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(12 * SECONDS)
             .addTo(UH);
+        // 硼等离子 B
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Boron.getGas(16 * BUCKETS))
+            .fluidOutputs(Materials.Boron.getPlasma(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
         // 氮等离子 N
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -357,7 +366,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
             .addTo(UH);
-        // 等离子 Ag
+        // 等离子 Au
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Gold.getMolten(128 * INGOTS))
@@ -375,11 +384,38 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
             .addTo(UH);
+        // 等离子 Bi
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Bismuth.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Bismuth.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Ca
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Calcium.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Calcium.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
         // 等离子 Ny
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Neodymium.getMolten(128 * INGOTS))
             .fluidOutputs(Materials.Neodymium.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Nb
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Niobium.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Niobium.getPlasma(128 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
@@ -416,6 +452,33 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Rubidium.getMolten(128 * INGOTS))
             .fluidOutputs(Materials.Rubidium.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Th
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Thorium.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Thorium.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Pu-241
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Plutonium241.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Plutonium241.getPlasma(128 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(12 * SECONDS)
+            .addTo(UH);
+        // 等离子 Am
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .fluidInputs(Materials.Americium.getMolten(128 * INGOTS))
+            .fluidOutputs(Materials.Americium.getPlasma(128 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
