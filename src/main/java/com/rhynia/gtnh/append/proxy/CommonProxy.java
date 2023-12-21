@@ -1,7 +1,9 @@
-package com.rhynia.gtnh.append;
+package com.rhynia.gtnh.append.proxy;
 
 import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.VisAppend.VERSION;
+
+import com.rhynia.gtnh.append.VisAppend;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
 import cpw.mods.fml.common.event.FMLPostInitializationEvent;

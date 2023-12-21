@@ -7,6 +7,7 @@ import com.rhynia.gtnh.append.config.Config;
 import com.rhynia.gtnh.append.loader.MachineLoader;
 import com.rhynia.gtnh.append.loader.MaterialLoader;
 import com.rhynia.gtnh.append.loader.RecipeLoader;
+import com.rhynia.gtnh.append.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;
@@ -33,7 +34,9 @@ public class VisAppend {
     public static final String VERSION = Tags.VERSION;
     public static final Logger LOG = LogManager.getLogger(Tags.MODID);
 
-    @SidedProxy(clientSide = "com.rhynia.gtnh.append.ClientProxy", serverSide = "com.rhynia.gtnh.append.CommonProxy")
+    @SidedProxy(
+        clientSide = "com.rhynia.gtnh.append.proxy.ClientProxy",
+        serverSide = "com.rhynia.gtnh.append.proxy.CommonProxy")
     public static CommonProxy proxy;
 
     @Mod.EventHandler

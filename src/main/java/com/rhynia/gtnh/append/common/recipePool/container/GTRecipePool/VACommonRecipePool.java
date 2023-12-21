@@ -49,7 +49,7 @@ public class VACommonRecipePool implements IRecipePool {
         // TODO 为星辉残留提供新用法
         GT_Values.RA.stdBuilder()
             .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(32 * BUCKETS))
-            .itemOutputs(ELEMENT.STANDALONE.HYPOGEN.getDust(16))
+            .fluidOutputs(ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * INGOTS))
             .noOptimize()
             .eut(8000000)
             .duration(1)
