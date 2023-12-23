@@ -2,7 +2,6 @@ package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.enums.TierEU.RECIPE_UIV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
@@ -30,7 +29,7 @@ import gtPlusPlus.core.material.ALLOY;
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
 
-    private final IRecipeMap UH = AppendRecipeMaps.thermonuclearControlRecipes;
+    private final IRecipeMap TC = AppendRecipeMaps.thermonuclearControlRecipes;
     private final ItemStack esCata = GT_ModHandler.getModItem("eternalsingularity", "eternal_singularity", 0);
 
     @Override
@@ -44,7 +43,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Ne
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -53,7 +52,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Ar
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -62,7 +61,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Kr
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -71,7 +70,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Xe
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -80,7 +79,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Rn
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -89,7 +88,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // endregion
     }
 
@@ -111,7 +110,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 超导通流
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -128,10 +127,10 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(30 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // endregion
 
-        // region 聚变加热
+        // region 聚变
         // MetaStableOg
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -144,7 +143,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UMV)
             .duration(115 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // AdvNitinol
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -157,7 +156,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(135 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
@@ -169,7 +168,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(100 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // AstralTitanium
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -182,7 +181,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(120 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // ChromaticGlass
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -195,7 +194,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(195 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // CelestialTungsten
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -208,7 +207,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(145 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // DragonBlood
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -223,11 +222,11 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(180 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // endregion
 
-        // region 第一二周期 UV-UEV
-        // 氢等离子 H
+        // region Gas in I-III UV-UEV
+        // 等离子 H
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Hydrogen.getGas(16 * BUCKETS))
@@ -235,17 +234,8 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(12 * SECONDS)
-            .addTo(UH);
-        // 硼等离子 B
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Boron.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Boron.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 氮等离子 N
+            .addTo(TC);
+        // 等离子 N
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Nitrogen.getGas(16 * BUCKETS))
@@ -253,8 +243,8 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
-            .addTo(UH);
-        // 氧等离子 O
+            .addTo(TC);
+        // 等离子 O
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Oxygen.getGas(16 * BUCKETS))
@@ -262,8 +252,8 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
-        // 氟等离子 F
+            .addTo(TC);
+        // 等离子 F
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Fluorine.getGas(16 * BUCKETS))
@@ -271,81 +261,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
-        // endregion
-        // region 第三周期 UEV
-        // 等离子 Na
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Sodium.getDust(64),
-                Materials.Sodium.getDust(64))
-            .fluidOutputs(Materials.Sodium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Mg
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Magnesium.getDust(64),
-                Materials.Magnesium.getDust(64))
-            .fluidOutputs(Materials.Magnesium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Al
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Aluminium.getDust(64),
-                Materials.Aluminium.getDust(64))
-            .fluidOutputs(Materials.Aluminium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Si
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64))
-            .fluidOutputs(Materials.Silicon.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 P
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Phosphorus.getDust(64),
-                Materials.Phosphorus.getDust(64))
-            .fluidOutputs(Materials.Phosphorus.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 S
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Sulfur.getDust(64),
-                Materials.Sulfur.getDust(64))
-            .fluidOutputs(Materials.Sulfur.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // 等离子 Cl
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
@@ -354,201 +270,43 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
-            .addTo(UH);
+            .addTo(TC);
         // endregion
-        // region 第三周期+
-        // 等离子 Ag
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Silver.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Silver.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Au
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Gold.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Gold.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Fe
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Iron.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Iron.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Bi
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Bismuth.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Bismuth.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Ca
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Calcium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Calcium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Ny
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Neodymium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Neodymium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Nb
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Niobium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Niobium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Pb
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Lead.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Lead.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Nq
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Naquadah.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Naquadah.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Nq
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Nickel.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Nickel.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Rb
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Rubidium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Rubidium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Th
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Thorium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Thorium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Pu-241
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Plutonium241.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Plutonium241.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Am
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Americium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Americium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Sr
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(12),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Strontium.getDust(64),
-                Materials.Strontium.getDust(64))
-            .fluidOutputs(Materials.Strontium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Sn
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Tin.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Tin.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Ti
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Titanium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Titanium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 W
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Tungsten.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Tungsten.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Zn
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Zinc.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Zinc.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Pt
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Platinum.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Platinum.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UIV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
-        // 等离子 Os
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Osmium.getMolten(128 * INGOTS))
-            .fluidOutputs(Materials.Osmium.getPlasma(128 * INGOTS))
-            .noOptimize()
-            .eut(RECIPE_UIV)
-            .duration(12 * SECONDS)
-            .addTo(UH);
+
+        // region Dust to Plasma (UEV)
+        Materials[] dust2plasma = { Materials.Boron, Materials.Sodium, Materials.Magnesium, Materials.Aluminium,
+            Materials.Silicon, Materials.Phosphorus, Materials.Sulfur, Materials.Strontium };
+        for (Materials materials : dust2plasma) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    GT_Utility.getIntegratedCircuit(12),
+                    VAItemList.LensAstriumInfinity.get(0),
+                    materials.getDust(64),
+                    materials.getDust(64))
+                .fluidOutputs(materials.getPlasma(128 * INGOTS))
+                .noOptimize()
+                .eut(RECIPE_UEV)
+                .duration(12 * SECONDS)
+                .addTo(TC);
+        }
+        // endregion
+
+        // region Molten to Plasma (UEV)
+        Materials[] molten2plasma = { Materials.Silver, Materials.Gold, Materials.Iron, Materials.Bismuth,
+            Materials.Calcium, Materials.Neodymium, Materials.Niobium, Materials.Lead, Materials.Naquadah,
+            Materials.Nickel, Materials.Rubidium, Materials.Thorium, Materials.Plutonium241, Materials.Americium,
+            Materials.Tin, Materials.Titanium, Materials.Tungsten, Materials.Zinc, Materials.Platinum,
+            Materials.Osmium };
+        for (Materials materials : molten2plasma) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+                .fluidInputs(materials.getMolten(128 * INGOTS))
+                .fluidOutputs(materials.getPlasma(128 * INGOTS))
+                .noOptimize()
+                .eut(RECIPE_UEV)
+                .duration(12 * SECONDS)
+                .addTo(TC);
+        }
         // endregion
 
     }
