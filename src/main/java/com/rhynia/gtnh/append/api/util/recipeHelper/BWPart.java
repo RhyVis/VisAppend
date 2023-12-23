@@ -90,7 +90,7 @@ public enum BWPart implements IRecipeHelper {
      * @since 0.6.13-pre
      */
     @Override
-    public ItemStack getWrapped(int aAmount) {
+    public ItemStack getItemStack(int aAmount) {
         final int WrapCircuit_Offset = 32699;
         if (aAmount > 64) return GT_Utility.copyAmountUnsafe(
             aAmount,

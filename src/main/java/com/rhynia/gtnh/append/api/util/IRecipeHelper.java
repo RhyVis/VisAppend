@@ -5,7 +5,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 public interface IRecipeHelper {
 
-    ItemStack getWrapped(int aAmount);
+    ItemStack getItemStack(int aAmount);
 
     FluidStack getFluidStack(int aAmount);
 }

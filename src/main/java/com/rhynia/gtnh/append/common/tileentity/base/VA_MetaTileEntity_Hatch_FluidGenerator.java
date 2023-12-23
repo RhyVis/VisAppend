@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.implementations;
+package com.rhynia.gtnh.append.common.tileentity.base;
 
 import static com.rhynia.gtnh.append.api.util.Values.AddByAppend;
 
@@ -21,18 +21,18 @@ import gregtech.api.objects.XSTR;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
 
-public abstract class GT_MetaTileEntity_Append_Hatch_FluidGenerator extends GT_MetaTileEntity_Hatch_Input {
+public abstract class VA_MetaTileEntity_Hatch_FluidGenerator extends GT_MetaTileEntity_Hatch_Input {
 
     protected static XSTR floatGen = new XSTR();
     public int mProgresstime = 0, mMaxProgresstime = 0;
 
-    public GT_MetaTileEntity_Append_Hatch_FluidGenerator(final int aID, final String aName, final String aNameRegional,
+    public VA_MetaTileEntity_Hatch_FluidGenerator(final int aID, final String aName, final String aNameRegional,
         final int aTier) {
         super(aID, aName, aNameRegional, aTier);
     }
 
-    public GT_MetaTileEntity_Append_Hatch_FluidGenerator(final String aName, final int aTier,
-        final String[] aDescription, final ITexture[][][] aTextures) {
+    public VA_MetaTileEntity_Hatch_FluidGenerator(final String aName, final int aTier, final String[] aDescription,
+        final ITexture[][][] aTextures) {
         super(aName, aTier, aDescription, aTextures);
     }
 

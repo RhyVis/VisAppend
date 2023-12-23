@@ -37,7 +37,7 @@ public enum GGChip implements IRecipeHelper {
      * @since 0.6.14-pre
      */
     @Override
-    public ItemStack getWrapped(int aAmount) {
+    public ItemStack getItemStack(int aAmount) {
         if (aAmount > 64) return GT_Utility.copyAmountUnsafe(
             aAmount,
             GT_ModHandler.getModItem("GoodGenerator", "circuitWrap", 1, this.ordinal(), VAItemList.Test.get(1)));

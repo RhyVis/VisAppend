@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.multiMachine;
+package com.rhynia.gtnh.append.common.tileentity.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
@@ -41,6 +41,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.rhynia.gtnh.append.common.tileentity.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -48,7 +49,6 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
@@ -61,7 +61,7 @@ import gtPlusPlus.api.recipe.GTPPRecipeMaps;
 
 @SuppressWarnings("deprecation")
 public class VA_TileEntity_KelvinTransformField
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_KelvinTransformField>
+    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_KelvinTransformField>
     implements IConstructable, ISurvivalConstructable {
 
     public byte mRecipeMode = 0; // 0-sVacuumRecipes,1-?
@@ -132,12 +132,7 @@ public class VA_TileEntity_KelvinTransformField
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        mHardHammer = true;
-        mSoftHammer = true;
-        mScrewdriver = true;
-        mCrowbar = true;
-        mSolderingTool = true;
-        mWrench = true;
+        disableMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
