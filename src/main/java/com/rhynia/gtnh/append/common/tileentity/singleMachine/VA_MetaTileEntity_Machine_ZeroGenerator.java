@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.singleMachine;
+package com.rhynia.gtnh.append.common.tileentity.singleMachine;
 
 import static com.github.technus.tectech.thing.metaTileEntity.Textures.*;
 import static com.github.technus.tectech.util.CommonValues.TRANSFER_AT;

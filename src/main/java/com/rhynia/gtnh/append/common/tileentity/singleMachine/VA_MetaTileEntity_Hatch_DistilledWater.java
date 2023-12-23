@@ -1,9 +1,9 @@
-package com.rhynia.gtnh.append.common.machine.singleMachine;
+package com.rhynia.gtnh.append.common.tileentity.singleMachine;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;
 
-import com.rhynia.gtnh.append.common.machine.implementations.GT_MetaTileEntity_Append_Hatch_FluidGenerator;
+import com.rhynia.gtnh.append.common.tileentity.base.VA_MetaTileEntity_Hatch_FluidGenerator;
 
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
@@ -12,7 +12,7 @@ import gregtech.api.metatileentity.MetaTileEntity;
 import gregtech.api.objects.GT_RenderedTexture;
 import gtPlusPlus.core.util.minecraft.FluidUtils;
 
-public class VA_MetaTileEntity_Hatch_DistilledWater extends GT_MetaTileEntity_Append_Hatch_FluidGenerator {
+public class VA_MetaTileEntity_Hatch_DistilledWater extends VA_MetaTileEntity_Hatch_FluidGenerator {
 
     public VA_MetaTileEntity_Hatch_DistilledWater(final int aID, final String aName, final String aNameRegional,
         final int aTier) {

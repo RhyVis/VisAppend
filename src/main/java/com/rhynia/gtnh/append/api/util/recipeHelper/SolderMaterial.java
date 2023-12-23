@@ -17,7 +17,7 @@ public enum SolderMaterial implements IRecipeHelper {
     MutatedLivingAlloy;
 
     @Override
-    public ItemStack getWrapped(int aAmount) {
+    public ItemStack getItemStack(int aAmount) {
         return VAItemList.Test.get(1);
     }
 

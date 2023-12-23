@@ -25,10 +25,6 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 
 public class RegMetaItem01 extends RegItemBasic {
-    /*
-     * An Item Map for managing basic items
-     */
-    // public static Map<String, ItemAdder01> Item01Map = new HashMap<>();
 
     /**
      * A Set contains the meta value that has been used.

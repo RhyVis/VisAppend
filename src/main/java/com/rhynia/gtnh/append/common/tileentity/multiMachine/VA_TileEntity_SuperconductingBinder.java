@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.machine.multiMachine;
+package com.rhynia.gtnh.append.common.tileentity.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;

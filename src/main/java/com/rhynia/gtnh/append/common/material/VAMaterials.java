@@ -8,9 +8,7 @@ import gregtech.api.enums.TextureSet;
 
 public class VAMaterials implements Runnable {
 
-    private static final int Offset_Element = 23000;
-    private static final int Offset_Mix = 23100;
-    private static final int Offset_Production = 23200;
+    private static final int Offset_Element = 23000, Offset_Mix = 23100, Offset_Production = 23200;
 
     // region Element
     // Astrium
