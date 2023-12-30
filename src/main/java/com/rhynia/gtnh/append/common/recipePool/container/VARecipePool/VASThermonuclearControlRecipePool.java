@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static gregtech.api.enums.TierEU.RECIPE_UEV;
 import static gregtech.api.enums.TierEU.RECIPE_UHV;
+import static gregtech.api.enums.TierEU.RECIPE_UIV;
 import static gregtech.api.enums.TierEU.RECIPE_UMV;
 import static gregtech.api.enums.TierEU.RECIPE_UV;
 import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
@@ -19,6 +20,7 @@ import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
+import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
 import gregtech.api.interfaces.IRecipeMap;
@@ -223,54 +225,65 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(180 * SECONDS)
             .addTo(TC);
+        // Np
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                esCata,
+                VAItemList.AstriumInfinityGem.get(16))
+            .fluidInputs(Materials.Radon.getGas(750 * INGOTS), Materials.Nitrogen.getGas(750 * INGOTS))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.neptunium"), 1000 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(40 * SECONDS)
+            .addTo(TC);
+        // Fm
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                esCata,
+                VAItemList.AstriumInfinityGem.get(16))
+            .fluidInputs(Materials.Americium.getMolten(750 * INGOTS), Materials.Boron.getMolten(750 * INGOTS))
+            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.fermium"), 1000 * INGOTS))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(40 * SECONDS)
+            .addTo(TC);
+        // Shirabon
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                esCata,
+                VAItemList.AstriumInfinityGem.get(32))
+            .fluidInputs(
+                MyMaterial.metastableOganesson.getMolten(16 * INGOTS),
+                VAMaterials.AstralCatalystReforged.getFluidOrGas(250))
+            .fluidOutputs(MyMaterial.shirabon.getMolten(16 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(500))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(25 * SECONDS)
+            .addTo(TC);
         // endregion
 
-        // region Gas in I-III UV-UEV
-        // 等离子 H
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Hydrogen.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Hydrogen.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UV)
-            .duration(12 * SECONDS)
-            .addTo(TC);
-        // 等离子 N
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Nitrogen.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Nitrogen.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UHV)
-            .duration(12 * SECONDS)
-            .addTo(TC);
-        // 等离子 O
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Oxygen.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Oxygen.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(TC);
-        // 等离子 F
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Fluorine.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Fluorine.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(TC);
-        // 等离子 Cl
-        GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
-            .fluidInputs(Materials.Chlorine.getGas(16 * BUCKETS))
-            .fluidOutputs(Materials.Chlorine.getPlasma(16 * BUCKETS))
-            .noOptimize()
-            .eut(RECIPE_UEV)
-            .duration(12 * SECONDS)
-            .addTo(TC);
+        // region Gas to Plasma (UEV)
+        Materials[] gas2plasma = { Materials.Hydrogen, Materials.Nitrogen, Materials.Oxygen, Materials.Fluorine,
+            Materials.Chlorine };
+        for (Materials materials : gas2plasma) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    GT_Utility.getIntegratedCircuit(12),
+                    VAItemList.LensAstriumInfinity.get(0),
+                    materials.getDust(64),
+                    materials.getDust(64))
+                .fluidOutputs(materials.getPlasma(128 * INGOTS))
+                .noOptimize()
+                .eut(RECIPE_UEV)
+                .duration(12 * SECONDS)
+                .addTo(TC);
+        }
         // endregion
 
         // region Dust to Plasma (UEV)
