@@ -12,6 +12,7 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
@@ -45,13 +46,20 @@ public class VACommonRecipePool implements IRecipePool {
             .eut(6000000)
             .duration(1)
             .addTo(IMP);
-        // (临时)聚爆海珀珍
-        // TODO 为星辉残留提供新用法
+        // 星辉残留
         GT_Values.RA.stdBuilder()
             .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(32 * BUCKETS))
             .fluidOutputs(ELEMENT.STANDALONE.HYPOGEN.getFluidStack(16 * INGOTS))
             .noOptimize()
             .eut(8000000)
+            .duration(1)
+            .addTo(IMP);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(VAItemList.PreTesseract.get(1))
+            .fluidInputs(VAMaterials.AstralResidue.getFluidOrGas(16 * BUCKETS))
+            .fluidOutputs(MaterialsUEVplus.TranscendentMetal.getMolten(4 * INGOTS))
+            .noOptimize()
+            .eut(32000000)
             .duration(1)
             .addTo(IMP);
         // endregion

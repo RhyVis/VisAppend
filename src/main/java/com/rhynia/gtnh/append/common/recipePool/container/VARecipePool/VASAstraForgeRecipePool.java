@@ -41,6 +41,13 @@ public class VASAstraForgeRecipePool implements IRecipePool {
 
     private final IRecipeMap AF = AppendRecipeMaps.astralForgeRecipes;
 
+    // region ItemStack
+    private final ItemStack sand = new ItemStack(Blocks.sand, 64);
+    private final ItemStack soulSand = new ItemStack(Blocks.soul_sand, 64, 0);
+    private final ItemStack blazePowder = new ItemStack(Items.blaze_powder, 64, 0);
+    private final ItemStack enderPearl = new ItemStack(Items.ender_pearl, 64, 0);
+    // endregion
+
     @Override
     public void loadRecipesPostInit() {
         // region 10号电路 增殖
@@ -113,24 +120,16 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VAItemList.LensAstriumInfinity.get(0),
                 new ItemStack(Items.blaze_powder, 4, 0),
                 Materials.Sulfur.getDust(16),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64),
-                new ItemStack(Blocks.sand, 64))
+                sand,
+                sand,
+                sand,
+                sand,
+                sand,
+                sand,
+                sand,
+                sand)
             .fluidInputs(Materials.Water.getFluid(1000), VAMaterials.Astrium.getMolten(16))
-            .itemOutputs(
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0),
-                new ItemStack(Blocks.soul_sand, 64, 0))
+            .itemOutputs(soulSand, soulSand, soulSand, soulSand, soulSand, soulSand, soulSand, soulSand)
             .noOptimize()
             .eut(RECIPE_HV)
             .duration(18 * SECONDS)
@@ -143,11 +142,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Carbon.getDust(64),
                 Materials.Sulfur.getDust(64))
             .fluidInputs(Materials.Lava.getFluid(1000), VAMaterials.Astrium.getMolten(16))
-            .itemOutputs(
-                new ItemStack(Items.blaze_powder, 64, 0),
-                new ItemStack(Items.blaze_powder, 64, 0),
-                new ItemStack(Items.blaze_powder, 64, 0),
-                new ItemStack(Items.blaze_powder, 64, 0))
+            .itemOutputs(blazePowder, blazePowder, blazePowder, blazePowder)
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(18 * SECONDS)
@@ -160,11 +155,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 GT_ModHandler.getModItem("HardcoreEnderExpansion", "end_powder", 16),
                 VAMaterials.Astrium.get(OrePrefixes.dust, 64))
             .fluidInputs(VAMaterials.Astrium.getMolten(16))
-            .itemOutputs(
-                new ItemStack(Items.ender_pearl, 64, 0),
-                new ItemStack(Items.ender_pearl, 64, 0),
-                new ItemStack(Items.ender_pearl, 64, 0),
-                new ItemStack(Items.ender_pearl, 64, 0))
+            .itemOutputs(enderPearl, enderPearl, enderPearl, enderPearl)
             .noOptimize()
             .eut(RECIPE_IV)
             .duration(18 * SECONDS)
@@ -241,218 +232,63 @@ public class VASAstraForgeRecipePool implements IRecipePool {
         // endregion
 
         // region 8号电路 矿物处理
-        // 石英岩
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64),
-                Materials.Quartzite.getDust(64))
-            .itemOutputs(
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64))
-            .outputChances(
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                7000,
-                7000,
-                7000,
-                7000,
-                6000,
-                6000)
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(40 * SECONDS)
-            .addTo(AF);
-        // 二氧化硅
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64),
-                Materials.SiliconDioxide.getDust(64))
-            .itemOutputs(
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64))
-            .outputChances(
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                7000,
-                7000,
-                7000,
-                7000,
-                6000,
-                6000)
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(40 * SECONDS)
-            .addTo(AF);
-        // 赛特斯石英
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64),
-                Materials.CertusQuartz.getDust(64))
-            .itemOutputs(
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64))
-            .outputChances(
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                7000,
-                7000,
-                7000,
-                7000,
-                6000,
-                6000)
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(40 * SECONDS)
-            .addTo(AF);
-        // 下界石英
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Utility.getIntegratedCircuit(8),
-                VAItemList.LensAstriumInfinity.get(0),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64),
-                Materials.NetherQuartz.getDust(64))
-            .itemOutputs(
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.Silicon.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                Materials.SiliconSG.getDust(64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 64))
-            .outputChances(
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                FullChance,
-                7000,
-                7000,
-                7000,
-                7000,
-                6000,
-                6000)
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(40 * SECONDS)
-            .addTo(AF);
+        // SiO2
+        Materials[] SiliconDioxide = { Materials.SiliconDioxide, Materials.NetherQuartz, Materials.CertusQuartz,
+            Materials.Quartzite };
+        for (Materials materials : SiliconDioxide) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    GT_Utility.getIntegratedCircuit(8),
+                    VAItemList.LensAstriumInfinity.get(0),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64),
+                    materials.getDust(64))
+                .itemOutputs(
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.Silicon.getDust(64),
+                    Materials.SiliconSG.getDust(64),
+                    Materials.SiliconSG.getDust(64),
+                    Materials.SiliconSG.getDust(64),
+                    Materials.SiliconSG.getDust(64),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 64))
+                .outputChances(
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    FullChance,
+                    7000,
+                    7000,
+                    7000,
+                    7000,
+                    6000,
+                    6000)
+                .noOptimize()
+                .eut(RECIPE_HV)
+                .duration(40 * SECONDS)
+                .addTo(AF);
+        }
         // 方解石
         GT_Values.RA.stdBuilder()
             .itemInputs(

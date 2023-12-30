@@ -31,6 +31,7 @@ import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
+import galaxyspace.core.register.GSItems;
 import goodgenerator.items.MyMaterial;
 import goodgenerator.util.ItemRefer;
 import gregtech.api.enums.GT_Values;
@@ -478,6 +479,23 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(12 * 100 * SECONDS)
+            .addTo(IA);
+        // endregion
+
+        // region 防辐射板
+        // 戴森球模块 8x
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemRefer.Radiation_Protection_Plate.get(4),
+                BWPart.Part_IC_Q.getItemStack(1),
+                GGChip.UHV.getItemStack(1),
+                ItemList.Emitter_UEV.get(4),
+                ItemList.Sensor_UEV.get(4))
+            .fluidInputs(SolderMaterial.MutatedLivingAlloy.getFluidStack(64 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(8 * 64, new ItemStack(GSItems.DysonSwarmItems, 1)))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(5 * SECONDS)
             .addTo(IA);
         // endregion
 

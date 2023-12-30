@@ -10,6 +10,7 @@ import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
 import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
 
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.config.Config;
@@ -338,6 +339,28 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .specialValue((int) HeatingCoilLevel.UEV.getHeat())
             .noOptimize()
             .eut(RECIPE_UIV)
+            .duration(20 * SECONDS)
+            .addTo(TR);
+        // SpaceTimeExtract
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(16))
+            .itemOutputs(
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAMaterials.AstriumMagic.get(OrePrefixes.dust, 64),
+                VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 64),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 64),
+                VAMaterials.AstriumMagic.get(OrePrefixes.dust, 64),
+                VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 64))
+            .outputChances(5000, 5000, 5000, 2500, 2500, 2500)
+            .fluidInputs(MaterialsUEVplus.SpaceTime.getMolten(512 * INGOTS))
+            .fluidOutputs(
+                MaterialsUEVplus.Space.getMolten(256 * INGOTS),
+                MaterialsUEVplus.Time.getMolten(256 * INGOTS),
+                VAMaterials.AstralResidue.getFluidOrGas(10 * BUCKETS),
+                MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(10 * BUCKETS))
+            .specialValue((int) HeatingCoilLevel.UMV.getHeat())
+            .noOptimize()
+            .eut(RECIPE_UMV)
             .duration(20 * SECONDS)
             .addTo(TR);
     }
