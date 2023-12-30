@@ -482,7 +482,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         // endregion
 
-        // region 防辐射板
+        // region 戴森球模块
         // 戴森球模块 8x
         GT_Values.RA.stdBuilder()
             .itemInputs(

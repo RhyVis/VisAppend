@@ -273,11 +273,8 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             Materials.Chlorine };
         for (Materials materials : gas2plasma) {
             GT_Values.RA.stdBuilder()
-                .itemInputs(
-                    GT_Utility.getIntegratedCircuit(12),
-                    VAItemList.LensAstriumInfinity.get(0),
-                    materials.getDust(64),
-                    materials.getDust(64))
+                .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+                .fluidInputs(materials.getGas(128 * INGOTS))
                 .fluidOutputs(materials.getPlasma(128 * INGOTS))
                 .noOptimize()
                 .eut(RECIPE_UEV)
