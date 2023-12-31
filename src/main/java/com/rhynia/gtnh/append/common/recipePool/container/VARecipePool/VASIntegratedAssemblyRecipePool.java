@@ -173,7 +173,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(CustomItemList.ReinforcedGlassLense.get(64), VAMaterials.Primoium.get(OrePrefixes.dust, 64))
             .fluidInputs(
-                VAMaterials.Originium.getMolten(128 * INGOTS),
+                VAMaterials.Primoium.getMolten(128 * INGOTS),
                 Materials.Glass.getMolten(64 * INGOTS),
                 Materials.DraconiumAwakened.getMolten(64 * INGOTS))
             .itemOutputs(VAItemList.LensPrimoium.get(1))

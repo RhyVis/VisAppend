@@ -23,10 +23,12 @@ import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
+import gtPlusPlus.core.material.ELEMENT;
 
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASThermonuclearControlRecipePool implements IRecipePool {
@@ -250,6 +252,24 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UIV)
             .duration(40 * SECONDS)
+            .addTo(TC);
+        // Transcendent Metal
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                esCata,
+                VAItemList.PreTesseract.get(64))
+            .fluidInputs(
+                Materials.CosmicNeutronium.getMolten(64 * INGOTS),
+                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(4 * BUCKETS))
+            .fluidOutputs(
+                MaterialsUEVplus.TranscendentMetal.getMolten(32 * 64 * INGOTS),
+                ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(16 * 64 * INGOTS),
+                VAMaterials.AstralResidue.getFluidOrGas(4 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(30 * SECONDS)
             .addTo(TC);
         // Shirabon
         GT_Values.RA.stdBuilder()

@@ -18,6 +18,7 @@ import com.rhynia.gtnh.append.config.Config;
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.HeatingCoilLevel;
+import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
@@ -343,7 +344,10 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
             .addTo(TR);
         // SpaceTimeExtract
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(16))
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.AstriumInfinityGem.get(16),
+                ItemList.EnergisedTesseract.get(1))
             .itemOutputs(
                 VAMaterials.Astrium.get(OrePrefixes.dust, 64),
                 VAMaterials.AstriumMagic.get(OrePrefixes.dust, 64),
