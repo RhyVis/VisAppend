@@ -839,7 +839,6 @@ public class VASAstraForgeRecipePool implements IRecipePool {
         // endregion
 
         // region 4号电路 合成
-
         // 合成阳光化合物 Su
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -857,7 +856,6 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_ZPM)
             .duration(22 * SECONDS)
             .addTo(AF);
-
         // 合成超能硅岩 Nq*
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -879,7 +877,6 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(36 * SECONDS)
             .addTo(AF);
-
         // 合成合成玉 Or
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -893,7 +890,6 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(100 * SECONDS)
             .addTo(AF);
-
         // 合成源石
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -913,7 +909,41 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_UHV)
             .duration(90 * SECONDS)
             .addTo(AF);
+        // endregion
 
+        // region 1号电路 制造星辉粉
+        Materials[] pWater = { Materials.Grade1PurifiedWater, Materials.Grade2PurifiedWater,
+            Materials.Grade3PurifiedWater, Materials.Grade4PurifiedWater, Materials.Grade5PurifiedWater,
+            Materials.Grade6PurifiedWater, Materials.Grade7PurifiedWater };
+        for (int i = 0; i < pWater.length; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(GT_Utility.getIntegratedCircuit(1), VAItemList.LensPrimoium.get(0))
+                .itemOutputs(
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(dust, 8 * (i + 2)))
+                .fluidInputs(pWater[i].getFluid(16 * BUCKETS))
+                .fluidOutputs(
+                    VAMaterials.Astrium.getMolten(12 * 8 * (i + 2) * INGOTS),
+                    VAMaterials.AstriumInfinity.getMolten(4 * 8 * (i + 2) * INGOTS))
+                .noOptimize()
+                .eut(RECIPE_UV)
+                .duration(15 * SECONDS)
+                .addTo(AF);
+        }
         // endregion
     }
 }

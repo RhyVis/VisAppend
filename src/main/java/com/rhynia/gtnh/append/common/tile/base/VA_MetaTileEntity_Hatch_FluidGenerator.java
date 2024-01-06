@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tileentity.base;
+package com.rhynia.gtnh.append.common.tile.base;
 
 import static com.rhynia.gtnh.append.api.util.Values.AddByAppend;
 

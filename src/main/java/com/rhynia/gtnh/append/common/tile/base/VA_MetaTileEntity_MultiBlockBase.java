@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tileentity.base;
+package com.rhynia.gtnh.append.common.tile.base;
 
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 
