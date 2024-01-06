@@ -1,24 +1,24 @@
-package com.rhynia.gtnh.append.common.tileentity.multiMachine;
+package com.rhynia.gtnh.append.common.tile.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
 import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
 import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
 import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.api.util.Values.VisAppendNuclear;
+import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.Maintenance;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
-import static gregtech.api.enums.GT_HatchElement.OutputHatch;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_VACUUM_FREEZER;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_VACUUM_FREEZER_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_VACUUM_FREEZER_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_VACUUM_FREEZER_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.casingTexturePages;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
+import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import java.util.Arrays;
@@ -41,7 +41,7 @@ import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructa
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.common.tileentity.base.VA_MetaTileEntity_MultiBlockBase;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -49,29 +49,28 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
-import gtPlusPlus.api.recipe.GTPPRecipeMaps;
 
 @SuppressWarnings("deprecation")
-public class VA_TileEntity_KelvinTransformField
-    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_KelvinTransformField>
+public class VA_TileEntity_AssemblyMatrix
+    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AssemblyMatrix>
     implements IConstructable, ISurvivalConstructable {
 
-    public byte mRecipeMode = 0; // 0-sVacuumRecipes,1-?
+    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
 
     // region Class Constructor
-    public VA_TileEntity_KelvinTransformField(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_KelvinTransformField(String aName) {
+    public VA_TileEntity_AssemblyMatrix(String aName) {
         super(aName);
     }
     // endregion
@@ -91,33 +90,24 @@ public class VA_TileEntity_KelvinTransformField
     }
 
     public int getMaxParallelRecipes() {
-        if (mRecipeMode == 0) {
-            return 2048;
-        } else return 64 + 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+        return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     public float getSpeedBonus() {
-        if (mRecipeMode == 0) {
-            return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
-        } else return (float) 1.0;
+        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
     }
 
     @Override
     public RecipeMap<?> getRecipeMap() {
         if (this.mRecipeMode == 0) {
-            return RecipeMaps.vacuumFreezerRecipes;
-        } else return GTPPRecipeMaps.advancedFreezerRecipes;
+            return AppendRecipeMaps.integratedAssemblyRecipes;
+        } else return AppendRecipeMaps.microAssemblyRecipes;
     }
 
     @Nonnull
     @Override
     public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        return Arrays.asList(RecipeMaps.vacuumFreezerRecipes, GTPPRecipeMaps.advancedFreezerRecipes);
-    }
-
-    @Override
-    public int getRecipeCatalystPriority() {
-        return -10;
+        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
     }
 
     @Override
@@ -126,13 +116,12 @@ public class VA_TileEntity_KelvinTransformField
             this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
-                StatCollector.translateToLocal("append.KelvinTransformField.mRecipeMode." + this.mRecipeMode));
+                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
         }
     }
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        disableMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
@@ -166,18 +155,43 @@ public class VA_TileEntity_KelvinTransformField
     private final int depthOffSet = 0;
 
     @Override
-    public IStructureDefinition<VA_TileEntity_KelvinTransformField> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_KelvinTransformField>builder()
+    public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings4, 7))
+            .addElement(
+                'A',
+                ofChain(
+                    ofBlockUnlocalizedName("IC2", "blockAlloyGlass", 0, true),
+                    ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
+                    // Warded Glass
+                    ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_KelvinTransformField>builder()
-                    .atLeast(InputBus, InputHatch, OutputBus, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_KelvinTransformField::addToMachineList)
+                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                    .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
+                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
                     .dot(1)
-                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(1))
-                    .buildAndChain(GregTech_API.sBlockCasings2, 1))
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
+            .addElement(
+                'E',
+                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                    .atLeast(Maintenance)
+                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .dot(1)
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement(
+                'F',
+                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
+                    .atLeast(OutputBus)
+                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                    .dot(1)
+                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
+                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
+            .addElement('T', ofBlock(GregTech_API.sBlockCasings2, 9))
             .build();
     }
 
@@ -189,9 +203,9 @@ public class VA_TileEntity_KelvinTransformField
 
     // spotless:off
     private final String[][] shape = new String[][]{
-        {"CCC","CCC","CCC"},
-        {"C~C","CBC","CCC"},
-        {"CCC","CCC","CCC"}
+        {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
+        {"C~C","ABA","ABA","ABA","ABA","ABA","FEF"},
+        {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
     };
 //spotless:on
     // endregion
@@ -214,31 +228,24 @@ public class VA_TileEntity_KelvinTransformField
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("真空冷冻机 | 热动力学解析")
-            .addInfo("开尔文变换场的控制器")
-            .addInfo(
-                EnumChatFormatting.RED + "\"万物都有"
-                    + EnumChatFormatting.DARK_RED
-                    + "终结"
-                    + EnumChatFormatting.RED
-                    + "，我不过是定义了它的到来.\"")
-            .addInfo("指挥粒子做它该做的热运动.")
-            .addInfo("真空冷冻机模式下，最大并行为2048.")
-            .addInfo("且电压每提高1级, 降低5%配方耗时(叠乘计算).")
-            .addInfo("热动力学解析模式下，基础最大并行为64.")
-            .addInfo("且电压每提高1级, 增加16并行.")
+        tt.addMachineType("集成装配线 | 微加工装配线")
+            .addInfo("组装矩阵的控制器")
+            .addInfo("现代化的组装机构.")
+            .addInfo("高效组装各类基础元件.")
+            .addInfo("再见，进阶装配线!")
+            .addInfo("电压每提高1级, 最大并行增加32.")
+            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addInfo(ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(StructureTooComplex)
             .addInfo(BluePrintTip)
-            .beginStructureBlock(3, 3, 3, false)
-            .addInputBus(BluePrintInfo, 1)
+            .beginStructureBlock(3, 3, 7, false)
             .addInputHatch(BluePrintInfo, 1)
+            .addInputBus(BluePrintInfo, 1)
             .addOutputBus(BluePrintInfo, 1)
-            .addOutputHatch(BluePrintInfo, 1)
             .addMaintenanceHatch(BluePrintInfo, 3)
             .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(VisAppendNuclear);
+            .toolTipFinisher(VisAppendGigaFac);
         return tt;
     }
 
@@ -279,7 +286,7 @@ public class VA_TileEntity_KelvinTransformField
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_KelvinTransformField(this.mName);
+        return new VA_TileEntity_AssemblyMatrix(this.mName);
     }
 
     @Override
@@ -288,30 +295,31 @@ public class VA_TileEntity_KelvinTransformField
         if (sideDirection == facingDirection) {
             if (active) return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 1)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_VACUUM_FREEZER_ACTIVE)
+                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
                     .extFacing()
                     .build(),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_VACUUM_FREEZER_ACTIVE_GLOW)
+                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
                     .extFacing()
                     .glow()
                     .build() };
             return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 1)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_VACUUM_FREEZER)
+                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
                     .extFacing()
                     .build(),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_VACUUM_FREEZER_GLOW)
+                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
                     .extFacing()
                     .glow()
                     .build() };
         }
-        return new ITexture[] { casingTexturePages[0][17] };
+        return new ITexture[] { Textures.BlockIcons
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
     }
 
     @Override
@@ -327,6 +335,5 @@ public class VA_TileEntity_KelvinTransformField
 
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
     }
-
     // endregion
 }

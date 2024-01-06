@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tileentity.multiMachine;
+package com.rhynia.gtnh.append.common.tile.multiMachine;
 
 import static com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;

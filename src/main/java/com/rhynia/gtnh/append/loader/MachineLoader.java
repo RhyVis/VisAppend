@@ -3,18 +3,18 @@ package com.rhynia.gtnh.append.loader;
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.tileentity.multiMachine.VA_TileEntity_AssemblyMatrix;
-import com.rhynia.gtnh.append.common.tileentity.multiMachine.VA_TileEntity_AstraForge;
-import com.rhynia.gtnh.append.common.tileentity.multiMachine.VA_TileEntity_KelvinTransformField;
-import com.rhynia.gtnh.append.common.tileentity.multiMachine.VA_TileEntity_SuperconductingBinder;
-import com.rhynia.gtnh.append.common.tileentity.multiMachine.VA_TileEntity_UltimateHeater;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_Lava;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_Lubricant;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_Oil;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Hatch_Steam;
-import com.rhynia.gtnh.append.common.tileentity.singleMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AssemblyMatrix;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AstraForge;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_KelvinTransformField;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_SuperconductingBinder;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_UltimateHeater;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_DistilledWater;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_Lava;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_LiquidAir;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_Lubricant;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_Oil;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Hatch_Steam;
+import com.rhynia.gtnh.append.common.tile.singleMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 
 public class MachineLoader {
 
