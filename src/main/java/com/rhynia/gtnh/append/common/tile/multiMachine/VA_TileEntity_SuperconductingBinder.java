@@ -72,15 +72,13 @@ public class VA_TileEntity_SuperconductingBinder
     }
 
     @Override
-    protected int getMaxParallel() {
-        uParallel = 16 * GT_Utility.getTier(this.getMaxInputVoltage());
-        return uParallel;
+    protected int rMaxParallel() {
+        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     @Override
-    protected float getSpeedBonus() {
-        uSpeed = (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));;
-        return uSpeed;
+    protected float rSpeedBonus() {
+        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
     }
 
     @Override
@@ -91,9 +89,13 @@ public class VA_TileEntity_SuperconductingBinder
     // endregion
 
     // region Structure
+    private final int horizontalOffSet = 1;
+    private final int verticalOffSet = 1;
+    private final int depthOffSet = 0;
+
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        disableMaintenance();
+        removeMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
@@ -118,10 +120,6 @@ public class VA_TileEntity_SuperconductingBinder
             false,
             true);
     }
-
-    private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 1;
-    private final int depthOffSet = 0;
 
     @Override
     public IStructureDefinition<VA_TileEntity_SuperconductingBinder> getStructureDefinition() {
@@ -178,12 +176,8 @@ public class VA_TileEntity_SuperconductingBinder
     };
 //spotless:on
     // endregion
-    // region Overrides
 
-    @Override
-    public String[] getInfoData() {
-        return super.getInfoData();
-    }
+    // region Overrides
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
@@ -205,11 +199,6 @@ public class VA_TileEntity_SuperconductingBinder
             .addEnergyHatch(BluePrintInfo, 2)
             .toolTipFinisher(VisAppendGigaFac);
         return tt;
-    }
-
-    @Override
-    public boolean isCorrectMachinePart(ItemStack aStack) {
-        return true;
     }
 
     @Override

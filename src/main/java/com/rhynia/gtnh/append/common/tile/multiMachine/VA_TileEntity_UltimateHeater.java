@@ -36,18 +36,16 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
-import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.HeatingCoilLevel;
@@ -56,7 +54,6 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
@@ -69,13 +66,10 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings8;
 
 @SuppressWarnings("deprecation")
-public class VA_TileEntity_UltimateHeater
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_UltimateHeater>
-    implements IConstructable, ISurvivalConstructable {
-
-    public byte mRecipeMode = 0; // 0-sUltimateHeaterRecipes,1-sTranscendentReactorRecipes
+public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_UltimateHeater> {
 
     // region Definition
+    public byte mRecipeMode = 0; // 0-sUltimateHeaterRecipes,1-sTranscendentReactorRecipes
     private HeatingCoilLevel mCoilLevel;
     private int mHeatingCapacity;
     private byte mGlassTier;
@@ -89,14 +83,27 @@ public class VA_TileEntity_UltimateHeater
     public VA_TileEntity_UltimateHeater(String aName) {
         super(aName);
     }
+
+    @Override
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new VA_TileEntity_UltimateHeater(this.mName);
+    }
     // endregion
 
     // region Processing Logic
     @Override
     protected ProcessingLogic createProcessingLogic() {
         if (this.mRecipeMode == 1) {
-            // TR
             return new ProcessingLogic() {
+
+                @NotNull
+                @Override
+                public CheckRecipeResult process() {
+                    setEuModifier(rEUModifier());
+                    setMaxParallel(rMaxParallel());
+                    setOverclock(rPerfectOverclock() ? 2 : 1, 2);
+                    return super.process();
+                }
 
                 @NotNull
                 @Override
@@ -104,39 +111,27 @@ public class VA_TileEntity_UltimateHeater
                     return recipe.mSpecialValue <= mHeatingCapacity ? CheckRecipeResultRegistry.SUCCESSFUL
                         : CheckRecipeResultRegistry.insufficientHeat(recipe.mSpecialValue);
                 }
-            }.setSpeedBonus(getSpeedBonus())
-                .setOverclock(mCoilLevel.getTier() > 11 ? 2 : 1, 2)
-                .setMaxParallelSupplier(this::getMaxParallelRecipes);
-            // UH
-        } else return new ProcessingLogic() {
+            };
 
-            @NotNull
-            @Override
-            public CheckRecipeResult process() {
-                setSpeedBonus(getSpeedBonus());
-                setOverclock(mCoilLevel.getTier() > 11 ? 2 : 1, 2);
-                return super.process();
-            }
-        }.setMaxParallelSupplier(this::getMaxParallelRecipes);
+        } else return super.createProcessingLogic();
     }
 
-    public int getMaxParallelRecipes() {
-        if (this.mRecipeMode == 0) {
-            return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
-        } else return 256;
+    protected boolean rPerfectOverclock() {
+        return mCoilLevel.getTier() > 11;
     }
 
-    public float getSpeedBonus() {
-        if (this.mRecipeMode == 0) {
-            return (float) Math.pow(0.95, mCoilLevel.getTier());
-        } else return (float) Math.pow(0.90, mCoilLevel.getTier() - 10);
+    public int rMaxParallel() {
+        return mRecipeMode == 0 ? 32 * GT_Utility.getTier(this.getMaxInputVoltage()) : 256;
+    }
+
+    public float rSpeedBonus() {
+        return (float) Math.pow(0.95, mCoilLevel.getTier());
     }
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        if (this.mRecipeMode == 0) {
-            return AppendRecipeMaps.thermonuclearControlRecipes;
-        } else return AppendRecipeMaps.transcendentReactorRecipes;
+        return mRecipeMode == 0 ? AppendRecipeMaps.thermonuclearControlRecipes
+            : AppendRecipeMaps.transcendentReactorRecipes;
     }
 
     @Nonnull
@@ -154,6 +149,13 @@ public class VA_TileEntity_UltimateHeater
                 StatCollector.translateToLocal("append.UltimateHeater.mRecipeMode." + this.mRecipeMode));
         }
     }
+
+    // endregion
+
+    // region Structure
+    private final int horizontalOffSet = 3;
+    private final int verticalOffSet = 9;
+    private final int depthOffSet = 0;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
@@ -173,9 +175,6 @@ public class VA_TileEntity_UltimateHeater
         return true;
     }
 
-    // endregion
-
-    // region Structure
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
         this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
@@ -198,10 +197,6 @@ public class VA_TileEntity_UltimateHeater
             true);
     }
 
-    private final int horizontalOffSet = 3;
-    private final int verticalOffSet = 9;
-    private final int depthOffSet = 0;
-
     @Override
     public IStructureDefinition<VA_TileEntity_UltimateHeater> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_UltimateHeater>builder()
@@ -217,7 +212,7 @@ public class VA_TileEntity_UltimateHeater
                 'D',
                 withChannel(
                     "coil",
-                    ofCoil(VA_TileEntity_UltimateHeater::setmCoilLevel, VA_TileEntity_UltimateHeater::getmCoilLevel)))
+                    ofCoil(VA_TileEntity_UltimateHeater::setCoilLevel, VA_TileEntity_UltimateHeater::getCoilLevel)))
             .addElement(
                 'E',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
@@ -255,21 +250,7 @@ public class VA_TileEntity_UltimateHeater
     // spotless: on
     // endregion
 
-    // region Overrides
-
-    @Override
-    public String[] getInfoData() {
-        String[] origin = super.getInfoData();
-        String[] ret = new String[origin.length + 2];
-        System.arraycopy(origin, 0, ret, 0, origin.length);
-        ret[origin.length - 1] = EnumChatFormatting.AQUA + "Parallel: "
-            + EnumChatFormatting.GOLD
-            + this.getMaxParallelRecipes();
-        ret[origin.length] = EnumChatFormatting.AQUA + "Recipe Time multiplier: "
-            + EnumChatFormatting.GOLD
-            + this.getSpeedBonus();
-        return ret;
-    }
+    // region TT
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
@@ -297,51 +278,6 @@ public class VA_TileEntity_UltimateHeater
             .addEnergyHatch(BluePrintInfo, 1)
             .toolTipFinisher(VisAppendNuclear);
         return tt;
-    }
-
-    @Override
-    public boolean isCorrectMachinePart(ItemStack aStack) {
-        return true;
-    }
-
-    @Override
-    public int getMaxEfficiency(ItemStack aStack) {
-        return 10000;
-    }
-
-    @Override
-    public int getDamageToComponent(ItemStack aStack) {
-        return 0;
-    }
-
-    @Override
-    public boolean explodesOnComponentBreak(ItemStack aStack) {
-        return false;
-    }
-
-    @Override
-    public boolean supportsVoidProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInputSeparation() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsSingleRecipeLocking() {
-        return true;
-    }
-
-    @Override
-    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_UltimateHeater(this.mName);
     }
 
     @Override
@@ -394,11 +330,11 @@ public class VA_TileEntity_UltimateHeater
     // endregion
 
     // region Selector
-    public void setmCoilLevel(HeatingCoilLevel aCoilLevel) {
+    public void setCoilLevel(HeatingCoilLevel aCoilLevel) {
         this.mCoilLevel = aCoilLevel;
     }
 
-    public HeatingCoilLevel getmCoilLevel() {
+    public HeatingCoilLevel getCoilLevel() {
         return this.mCoilLevel;
     }
     // endregion

@@ -34,8 +34,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
-import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
@@ -58,8 +56,7 @@ import gtPlusPlus.api.recipe.GTPPRecipeMaps;
 
 @SuppressWarnings("deprecation")
 public class VA_TileEntity_KelvinTransformField
-    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_KelvinTransformField>
-    implements IConstructable, ISurvivalConstructable {
+    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_KelvinTransformField> {
 
     public byte mRecipeMode = 0; // 0-sVacuumRecipes,1-?
 
@@ -85,28 +82,18 @@ public class VA_TileEntity_KelvinTransformField
     }
 
     @Override
-    public int getMaxParallel() {
-        if (mRecipeMode == 0) {
-            uParallel = 2048;
-        } else {
-            uParallel = 64 + 16 * GT_Utility.getTier(this.getMaxInputVoltage());
-        }
-        return uParallel;
+    public int rMaxParallel() {
+        return mRecipeMode == 0 ? 2048 : 64 + 16 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     @Override
-    public float getSpeedBonus() {
-        if (mRecipeMode == 0) {
-            uSpeed = (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
-            return uSpeed;
-        } else return (float) 1.0F;
+    public float rSpeedBonus() {
+        return mRecipeMode == 0 ? (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage())) : 1.0F;
     }
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        if (this.mRecipeMode == 0) {
-            return RecipeMaps.vacuumFreezerRecipes;
-        } else return GTPPRecipeMaps.advancedFreezerRecipes;
+        return mRecipeMode == 0 ? RecipeMaps.vacuumFreezerRecipes : GTPPRecipeMaps.advancedFreezerRecipes;
     }
 
     @Nonnull
@@ -132,7 +119,7 @@ public class VA_TileEntity_KelvinTransformField
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        disableMaintenance();
+        removeMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
@@ -198,11 +185,6 @@ public class VA_TileEntity_KelvinTransformField
     // region Overrides
 
     @Override
-    public String[] getInfoData() {
-        return super.getInfoData();
-    }
-
-    @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("真空冷冻机 | 热动力学解析")
@@ -231,11 +213,6 @@ public class VA_TileEntity_KelvinTransformField
             .addEnergyHatch(BluePrintInfo, 2)
             .toolTipFinisher(VisAppendNuclear);
         return tt;
-    }
-
-    @Override
-    public boolean isCorrectMachinePart(ItemStack aStack) {
-        return true;
     }
 
     @Override

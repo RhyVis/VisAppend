@@ -30,28 +30,21 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import org.jetbrains.annotations.NotNull;
-
-import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
-import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -59,9 +52,7 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
 @SuppressWarnings("deprecation")
-public class VA_TileEntity_AssemblyMatrix
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_AssemblyMatrix>
-    implements IConstructable, ISurvivalConstructable {
+public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_AssemblyMatrix> {
 
     public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
 
@@ -73,35 +64,28 @@ public class VA_TileEntity_AssemblyMatrix
     public VA_TileEntity_AssemblyMatrix(String aName) {
         super(aName);
     }
+
+    @Override
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new VA_TileEntity_AssemblyMatrix(this.mName);
+    }
     // endregion
 
     // region Processing Logic
+
     @Override
-    protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
-
-            @NotNull
-            @Override
-            public CheckRecipeResult process() {
-                setSpeedBonus(getSpeedBonus());
-                return super.process();
-            }
-        }.setMaxParallelSupplier(this::getMaxParallelRecipes);
-    }
-
-    public int getMaxParallelRecipes() {
+    public int rMaxParallel() {
         return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
-    public float getSpeedBonus() {
+    @Override
+    public float rSpeedBonus() {
         return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
     }
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        if (this.mRecipeMode == 0) {
-            return AppendRecipeMaps.integratedAssemblyRecipes;
-        } else return AppendRecipeMaps.microAssemblyRecipes;
+        return mRecipeMode == 0 ? AppendRecipeMaps.integratedAssemblyRecipes : AppendRecipeMaps.microAssemblyRecipes;
     }
 
     @Nonnull
@@ -120,14 +104,18 @@ public class VA_TileEntity_AssemblyMatrix
         }
     }
 
+    // endregion
+
+    // region Structure
+    private final int horizontalOffSet = 1;
+    private final int verticalOffSet = 1;
+    private final int depthOffSet = 0;
+
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
     }
 
-    // endregion
-
-    // region Structure
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
         this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
@@ -149,10 +137,6 @@ public class VA_TileEntity_AssemblyMatrix
             false,
             true);
     }
-
-    private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 1;
-    private final int depthOffSet = 0;
 
     @Override
     public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
@@ -209,21 +193,8 @@ public class VA_TileEntity_AssemblyMatrix
     };
 //spotless:on
     // endregion
-    // region Overrides
 
-    @Override
-    public String[] getInfoData() {
-        String[] origin = super.getInfoData();
-        String[] ret = new String[origin.length + 2];
-        System.arraycopy(origin, 0, ret, 0, origin.length);
-        ret[origin.length - 1] = EnumChatFormatting.AQUA + "Parallel: "
-            + EnumChatFormatting.GOLD
-            + this.getMaxParallelRecipes();
-        ret[origin.length] = EnumChatFormatting.AQUA + "Recipe Time multiplier: "
-            + EnumChatFormatting.GOLD
-            + this.getSpeedBonus();
-        return ret;
-    }
+    // region TT
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
@@ -247,46 +218,6 @@ public class VA_TileEntity_AssemblyMatrix
             .addEnergyHatch(BluePrintInfo, 2)
             .toolTipFinisher(VisAppendGigaFac);
         return tt;
-    }
-
-    @Override
-    public boolean isCorrectMachinePart(ItemStack aStack) {
-        return true;
-    }
-
-    @Override
-    public int getMaxEfficiency(ItemStack aStack) {
-        return 10000;
-    }
-
-    @Override
-    public int getDamageToComponent(ItemStack aStack) {
-        return 0;
-    }
-
-    @Override
-    public boolean explodesOnComponentBreak(ItemStack aStack) {
-        return false;
-    }
-
-    @Override
-    public boolean supportsVoidProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInputSeparation() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_AssemblyMatrix(this.mName);
     }
 
     @Override
