@@ -3,10 +3,6 @@ package com.rhynia.gtnh.append;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import com.rhynia.gtnh.append.config.Config;
-import com.rhynia.gtnh.append.loader.MachineLoader;
-import com.rhynia.gtnh.append.loader.MaterialLoader;
-import com.rhynia.gtnh.append.loader.RecipeLoader;
 import com.rhynia.gtnh.append.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
@@ -41,31 +37,22 @@ public class VisAppend {
 
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
-        Config.synchronizeConfiguration(event.getSuggestedConfigurationFile());
-        VisAppend.LOG.info(MOD_NAME + " start preInit process at version " + VERSION);
-        VisAppend.LOG.info("Materials initializing.");
         proxy.preInit(event);
-        MaterialLoader.load();// Load Materials
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-        VisAppend.LOG.info("Loading machines.");
-        MachineLoader.loadMachines();// Load Machines
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
-        VisAppend.LOG.info("Loading recipes stage 1/2.");
-        RecipeLoader.loadRecipesPostInit();// Init RecipeMap
     }
 
     @Mod.EventHandler
     public void completeInit(FMLLoadCompleteEvent event) {
-        VisAppend.LOG.info("Loading recipes stage 2/2.");
-        RecipeLoader.loadRecipesCompleteInit();// Complete left recipes
+        proxy.completeInit(event);
     }
 
     @Mod.EventHandler
