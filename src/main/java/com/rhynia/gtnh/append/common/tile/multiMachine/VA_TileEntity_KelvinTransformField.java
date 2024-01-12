@@ -34,8 +34,6 @@ import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import org.jetbrains.annotations.NotNull;
-
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
@@ -51,7 +49,6 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
-import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -74,32 +71,35 @@ public class VA_TileEntity_KelvinTransformField
     public VA_TileEntity_KelvinTransformField(String aName) {
         super(aName);
     }
+
+    @Override
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new VA_TileEntity_KelvinTransformField(this.mName);
+    }
     // endregion
 
     // region Processing Logic
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
-
-            @NotNull
-            @Override
-            public CheckRecipeResult process() {
-                setSpeedBonus(getSpeedBonus());
-                return super.process();
-            }
-        }.setMaxParallelSupplier(this::getMaxParallelRecipes);
+        return super.createProcessingLogic();
     }
 
-    public int getMaxParallelRecipes() {
+    @Override
+    public int getMaxParallel() {
         if (mRecipeMode == 0) {
-            return 2048;
-        } else return 64 + 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+            uParallel = 2048;
+        } else {
+            uParallel = 64 + 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+        }
+        return uParallel;
     }
 
+    @Override
     public float getSpeedBonus() {
         if (mRecipeMode == 0) {
-            return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
-        } else return (float) 1.0;
+            uSpeed = (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
+            return uSpeed;
+        } else return (float) 1.0F;
     }
 
     @Override
@@ -199,16 +199,7 @@ public class VA_TileEntity_KelvinTransformField
 
     @Override
     public String[] getInfoData() {
-        String[] origin = super.getInfoData();
-        String[] ret = new String[origin.length + 2];
-        System.arraycopy(origin, 0, ret, 0, origin.length);
-        ret[origin.length - 1] = EnumChatFormatting.AQUA + "Parallel: "
-            + EnumChatFormatting.GOLD
-            + this.getMaxParallelRecipes();
-        ret[origin.length] = EnumChatFormatting.AQUA + "Recipe Time multiplier: "
-            + EnumChatFormatting.GOLD
-            + this.getSpeedBonus();
-        return ret;
+        return super.getInfoData();
     }
 
     @Override
@@ -245,41 +236,6 @@ public class VA_TileEntity_KelvinTransformField
     @Override
     public boolean isCorrectMachinePart(ItemStack aStack) {
         return true;
-    }
-
-    @Override
-    public int getMaxEfficiency(ItemStack aStack) {
-        return 10000;
-    }
-
-    @Override
-    public int getDamageToComponent(ItemStack aStack) {
-        return 0;
-    }
-
-    @Override
-    public boolean explodesOnComponentBreak(ItemStack aStack) {
-        return false;
-    }
-
-    @Override
-    public boolean supportsVoidProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInputSeparation() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_KelvinTransformField(this.mName);
     }
 
     @Override

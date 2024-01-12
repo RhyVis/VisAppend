@@ -22,10 +22,7 @@ import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_Fusi
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
-
-import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
@@ -33,6 +30,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
@@ -40,9 +38,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -51,7 +47,7 @@ import gregtech.common.blocks.GT_Block_Casings2;
 
 @SuppressWarnings("deprecation")
 public class VA_TileEntity_SuperconductingBinder
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<VA_TileEntity_SuperconductingBinder>
+    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_SuperconductingBinder>
     implements IConstructable, ISurvivalConstructable {
 
     // region Class Constructor
@@ -62,28 +58,29 @@ public class VA_TileEntity_SuperconductingBinder
     public VA_TileEntity_SuperconductingBinder(String aName) {
         super(aName);
     }
+
+    @Override
+    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
+        return new VA_TileEntity_SuperconductingBinder(this.mName);
+    }
     // endregion
 
     // region Processing Logic
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
-
-            @NotNull
-            @Override
-            public CheckRecipeResult process() {
-                setSpeedBonus(getSpeedBonus());
-                return super.process();
-            }
-        }.setMaxParallelSupplier(this::getMaxParallelRecipes);
+        return super.createProcessingLogic();
     }
 
-    public int getMaxParallelRecipes() {
-        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+    @Override
+    protected int getMaxParallel() {
+        uParallel = 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+        return uParallel;
     }
 
-    public float getSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
+    @Override
+    protected float getSpeedBonus() {
+        uSpeed = (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));;
+        return uSpeed;
     }
 
     @Override
@@ -91,14 +88,15 @@ public class VA_TileEntity_SuperconductingBinder
         return AppendRecipeMaps.superconductingAssemblyRecipes;
     }
 
-    @Override
-    public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
-    }
-
     // endregion
 
     // region Structure
+    @Override
+    public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
+        disableMaintenance();
+        return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
+    }
+
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
         this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
@@ -184,16 +182,7 @@ public class VA_TileEntity_SuperconductingBinder
 
     @Override
     public String[] getInfoData() {
-        String[] origin = super.getInfoData();
-        String[] ret = new String[origin.length + 2];
-        System.arraycopy(origin, 0, ret, 0, origin.length);
-        ret[origin.length - 1] = EnumChatFormatting.AQUA + "Parallel: "
-            + EnumChatFormatting.GOLD
-            + this.getMaxParallelRecipes();
-        ret[origin.length] = EnumChatFormatting.AQUA + "Recipe Time multiplier: "
-            + EnumChatFormatting.GOLD
-            + this.getSpeedBonus();
-        return ret;
+        return super.getInfoData();
     }
 
     @Override
@@ -221,41 +210,6 @@ public class VA_TileEntity_SuperconductingBinder
     @Override
     public boolean isCorrectMachinePart(ItemStack aStack) {
         return true;
-    }
-
-    @Override
-    public int getMaxEfficiency(ItemStack aStack) {
-        return 10000;
-    }
-
-    @Override
-    public int getDamageToComponent(ItemStack aStack) {
-        return 0;
-    }
-
-    @Override
-    public boolean explodesOnComponentBreak(ItemStack aStack) {
-        return false;
-    }
-
-    @Override
-    public boolean supportsVoidProtection() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsInputSeparation() {
-        return true;
-    }
-
-    @Override
-    public boolean supportsBatchMode() {
-        return true;
-    }
-
-    @Override
-    public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_SuperconductingBinder(this.mName);
     }
 
     @Override
