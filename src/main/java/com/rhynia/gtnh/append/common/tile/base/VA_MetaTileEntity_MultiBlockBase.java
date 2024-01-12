@@ -5,7 +5,6 @@ import net.minecraft.util.EnumChatFormatting;
 
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
-import org.jetbrains.annotations.NotNull;
 
 public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T>>
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T> {
