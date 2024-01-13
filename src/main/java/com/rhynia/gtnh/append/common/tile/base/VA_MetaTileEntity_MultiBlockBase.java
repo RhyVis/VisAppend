@@ -9,6 +9,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 
+import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.recipe.check.CheckRecipeResult;
@@ -38,6 +39,12 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     @Override
     public boolean isCorrectMachinePart(ItemStack aStack) {
         return true;
+    }
+
+    @Override
+    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
+        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
+            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
     }
     // endregion
 
@@ -134,22 +141,22 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     // region ToolTips and Info
     @Override
     public String[] getInfoData() {
-        String[] origin = super.getInfoData();
-        String[] ret = new String[origin.length + 3];
-        System.arraycopy(origin, 0, ret, 0, origin.length);
-        ret[origin.length] = EnumChatFormatting.AQUA + "Parallels"
+        String[] oStr = super.getInfoData();
+        String[] nStr = new String[oStr.length + 3];
+        System.arraycopy(oStr, 0, nStr, 0, oStr.length);
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "Parallels"
             + ": "
             + EnumChatFormatting.GOLD
             + this.rMaxParallel();
-        ret[origin.length + 1] = EnumChatFormatting.AQUA + "Speed Multiplier"
+        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "Speed Multiplier"
             + ": "
             + EnumChatFormatting.GOLD
             + this.rSpeedBonus();
-        ret[origin.length + 2] = EnumChatFormatting.AQUA + "EU Modifier"
+        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "EU Modifier"
             + ": "
             + EnumChatFormatting.GOLD
             + this.rEUModifier();
-        return ret;
+        return nStr;
         // endregion
     }
 }

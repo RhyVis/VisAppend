@@ -1,30 +1,18 @@
 package com.rhynia.gtnh.append.common.tile.multiMachine;
 
-import static com.github.bartimaeusnek.bartworks.API.BorosilicateGlass.ofBoroGlass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlocksTiered;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.onElementPass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.withChannel;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
-import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.api.util.Values.VisAppendNuclear;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
-import static gregtech.api.enums.GT_HatchElement.Maintenance;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.enums.GT_HatchElement.OutputHatch;
-import static gregtech.api.enums.Materials.CosmicNeutronium;
-import static gregtech.api.enums.Materials.Infinity;
-import static gregtech.api.enums.Materials.Neutronium;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.api.util.GT_StructureUtility.ofCoil;
-import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import java.util.Arrays;
@@ -36,15 +24,19 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import org.jetbrains.annotations.NotNull;
+import org.apache.commons.lang3.tuple.Pair;
 
+import com.github.technus.tectech.thing.casing.TT_Container_Casings;
+import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -53,26 +45,19 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.logic.ProcessingLogic;
-import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.check.CheckRecipeResult;
-import gregtech.api.recipe.check.CheckRecipeResultRegistry;
+import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
-import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-import gregtech.common.blocks.GT_Block_Casings8;
+import gregtech.common.blocks.GT_Block_Casings1;
 
-@SuppressWarnings("deprecation")
 public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_UltimateHeater> {
 
     // region Definition
     public byte mRecipeMode = 0; // 0-sUltimateHeaterRecipes,1-sTranscendentReactorRecipes
     private HeatingCoilLevel mCoilLevel;
-    private int mHeatingCapacity;
-    private byte mGlassTier;
     // endregion
 
     // region Class Constructor
@@ -91,59 +76,52 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     // endregion
 
     // region Processing Logic
-    @Override
-    protected ProcessingLogic createProcessingLogic() {
-        if (this.mRecipeMode == 1) {
-            return new ProcessingLogic() {
-
-                @NotNull
-                @Override
-                public CheckRecipeResult process() {
-                    setEuModifier(rEUModifier());
-                    setMaxParallel(rMaxParallel());
-                    setOverclock(rPerfectOverclock() ? 2 : 1, 2);
-                    return super.process();
-                }
-
-                @NotNull
-                @Override
-                protected CheckRecipeResult validateRecipe(@NotNull GT_Recipe recipe) {
-                    return recipe.mSpecialValue <= mHeatingCapacity ? CheckRecipeResultRegistry.SUCCESSFUL
-                        : CheckRecipeResultRegistry.insufficientHeat(recipe.mSpecialValue);
-                }
-            };
-
-        } else return super.createProcessingLogic();
-    }
+    private int uSpacetimeCompressionCount, uTimeAccelerationField;
 
     protected boolean rPerfectOverclock() {
         return mCoilLevel.getTier() > 11;
     }
 
     public int rMaxParallel() {
-        return mRecipeMode == 0 ? 32 * GT_Utility.getTier(this.getMaxInputVoltage()) : 256;
+        return 1 + uSpacetimeCompressionCount;
     }
 
     public float rSpeedBonus() {
-        return (float) Math.pow(0.95, mCoilLevel.getTier());
+        return (float) (Math.pow(0.97D, mCoilLevel.getTier()) * Math.pow(0.93D, (uTimeAccelerationField + 1)));
+    }
+
+    public float rEUModifier() {
+        return 1.0F - (float) (0.0015D * uSpacetimeCompressionCount);
     }
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        return mRecipeMode == 0 ? AppendRecipeMaps.thermonuclearControlRecipes
-            : AppendRecipeMaps.transcendentReactorRecipes;
+        return switch (mRecipeMode) {
+            case 0 -> AppendRecipeMaps.thermonuclearControlRecipes;
+            case 1 -> AppendRecipeMaps.transcendentReactorRecipes;
+            case 2 -> RecipeMaps.fusionRecipes;
+            default -> RecipeMaps.nanoForgeRecipes;
+        };
     }
 
     @Nonnull
     @Override
     public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        return Arrays.asList(AppendRecipeMaps.thermonuclearControlRecipes, AppendRecipeMaps.transcendentReactorRecipes);
+        return Arrays.asList(
+            AppendRecipeMaps.thermonuclearControlRecipes,
+            AppendRecipeMaps.transcendentReactorRecipes,
+            RecipeMaps.fusionRecipes);
+    }
+
+    @Override
+    public int getRecipeCatalystPriority() {
+        return -20;
     }
 
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
+            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 3);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
                 StatCollector.translateToLocal("append.UltimateHeater.mRecipeMode." + this.mRecipeMode));
@@ -153,33 +131,22 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     // endregion
 
     // region Structure
-    private final int horizontalOffSet = 3;
-    private final int verticalOffSet = 9;
-    private final int depthOffSet = 0;
+    private final int hOffSet = 7, vOffSet = 0, dOffSet = 7;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        this.mGlassTier = 0;
-        this.mHeatingCapacity = 0;
-        if (!checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet)) {
-            return false;
-        }
-        if (mGlassTier < 12) {
-            for (GT_MetaTileEntity_Hatch hatch : this.mExoticEnergyHatches) {
-                if (this.mGlassTier < hatch.mTier) {
-                    return false;
-                }
-            }
-        }
-        this.mHeatingCapacity = (int) mCoilLevel.getHeat();
-        return true;
+        removeMaintenance();
+        this.uSpacetimeCompressionCount = 0;
+        this.uTimeAccelerationField = -1;
+        return checkPiece(STRUCTURE_PIECE_MAIN, hOffSet, vOffSet, dOffSet);
     }
 
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
-        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
+        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, hOffSet, vOffSet, dOffSet);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public int survivalConstruct(ItemStack stackSize, int elementBudget, IItemSource source, EntityPlayerMP actor) {
         if (this.mMachine) return -1;
@@ -187,9 +154,9 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
         return this.survivialBuildPiece(
             STRUCTURE_PIECE_MAIN,
             stackSize,
-            horizontalOffSet,
-            verticalOffSet,
-            depthOffSet,
+            hOffSet,
+            vOffSet,
+            dOffSet,
             realBudget,
             source,
             actor,
@@ -201,13 +168,27 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     public IStructureDefinition<VA_TileEntity_UltimateHeater> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_UltimateHeater>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
-            .addElement(
-                'A',
-                withChannel(
-                    "glass",
-                    ofBoroGlass((byte) 0, (byte) 1, Byte.MAX_VALUE, (te, t) -> te.mGlassTier = t, te -> te.mGlassTier)))
+            .addElement('A', ofBlock(GregTech_API.sBlockCasings1, 12))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
-            .addElement('C', ofBlock(GregTech_API.sBlockCasings4, 7))
+            .addElement(
+                'C',
+                ofChain(
+                    onElementPass(t -> t.uTimeAccelerationField = -1, ofBlock(GregTech_API.sBlockCasings1, 14)),
+                    ofBlocksTiered(
+                        (block, meta) -> block == TT_Container_Casings.TimeAccelerationFieldGenerator ? meta : null,
+                        ImmutableList.of(
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 0),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 1),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 2),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 3),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 4),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 5),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 6),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 7),
+                            Pair.of(TT_Container_Casings.TimeAccelerationFieldGenerator, 8)),
+                        -1,
+                        (t, meta) -> t.uTimeAccelerationField = meta,
+                        t -> t.uTimeAccelerationField)))
             .addElement(
                 'D',
                 withChannel(
@@ -215,17 +196,60 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
                     ofCoil(VA_TileEntity_UltimateHeater::setCoilLevel, VA_TileEntity_UltimateHeater::getCoilLevel)))
             .addElement(
                 'E',
+                ofChain(
+                    ofBlock(GregTech_API.sBlockCasings1, 14),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 1,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 0)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 2,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 1)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 4,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 2)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 8,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 3)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 16,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 4)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 32,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 5)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 64,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 6)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 128,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 7)),
+                    onElementPass(
+                        k -> k.uSpacetimeCompressionCount += 256,
+                        ofBlock(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 8))))
+            .addElement('F', ofBlock(GregTech_API.sBlockCasings1, 14))
+            .addElement(
+                'G',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
-                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
+                    .atLeast(InputBus, InputHatch)
                     .adder(VA_TileEntity_UltimateHeater::addToMachineList)
                     .dot(1)
-                    .casingIndex(((GT_Block_Casings8) GregTech_API.sBlockCasings8).getTextureIndex(2))
-                    .buildAndChain(GregTech_API.sBlockCasings8, 2))
-            .addElement('F', ofBlock(GregTech_API.sBlockCasings8, 7))
-            .addElement('G', ofBlock(GregTech_API.sBlockCasings8, 10))
-            .addElement('H', ofFrame(Neutronium))
-            .addElement('I', ofFrame(CosmicNeutronium))
-            .addElement('J', ofFrame(Infinity))
+                    .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
+                    .buildAndChain(GregTech_API.sBlockCasings1, 12))
+            .addElement(
+                'H',
+                GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
+                    .atLeast(OutputBus, OutputHatch)
+                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
+                    .dot(2)
+                    .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
+                    .buildAndChain(GregTech_API.sBlockCasings1, 12))
+            .addElement(
+                'I',
+                GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
+                    .atLeast(Energy.or(ExoticEnergy))
+                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
+                    .dot(3)
+                    .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
+                    .buildAndChain(GregTech_API.sBlockCasings1, 12))
             .build();
     }
 
@@ -236,18 +260,51 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     }
 
     // spotless: off
+    @SuppressWarnings("SpellCheckingInspection")
     private final String[][] shape = new String[][] {
-        { " EEEEE ", "EHGGGHE", "EGBBBGE", "EGBIBGE", "EGBBBGE", "EHGGGHE", " EEEEE " },
-        { " FFFFF ", "FBBBBBF", "FB I BF", "FBIDIBF", "FB I BF", "FBBBBBF", " FFFFF " },
-        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
-        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
-        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
-        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
-        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
-        { " FAAAF ", "FC B CF", "A BJB A", "ABJDJBA", "A BJB A", "FC B CF", " FAAAF " },
-        { " FAAAF ", "FC   CF", "A  J  A", "A JDJ A", "A  J  A", "FC   CF", " FAAAF " },
-        { " EE~EE ", "EEGGGEE", "EGGGGGE", "EGGGGGE", "EGGGGGE", "EEGGGEE", " EEEEE " } };
+        { "               ", "      GGG      ", "    AA E AA    ", "   I   E   I   ", "  A    E    A  ",
+            "  A    E    A  ", " G     E     G ", " GEEEEE~EEEEEG ", " G     E     G ", "  A    E    A  ",
+            "  A    E    A  ", "   I   E   I   ", "    AA E AA    ", "      GGG      ", "               " },
+        { "      HHH      ", "    AABBBAA    ", "   ABBADABBA   ", "  ABAA D AABA  ", " ABA   D   ABA ",
+            " ABA  DDD  ABA ", "HBA  D D D  ABH", "HBDDDDDCDDDDDBH", "HBA  D D D  ABH", " ABA  DDD  ABA ",
+            " ABA   D   ABA ", "  ABAA D AABA  ", "   ABBADABBA   ", "    AABBBAA    ", "      HHH      " },
+        { "               ", "      GGG      ", "    AA E AA    ", "   I   E   I   ", "  A    E    A  ",
+            "  A    E    A  ", " G     E     G ", " AEEEEEFEEEEEA ", " G     E     G ", "  A    E    A  ",
+            "  A    E    A  ", "   I   E   I   ", "    AA E AA    ", "      GGG      ", "               " } };
+
     // spotless: on
+    @Override
+    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
+        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
+        if (sideDirection == ForgeDirection.UP) {
+            if (active) return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings1, 12)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FUSION1)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FUSION1_GLOW)
+                    .extFacing()
+                    .glow()
+                    .build() };
+            return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings1, 12)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_SCREEN)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_SCREEN)
+                    .extFacing()
+                    .glow()
+                    .build() };
+        }
+        return new ITexture[] { Textures.BlockIcons
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings1, 12)) };
+    }
     // endregion
 
     // region TT
@@ -255,76 +312,54 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("热核控制场 | 超维度反应堆")
+        tt.addMachineType("热核控制场 | 超维度反应器 | 聚变反应堆")
             .addInfo("粒子宏的控制器")
-            .addInfo("仿若上帝亲自撕碎粒子间的力.")
             .addInfo("用纯粹的能量扭曲物质的存在.")
-            .addInfo("热核控制模式下，电压每提高1级, 最大并行增加32.")
-            .addInfo("线圈每提高1级, 额外减少5%配方耗时(叠乘).")
-            .addInfo("超维度反应模式下，最大并行固定为256.")
-            .addInfo("线圈每比觉醒龙锭高1级，额外减少10%配方耗时(叠乘).")
-            .addInfo("在任何模式下:")
+            .addInfo("每个时空压缩场提供2^(等级-1)的额外并行.")
+            .addInfo("并提供(0.15*等级)%的功耗减免.")
+            .addInfo("安装时间加速场后, 每级减少7%配方耗时(叠乘).")
+            .addInfo("线圈每提高1级, 额外减少3%配方耗时(叠乘).")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
-            .addInfo(ChangeModeByScrewdriver)
+            .addInfo(Values.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(StructureTooComplex)
-            .addInfo(BluePrintTip)
+            .addInfo(Values.StructureTooComplex)
+            .addInfo(Values.BluePrintTip)
             .beginStructureBlock(7, 12, 7, false)
-            .addInputHatch(BluePrintInfo, 1)
-            .addOutputHatch(BluePrintInfo, 1)
-            .addInputBus(BluePrintInfo, 1)
-            .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 1)
-            .addEnergyHatch(BluePrintInfo, 1)
-            .toolTipFinisher(VisAppendNuclear);
+            .addInputHatch(Values.BluePrintInfo, 1)
+            .addOutputHatch(Values.BluePrintInfo, 1)
+            .addInputBus(Values.BluePrintInfo, 1)
+            .addOutputBus(Values.BluePrintInfo, 1)
+            .addEnergyHatch(Values.BluePrintInfo, 1)
+            .toolTipFinisher(Values.VisAppendNuclear);
         return tt;
     }
 
     @Override
-    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
-        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
-        if (sideDirection == facingDirection) {
-            if (active) return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 2)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-            return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 2)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-        }
-        return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)) };
+    public String[] getInfoData() {
+        String x = String.valueOf(uSpacetimeCompressionCount);
+        String y = String.valueOf(uTimeAccelerationField);
+        String[] o = super.getInfoData();
+        String[] n = new String[o.length + 2];
+        System.arraycopy(o, 0, n, 0, o.length);
+        n[o.length] = EnumChatFormatting.AQUA + "Spacetime Compression Field" + ": " + EnumChatFormatting.GOLD + x;
+        n[o.length + 1] = EnumChatFormatting.AQUA + "Time Acceleration Field" + ": " + EnumChatFormatting.GOLD + y;
+        return n;
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         super.saveNBTData(aNBT);
-
         aNBT.setInteger("mRecipeMode", mRecipeMode);
+        aNBT.setInteger("uSpacetimeCompressionField", uSpacetimeCompressionCount);
+        aNBT.setInteger("uTimeAccelerationField", uTimeAccelerationField);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
         super.loadNBTData(aNBT);
-
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
+        uSpacetimeCompressionCount = aNBT.getInteger("uSpacetimeCompressionField");
+        uTimeAccelerationField = aNBT.getInteger("uTimeAccelerationField");
     }
 
     // endregion

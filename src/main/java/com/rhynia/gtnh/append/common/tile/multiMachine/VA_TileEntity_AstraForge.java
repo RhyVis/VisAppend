@@ -1,40 +1,40 @@
 package com.rhynia.gtnh.append.common.tile.multiMachine;
 
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.isAir;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlocksTiered;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
+import static com.gtnewhorizon.structurelib.structure.StructureUtility.onElementPass;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.api.util.Values.VisAppendMagical;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
-import static gregtech.api.enums.GT_HatchElement.Maintenance;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.enums.GT_HatchElement.OutputHatch;
-import static gregtech.api.enums.Materials.Infinity;
-import static gregtech.api.enums.Materials.Neutronium;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.api.util.GT_StructureUtility.ofFrame;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import org.apache.commons.lang3.tuple.Pair;
+
+import com.github.technus.tectech.thing.casing.TT_Container_Casings;
+import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
 import gregtech.api.GregTech_API;
+import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -45,7 +45,6 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 
-@SuppressWarnings("deprecation")
 public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_AstraForge> {
 
     // region Class Constructor
@@ -64,14 +63,17 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
     // endregion
 
     // region Processing Logic
+    private int uStableField;
 
     @Override
     public int rMaxParallel() {
-        return 64 * GT_Utility.getTier(this.getMaxInputVoltage());
+        int r = uStableField + 5, s = 2;
+        return (int) Math.max(1, Math.pow(s, r));
     }
 
     public float rSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
+        double t = 1.0 - 0.01 * (uStableField + 1);
+        return Math.min(1.0F, (float) Math.pow(t, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
     @Override
@@ -83,21 +85,20 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
 
     // region Structure
 
-    private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 10;
-    private final int depthOffSet = 0;
+    private final int hOffSet = 2, vOffSet = 1, dOffSet = 0;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         removeMaintenance();
-        return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
+        return checkPiece(STRUCTURE_PIECE_MAIN, hOffSet, vOffSet, dOffSet);
     }
 
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
-        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
+        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, hOffSet, vOffSet, dOffSet);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public int survivalConstruct(ItemStack stackSize, int elementBudget, IItemSource source, EntityPlayerMP actor) {
         if (this.mMachine) return -1;
@@ -105,9 +106,9 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
         return this.survivialBuildPiece(
             STRUCTURE_PIECE_MAIN,
             stackSize,
-            horizontalOffSet,
-            verticalOffSet,
-            depthOffSet,
+            hOffSet,
+            vOffSet,
+            dOffSet,
             realBudget,
             source,
             actor,
@@ -123,14 +124,41 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .addElement(
                 'B',
                 GT_HatchElementBuilder.<VA_TileEntity_AstraForge>builder()
-                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch, Maintenance, Energy.or(ExoticEnergy))
+                    .atLeast(InputBus, OutputBus, InputHatch, OutputHatch)
                     .adder(VA_TileEntity_AstraForge::addToMachineList)
                     .dot(1)
                     .casingIndex(183)
                     .buildAndChain(GregTech_API.sBlockCasings8, 7))
             .addElement('C', ofBlock(LudicrousBlocks.resource_block, 1))
-            .addElement('D', ofFrame(Neutronium))
-            .addElement('E', ofFrame(Infinity))
+            .addElement('D', ofFrame(Materials.Neutronium))
+            .addElement(
+                'E',
+                GT_HatchElementBuilder.<VA_TileEntity_AstraForge>builder()
+                    .atLeast(Energy.or(ExoticEnergy))
+                    .adder(VA_TileEntity_AstraForge::addToMachineList)
+                    .dot(2)
+                    .casingIndex(183)
+                    .buildAndChain(GregTech_API.sBlockCasings8, 7))
+            .addElement(
+                'F',
+                ofChain(
+                    onElementPass(t -> t.uStableField = -1, isAir()),
+                    ofBlocksTiered(
+                        (block, meta) -> block == TT_Container_Casings.StabilisationFieldGenerators ? meta : null,
+                        ImmutableList.of(
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 0),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 1),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 2),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 3),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 4),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 5),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 6),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 7),
+                            Pair.of(TT_Container_Casings.StabilisationFieldGenerators, 8)),
+                        -1,
+                        (t, meta) -> t.uStableField = meta,
+                        t -> t.uStableField)))
+            .addElement('G', ofFrame(Materials.Infinity))
             .build();
     }
 
@@ -140,37 +168,14 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
     }
 
-    private final String[][] shape = new String[][] { { "   ", " E ", "   " }, { " D ", "DDD", " D " },
-        { " B ", "BAB", " B " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " },
-        { "CEC", "ECE", "CEC" }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " }, { " D ", "DAD", " D " },
-        { " ~ ", "BAB", " B " }, { "BBB", "BBB", "BBB" } };
-    // endregion
-
-    // region TT
-
-    @Override
-    protected GT_Multiblock_Tooltip_Builder createTooltip() {
-        final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("星光聚能器")
-            .addInfo("星辉锻造台的控制器")
-            .addInfo(EnumChatFormatting.RED + "不要试图去理解祂的原理.")
-            .addInfo("使用星光将平凡转化为奇迹.")
-            .addInfo("需要透镜辅助合成.")
-            .addInfo("电压每提高1级, 最大并行增加64.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addSeparator()
-            .addInfo(StructureTooComplex)
-            .addInfo(BluePrintTip)
-            .beginStructureBlock(3, 12, 3, false)
-            .addInputHatch(BluePrintInfo, 1)
-            .addOutputHatch(BluePrintInfo, 1)
-            .addInputBus(BluePrintInfo, 1)
-            .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 3)
-            .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(VisAppendMagical);
-        return tt;
-    }
+    // spotless:off
+    @SuppressWarnings("SpellCheckingInspection")
+    private final String[][] shape = new String[][]{
+        {"  E  ","  G  ","EGFGE","  G  ","  E  "},
+        {" D~D ","D   D","B C B","D   D"," DBD "},
+        {" BBB ","BAAAB","BAAAB","BAAAB"," BBB "}
+    };
+    //spotless:on
 
     @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
@@ -180,11 +185,11 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
                 Textures.BlockIcons
                     .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
                     .extFacing()
                     .build(),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
                     .extFacing()
                     .glow()
                     .build() };
@@ -192,17 +197,65 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
                 Textures.BlockIcons
                     .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE)
                     .extFacing()
                     .build(),
                 TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
                     .extFacing()
                     .glow()
                     .build() };
         }
         return new ITexture[] { Textures.BlockIcons
             .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings8, 7)) };
+    }
+    // endregion
+
+    // region TT
+
+    @Override
+    protected GT_Multiblock_Tooltip_Builder createTooltip() {
+        final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
+        tt.addMachineType("星光聚能器")
+            .addInfo("星辉锻造台的控制器")
+            .addInfo(EnumChatFormatting.RED + "不要试图去理解原理.")
+            .addInfo("使用星光将平凡转化为奇迹.")
+            .addInfo("没有在指定位置安装稳定器时，最大并行为16.")
+            .addInfo("安装稳定器后, 最大并行=16*2^等级.")
+            .addInfo("且电压每提高1级, 额外降低(等级*2)%配方耗时(叠乘).")
+            .addSeparator()
+            .addInfo(Values.StructureTooComplex)
+            .addInfo(Values.BluePrintTip)
+            .beginStructureBlock(5, 3, 5, false)
+            .addInputHatch(Values.BluePrintInfo, 1)
+            .addOutputHatch(Values.BluePrintInfo, 1)
+            .addInputBus(Values.BluePrintInfo, 1)
+            .addOutputBus(Values.BluePrintInfo, 1)
+            .addEnergyHatch(Values.BluePrintInfo, 2)
+            .toolTipFinisher(Values.VisAppendMagical);
+        return tt;
+    }
+
+    @Override
+    public String[] getInfoData() {
+        String u = String.valueOf(uStableField);
+        String[] o = super.getInfoData();
+        String[] n = new String[o.length + 1];
+        System.arraycopy(o, 0, n, 0, o.length);
+        n[o.length] = EnumChatFormatting.AQUA + "Stable Field" + ": " + EnumChatFormatting.GOLD + u;
+        return n;
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+        aNBT.setInteger("uStableField", uStableField);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+        uStableField = aNBT.getInteger("uStableField");
     }
 
     // endregion

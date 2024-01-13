@@ -12,12 +12,7 @@ import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
-import static gregtech.api.enums.GT_HatchElement.Maintenance;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import net.minecraft.entity.player.EntityPlayerMP;
@@ -37,7 +32,6 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
@@ -45,7 +39,6 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-@SuppressWarnings("deprecation")
 public class VA_TileEntity_SuperconductingBinder
     extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_SuperconductingBinder>
     implements IConstructable, ISurvivalConstructable {
@@ -66,10 +59,6 @@ public class VA_TileEntity_SuperconductingBinder
     // endregion
 
     // region Processing Logic
-    @Override
-    protected ProcessingLogic createProcessingLogic() {
-        return super.createProcessingLogic();
-    }
 
     @Override
     protected int rMaxParallel() {
@@ -89,21 +78,20 @@ public class VA_TileEntity_SuperconductingBinder
     // endregion
 
     // region Structure
-    private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 1;
-    private final int depthOffSet = 0;
+    private final int hOffset = 1, vOffset = 1, dOffset = 0;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         removeMaintenance();
-        return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
+        return checkPiece(STRUCTURE_PIECE_MAIN, hOffset, vOffset, dOffset);
     }
 
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
-        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
+        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, hOffset, vOffset, dOffset);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public int survivalConstruct(ItemStack stackSize, int elementBudget, IItemSource source, EntityPlayerMP actor) {
         if (this.mMachine) return -1;
@@ -111,9 +99,9 @@ public class VA_TileEntity_SuperconductingBinder
         return this.survivialBuildPiece(
             STRUCTURE_PIECE_MAIN,
             stackSize,
-            horizontalOffSet,
-            verticalOffSet,
-            depthOffSet,
+            hOffset,
+            vOffset,
+            dOffset,
             realBudget,
             source,
             actor,
@@ -143,14 +131,6 @@ public class VA_TileEntity_SuperconductingBinder
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
-                'E',
-                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
-                    .atLeast(Maintenance)
-                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
-                    .dot(1)
-                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
-                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
-            .addElement(
                 'F',
                 GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
                     .atLeast(OutputBus)
@@ -171,10 +151,42 @@ public class VA_TileEntity_SuperconductingBinder
     // spotless:off
     private final String[][] shape = new String[][]{
         {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
-        {"C~C","ABA","ABA","ABA","ABA","ABA","FEF"},
+        {"C~C","ABA","ABA","ABA","ABA","ABA","FFF"},
         {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
     };
-//spotless:on
+    //spotless:on
+    @Override
+    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
+        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
+        if (sideDirection == facingDirection) {
+            if (active) return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
+                    .extFacing()
+                    .glow()
+                    .build() };
+            return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
+                    .extFacing()
+                    .glow()
+                    .build() };
+        }
+        return new ITexture[] { Textures.BlockIcons
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
+    }
     // endregion
 
     // region Overrides
@@ -199,39 +211,6 @@ public class VA_TileEntity_SuperconductingBinder
             .addEnergyHatch(BluePrintInfo, 2)
             .toolTipFinisher(VisAppendGigaFac);
         return tt;
-    }
-
-    @Override
-    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
-        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
-        if (sideDirection == facingDirection) {
-            if (active) return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-            return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-        }
-        return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
     }
 
     // endregion

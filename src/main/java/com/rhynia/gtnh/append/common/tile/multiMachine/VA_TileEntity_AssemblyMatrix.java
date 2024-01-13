@@ -4,21 +4,11 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.api.util.Values.ChangeModeByScrewdriver;
-import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
-import static gregtech.api.enums.GT_HatchElement.Maintenance;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW;
-import static gregtech.api.enums.Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import java.util.Arrays;
@@ -37,6 +27,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -51,7 +42,6 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-@SuppressWarnings("deprecation")
 public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_AssemblyMatrix> {
 
     public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
@@ -107,20 +97,20 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     // endregion
 
     // region Structure
-    private final int horizontalOffSet = 1;
-    private final int verticalOffSet = 1;
-    private final int depthOffSet = 0;
+    private final int hOffset = 1, vOffset = 1, dOffset = 0;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        return checkPiece(STRUCTURE_PIECE_MAIN, horizontalOffSet, verticalOffSet, depthOffSet);
+        removeMaintenance();
+        return checkPiece(STRUCTURE_PIECE_MAIN, hOffset, vOffset, dOffset);
     }
 
     @Override
     public void construct(ItemStack stackSize, boolean hintsOnly) {
-        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, horizontalOffSet, verticalOffSet, depthOffSet);
+        this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, hOffset, vOffset, dOffset);
     }
 
+    @SuppressWarnings("deprecation")
     @Override
     public int survivalConstruct(ItemStack stackSize, int elementBudget, IItemSource source, EntityPlayerMP actor) {
         if (this.mMachine) return -1;
@@ -128,9 +118,9 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
         return this.survivialBuildPiece(
             STRUCTURE_PIECE_MAIN,
             stackSize,
-            horizontalOffSet,
-            verticalOffSet,
-            depthOffSet,
+            hOffset,
+            vOffset,
+            dOffset,
             realBudget,
             source,
             actor,
@@ -160,19 +150,11 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
-                'E',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
-                    .atLeast(Maintenance)
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
-                    .dot(1)
-                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
-                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
-            .addElement(
                 'F',
                 GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
                     .atLeast(OutputBus)
                     .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
-                    .dot(1)
+                    .dot(2)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('T', ofBlock(GregTech_API.sBlockCasings2, 9))
@@ -188,10 +170,43 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     // spotless:off
     private final String[][] shape = new String[][]{
         {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
-        {"C~C","ABA","ABA","ABA","ABA","ABA","FEF"},
+        {"C~C","ABA","ABA","ABA","ABA","ABA","FFF"},
         {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
     };
-//spotless:on
+    //spotless:on
+
+    @Override
+    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
+        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
+        if (sideDirection == facingDirection) {
+            if (active) return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
+                    .extFacing()
+                    .glow()
+                    .build() };
+            return new ITexture[] {
+                Textures.BlockIcons
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE)
+                    .extFacing()
+                    .build(),
+                TextureFactory.builder()
+                    .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
+                    .extFacing()
+                    .glow()
+                    .build() };
+        }
+        return new ITexture[] { Textures.BlockIcons
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
+    }
     // endregion
 
     // region TT
@@ -206,64 +221,28 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加32.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo(ChangeModeByScrewdriver)
+            .addInfo(Values.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(StructureTooComplex)
-            .addInfo(BluePrintTip)
+            .addInfo(Values.StructureTooComplex)
+            .addInfo(Values.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(BluePrintInfo, 1)
-            .addInputBus(BluePrintInfo, 1)
-            .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 3)
-            .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(VisAppendGigaFac);
+            .addInputHatch(Values.BluePrintInfo, 1)
+            .addInputBus(Values.BluePrintInfo, 1)
+            .addOutputBus(Values.BluePrintInfo, 2)
+            .addEnergyHatch(Values.BluePrintInfo, 1)
+            .toolTipFinisher(Values.VisAppendGigaFac);
         return tt;
-    }
-
-    @Override
-    public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
-        ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
-        if (sideDirection == facingDirection) {
-            if (active) return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-            return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE)
-                    .extFacing()
-                    .build(),
-                TextureFactory.builder()
-                    .addIcon(OVERLAY_FRONT_ASSEMBLY_LINE_GLOW)
-                    .extFacing()
-                    .glow()
-                    .build() };
-        }
-        return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         super.saveNBTData(aNBT);
-
         aNBT.setInteger("mRecipeMode", mRecipeMode);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
         super.loadNBTData(aNBT);
-
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
     }
     // endregion
