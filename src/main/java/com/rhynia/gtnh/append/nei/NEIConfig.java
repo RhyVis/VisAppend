@@ -11,6 +11,7 @@ import com.rhynia.gtnh.append.Tags;
 import codechicken.nei.api.API;
 import codechicken.nei.api.IConfigureNEI;
 
+@SuppressWarnings("unused")
 public class NEIConfig implements IConfigureNEI {
 
     public static boolean isAdded = true;

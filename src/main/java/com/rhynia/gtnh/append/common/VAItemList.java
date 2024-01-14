@@ -16,8 +16,6 @@ public enum VAItemList implements IItemContainer {
 
     // Item
     ItemUltimate,
-    ItemLapoMatrix,
-    ItemCrystalMatrix,
     // Meta-Item 01
     Test,
     LapoMatrix,
