@@ -12,7 +12,7 @@ import cpw.mods.fml.common.registry.GameRegistry;
 public class ItemRegister {
 
     public static void registryItems() {
-        Item[] itemsToReg = { ItemBasic.MetaItem01, ItemBasic.Ultimate, ItemBasic.LapoMatrix, ItemBasic.CrystalMatrix };
+        Item[] itemsToReg = { ItemBasic.MetaItem01, ItemBasic.Ultimate };
 
         for (Item item : itemsToReg) {
             GameRegistry.registerItem(item, item.getUnlocalizedName());
@@ -35,8 +35,6 @@ public class ItemRegister {
         VAItemList.PreTesseract.set(initItem01("准超立方体", 9, new String[]{ "即将达到高维工程学" }));
         // Special Item
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
-        VAItemList.ItemLapoMatrix.set(new ItemStack(ItemBasic.LapoMatrix,1));
-        VAItemList.ItemCrystalMatrix.set(new ItemStack(ItemBasic.CrystalMatrix,1));
     }
     //spotless:on
     public static void registry() {
