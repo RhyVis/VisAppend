@@ -1080,7 +1080,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                     com.github.technus.tectech.thing.CustomItemList.Machine_Multi_Transformer.get(1),
                     com.github.technus.tectech.thing.CustomItemList.eM_Power.get(2),
                     circuitsTierPlusTwo[i],
-                    ItemList.EnergisedTesseract.get(1))
+                    ItemList.Tesseract.get(1))
                 .fluidInputs(
                     SolderMaterial.MutatedLivingAlloy.getFluidStack(9 * INGOTS),
                     Materials.Infinity.getMolten(8 * INGOTS),

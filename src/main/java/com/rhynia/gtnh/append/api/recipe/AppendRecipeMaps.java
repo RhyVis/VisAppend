@@ -116,7 +116,7 @@ public class AppendRecipeMaps {
         .progressBarPos(9 + 88, 27)
         .neiTransferRect(9 + 88, 27, 17, 17)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.SuperconductingBinder.get(1))
+            builder -> builder.setDisplayStack(VAItemList.VoidEnergyGenerator.get(1))
                 .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)

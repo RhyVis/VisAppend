@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tile.singleMachine;
+package com.rhynia.gtnh.append.common.tile.blockMachine;
 
 import net.minecraft.world.World;
 import net.minecraftforge.fluids.Fluid;

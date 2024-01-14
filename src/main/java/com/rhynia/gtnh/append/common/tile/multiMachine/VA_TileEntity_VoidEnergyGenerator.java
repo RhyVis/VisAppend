@@ -4,104 +4,72 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static gregtech.api.enums.GT_HatchElement.Energy;
-import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
+import static gregtech.api.enums.GT_HatchElement.OutputHatch;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import java.util.Arrays;
-import java.util.Collection;
-
-import javax.annotation.Nonnull;
-
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.util.Values;
-import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_AssemblyMatrix> {
-
-    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
+public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBlockBase_EM {
 
     // region Class Constructor
-    public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_VoidEnergyGenerator(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_AssemblyMatrix(String aName) {
+    public VA_TileEntity_VoidEnergyGenerator(String aName) {
         super(aName);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_AssemblyMatrix(this.mName);
+        return new VA_TileEntity_VoidEnergyGenerator(this.mName);
     }
     // endregion
 
     // region Processing Logic
 
     @Override
-    public int rMaxParallel() {
-        return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
+    @NotNull
+    public CheckRecipeResult checkProcessing_EM() {
+        this.useLongPower = true;
+        this.mMaxProgresstime = 128;
+        this.lEUt = 128L * Integer.MAX_VALUE;
+        return CheckRecipeResultRegistry.GENERATING;
     }
-
-    @Override
-    public float rSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
-    }
-
-    @Override
-    public RecipeMap<?> getRecipeMap() {
-        return mRecipeMode == 0 ? AppendRecipeMaps.integratedAssemblyRecipes : AppendRecipeMaps.microAssemblyRecipes;
-    }
-
-    @Nonnull
-    @Override
-    public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
-    }
-
-    @Override
-    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
-            GT_Utility.sendChatToPlayer(
-                aPlayer,
-                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
-        }
-    }
-
     // endregion
 
     // region Structure
     private final int hOffset = 1, vOffset = 1, dOffset = 0;
 
     @Override
-    public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        removeMaintenance();
+    public boolean checkMachine_EM(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
+        turnOffMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, hOffset, vOffset, dOffset);
     }
 
@@ -129,8 +97,8 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     }
 
     @Override
-    public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
+    public IStructureDefinition<VA_TileEntity_VoidEnergyGenerator> getStructure_EM() {
+        return StructureDefinition.<VA_TileEntity_VoidEnergyGenerator>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement(
                 'A',
@@ -139,42 +107,35 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
                     ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
                     // Warded Glass
                     ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
+            .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
-                    .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
+                GT_HatchElementBuilder.<VA_TileEntity_VoidEnergyGenerator>builder()
+                    .atLeast(InputBus, InputHatch)
+                    .adder(VA_TileEntity_VoidEnergyGenerator::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
                 'F',
-                GT_HatchElementBuilder.<VA_TileEntity_AssemblyMatrix>builder()
-                    .atLeast(OutputBus)
-                    .adder(VA_TileEntity_AssemblyMatrix::addToMachineList)
-                    .dot(2)
+                GT_HatchElementBuilder.<VA_TileEntity_VoidEnergyGenerator>builder()
+                    .atLeast(OutputBus, OutputHatch)
+                    .adder(VA_TileEntity_VoidEnergyGenerator::addToMachineList)
+                    .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('T', ofBlock(GregTech_API.sBlockCasings2, 9))
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
     private final String[][] shape = new String[][]{
-        {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
-        {"C~C","ABA","ABA","ABA","ABA","ABA","FFF"},
-        {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
+        {"CCC","TDT","FFF"},
+        {"C~C","ABA","FFF"},
+        {"CCC","TTT","FFF"}
     };
-    //spotless:on
-
+    // spotless:on
     @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
         ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
@@ -214,36 +175,22 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("集成装配线 | 微加工装配线")
-            .addInfo("组装矩阵的控制器")
-            .addInfo("现代化的组装机构.")
-            .addInfo("高效组装各类基础元件.")
-            .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 最大并行增加32.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo(Values.ChangeModeByScrewdriver)
+        tt.addMachineType("星辉能极差发电机")
+            .addInfo("星辉能极差发电机的控制器")
+            .addInfo("\"这里面也有能量?\"")
+            .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
             .addInfo(Values.StructureTooComplex)
             .addInfo(Values.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
             .addInputHatch(Values.BluePrintInfo, 1)
             .addInputBus(Values.BluePrintInfo, 1)
-            .addOutputBus(Values.BluePrintInfo, 2)
-            .addEnergyHatch(Values.BluePrintInfo, 1)
+            .addOutputBus(Values.BluePrintInfo, 1)
+            .addMaintenanceHatch(Values.BluePrintInfo, 3)
+            .addEnergyHatch(Values.BluePrintInfo, 2)
             .toolTipFinisher(Values.VisAppendGigaFac);
         return tt;
     }
 
-    @Override
-    public void saveNBTData(NBTTagCompound aNBT) {
-        super.saveNBTData(aNBT);
-        aNBT.setInteger("mRecipeMode", mRecipeMode);
-    }
-
-    @Override
-    public void loadNBTData(final NBTTagCompound aNBT) {
-        super.loadNBTData(aNBT);
-        mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
-    }
     // endregion
 }

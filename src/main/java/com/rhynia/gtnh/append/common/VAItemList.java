@@ -11,6 +11,7 @@ import gregtech.api.util.GT_Log;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 
+@SuppressWarnings({ "deprecation", "unused" })
 public enum VAItemList implements IItemContainer {
 
     // Item
@@ -41,7 +42,7 @@ public enum VAItemList implements IItemContainer {
     AstraForge,
     UltimateHeater,
     AssemblyMatrix,
-    SuperconductingBinder,
+    VoidEnergyGenerator,
     KelvinTransformField;
     // region Member Variables
 

@@ -6,6 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 import com.rhynia.gtnh.append.api.util.IRecipeHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 
+import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
 
@@ -110,7 +111,7 @@ public enum BWPart implements IRecipeHelper {
 
     @Override
     public FluidStack getFluidStack(int aAmount) {
-        return null;
+        return Materials.Water.getFluid(1);
     }
     // endregion
 
