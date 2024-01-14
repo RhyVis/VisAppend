@@ -157,6 +157,6 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
             + EnumChatFormatting.GOLD
             + this.rEUModifier();
         return nStr;
-        // endregion
     }
+    // endregion
 }

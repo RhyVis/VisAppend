@@ -4,85 +4,72 @@ import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintInfo;
-import static com.rhynia.gtnh.append.api.util.Values.BluePrintTip;
-import static com.rhynia.gtnh.append.api.util.Values.StructureTooComplex;
-import static com.rhynia.gtnh.append.api.util.Values.VisAppendGigaFac;
-import static gregtech.api.enums.GT_HatchElement.Energy;
-import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
+import static gregtech.api.enums.GT_HatchElement.OutputHatch;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
-import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
+import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
-import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-public class VA_TileEntity_SuperconductingBinder
-    extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_SuperconductingBinder>
-    implements IConstructable, ISurvivalConstructable {
+public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBlockBase_EM {
 
     // region Class Constructor
-    public VA_TileEntity_SuperconductingBinder(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_VoidEnergyGenerator(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_SuperconductingBinder(String aName) {
+    public VA_TileEntity_VoidEnergyGenerator(String aName) {
         super(aName);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_SuperconductingBinder(this.mName);
+        return new VA_TileEntity_VoidEnergyGenerator(this.mName);
     }
     // endregion
 
     // region Processing Logic
 
     @Override
-    protected int rMaxParallel() {
-        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+    @NotNull
+    public CheckRecipeResult checkProcessing_EM() {
+        this.useLongPower = true;
+        this.mMaxProgresstime = 128;
+        this.lEUt = 128L * Integer.MAX_VALUE;
+        return CheckRecipeResultRegistry.GENERATING;
     }
-
-    @Override
-    protected float rSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
-    }
-
-    @Override
-    public RecipeMap<?> getRecipeMap() {
-        return AppendRecipeMaps.superconductingAssemblyRecipes;
-    }
-
     // endregion
 
     // region Structure
     private final int hOffset = 1, vOffset = 1, dOffset = 0;
 
     @Override
-    public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
-        removeMaintenance();
+    public boolean checkMachine_EM(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
+        turnOffMaintenance();
         return checkPiece(STRUCTURE_PIECE_MAIN, hOffset, vOffset, dOffset);
     }
 
@@ -110,8 +97,8 @@ public class VA_TileEntity_SuperconductingBinder
     }
 
     @Override
-    public IStructureDefinition<VA_TileEntity_SuperconductingBinder> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_SuperconductingBinder>builder()
+    public IStructureDefinition<VA_TileEntity_VoidEnergyGenerator> getStructure_EM() {
+        return StructureDefinition.<VA_TileEntity_VoidEnergyGenerator>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
             .addElement(
                 'A',
@@ -123,18 +110,18 @@ public class VA_TileEntity_SuperconductingBinder
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
-                    .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
+                GT_HatchElementBuilder.<VA_TileEntity_VoidEnergyGenerator>builder()
+                    .atLeast(InputBus, InputHatch)
+                    .adder(VA_TileEntity_VoidEnergyGenerator::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
             .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
                 'F',
-                GT_HatchElementBuilder.<VA_TileEntity_SuperconductingBinder>builder()
-                    .atLeast(OutputBus)
-                    .adder(VA_TileEntity_SuperconductingBinder::addToMachineList)
+                GT_HatchElementBuilder.<VA_TileEntity_VoidEnergyGenerator>builder()
+                    .atLeast(OutputBus, OutputHatch)
+                    .adder(VA_TileEntity_VoidEnergyGenerator::addToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
                     .buildAndChain(GregTech_API.sBlockCasings2, 9))
@@ -142,19 +129,13 @@ public class VA_TileEntity_SuperconductingBinder
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
     private final String[][] shape = new String[][]{
-        {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
-        {"C~C","ABA","ABA","ABA","ABA","ABA","FFF"},
-        {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
+        {"CCC","TDT","FFF"},
+        {"C~C","ABA","FFF"},
+        {"CCC","TTT","FFF"}
     };
-    //spotless:on
+    // spotless:on
     @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
         ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
@@ -189,27 +170,25 @@ public class VA_TileEntity_SuperconductingBinder
     }
     // endregion
 
-    // region Overrides
+    // region TT
 
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("超导成型器")
-            .addInfo("超导装配线的控制器")
-            .addInfo("\"我不是很懂为什么超导烂大街了.\"")
-            .addInfo("直接将原料构建为超导线缆.")
-            .addInfo("电压每提高1级, 最大并行增加16.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
+        tt.addMachineType("星辉能极差发电机")
+            .addInfo("星辉能极差发电机的控制器")
+            .addInfo("\"这里面也有能量?\"")
+            .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
-            .addInfo(StructureTooComplex)
-            .addInfo(BluePrintTip)
+            .addInfo(Values.StructureTooComplex)
+            .addInfo(Values.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(BluePrintInfo, 1)
-            .addInputBus(BluePrintInfo, 1)
-            .addOutputBus(BluePrintInfo, 1)
-            .addMaintenanceHatch(BluePrintInfo, 3)
-            .addEnergyHatch(BluePrintInfo, 2)
-            .toolTipFinisher(VisAppendGigaFac);
+            .addInputHatch(Values.BluePrintInfo, 1)
+            .addInputBus(Values.BluePrintInfo, 1)
+            .addOutputBus(Values.BluePrintInfo, 1)
+            .addMaintenanceHatch(Values.BluePrintInfo, 3)
+            .addEnergyHatch(Values.BluePrintInfo, 2)
+            .toolTipFinisher(Values.VisAppendGigaFac);
         return tt;
     }
 

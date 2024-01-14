@@ -13,8 +13,8 @@ import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Machine
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_KelvinTransformField;
-import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_SuperconductingBinder;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_UltimateHeater;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_VoidEnergyGenerator;
 
 public class MachineLoader {
 
@@ -32,7 +32,7 @@ public class MachineLoader {
     public static ItemStack AstraForge;
     public static ItemStack UltimateHeater;
     public static ItemStack AssemblyMatrix;
-    public static ItemStack SuperconductingBinder;
+    public static ItemStack VoidEnergyGenerator;
     public static ItemStack KelvinTransformField;
     // endregion
 
@@ -41,7 +41,7 @@ public class MachineLoader {
         AstraForge = new VA_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
         AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
-        SuperconductingBinder = new VA_TileEntity_SuperconductingBinder(17504, "MultiSuperconductingBinder", "超导装配线")
+        VoidEnergyGenerator = new VA_TileEntity_VoidEnergyGenerator(17504, "MultiVoidEnergyGenerator", "星辉能极差发电机")
             .getStackForm(1);
         KelvinTransformField = new VA_TileEntity_KelvinTransformField(17505, "MultiKelvinTransformField", "开尔文变换场")
             .getStackForm(1);
@@ -69,7 +69,7 @@ public class MachineLoader {
         VAItemList.AstraForge.set(AstraForge);
         VAItemList.UltimateHeater.set(UltimateHeater);
         VAItemList.AssemblyMatrix.set(AssemblyMatrix);
-        VAItemList.SuperconductingBinder.set(SuperconductingBinder);
+        VAItemList.VoidEnergyGenerator.set(VoidEnergyGenerator);
         VAItemList.KelvinTransformField.set(KelvinTransformField);
         // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
