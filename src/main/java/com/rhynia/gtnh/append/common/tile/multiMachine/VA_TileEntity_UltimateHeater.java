@@ -29,7 +29,9 @@ import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.apache.commons.lang3.tuple.Pair;
+import org.jetbrains.annotations.NotNull;
 
+import com.github.technus.tectech.thing.CustomItemList;
 import com.github.technus.tectech.thing.casing.TT_Container_Casings;
 import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
@@ -45,8 +47,10 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
+import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -76,22 +80,46 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     // endregion
 
     // region Processing Logic
-    private int uSpacetimeCompressionCount, uTimeAccelerationField;
+    private int uSpacetimeCompressionCount, uTimeAccelerationField, uStarArrayCount;
 
+    @Override
+    protected ProcessingLogic createProcessingLogic() {
+        return new ProcessingLogic() {
+
+            @NotNull
+            @Override
+            public CheckRecipeResult process() {
+                uStarArrayCount = 0;
+                ItemStack u = getControllerSlot();
+                if (u != null && u.isItemEqual(CustomItemList.astralArrayFabricator.get(1))) {
+                    uStarArrayCount += u.stackSize;
+                }
+                setEuModifier(rEUModifier());
+                setMaxParallel(rMaxParallel());
+                setOverclock(rPerfectOverclock() ? 2 : 1, 2);
+                return super.process();
+            }
+        };
+    }
+
+    @Override
     protected boolean rPerfectOverclock() {
         return mCoilLevel.getTier() > 11;
     }
 
+    @Override
     public int rMaxParallel() {
-        return 1 + uSpacetimeCompressionCount;
+        return (1 + uStarArrayCount) * (1 + uSpacetimeCompressionCount);
     }
 
+    @Override
     public float rSpeedBonus() {
         return (float) (Math.pow(0.97D, mCoilLevel.getTier()) * Math.pow(0.93D, (uTimeAccelerationField + 1)));
     }
 
+    @Override
     public float rEUModifier() {
-        return 1.0F - (float) (0.0015D * uSpacetimeCompressionCount);
+        return (1.0F - (float) (0.0015D * uSpacetimeCompressionCount)) / (1 + uStarArrayCount);
     }
 
     @Override
@@ -132,6 +160,11 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     // region Structure
     private final int hOffSet = 7, vOffSet = 0, dOffSet = 7;
+
+    @Override
+    public boolean isRotationChangeAllowed() {
+        return false;
+    }
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
@@ -320,11 +353,12 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("安装时间加速场后, 每级减少7%配方耗时(叠乘).")
             .addInfo("线圈每提高1级, 额外减少3%配方耗时(叠乘).")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
+            .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.RESET + "来倍增总并行，同时不增加耗能")
             .addInfo(Values.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(Values.StructureTooComplex)
             .addInfo(Values.BluePrintTip)
-            .beginStructureBlock(7, 12, 7, false)
+            .beginStructureBlock(15, 3, 15, false)
             .addInputHatch(Values.BluePrintInfo, 1)
             .addOutputHatch(Values.BluePrintInfo, 1)
             .addInputBus(Values.BluePrintInfo, 1)

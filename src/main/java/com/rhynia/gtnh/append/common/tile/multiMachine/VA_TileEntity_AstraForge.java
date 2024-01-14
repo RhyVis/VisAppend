@@ -71,6 +71,7 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
         return (int) Math.max(1, Math.pow(s, r));
     }
 
+    @Override
     public float rSpeedBonus() {
         double t = 1.0 - 0.01 * (uStableField + 1);
         return Math.min(1.0F, (float) Math.pow(t, GT_Utility.getTier(this.getMaxInputVoltage())));
@@ -90,6 +91,7 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         removeMaintenance();
+        uStableField = -1;
         return checkPiece(STRUCTURE_PIECE_MAIN, hOffSet, vOffSet, dOffSet);
     }
 
