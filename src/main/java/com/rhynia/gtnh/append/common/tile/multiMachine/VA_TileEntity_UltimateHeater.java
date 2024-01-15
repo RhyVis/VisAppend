@@ -114,7 +114,8 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public float rSpeedBonus() {
-        return (float) (Math.pow(0.97D, mCoilLevel.getTier()) * Math.pow(0.93D, (uTimeAccelerationField + 1)));
+        return (float) Math
+            .min(0.1F, (Math.pow(0.97D, mCoilLevel.getTier()) * Math.pow(0.93D, (uTimeAccelerationField + 1))));
     }
 
     @Override
@@ -350,10 +351,11 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("用纯粹的能量扭曲物质的存在.")
             .addInfo("每个时空压缩场提供2^(等级-1)的额外并行.")
             .addInfo("并提供(0.15*等级)%的功耗减免.")
-            .addInfo("安装时间加速场后, 每级减少7%配方耗时(叠乘).")
-            .addInfo("线圈每提高1级, 额外减少3%配方耗时(叠乘).")
+            .addInfo("安装时间加速场后, 每级减少10%配方耗时(叠乘).")
+            .addInfo("线圈每提高1级, 同样减少10%配方耗时(叠乘).")
+            .addInfo("时间缩减的极限是原配方时间的10%.")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
-            .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.RESET + "来倍增总并行，同时不增加耗能")
+            .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.RESET + "来倍增总并行，同时不增加耗能.")
             .addInfo(Values.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(Values.StructureTooComplex)
@@ -372,11 +374,13 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     public String[] getInfoData() {
         String x = String.valueOf(uSpacetimeCompressionCount);
         String y = String.valueOf(uTimeAccelerationField);
+        String z = String.valueOf(uStarArrayCount);
         String[] o = super.getInfoData();
-        String[] n = new String[o.length + 2];
+        String[] n = new String[o.length + 3];
         System.arraycopy(o, 0, n, 0, o.length);
         n[o.length] = EnumChatFormatting.AQUA + "Spacetime Compression Field" + ": " + EnumChatFormatting.GOLD + x;
         n[o.length + 1] = EnumChatFormatting.AQUA + "Time Acceleration Field" + ": " + EnumChatFormatting.GOLD + y;
+        n[o.length + 2] = EnumChatFormatting.AQUA + "Star Array Count" + ": " + EnumChatFormatting.GOLD + z;
         return n;
     }
 
@@ -386,6 +390,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
         aNBT.setInteger("mRecipeMode", mRecipeMode);
         aNBT.setInteger("uSpacetimeCompressionField", uSpacetimeCompressionCount);
         aNBT.setInteger("uTimeAccelerationField", uTimeAccelerationField);
+        aNBT.setInteger("uStarArrayCount", uStarArrayCount);
     }
 
     @Override
@@ -394,6 +399,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
         uSpacetimeCompressionCount = aNBT.getInteger("uSpacetimeCompressionField");
         uTimeAccelerationField = aNBT.getInteger("uTimeAccelerationField");
+        uStarArrayCount = aNBT.getInteger("uStarArrayCount");
     }
 
     // endregion
