@@ -67,13 +67,13 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
 
     @Override
     public int rMaxParallel() {
-        int r = uStableField + 5, s = 2;
-        return (int) Math.max(1, Math.pow(s, r));
+        int r = uStableField + 7;
+        return (int) Math.max(1, Math.pow(2, r));
     }
 
     @Override
     public float rSpeedBonus() {
-        double t = 1.0 - 0.01 * (uStableField + 1);
+        double t = 1.0 - 0.02 * (uStableField + 1);
         return Math.min(1.0F, (float) Math.pow(t, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
@@ -222,7 +222,7 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .addInfo("星辉锻造台的控制器")
             .addInfo(EnumChatFormatting.RED + "不要试图去理解原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
-            .addInfo("没有在指定位置安装稳定器时，最大并行为16.")
+            .addInfo("没有在指定位置安装稳定器时，最大并行为64.")
             .addInfo("安装稳定器后, 最大并行=16*2^等级.")
             .addInfo("且电压每提高1级, 额外降低(等级*2)%配方耗时(叠乘).")
             .addSeparator()
