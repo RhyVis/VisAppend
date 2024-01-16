@@ -1,9 +1,9 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static gregtech.api.enums.TierEU.RECIPE_MV;
-import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
-import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_MV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.API.recipe.BartWorksRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;

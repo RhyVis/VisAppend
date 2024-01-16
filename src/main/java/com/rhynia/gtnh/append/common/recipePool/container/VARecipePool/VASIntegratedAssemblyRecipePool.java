@@ -1,22 +1,22 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.HOURS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_EV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_IV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_MAX;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UIV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UMV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.TICKS;
 import static gregtech.api.enums.Mods.GTPlusPlus;
-import static gregtech.api.enums.TierEU.RECIPE_EV;
-import static gregtech.api.enums.TierEU.RECIPE_IV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
-import static gregtech.api.enums.TierEU.RECIPE_MAX;
-import static gregtech.api.enums.TierEU.RECIPE_UEV;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.enums.TierEU.RECIPE_UIV;
-import static gregtech.api.enums.TierEU.RECIPE_UMV;
-import static gregtech.api.enums.TierEU.RECIPE_UV;
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
-import static gregtech.api.util.GT_RecipeBuilder.HOURS;
-import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
-import static gregtech.api.util.GT_RecipeBuilder.TICKS;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;

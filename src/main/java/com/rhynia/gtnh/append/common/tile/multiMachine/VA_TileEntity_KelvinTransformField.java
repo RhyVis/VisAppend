@@ -27,7 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -216,17 +216,17 @@ public class VA_TileEntity_KelvinTransformField
             .addInfo("且电压每提高1级, 降低5%配方耗时(叠乘计算).")
             .addInfo("热动力学解析模式下，基础最大并行为64.")
             .addInfo("且电压每提高1级, 增加16并行.")
-            .addInfo(Values.ChangeModeByScrewdriver)
+            .addInfo(CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(Values.StructureTooComplex)
-            .addInfo(Values.BluePrintTip)
+            .addInfo(CommonStrings.StructureTooComplex)
+            .addInfo(CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 3, false)
-            .addInputBus(Values.BluePrintInfo, 1)
-            .addInputHatch(Values.BluePrintInfo, 1)
-            .addOutputBus(Values.BluePrintInfo, 1)
-            .addOutputHatch(Values.BluePrintInfo, 1)
-            .addEnergyHatch(Values.BluePrintInfo, 2)
-            .toolTipFinisher(Values.VisAppendNuclear);
+            .addInputBus(CommonStrings.BluePrintInfo, 1)
+            .addInputHatch(CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(CommonStrings.BluePrintInfo, 1)
+            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(CommonStrings.VisAppendNuclear);
         return tt;
     }
 

@@ -27,7 +27,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -221,16 +221,16 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加32.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo(Values.ChangeModeByScrewdriver)
+            .addInfo(CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(Values.StructureTooComplex)
-            .addInfo(Values.BluePrintTip)
+            .addInfo(CommonStrings.StructureTooComplex)
+            .addInfo(CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(Values.BluePrintInfo, 1)
-            .addInputBus(Values.BluePrintInfo, 1)
-            .addOutputBus(Values.BluePrintInfo, 2)
-            .addEnergyHatch(Values.BluePrintInfo, 1)
-            .toolTipFinisher(Values.VisAppendGigaFac);
+            .addInputHatch(CommonStrings.BluePrintInfo, 1)
+            .addInputBus(CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(CommonStrings.BluePrintInfo, 2)
+            .addEnergyHatch(CommonStrings.BluePrintInfo, 1)
+            .toolTipFinisher(CommonStrings.VisAppendGigaFac);
         return tt;
     }
 

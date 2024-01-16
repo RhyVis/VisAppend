@@ -6,7 +6,7 @@ import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
-import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.api.util.enums.TextureSets;
 import com.rhynia.gtnh.append.common.VAItemList;
 
 import gregtech.api.gui.modularui.GT_UITextures;
@@ -20,7 +20,7 @@ public class AppendRecipeMaps {
     public static final RecipeMap<RecipeMapBackend> astralForgeRecipes = RecipeMapBuilder.of("va.recipe.astralForge")
         .maxIO(16, 16, 8, 8)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(79, 52)
         .neiTransferRect(80, 30, 15, 15)
@@ -38,7 +38,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.thermonuclearControl")
         .maxIO(4, 0, 2, 4)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(79, 52)
         .progressBar(GT_UITextures.PROGRESSBAR_MIXER, ProgressBar.Direction.CIRCULAR_CW)
@@ -55,7 +55,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.transcendentReactor")
         .maxIO(16, 6, 8, 6)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(84, 80)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
@@ -72,7 +72,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.integratedAssembly")
         .maxIO(12, 1, 8, 0)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(79 + 18 * 4, 8 + 18 * 4)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
@@ -90,7 +90,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.microAssembly")
         .maxIO(8, 1, 8, 0)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(79 + 18 * 4, 8 + 18 * 3)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
@@ -108,7 +108,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.superconductingAssembly")
         .maxIO(8, 1, 8, 0)
         .minInputs(1, 0)
-        .logo(Values.VA_LOGO_32)
+        .logo(TextureSets.VA_LOGO_32)
         .logoSize(17, 17)
         .logoPos(79 + 18 * 4, 8 + 18 * 3)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)

@@ -29,7 +29,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
@@ -226,15 +226,15 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .addInfo("安装稳定器后, 最大并行=16*2^等级.")
             .addInfo("且电压每提高1级, 额外降低(等级*2)%配方耗时(叠乘).")
             .addSeparator()
-            .addInfo(Values.StructureTooComplex)
-            .addInfo(Values.BluePrintTip)
+            .addInfo(CommonStrings.StructureTooComplex)
+            .addInfo(CommonStrings.BluePrintTip)
             .beginStructureBlock(5, 3, 5, false)
-            .addInputHatch(Values.BluePrintInfo, 1)
-            .addOutputHatch(Values.BluePrintInfo, 1)
-            .addInputBus(Values.BluePrintInfo, 1)
-            .addOutputBus(Values.BluePrintInfo, 1)
-            .addEnergyHatch(Values.BluePrintInfo, 2)
-            .toolTipFinisher(Values.VisAppendMagical);
+            .addInputHatch(CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(CommonStrings.BluePrintInfo, 1)
+            .addInputBus(CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(CommonStrings.BluePrintInfo, 1)
+            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(CommonStrings.VisAppendMagical);
         return tt;
     }
 

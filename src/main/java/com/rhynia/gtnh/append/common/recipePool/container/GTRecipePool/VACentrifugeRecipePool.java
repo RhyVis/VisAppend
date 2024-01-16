@@ -1,11 +1,11 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.api.util.Values.FullChance;
-import static gregtech.api.enums.TierEU.RECIPE_HV;
-import static gregtech.api.enums.TierEU.RECIPE_LV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
-import static gregtech.api.enums.TierEU.RECIPE_MV;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.FullChance;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_HV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_MV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
@@ -18,6 +18,8 @@ import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_Utility;
 import gtPlusPlus.api.recipe.GTPPRecipeMaps;
+import gtPlusPlus.core.material.ELEMENT;
+import gtPlusPlus.core.material.MISC_MATERIALS;
 
 public class VACentrifugeRecipePool implements IRecipePool {
 
@@ -65,6 +67,15 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(8 * SECONDS)
             .addTo(CF);
+        // 山铜
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Orichalcum.getDust(12))
+            .itemOutputs(Materials.Copper.getDust(10), VAMaterials.Astrium.get(OrePrefixes.dust, 4))
+            .outputChances(FullChance, 5000)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(4 * SECONDS)
+            .addTo(CF);
         // 深空冰
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.CallistoIce.getDust(4))
@@ -87,7 +98,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .outputChances(FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(21 * SECONDS)
+            .duration(16 * SECONDS)
             .addTo(CF);
         // 离心深空秘银
         GT_Values.RA.stdBuilder()
@@ -101,7 +112,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .outputChances(FullChance, FullChance, FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
-            .duration(21 * SECONDS)
+            .duration(16 * SECONDS)
             .addTo(CF);
         // 离心方钍石
         GT_Values.RA.stdBuilder()
@@ -110,8 +121,53 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .outputChances(FullChance, 2000)
             .noOptimize()
             .eut(RECIPE_HV)
-            .duration(15 * SECONDS)
+            .duration(8 * SECONDS)
             .addTo(CF);
+        // 离心金刚砂
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Emery.getDust(18))
+            .itemOutputs(Materials.Quartzite.getDust(10), Materials.Diamond.getDust(8))
+            .outputChances(FullChance, 7500)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(8 * SECONDS)
+            .addTo(CF);
+        // 离心幽冥毒晶
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Vyroxeres.getDust(7))
+            .itemOutputs(
+                Materials.Uranium235.getDust(3),
+                ELEMENT.getInstance().RHENIUM.getDust(2),
+                ELEMENT.getInstance().THALLIUM.getDust(2))
+            .outputChances(FullChance, 5000, 5000)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(8 * SECONDS)
+            .addTo(CF);
+        // 离心神秘蓝金
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Alduorite.getDust(16))
+            .itemOutputs(
+                Materials.ElectrumFlux.getDust(8),
+                Materials.Thaumium.getDust(2),
+                Materials.MysteriousCrystal.getDust(2),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 4))
+            .outputChances(FullChance, FullChance, 6500, 5000)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(8 * SECONDS)
+            .addTo(CF);
+        // 离心胶木
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Vulcanite.getDust(16))
+            .itemOutputs(Materials.RawRubber.getDust(8))
+            .fluidOutputs(
+                MISC_MATERIALS.ETHYL_CYANOACRYLATE.getFluidStack(16000),
+                Materials.AdvancedGlue.getFluid(8000))
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(16 * SECONDS)
+            .addTo(CFGTPP);
         // endregion
 
         // region 钨处理

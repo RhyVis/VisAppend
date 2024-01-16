@@ -19,7 +19,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.util.Values;
+import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
@@ -180,15 +180,15 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
             .addInfo("\"这里面也有能量?\"")
             .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
-            .addInfo(Values.StructureTooComplex)
-            .addInfo(Values.BluePrintTip)
+            .addInfo(CommonStrings.StructureTooComplex)
+            .addInfo(CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(Values.BluePrintInfo, 1)
-            .addInputBus(Values.BluePrintInfo, 1)
-            .addOutputBus(Values.BluePrintInfo, 1)
-            .addMaintenanceHatch(Values.BluePrintInfo, 3)
-            .addEnergyHatch(Values.BluePrintInfo, 2)
-            .toolTipFinisher(Values.VisAppendGigaFac);
+            .addInputHatch(CommonStrings.BluePrintInfo, 1)
+            .addInputBus(CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(CommonStrings.BluePrintInfo, 1)
+            .addMaintenanceHatch(CommonStrings.BluePrintInfo, 3)
+            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(CommonStrings.VisAppendGigaFac);
         return tt;
     }
 
