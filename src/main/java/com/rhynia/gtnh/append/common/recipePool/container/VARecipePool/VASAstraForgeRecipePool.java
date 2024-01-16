@@ -1,18 +1,17 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.Values.FullChance;
-import static gregtech.api.enums.OrePrefixes.dust;
-import static gregtech.api.enums.TierEU.RECIPE_EV;
-import static gregtech.api.enums.TierEU.RECIPE_HV;
-import static gregtech.api.enums.TierEU.RECIPE_IV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
-import static gregtech.api.enums.TierEU.RECIPE_UEV;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.enums.TierEU.RECIPE_UV;
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
-import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.FullChance;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_EV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_HV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_IV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
@@ -583,6 +582,38 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .eut(RECIPE_LuV)
             .duration(15 * SECONDS)
             .addTo(AF);
+        // 浸出渣
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                VAItemList.LensAstriumInfinity.get(0),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.LeachResidue.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Iridium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                Materials.Osmium.getDust(64),
+                WerkstoffLoader.Ruthenium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Ruthenium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Ruthenium.get(OrePrefixes.dust, 64),
+                Materials.Gold.getDust(48),
+                Materials.Gold.getDust(48),
+                Materials.Silicon.getDust(48),
+                Materials.Silicon.getDust(48))
+            .outputChances(8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 8000, 6000, 6000, 3000, 3000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * SECONDS)
+            .addTo(AF);
         // 锇渣
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -656,6 +687,53 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 Materials.Palladium.getDust(64),
                 Materials.Palladium.getDust(64),
                 Materials.Palladium.getDust(64))
+            .outputChances(
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                FullChance,
+                6000,
+                6000,
+                6000,
+                6000)
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(15 * SECONDS)
+            .addTo(AF);
+        // 粗制铑金属
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(8),
+                VAItemList.LensAstriumInfinity.get(0),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.CrudeRhMetall.get(OrePrefixes.dust, 64))
+            .itemOutputs(
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64),
+                WerkstoffLoader.Rhodium.get(OrePrefixes.dust, 64))
             .outputChances(
                 FullChance,
                 FullChance,
@@ -885,7 +963,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VAMaterials.Astrium.get(OrePrefixes.dust, 60),
                 Materials.Naquadah.getDust(60))
             .fluidInputs(Materials.Helium.getGas(120000), Materials.Quantium.getMolten(32 * INGOTS))
-            .itemOutputs(MyMaterial.orundum.get(dust, 64), MyMaterial.orundum.get(dust, 64))
+            .itemOutputs(MyMaterial.orundum.get(OrePrefixes.dust, 64), MyMaterial.orundum.get(OrePrefixes.dust, 64))
             .noOptimize()
             .eut(RECIPE_UV)
             .duration(100 * SECONDS)
@@ -897,14 +975,16 @@ public class VASAstraForgeRecipePool implements IRecipePool {
                 VAItemList.LensAstriumMagic.get(0),
                 VAItemList.LensAstriumInfinity.get(0),
                 WerkstoffLoader.Tiberium.get(OrePrefixes.lens, 0),
-                MyMaterial.orundum.get(dust, 64),
-                MyMaterial.orundum.get(dust, 64),
-                MyMaterial.orundum.get(dust, 64),
-                MyMaterial.orundum.get(dust, 64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64),
                 Materials.Naquadah.getDust(60),
                 VAMaterials.Astrium.get(OrePrefixes.dust, 64),
-                VAMaterials.AstralCatalystBase.get(dust, 12))
-            .itemOutputs(VAMaterials.Originium.get(dust, 64), VAMaterials.Originium.get(dust, 48))
+                VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 12))
+            .itemOutputs(
+                VAMaterials.Originium.get(OrePrefixes.dust, 64),
+                VAMaterials.Originium.get(OrePrefixes.dust, 48))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(90 * SECONDS)
@@ -919,22 +999,22 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(GT_Utility.getIntegratedCircuit(1), VAItemList.LensPrimoium.get(0))
                 .itemOutputs(
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)),
-                    VAMaterials.Astrium.get(dust, 8 * (i + 2)))
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)),
+                    VAMaterials.Astrium.get(OrePrefixes.dust, 8 * (i + 2)))
                 .fluidInputs(pWater[i].getFluid(16 * BUCKETS))
                 .fluidOutputs(
                     VAMaterials.Astrium.getMolten(12 * 8 * (i + 2) * INGOTS),

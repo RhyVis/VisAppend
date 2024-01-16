@@ -3,8 +3,8 @@ package com.rhynia.gtnh.append.common.tile.blockMachine;
 import static com.github.technus.tectech.thing.metaTileEntity.Textures.*;
 import static com.github.technus.tectech.util.CommonValues.TRANSFER_AT;
 import static com.github.technus.tectech.util.CommonValues.VN;
-import static com.rhynia.gtnh.append.api.util.Values.AddByAppend;
-import static com.rhynia.gtnh.append.api.util.Values.VA_LOGO_32;
+import static com.rhynia.gtnh.append.api.util.enums.CommonStrings.AddByAppend;
+import static com.rhynia.gtnh.append.api.util.enums.TextureSets.VA_LOGO_32;
 
 import java.util.function.Consumer;
 import java.util.function.Supplier;

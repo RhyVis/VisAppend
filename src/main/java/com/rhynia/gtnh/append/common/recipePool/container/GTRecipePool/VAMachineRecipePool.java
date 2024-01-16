@@ -1,9 +1,9 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static gregtech.api.enums.TierEU.RECIPE_UEV;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.util.GT_RecipeBuilder.HOURS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.HOURS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 import static gregtech.api.util.GT_RecipeConstants.AssemblyLine;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_ITEM;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_TIME;

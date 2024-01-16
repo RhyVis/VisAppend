@@ -1,12 +1,11 @@
-package com.rhynia.gtnh.append.api.util;
+package com.rhynia.gtnh.append.api.util.enums;
 
 import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 
 import net.minecraft.util.EnumChatFormatting;
 
-import com.gtnewhorizons.modularui.api.drawable.UITexture;
-
-public class Values {
+@SuppressWarnings("unused")
+public class CommonStrings {
 
     // 字段
     public static final String VisAppendID = MOD_ID;
@@ -50,9 +49,4 @@ public class Values {
     public static final String StructureTooComplex = "结构太复杂了!";
     public static final String ChangeModeByScrewdriver = "使用螺丝刀切换模式.";
 
-    // 数值
-    public static final int FullChance = 10000;
-
-    // 图标
-    public static final UITexture VA_LOGO_32 = UITexture.fullImage("append", "gui/picture/va_logo_32_t");
 }

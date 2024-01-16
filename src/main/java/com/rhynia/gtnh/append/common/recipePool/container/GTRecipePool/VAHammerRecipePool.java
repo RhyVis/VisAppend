@@ -1,11 +1,11 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static gregtech.api.enums.TierEU.RECIPE_LV;
-import static gregtech.api.enums.TierEU.RECIPE_LuV;
-import static gregtech.api.enums.TierEU.RECIPE_ZPM;
-import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
-import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;

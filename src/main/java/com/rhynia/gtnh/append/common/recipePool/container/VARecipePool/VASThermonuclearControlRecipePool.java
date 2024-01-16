@@ -1,13 +1,13 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static gregtech.api.enums.TierEU.RECIPE_UEV;
-import static gregtech.api.enums.TierEU.RECIPE_UHV;
-import static gregtech.api.enums.TierEU.RECIPE_UIV;
-import static gregtech.api.enums.TierEU.RECIPE_UMV;
-import static gregtech.api.enums.TierEU.RECIPE_UV;
-import static gregtech.api.util.GT_RecipeBuilder.BUCKETS;
-import static gregtech.api.util.GT_RecipeBuilder.INGOTS;
-import static gregtech.api.util.GT_RecipeBuilder.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UIV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UMV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
