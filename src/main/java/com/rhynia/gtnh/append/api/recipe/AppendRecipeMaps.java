@@ -4,6 +4,7 @@ import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.rhynia.gtnh.append.api.recipe.frontend.AstralForgeFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
+import com.rhynia.gtnh.append.api.recipe.frontend.SimpleFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
 import com.rhynia.gtnh.append.api.util.enums.TextureSets;
@@ -103,22 +104,18 @@ public class AppendRecipeMaps {
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)
         .build();
-    /** Superconducting Assembly (SA) Recipe */
-    public static final RecipeMap<RecipeMapBackend> superconductingAssemblyRecipes = RecipeMapBuilder
-        .of("va.recipe.superconductingAssembly")
-        .maxIO(8, 1, 8, 0)
-        .minInputs(1, 0)
-        .logo(TextureSets.VA_LOGO_32)
-        .logoSize(17, 17)
-        .logoPos(79 + 18 * 4, 8 + 18 * 3)
+    /** Void Energy Generator (VEG) Recipe */
+    public static final RecipeMap<RecipeMapBackend> voidEnergyGeneratorRecipes = RecipeMapBuilder
+        .of("va.recipe.voidEnergyGenerator")
+        .maxIO(2, 2, 2, 2)
+        .minInputs(1, 1)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(17, 17)
-        .progressBarPos(9 + 88, 27)
-        .neiTransferRect(9 + 88, 27, 17, 17)
+        .progressBarPos(79, 27)
+        .neiTransferRect(79, 27, 17, 17)
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.VoidEnergyGenerator.get(1))
-                .setMaxRecipesPerPage(1))
-        .neiRecipeBackgroundSize(170, 10 + 4 * 18)
-        .frontend(MicroAssemblyFrontend::new)
+                .setMaxRecipesPerPage(2))
+        .frontend(SimpleFrontend::new)
         .build();
 }

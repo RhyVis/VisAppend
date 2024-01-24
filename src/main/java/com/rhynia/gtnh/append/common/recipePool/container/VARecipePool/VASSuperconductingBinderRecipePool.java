@@ -15,7 +15,7 @@ import gregtech.api.interfaces.IRecipeMap;
 
 public class VASSuperconductingBinderRecipePool implements IRecipePool {
 
-    private final IRecipeMap SB = AppendRecipeMaps.superconductingAssemblyRecipes;
+    private final IRecipeMap SB = AppendRecipeMaps.voidEnergyGeneratorRecipes;
 
     @Override
     public void loadRecipesPostInit() {}
