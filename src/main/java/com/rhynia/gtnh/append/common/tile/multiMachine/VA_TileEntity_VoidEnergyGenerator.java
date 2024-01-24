@@ -10,32 +10,44 @@ import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.enums.GT_HatchElement.OutputHatch;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
+import java.io.Serial;
+import java.math.BigInteger;
+import java.util.HashMap;
+import java.util.Map;
+
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
+import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.Textures;
+import gregtech.api.interfaces.IGlobalWirelessEnergy;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Input;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
+import gregtech.api.recipe.check.SimpleCheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings2;
 
-public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBlockBase_EM {
+public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBlockBase_EM
+    implements IGlobalWirelessEnergy {
 
     // region Class Constructor
     public VA_TileEntity_VoidEnergyGenerator(int aID, String aName, String aNameRegional) {
@@ -54,13 +66,101 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     // region Processing Logic
 
+    private String sUUID = "";
+    private BigInteger pOutput = BigInteger.ZERO;
+    private boolean bWorking = false;
+    private final BigInteger pBaseOutputMultiply = BigInteger.valueOf(Integer.MAX_VALUE);
+    private final long pBaseAstriumBuffer = 1_000L;
+    private final long pAstriumRequirement = 1_000_000L;
+
+    private final Map<FluidStack, Long> pFluidMap = new HashMap<>() {
+
+        @Serial
+        private static final long serialVersionUID = -899844111188130L;
+        {
+            put(VAMaterials.Astrium.getMolten(1), 0L);
+            put(VAMaterials.AstriumInfinity.getMolten(1), 0L);
+            put(VAMaterials.AstriumMagic.getMolten(1), 0L);
+        }
+    };
+
+    private void pDrainFluid() {
+        for (GT_MetaTileEntity_Hatch_Input inputHatch : mInputHatches) {
+            FluidStack fluidInHatch = inputHatch.getFluid();
+            if (fluidInHatch == null) {
+                continue;
+            }
+            // Get fluid in hatches and store
+            for (FluidStack validFluid : pFluidMap.keySet()) {
+                if (fluidInHatch.isFluidEqual(validFluid)) {
+                    pFluidMap.put(validFluid, pFluidMap.get(validFluid) + (long) fluidInHatch.amount);
+                    inputHatch.setFillableStack(null);
+                }
+            }
+        }
+    }
+
+    @Override
+    public void onPreTick(IGregTechTileEntity aBaseMetaTileEntity, long aTick) {
+        super.onPreTick(aBaseMetaTileEntity, aTick);
+        if (aTick == 1) {
+            sUUID = String.valueOf(getBaseMetaTileEntity().getOwnerUuid());
+            String userName = getBaseMetaTileEntity().getOwnerName();
+            strongCheckOrAddUser(sUUID, userName);
+        }
+        if (!bWorking) {
+            if ((aTick % 20) == 0) {
+                pDrainFluid();
+            }
+        }
+    }
+
+    private long getAstrium() {
+        return pFluidMap.get(VAMaterials.Astrium.getMolten(1));
+    }
+
+    private void clearStorage(Werkstoff material) {
+        pFluidMap.put(material.getMolten(1), 0L);
+    }
+
+    private void clearStorage() {
+        pFluidMap.put(VAMaterials.Astrium.getMolten(1), 0L);
+        pFluidMap.put(VAMaterials.AstriumInfinity.getMolten(1), 0L);
+        pFluidMap.put(VAMaterials.AstriumMagic.getMolten(1), 0L);
+    }
+
     @Override
     @NotNull
     public CheckRecipeResult checkProcessing_EM() {
-        this.useLongPower = true;
-        this.mMaxProgresstime = 128;
-        this.lEUt = 128L * Integer.MAX_VALUE;
-        return CheckRecipeResultRegistry.GENERATING;
+        mMaxProgresstime = 128;
+
+        if (getAstrium() < pAstriumRequirement) {
+            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        }
+
+        pOutput = BigInteger.valueOf(getAstrium() / pBaseAstriumBuffer)
+            .multiply(pBaseOutputMultiply);
+
+        addEUToGlobalEnergyMap(sUUID, pOutput);
+
+        clearStorage(VAMaterials.Astrium);
+
+        bWorking = true;
+
+        return CheckRecipeResultRegistry.SUCCESSFUL;
+    }
+
+    public void outputAfterRecipe_EM() {
+        bWorking = false;
+        eRequiredData = 0L;
+        pOutput = BigInteger.ZERO;
+        super.outputAfterRecipe_EM();
+    }
+
+    @Override
+    public void stopMachine() {
+        super.stopMachine();
+        bWorking = false;
     }
     // endregion
 
