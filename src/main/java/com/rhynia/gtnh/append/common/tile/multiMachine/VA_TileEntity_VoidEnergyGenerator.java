@@ -24,7 +24,6 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
@@ -34,6 +33,7 @@ import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
+import gregtech.api.enums.Materials;
 import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.IGlobalWirelessEnergy;
 import gregtech.api.interfaces.ITexture;
@@ -80,13 +80,39 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     private final long pBaseAstriumInfinityBuffer = 500L;
     private final long pAstriumRequirement = 1_000_000L;
 
-    private final Map<FluidStack, Long> pFluidMap = new HashMap<>() {
+    private enum pProcessFluid {
 
-        private static final long serialVersionUID = -899844111188130L;
+        Astrium,
+        AstriumInfinity,
+        AstriumMagic;
+
+        private String getLocal() {
+            return this.toString();
+        }
+
+        private FluidStack getFluidStack() {
+            switch (this) {
+                case Astrium -> {
+                    return VAMaterials.Astrium.getMolten(1);
+                }
+                case AstriumMagic -> {
+                    return VAMaterials.AstriumMagic.getMolten(1);
+                }
+                case AstriumInfinity -> {
+                    return VAMaterials.AstriumInfinity.getMolten(1);
+                }
+            }
+            return Materials.Water.getFluid(1);
+        }
+    }
+
+    private final Map<pProcessFluid, Long> pFluidMap = new HashMap<>() {
+
+        private static final long serialVersionUID = 4449078463156399265L;
         {
-            put(VAMaterials.Astrium.getMolten(1), 0L);
-            put(VAMaterials.AstriumInfinity.getMolten(1), 0L);
-            put(VAMaterials.AstriumMagic.getMolten(1), 0L);
+            put(pProcessFluid.Astrium, 0L);
+            put(pProcessFluid.AstriumMagic, 0L);
+            put(pProcessFluid.AstriumInfinity, 0L);
         }
     };
 
@@ -97,8 +123,8 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
                 continue;
             }
             // Get fluid in hatches and store
-            for (FluidStack validFluid : pFluidMap.keySet()) {
-                if (fluidInHatch.isFluidEqual(validFluid)) {
+            for (pProcessFluid validFluid : pFluidMap.keySet()) {
+                if (fluidInHatch.isFluidEqual(validFluid.getFluidStack())) {
                     pFluidMap.put(validFluid, pFluidMap.get(validFluid) + (long) fluidInHatch.amount);
                     inputHatch.setFillableStack(null);
                 }
@@ -127,63 +153,68 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     }
 
     private long getAstrium() {
-        return pFluidMap.get(VAMaterials.Astrium.getMolten(1));
+        return pFluidMap.get(pProcessFluid.Astrium);
     }
 
     private long getAstriumMagic() {
-        return pFluidMap.get(VAMaterials.AstriumMagic.getMolten(1));
+        return pFluidMap.get(pProcessFluid.AstriumMagic);
     }
 
     private long getAstriumInfinity() {
-        return pFluidMap.get(VAMaterials.AstriumInfinity.getMolten(1));
+        return pFluidMap.get(pProcessFluid.AstriumInfinity);
     }
 
-    private void clearStorage(Werkstoff[] pPool) {
-        if (pPool != null) {
-            for (Werkstoff pType : pPool) {
-                pFluidMap.put(pType.getMolten(1), 0L);
-            }
-        }
-    }
-
-    private void pLateProcess(Werkstoff... pType) {
+    private void pLateProcess() {
         addEUToGlobalEnergyMap(sUUID, pOutput);
-        clearStorage(pType);
+        pClearStorage();
         bWorking = true;
     }
 
+    private void pLateProcess(pProcessFluid... pType) {
+        addEUToGlobalEnergyMap(sUUID, pOutput);
+        pClearStorage(pType);
+        bWorking = true;
+    }
+
+    private void pClearStorage() {
+        pFluidMap.put(pProcessFluid.Astrium, 0L);
+        pFluidMap.put(pProcessFluid.AstriumMagic, 0L);
+        pFluidMap.put(pProcessFluid.AstriumInfinity, 0L);
+    }
+
+    private void pClearStorage(pProcessFluid... pType) {
+        for (pProcessFluid pProcessFluids : pType) pFluidMap.put(pProcessFluids, 0L);
+    }
+
     private CheckRecipeResult pUseAstrium() {
-        final Werkstoff pType = VAMaterials.Astrium;
         if (getAstrium() < pAstriumRequirement) {
             return SimpleCheckRecipeResult.ofFailure("no_astrium");
         } else {
             pOutput = BigInteger.valueOf(getAstrium() / pBaseAstriumBuffer)
                 .multiply(pBaseOutputMultiply);
-            pLateProcess(pType);
+            pLateProcess(pProcessFluid.Astrium);
             return CheckRecipeResultRegistry.SUCCESSFUL;
         }
     }
 
     private CheckRecipeResult pUseAstriumMagic() {
-        final Werkstoff pType = VAMaterials.AstriumMagic;
         if (getAstriumMagic() < pAstriumRequirement) {
             return SimpleCheckRecipeResult.ofFailure("no_astrium");
         } else {
             pOutput = BigInteger.valueOf(getAstriumMagic() / pBaseAstriumMagicBuffer)
                 .multiply(pBaseOutputMultiply);
-            pLateProcess(pType);
+            pLateProcess(pProcessFluid.AstriumMagic);
             return CheckRecipeResultRegistry.SUCCESSFUL;
         }
     }
 
     private CheckRecipeResult pUseAstriumInfinity() {
-        final Werkstoff pType = VAMaterials.AstriumInfinity;
         if (getAstriumInfinity() < pAstriumRequirement) {
             return SimpleCheckRecipeResult.ofFailure("no_astrium");
         } else {
             pOutput = BigInteger.valueOf(getAstriumInfinity() / pBaseAstriumInfinityBuffer)
                 .multiply(pBaseOutputMultiply);
-            pLateProcess(pType);
+            pLateProcess(pProcessFluid.AstriumInfinity);
             return CheckRecipeResultRegistry.SUCCESSFUL;
         }
     }
@@ -198,7 +229,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
                     (getAstrium() / pBaseAstriumBuffer) + (getAstriumMagic() / pBaseAstriumMagicBuffer)
                         + (getAstriumInfinity() / pBaseAstriumInfinityBuffer))
                 .multiply(pBaseOutputMultiply);
-            pLateProcess(VAMaterials.Astrium, VAMaterials.AstriumMagic, VAMaterials.AstriumInfinity);
+            pLateProcess();
             return CheckRecipeResultRegistry.SUCCESSFUL;
         }
     }
@@ -404,7 +435,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
-        pFluidMap.forEach((key, value) -> aNBT.setLong("stored." + key.getUnlocalizedName(), value));
+        pFluidMap.forEach((key, value) -> aNBT.setLong("stored." + key.getLocal(), value));
         aNBT.setInteger("pMode", pMode);
         aNBT.setBoolean("bWorking", bWorking);
         aNBT.setByteArray("pOutput", pOutput.toByteArray());
@@ -413,7 +444,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
-        pFluidMap.forEach((key, value) -> pFluidMap.put(key, aNBT.getLong("stored." + key.getUnlocalizedName())));
+        pFluidMap.forEach((key, value) -> pFluidMap.put(key, aNBT.getLong("stored." + key.getLocal())));
         pMode = aNBT.getInteger("pMode");
         bWorking = aNBT.getBoolean("bWorking");
         pOutput = new BigInteger(aNBT.getByteArray("pOutput"));
