@@ -138,25 +138,17 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
         return pFluidMap.get(VAMaterials.AstriumInfinity.getMolten(1));
     }
 
-    private void clearStorage(@NotNull Werkstoff material) {
-        pFluidMap.put(material.getMolten(1), 0L);
+    private void clearStorage(Werkstoff[] pPool) {
+        if (pPool != null) {
+            for (Werkstoff pType : pPool) {
+                pFluidMap.put(pType.getMolten(1), 0L);
+            }
+        }
     }
 
-    private void clearStorage() {
-        pFluidMap.put(VAMaterials.Astrium.getMolten(1), 0L);
-        pFluidMap.put(VAMaterials.AstriumInfinity.getMolten(1), 0L);
-        pFluidMap.put(VAMaterials.AstriumMagic.getMolten(1), 0L);
-    }
-
-    private void pLateProcess() {
+    private void pLateProcess(Werkstoff... pType) {
         addEUToGlobalEnergyMap(sUUID, pOutput);
-        clearStorage();
-        bWorking = true;
-    }
-
-    private void pLateProcess(Werkstoff material) {
-        addEUToGlobalEnergyMap(sUUID, pOutput);
-        clearStorage(material);
+        clearStorage(pType);
         bWorking = true;
     }
 
@@ -206,7 +198,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
                     (getAstrium() / pBaseAstriumBuffer) + (getAstriumMagic() / pBaseAstriumMagicBuffer)
                         + (getAstriumInfinity() / pBaseAstriumInfinityBuffer))
                 .multiply(pBaseOutputMultiply);
-            pLateProcess();
+            pLateProcess(VAMaterials.Astrium, VAMaterials.AstriumMagic, VAMaterials.AstriumInfinity);
             return CheckRecipeResultRegistry.SUCCESSFUL;
         }
     }
