@@ -390,7 +390,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     @Override
     public String[] getInfoData() {
         String[] oStr = super.getInfoData();
-        String[] nStr = new String[oStr.length + 4];
+        String[] nStr = new String[oStr.length + 5];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
         nStr[oStr.length] = EnumChatFormatting.AQUA + "Mode" + ": " + EnumChatFormatting.GOLD + this.pMode;
         nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "Astrium"
@@ -405,6 +405,10 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
             + ": "
             + EnumChatFormatting.GOLD
             + this.getAstriumInfinity();
+        nStr[oStr.length + 3] = EnumChatFormatting.AQUA + "Probably Generates"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(pOutput);
         return nStr;
     }
 
