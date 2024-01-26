@@ -25,6 +25,7 @@ va.recipe.superconductingAssembly=超导组装
 
 append.AssemblyMatrix.mRecipeMode.0=集成组装模式
 append.AssemblyMatrix.mRecipeMode.1=微加工组装模式
+append.AssemblyMatrix.mRecipeMode.2=装配线模式
 
 append.UltimateHeater.mRecipeMode.0=热核反应模式
 append.UltimateHeater.mRecipeMode.1=超维度反应模式
