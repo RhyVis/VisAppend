@@ -10,7 +10,6 @@ import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.enums.GT_HatchElement.OutputHatch;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import java.io.Serial;
 import java.math.BigInteger;
 import java.util.HashMap;
 import java.util.Map;
@@ -83,7 +82,6 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     private final Map<FluidStack, Long> pFluidMap = new HashMap<>() {
 
-        @Serial
         private static final long serialVersionUID = -899844111188130L;
         {
             put(VAMaterials.Astrium.getMolten(1), 0L);
