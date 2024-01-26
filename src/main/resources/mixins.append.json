@@ -1,0 +1,20 @@
+{
+  "required": true,
+  "minVersion": "0.8.5-GTNH",
+  "package": "com.rhynia.gtnh.append.mixins",
+  "refmap": "mixins.append.refmap.json",
+  "target": "@env(DEFAULT)",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "u.ae.MixinQuantumCell",
+    "u.bw.MixinCAL",
+    "u.bw.MixinVoidMiner",
+    "u.gtpp.MixinElementalDuplicator",
+    "u.gtpp.MixinIndustrialMulti",
+    "u.gtpp.MixinIndustrialWashPlant",
+    "u.gtpp.MixinMacerator",
+    "u.gtpp.MixinMegaABS"
+  ],
+  "client": [],
+  "server": []
+}
