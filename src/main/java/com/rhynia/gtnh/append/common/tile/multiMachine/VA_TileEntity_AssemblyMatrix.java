@@ -16,6 +16,7 @@ import java.util.Collection;
 
 import javax.annotation.Nonnull;
 
+import com.Nxer.TwistSpaceTechnology.common.recipeMap.GTCMRecipe;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -75,19 +76,30 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        return mRecipeMode == 0 ? AppendRecipeMaps.integratedAssemblyRecipes : AppendRecipeMaps.microAssemblyRecipes;
+        switch (mRecipeMode) {
+            case 0 -> {
+                return AppendRecipeMaps.integratedAssemblyRecipes;
+            }
+            case 1 -> {
+                return AppendRecipeMaps.microAssemblyRecipes;
+            }
+            case 2 -> {
+                return GTCMRecipe.AssemblyLineWithoutResearchRecipe;
+            }
+        }
+        return null;
     }
 
     @Nonnull
     @Override
     public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
+        return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes, GTCMRecipe.AssemblyLineWithoutResearchRecipe);
     }
 
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 2);
+            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 3);
             GT_Utility.sendChatToPlayer(
                 aPlayer,
                 StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
