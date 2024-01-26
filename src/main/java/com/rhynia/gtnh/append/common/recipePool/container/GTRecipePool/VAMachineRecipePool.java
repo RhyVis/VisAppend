@@ -23,7 +23,7 @@ public class VAMachineRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         // Infinite Liquid Air Hatch
         GT_Values.RA.stdBuilder()
             .metadata(RESEARCH_ITEM, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 18999))

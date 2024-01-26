@@ -27,7 +27,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap LCR = RecipeMaps.multiblockChemicalReactorRecipes;
 
         // region 杂项

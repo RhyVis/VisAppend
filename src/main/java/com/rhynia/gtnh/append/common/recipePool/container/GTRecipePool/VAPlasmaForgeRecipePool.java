@@ -17,7 +17,7 @@ import gregtech.api.recipe.RecipeMaps;
 public class VAPlasmaForgeRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap PF = RecipeMaps.plasmaForgeRecipes;
 
         GT_Values.RA.stdBuilder()

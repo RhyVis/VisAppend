@@ -40,7 +40,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         int multiple = 1;
         // region 生物系
         // 生物超级电脑 UHV

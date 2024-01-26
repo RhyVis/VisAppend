@@ -32,7 +32,7 @@ public class VALaserEngraverRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap LE = RecipeMaps.laserEngraverRecipes;
 
         // region 光刻

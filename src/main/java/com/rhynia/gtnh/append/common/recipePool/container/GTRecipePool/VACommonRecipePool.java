@@ -24,7 +24,7 @@ public class VACommonRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap EMS = RecipeMaps.electroMagneticSeparatorRecipes;
         final IRecipeMap IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;
 

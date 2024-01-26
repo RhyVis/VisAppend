@@ -18,7 +18,7 @@ public class VAFusionRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap FS = RecipeMaps.fusionRecipes;
         // ACR
         GT_Values.RA.stdBuilder()

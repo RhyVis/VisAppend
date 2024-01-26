@@ -28,7 +28,7 @@ public class VAMixerRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap MX = RecipeMaps.mixerRecipes;
         final IRecipeMap MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
 

@@ -4,8 +4,14 @@ public interface IRecipePool {
 
     /**
      * Called at RecipeLoader
+     * <p>
+     * More commonly used
+     * </p>
      */
-    void loadRecipes();
+    void loadRecipesCompleteInit();
 
+    /**
+     * Called at RecipeLoader
+     */
     void loadRecipesPostInit();
 }

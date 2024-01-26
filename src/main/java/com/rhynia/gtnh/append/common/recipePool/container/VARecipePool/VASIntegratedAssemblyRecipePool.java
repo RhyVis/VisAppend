@@ -81,7 +81,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
     }
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         if (EnableWirelessRecipes) {
             loadWirelessHatchRecipes();
         }

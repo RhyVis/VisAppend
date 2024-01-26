@@ -34,3 +34,4 @@ append.HeatDeathSimulator.mRecipeMode.0=Vacuum Mode
 append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
 
 GT5U.gui.text.no_astrium=§7Not enough Astrium
+GT5U.gui.text.no_mode_set=No IC found for mode setting
