@@ -40,7 +40,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         // DTC Conf
         if (EnableDTCRecipes) {
             loadTRDTCRecipes();

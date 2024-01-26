@@ -67,7 +67,7 @@ public class VASAstraForgeRecipePool implements IRecipePool {
     }
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         // region 12号电路
         // 润滑油
         GT_Values.RA.stdBuilder()

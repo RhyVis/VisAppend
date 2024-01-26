@@ -97,7 +97,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
     }
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
 
         // region 特殊材料制造
         // 兰波顿核心

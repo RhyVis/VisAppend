@@ -29,7 +29,7 @@ public class VAHammerRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap HM = RecipeMaps.hammerRecipes;
 
         // region 杂项

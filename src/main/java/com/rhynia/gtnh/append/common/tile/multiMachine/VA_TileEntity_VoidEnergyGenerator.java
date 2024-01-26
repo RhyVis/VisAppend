@@ -17,6 +17,9 @@ import java.util.Map;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.MathHelper;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -26,6 +29,7 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
@@ -37,6 +41,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Input;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
@@ -69,8 +74,11 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     private String sUUID = "";
     private BigInteger pOutput = BigInteger.ZERO;
     private boolean bWorking = false;
+    private int pMode = 0;
     private final BigInteger pBaseOutputMultiply = BigInteger.valueOf(Integer.MAX_VALUE);
-    private final long pBaseAstriumBuffer = 1_000L;
+    private final long pBaseAstriumBuffer = 4_000L;
+    private final long pBaseAstriumMagicBuffer = 1_000L;
+    private final long pBaseAstriumInfinityBuffer = 500L;
     private final long pAstriumRequirement = 1_000_000L;
 
     private final Map<FluidStack, Long> pFluidMap = new HashMap<>() {
@@ -101,6 +109,11 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     }
 
     @Override
+    public RecipeMap<?> getRecipeMap() {
+        return AppendRecipeMaps.voidEnergyGeneratorRecipes;
+    }
+
+    @Override
     public void onPreTick(IGregTechTileEntity aBaseMetaTileEntity, long aTick) {
         super.onPreTick(aBaseMetaTileEntity, aTick);
         if (aTick == 1) {
@@ -119,7 +132,15 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
         return pFluidMap.get(VAMaterials.Astrium.getMolten(1));
     }
 
-    private void clearStorage(Werkstoff material) {
+    private long getAstriumMagic() {
+        return pFluidMap.get(VAMaterials.AstriumMagic.getMolten(1));
+    }
+
+    private long getAstriumInfinity() {
+        return pFluidMap.get(VAMaterials.AstriumInfinity.getMolten(1));
+    }
+
+    private void clearStorage(@NotNull Werkstoff material) {
         pFluidMap.put(material.getMolten(1), 0L);
     }
 
@@ -129,27 +150,101 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
         pFluidMap.put(VAMaterials.AstriumMagic.getMolten(1), 0L);
     }
 
+    private void pLateProcess() {
+        addEUToGlobalEnergyMap(sUUID, pOutput);
+        clearStorage();
+        bWorking = true;
+    }
+
+    private void pLateProcess(Werkstoff material) {
+        addEUToGlobalEnergyMap(sUUID, pOutput);
+        clearStorage(material);
+        bWorking = true;
+    }
+
+    private CheckRecipeResult pUseAstrium() {
+        final Werkstoff pType = VAMaterials.Astrium;
+        if (getAstrium() < pAstriumRequirement) {
+            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        } else {
+            pOutput = BigInteger.valueOf(getAstrium() / pBaseAstriumBuffer)
+                .multiply(pBaseOutputMultiply);
+            pLateProcess(pType);
+            return CheckRecipeResultRegistry.SUCCESSFUL;
+        }
+    }
+
+    private CheckRecipeResult pUseAstriumMagic() {
+        final Werkstoff pType = VAMaterials.AstriumMagic;
+        if (getAstriumMagic() < pAstriumRequirement) {
+            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        } else {
+            pOutput = BigInteger.valueOf(getAstriumMagic() / pBaseAstriumMagicBuffer)
+                .multiply(pBaseOutputMultiply);
+            pLateProcess(pType);
+            return CheckRecipeResultRegistry.SUCCESSFUL;
+        }
+    }
+
+    private CheckRecipeResult pUseAstriumInfinity() {
+        final Werkstoff pType = VAMaterials.AstriumInfinity;
+        if (getAstriumInfinity() < pAstriumRequirement) {
+            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        } else {
+            pOutput = BigInteger.valueOf(getAstriumInfinity() / pBaseAstriumInfinityBuffer)
+                .multiply(pBaseOutputMultiply);
+            pLateProcess(pType);
+            return CheckRecipeResultRegistry.SUCCESSFUL;
+        }
+    }
+
+    private CheckRecipeResult pUseAll() {
+        if (getAstrium() < pAstriumRequirement && getAstriumMagic() < pAstriumRequirement
+            && getAstriumInfinity() < pAstriumRequirement) {
+            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        } else {
+            pOutput = BigInteger
+                .valueOf(
+                    (getAstrium() / pBaseAstriumBuffer) + (getAstriumMagic() / pBaseAstriumMagicBuffer)
+                        + (getAstriumInfinity() / pBaseAstriumInfinityBuffer))
+                .multiply(pBaseOutputMultiply);
+            pLateProcess();
+            return CheckRecipeResultRegistry.SUCCESSFUL;
+        }
+    }
+
     @Override
     @NotNull
     public CheckRecipeResult checkProcessing_EM() {
         mMaxProgresstime = 128;
+        ItemStack pControl = getControllerSlot();
 
-        if (getAstrium() < pAstriumRequirement) {
-            return SimpleCheckRecipeResult.ofFailure("no_astrium");
+        if (GT_Utility.isAnyIntegratedCircuit(pControl)) {
+            pMode = MathHelper.clamp_int(pControl.getItemDamage(), 0, 24);
+        } else {
+            return SimpleCheckRecipeResult.ofFailure("no_mode_set");
         }
 
-        pOutput = BigInteger.valueOf(getAstrium() / pBaseAstriumBuffer)
-            .multiply(pBaseOutputMultiply);
-
-        addEUToGlobalEnergyMap(sUUID, pOutput);
-
-        clearStorage(VAMaterials.Astrium);
-
-        bWorking = true;
-
-        return CheckRecipeResultRegistry.SUCCESSFUL;
+        switch (pMode) {
+            case 1 -> {
+                return pUseAstrium();
+            }
+            case 2 -> {
+                return pUseAstriumMagic();
+            }
+            case 3 -> {
+                return pUseAstriumInfinity();
+            }
+            case 24 -> {
+                return pUseAll();
+            }
+            default -> {
+                return SimpleCheckRecipeResult.ofFailure("no_mode_set");
+            }
+        }
     }
 
+    @Override
     public void outputAfterRecipe_EM() {
         bWorking = false;
         eRequiredData = 0L;
@@ -159,8 +254,8 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     @Override
     public void stopMachine() {
-        super.stopMachine();
         bWorking = false;
+        super.stopMachine();
     }
     // endregion
 
@@ -292,5 +387,43 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
         return tt;
     }
 
+    @Override
+    public String[] getInfoData() {
+        String[] oStr = super.getInfoData();
+        String[] nStr = new String[oStr.length + 4];
+        System.arraycopy(oStr, 0, nStr, 0, oStr.length);
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "Mode" + ": " + EnumChatFormatting.GOLD + this.pMode;
+        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "Astrium"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + this.getAstrium();
+        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "Astrium Magic"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + this.getAstriumMagic();
+        nStr[oStr.length + 3] = EnumChatFormatting.AQUA + "Astrium Infinity"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + this.getAstriumInfinity();
+        return nStr;
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        pFluidMap.forEach((key, value) -> aNBT.setLong("stored." + key.getUnlocalizedName(), value));
+        aNBT.setInteger("pMode", pMode);
+        aNBT.setBoolean("bWorking", bWorking);
+        aNBT.setByteArray("pOutput", pOutput.toByteArray());
+        super.saveNBTData(aNBT);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        pFluidMap.forEach((key, value) -> pFluidMap.put(key, aNBT.getLong("stored." + key.getUnlocalizedName())));
+        pMode = aNBT.getInteger("pMode");
+        bWorking = aNBT.getBoolean("bWorking");
+        pOutput = new BigInteger(aNBT.getByteArray("pOutput"));
+        super.loadNBTData(aNBT);
+    }
     // endregion
 }

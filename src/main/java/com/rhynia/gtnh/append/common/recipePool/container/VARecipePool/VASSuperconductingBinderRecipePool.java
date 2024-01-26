@@ -21,7 +21,7 @@ public class VASSuperconductingBinderRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         // region 超导配方
 
         // 终极配方-测试

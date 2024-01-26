@@ -27,7 +27,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap CF = RecipeMaps.centrifugeRecipes;
         final IRecipeMap CFGTPP = GTPPRecipeMaps.centrifugeNonCellRecipes;
 

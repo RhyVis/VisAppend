@@ -22,7 +22,7 @@ public class VAElectrolyzeRecipePool implements IRecipePool {
     public void loadRecipesPostInit() {}
 
     @Override
-    public void loadRecipes() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap EC = RecipeMaps.electrolyzerRecipes;
 
         // region 焙烧粉还原
