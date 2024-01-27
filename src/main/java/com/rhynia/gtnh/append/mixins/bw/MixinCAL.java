@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.mixins.u.bw;
+package com.rhynia.gtnh.append.mixins.bw;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;

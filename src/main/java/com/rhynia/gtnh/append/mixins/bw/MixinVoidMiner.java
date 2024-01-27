@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.mixins.u.bw;
+package com.rhynia.gtnh.append.mixins.bw;
 
 import net.minecraftforge.fluids.FluidStack;
 

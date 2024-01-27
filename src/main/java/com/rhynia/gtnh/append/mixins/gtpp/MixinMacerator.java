@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.mixins.u.gtpp;
+package com.rhynia.gtnh.append.mixins.gtpp;
 
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
@@ -16,16 +16,16 @@ public class MixinMacerator {
 
     @ModifyConstant(method = "createProcessingLogic", constant = @Constant(floatValue = 1.0F / 1.6F))
     private float bh$rSpeedBounus(float c) {
-        return 1.0F / 3.0F;
+        return 1.0F / 8.0F;
     }
 
     @ModifyReturnValue(method = "createProcessingLogic", at = @At("RETURN"))
     private ProcessingLogic bh$injectEUModifier(ProcessingLogic o) {
-        return o.setEuModifier(1.0F / 4.0F);
+        return o.setEuModifier(1.0F / 10.0F);
     }
 
     @ModifyReturnValue(method = "getMaxParallelRecipes", at = @At("RETURN"))
     private int bh$rParallel(int o) {
-        return o * 8;
+        return o * 32;
     }
 }

@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
 import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.MINUTES;
 import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
 import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
 import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UIV;
@@ -225,7 +226,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(180 * SECONDS)
+            .duration(3 * MINUTES)
             .addTo(TC);
         // Np
         GT_Values.RA.stdBuilder()

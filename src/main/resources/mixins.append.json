@@ -6,14 +6,15 @@
   "target": "@env(DEFAULT)",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "u.ae.MixinQuantumCell",
-    "u.bw.MixinCAL",
-    "u.bw.MixinVoidMiner",
-    "u.gtpp.MixinElementalDuplicator",
-    "u.gtpp.MixinIndustrialMulti",
-    "u.gtpp.MixinIndustrialWashPlant",
-    "u.gtpp.MixinMacerator",
-    "u.gtpp.MixinMegaABS"
+    "ae.MixinQuantumCell",
+    "bw.MixinCAL",
+    "bw.MixinVoidMiner",
+    "gtpp.MixinElementalDuplicator",
+    "gtpp.MixinIndustrialMulti",
+    "gtpp.MixinIndustrialWashPlant",
+    "gtpp.MixinMacerator",
+    "gtpp.MixinMassFabricator",
+    "gtpp.MixinMegaABS"
   ],
   "client": [],
   "server": []

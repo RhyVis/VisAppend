@@ -13,6 +13,7 @@ import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Machine
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_KelvinTransformField;
+import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_ReinforcedAssemblyLine;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_UltimateHeater;
 import com.rhynia.gtnh.append.common.tile.multiMachine.VA_TileEntity_VoidEnergyGenerator;
 
@@ -34,6 +35,7 @@ public class MachineLoader {
     public static ItemStack AssemblyMatrix;
     public static ItemStack VoidEnergyGenerator;
     public static ItemStack KelvinTransformField;
+    public static ItemStack ReinforcedAssemblyLine;
     // endregion
 
     public static void loadMachines() {
@@ -44,6 +46,8 @@ public class MachineLoader {
         VoidEnergyGenerator = new VA_TileEntity_VoidEnergyGenerator(17504, "MultiVoidEnergyGenerator", "星辉能极差发电机")
             .getStackForm(1);
         KelvinTransformField = new VA_TileEntity_KelvinTransformField(17505, "MultiKelvinTransformField", "开尔文变换场")
+            .getStackForm(1);
+        ReinforcedAssemblyLine = new VA_TileEntity_ReinforcedAssemblyLine(17506, "MultiReinforcedAssemblyLine", "集成装配线")
             .getStackForm(1);
         // endregion
 
@@ -71,6 +75,7 @@ public class MachineLoader {
         VAItemList.AssemblyMatrix.set(AssemblyMatrix);
         VAItemList.VoidEnergyGenerator.set(VoidEnergyGenerator);
         VAItemList.KelvinTransformField.set(KelvinTransformField);
+        VAItemList.ReinforcedAssemblyLine.set(ReinforcedAssemblyLine);
         // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);

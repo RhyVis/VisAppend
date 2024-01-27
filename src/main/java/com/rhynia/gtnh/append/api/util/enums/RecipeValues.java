@@ -46,8 +46,17 @@ public class RecipeValues {
     // region Unit
     public static final int WILDCARD = 32767;
     // Time
-    public static final int HOURS = 20 * 60 * 60;
-    public static final int MINUTES = 20 * 60;
+    /**
+     * An hour
+     */
+    public static final int HOURS = 72000;
+    /**
+     * A minute
+     */
+    public static final int MINUTES = 120;
+    /**
+     * A second
+     */
     public static final int SECONDS = 20;
     public static final int TICKS = 1;
     // Item

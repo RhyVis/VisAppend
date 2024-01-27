@@ -41,7 +41,8 @@ public enum VAItemList implements IItemContainer {
     UltimateHeater,
     AssemblyMatrix,
     VoidEnergyGenerator,
-    KelvinTransformField;
+    KelvinTransformField,
+    ReinforcedAssemblyLine;
     // region Member Variables
 
     private boolean mHasNotBeenSet;
