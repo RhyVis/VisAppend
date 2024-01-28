@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.loader;
+package com.rhynia.gtnh.append.common.loader;
 
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VACentrifugeRecipePool;

@@ -28,7 +28,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
@@ -122,7 +122,6 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
             if (fluidInHatch == null) {
                 continue;
             }
-            // Get fluid in hatches and store
             for (pProcessFluid validFluid : pFluidMap.keySet()) {
                 if (fluidInHatch.isFluidEqual(validFluid.getFluidStack())) {
                     pFluidMap.put(validFluid, pFluidMap.get(validFluid) + (long) fluidInHatch.amount);
@@ -315,7 +314,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     @Override
     public IStructureDefinition<VA_TileEntity_VoidEnergyGenerator> getStructure_EM() {
         return StructureDefinition.<VA_TileEntity_VoidEnergyGenerator>builder()
-            .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement(
                 'A',
                 ofChain(
@@ -346,7 +345,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
     }
 
     // spotless:off
-    private final String[][] shape = new String[][]{
+    private final String[][] STRUCTURE = new String[][]{
         {"CCC","TDT","FFF"},
         {"C~C","ABA","FFF"},
         {"CCC","TTT","FFF"}
@@ -396,15 +395,15 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
             .addInfo("\"这里面也有能量?\"")
             .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 1)
-            .addMaintenanceHatch(CommonStrings.BluePrintInfo, 3)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
-            .toolTipFinisher(CommonStrings.VisAppendGigaFac);
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addMaintenanceHatch(VA_Values.CommonStrings.BluePrintInfo, 3)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendGigaFac);
         return tt;
     }
 

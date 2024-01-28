@@ -1,23 +1,23 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_IV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_LuV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UHV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UMV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_ZPM;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_IV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UMV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.recipeHelper.BWPart;
-import com.rhynia.gtnh.append.api.util.recipeHelper.GGChip;
-import com.rhynia.gtnh.append.api.util.recipeHelper.SolderMaterial;
+import com.rhynia.gtnh.append.api.util.enums.recipeHelper.BWPart;
+import com.rhynia.gtnh.append.api.util.enums.recipeHelper.GGChip;
+import com.rhynia.gtnh.append.api.util.enums.recipeHelper.SolderMaterial;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 

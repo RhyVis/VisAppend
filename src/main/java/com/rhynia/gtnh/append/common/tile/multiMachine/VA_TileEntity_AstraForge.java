@@ -29,7 +29,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import fox.spiteful.avaritia.blocks.LudicrousBlocks;
@@ -121,7 +121,7 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
     @Override
     public IStructureDefinition<VA_TileEntity_AstraForge> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_AstraForge>builder()
-            .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement('A', ofBlock(GregTech_API.sBlockCasings2, 9))
             .addElement(
                 'B',
@@ -164,15 +164,9 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
     @SuppressWarnings("SpellCheckingInspection")
-    private final String[][] shape = new String[][]{
+    private final String[][] STRUCTURE = new String[][]{
         {"  E  ","  G  ","EGFGE","  G  ","  E  "},
         {" D~D ","D   D","B C B","D   D"," DBD "},
         {" BBB ","BAAAB","BAAAB","BAAAB"," BBB "}
@@ -226,15 +220,15 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .addInfo("安装稳定器后, 最大并行=16*2^等级.")
             .addInfo("且电压每提高1级, 额外降低(等级*2)%配方耗时(叠乘).")
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(5, 3, 5, false)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addOutputHatch(CommonStrings.BluePrintInfo, 1)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 1)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
-            .toolTipFinisher(CommonStrings.VisAppendMagical);
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendMagical);
         return tt;
     }
 

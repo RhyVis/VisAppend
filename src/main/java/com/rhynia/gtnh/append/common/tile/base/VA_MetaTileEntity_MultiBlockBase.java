@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.common.tile.base;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumChatFormatting;
 
-import org.jetbrains.annotations.ApiStatus;
+import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
@@ -41,11 +41,20 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
         return true;
     }
 
+    /**
+     * Universal Hatch Adder
+     */
     @Override
     public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
         return super.addToMachineList(aTileEntity, aBaseCasingIndex)
             || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
     }
+
+    public boolean addEnergyInputToMachineListExtended(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
+        return super.addEnergyInputToMachineList(aTileEntity, aBaseCasingIndex)
+            || super.addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
+    }
+
     // endregion
 
     // region Override Helper
@@ -106,7 +115,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      *
      * @return if Perfect OC enabled
      */
-    @ApiStatus.OverrideOnly
+    @OverrideOnly
     protected boolean rPerfectOverclock() {
         return false;
     }
@@ -116,7 +125,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      *
      * @return Multiplier applied to total EU
      */
-    @ApiStatus.OverrideOnly
+    @OverrideOnly
     protected float rEUModifier() {
         return 1.0F;
     }
@@ -126,7 +135,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      *
      * @return Max parallel for the machine
      */
-    @ApiStatus.OverrideOnly
+    @OverrideOnly
     protected abstract int rMaxParallel();
 
     /**
@@ -134,7 +143,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      *
      * @return Multiplier applied to duration
      */
-    @ApiStatus.OverrideOnly
+    @OverrideOnly
     protected abstract float rSpeedBonus();
     // endregion
 

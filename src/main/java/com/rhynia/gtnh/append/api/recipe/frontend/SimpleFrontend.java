@@ -6,7 +6,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.math.Size;
-import com.rhynia.gtnh.append.api.util.enums.TextureSets;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 
 import gregtech.api.recipe.BasicUIPropertiesBuilder;
 import gregtech.api.recipe.NEIRecipePropertiesBuilder;
@@ -21,7 +21,7 @@ public class SimpleFrontend extends RecipeMapFrontend {
     public SimpleFrontend(BasicUIPropertiesBuilder uiPropertiesBuilder,
         NEIRecipePropertiesBuilder neiPropertiesBuilder) {
         super(
-            uiPropertiesBuilder.logo(TextureSets.VA_LOGO_32)
+            uiPropertiesBuilder.logo(VA_Values.TextureSets.VA_LOGO_32)
                 .logoSize(new Size(17, 17))
                 .logoPos(new Pos2d(79 + rowWidth * 4, 8 + rowWidth * 3)),
             neiPropertiesBuilder);

@@ -38,7 +38,7 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -201,7 +201,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     @Override
     public IStructureDefinition<VA_TileEntity_UltimateHeater> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_UltimateHeater>builder()
-            .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement('A', ofBlock(GregTech_API.sBlockCasings1, 12))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings1, 15))
             .addElement(
@@ -287,15 +287,9 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless: off
     @SuppressWarnings("SpellCheckingInspection")
-    private final String[][] shape = new String[][] {
+    private final String[][] STRUCTURE = new String[][] {
         { "               ", "      GGG      ", "    AA E AA    ", "   I   E   I   ", "  A    E    A  ",
             "  A    E    A  ", " G     E     G ", " GEEEEE~EEEEEG ", " G     E     G ", "  A    E    A  ",
             "  A    E    A  ", "   I   E   I   ", "    AA E AA    ", "      GGG      ", "               " },
@@ -356,17 +350,17 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("时间缩减的极限是原配方时间的10%.")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
             .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.RESET + "来倍增总并行，同时不增加耗能.")
-            .addInfo(CommonStrings.ChangeModeByScrewdriver)
+            .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(15, 3, 15, false)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addOutputHatch(CommonStrings.BluePrintInfo, 1)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 1)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 1)
-            .toolTipFinisher(CommonStrings.VisAppendNuclear);
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendNuclear);
         return tt;
     }
 

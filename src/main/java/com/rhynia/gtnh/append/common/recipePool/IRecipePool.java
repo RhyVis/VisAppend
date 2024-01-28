@@ -13,5 +13,6 @@ public interface IRecipePool {
     /**
      * Called at RecipeLoader
      */
+    @Deprecated
     void loadRecipesPostInit();
 }

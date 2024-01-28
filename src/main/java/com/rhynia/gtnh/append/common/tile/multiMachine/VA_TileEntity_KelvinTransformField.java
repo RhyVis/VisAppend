@@ -27,7 +27,7 @@ import net.minecraftforge.common.util.ForgeDirection;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -139,7 +139,7 @@ public class VA_TileEntity_KelvinTransformField
     @Override
     public IStructureDefinition<VA_TileEntity_KelvinTransformField> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_KelvinTransformField>builder()
-            .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement('B', ofBlock(GregTech_API.sBlockCasings4, 7))
             .addElement(
                 'C',
@@ -152,14 +152,8 @@ public class VA_TileEntity_KelvinTransformField
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
-    private final String[][] shape = new String[][]{
+    private final String[][] STRUCTURE = new String[][]{
         {"CCC","CCC","CCC"},
         {"C~C","CBC","CCC"},
         {"CCC","CCC","CCC"}
@@ -216,17 +210,17 @@ public class VA_TileEntity_KelvinTransformField
             .addInfo("且电压每提高1级, 降低5%配方耗时(叠乘计算).")
             .addInfo("热动力学解析模式下，基础最大并行为64.")
             .addInfo("且电压每提高1级, 增加16并行.")
-            .addInfo(CommonStrings.ChangeModeByScrewdriver)
+            .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 3, false)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputHatch(CommonStrings.BluePrintInfo, 1)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 2)
-            .toolTipFinisher(CommonStrings.VisAppendNuclear);
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendNuclear);
         return tt;
     }
 
