@@ -1,8 +1,6 @@
 package com.rhynia.gtnh.append.common.tile.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
@@ -28,7 +26,7 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -38,6 +36,7 @@ import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
+import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
@@ -47,7 +46,6 @@ import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
-import gregtech.common.blocks.GT_Block_Casings2;
 
 public class VA_TileEntity_ReinforcedAssemblyLine
     extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_ReinforcedAssemblyLine> {
@@ -87,22 +85,24 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @Override
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
                 ItemStack tDataStick = getControllerSlot();
+                // Check if DataStick exists
                 if (tDataStick == null || !tDataStick.isItemEqual(ItemList.Tool_DataStick.get(1))) {
                     return Stream.empty();
                 }
-
+                // Check if Recipe valid
                 GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
                     .findAssemblyLineRecipeFromDataStick(tDataStick, false);
                 if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
                     return Stream.empty();
                 }
-                GT_Recipe.GT_Recipe_WithAlt pRecipe = getGtRecipeWithAlt(tLookupResult);
+                // Give out recipe
+                // TODO: Problem exists that when not given enough inputs, an error will be thrown
+                GT_Recipe.GT_Recipe_WithAlt pRecipe = getGTRecipe(tLookupResult);
                 return Stream.of(pRecipe);
             }
 
             @NotNull
-            private static GT_Recipe.GT_Recipe_WithAlt getGtRecipeWithAlt(
-                GT_AssemblyLineUtils.LookupResult tLookupResult) {
+            private static GT_Recipe.GT_Recipe_WithAlt getGTRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
                 GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
                 return new GT_Recipe.GT_Recipe_WithAlt(
                     false,
@@ -122,12 +122,12 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     public int rMaxParallel() {
-        return 8 * GT_Utility.getTier(this.getMaxInputVoltage());
+        return 2 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     @Override
     public float rSpeedBonus() {
-        return (float) Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage()));
+        return (float) Math.max(0.1F, Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
     @Override
@@ -148,7 +148,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     // endregion
 
     // region Structure
-    private final int hOffset = 1, vOffset = 2, dOffset = 0;
+    private final int hOffset = 0, vOffset = 1, dOffset = 0;
 
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
@@ -183,47 +183,45 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     public IStructureDefinition<VA_TileEntity_ReinforcedAssemblyLine> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_ReinforcedAssemblyLine>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
+            .addElement('A', Glasses.chainAllGlasses())
             .addElement(
-                'A',
-                ofChain(
-                    ofBlockUnlocalizedName("IC2", "blockAlloyGlass", 0, true),
-                    ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
-                    // Warded Glass
-                    ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
-            .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
-            .addElement(
-                'C',
+                'B',
                 GT_HatchElementBuilder.<VA_TileEntity_ReinforcedAssemblyLine>builder()
-                    .atLeast(InputBus, InputHatch, Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addToMachineList)
+                    .atLeast(Energy.or(ExoticEnergy))
+                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addEnergyInputToMachineListExtended)
                     .dot(1)
-                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
-                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
-            .addElement('D', ofBlock(GregTech_API.sBlockCasings3, 10))
+                    .casingIndex(16)
+                    .buildAndChain(GregTech_API.sBlockCasings2, 0))
+            .addElement('C', ofBlock(GregTech_API.sBlockCasings2, 5))
+            .addElement('D', ofBlock(GregTech_API.sBlockCasings2, 9))
+            .addElement('E', ofBlock(GregTech_API.sBlockCasings3, 10))
             .addElement(
                 'F',
                 GT_HatchElementBuilder.<VA_TileEntity_ReinforcedAssemblyLine>builder()
-                    .atLeast(OutputBus)
-                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addToMachineList)
+                    .atLeast(InputBus, InputHatch)
+                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addInputToMachineList)
                     .dot(2)
-                    .casingIndex(((GT_Block_Casings2) GregTech_API.sBlockCasings2).getTextureIndex(9))
-                    .buildAndChain(GregTech_API.sBlockCasings2, 9))
-            .addElement('T', ofBlock(GregTech_API.sBlockCasings2, 9))
+                    .casingIndex(16)
+                    .buildAndChain(GregTech_API.sBlockCasings2, 0))
+            .addElement(
+                'G',
+                GT_HatchElementBuilder.<VA_TileEntity_ReinforcedAssemblyLine>builder()
+                    .atLeast(OutputBus)
+                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addOutputToMachineList)
+                    .dot(3)
+                    .casingIndex(16)
+                    .buildAndChain(GregTech_API.sBlockCasings2, 0))
+            .addElement('H', ofBlock(GregTech_API.sBlockCasings2, 0))
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
+    @SuppressWarnings("SpellCheckingInspection")
     private final String[][] STRUCTURE = new String[][]{
-        {" D "," D "," D "," D "," D "," D "," D "," D "," D "},
-        {"CCC","CTC","CTC","CTC","CTC","CTC","CTC","CTC","FFF"},
-        {"C~C","ABA","ABA","ABA","ABA","ABA","ABA","ABA","FFF"},
-        {"CCC","TTT","TTT","TTT","TTT","TTT","TTT","TTT","FFF"}
+        {"                ","BBBBBBBBBBBBBBBB","                "},
+        {"~EEEEEEEEEEEEEEE","DDDDDDDDDDDDDDDD","EEEEEEEEEEEEEEEE"},
+        {"AAAAAAAAAAAAAAAA","CCCCCCCCCCCCCCCC","AAAAAAAAAAAAAAAA"},
+        {"HHHHHHHHHHHHHHHH","FFFFFFFFFFFFFFFG","HHHHHHHHHHHHHHHH"}
     };
     //spotless:on
 
@@ -233,7 +231,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
         if (sideDirection == facingDirection) {
             if (active) return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 0)),
                 TextureFactory.builder()
                     .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE_ACTIVE)
                     .extFacing()
@@ -245,7 +243,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .build() };
             return new ITexture[] {
                 Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)),
+                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 0)),
                 TextureFactory.builder()
                     .addIcon(Textures.BlockIcons.OVERLAY_FRONT_ASSEMBLY_LINE)
                     .extFacing()
@@ -257,7 +255,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .build() };
         }
         return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 9)) };
+            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 0)) };
     }
     // endregion
 
@@ -267,21 +265,21 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("装配线")
-            .addInfo("集成装配线的控制器")
-            .addInfo("仅能执行一个配方, 但更加高效.")
+            .addInfo("复式装配线的控制器")
+            .addInfo("仅能执行一个配方, 但更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 最大并行增加8.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo(CommonStrings.ChangeModeByScrewdriver)
+            .addInfo("电压每提高1级, 最大并行增加2.")
+            .addInfo("电压每提高1级, 额外降低5%配方耗时(叠乘), 最高90%加速.")
+            .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
-            .beginStructureBlock(3, 4, 9, false)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 2)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 1)
-            .toolTipFinisher(CommonStrings.VisAppendGigaFac);
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
+            .beginStructureBlock(16, 4, 3, false)
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 3)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendGigaFac);
         return tt;
     }
 

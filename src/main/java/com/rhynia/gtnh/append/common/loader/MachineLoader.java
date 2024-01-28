@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.loader;
+package com.rhynia.gtnh.append.common.loader;
 
 import net.minecraft.item.ItemStack;
 
@@ -47,7 +47,7 @@ public class MachineLoader {
             .getStackForm(1);
         KelvinTransformField = new VA_TileEntity_KelvinTransformField(17505, "MultiKelvinTransformField", "开尔文变换场")
             .getStackForm(1);
-        ReinforcedAssemblyLine = new VA_TileEntity_ReinforcedAssemblyLine(17506, "MultiReinforcedAssemblyLine", "集成装配线")
+        ReinforcedAssemblyLine = new VA_TileEntity_ReinforcedAssemblyLine(17506, "MultiReinforcedAssemblyLine", "复式装配线")
             .getStackForm(1);
         // endregion
 

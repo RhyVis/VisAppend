@@ -1,6 +1,6 @@
 package com.rhynia.gtnh.append.common.tile.base;
 
-import static com.rhynia.gtnh.append.api.util.enums.CommonStrings.AddByAppend;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.CommonStrings.AddByAppend;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;

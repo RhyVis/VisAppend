@@ -28,7 +28,8 @@ import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.api.util.enums.CommonStrings;
+import com.rhynia.gtnh.append.api.util.enums.VA_Mods;
+import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -84,7 +85,9 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
                 return AppendRecipeMaps.microAssemblyRecipes;
             }
             case 2 -> {
-                return GTCMRecipe.AssemblyLineWithoutResearchRecipe;
+                if (VA_Mods.TwistSpaceTechnology.isModLoaded()) {
+                    return GTCMRecipe.AssemblyLineWithoutResearchRecipe;
+                } else return AppendRecipeMaps.integratedAssemblyRecipes;
             }
         }
         return null;
@@ -93,10 +96,14 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     @Nonnull
     @Override
     public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        return Arrays.asList(
-            AppendRecipeMaps.integratedAssemblyRecipes,
-            AppendRecipeMaps.microAssemblyRecipes,
-            GTCMRecipe.AssemblyLineWithoutResearchRecipe);
+        if (VA_Mods.TwistSpaceTechnology.isModLoaded()) {
+            return Arrays.asList(
+                AppendRecipeMaps.integratedAssemblyRecipes,
+                AppendRecipeMaps.microAssemblyRecipes,
+                GTCMRecipe.AssemblyLineWithoutResearchRecipe);
+        } else {
+            return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
+        }
     }
 
     @Override
@@ -146,7 +153,7 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     @Override
     public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
-            .addShape(STRUCTURE_PIECE_MAIN, transpose(shape))
+            .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement(
                 'A',
                 ofChain(
@@ -176,14 +183,8 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
             .build();
     }
 
-    @Override
-    public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
-        return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
-    }
-
     // spotless:off
-    private final String[][] shape = new String[][]{
+    private final String[][] STRUCTURE = new String[][]{
         {"CCC","CDC","CDC","CDC","CDC","CDC","FFF"},
         {"C~C","ABA","ABA","ABA","ABA","ABA","FFF"},
         {"CCC","TTT","TTT","TTT","TTT","TTT","FFF"}
@@ -233,19 +234,18 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("组装矩阵的控制器")
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
-            .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加32.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
-            .addInfo(CommonStrings.ChangeModeByScrewdriver)
+            .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
-            .addInfo(CommonStrings.StructureTooComplex)
-            .addInfo(CommonStrings.BluePrintTip)
+            .addInfo(VA_Values.CommonStrings.StructureTooComplex)
+            .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 7, false)
-            .addInputHatch(CommonStrings.BluePrintInfo, 1)
-            .addInputBus(CommonStrings.BluePrintInfo, 1)
-            .addOutputBus(CommonStrings.BluePrintInfo, 2)
-            .addEnergyHatch(CommonStrings.BluePrintInfo, 1)
-            .toolTipFinisher(CommonStrings.VisAppendGigaFac);
+            .addInputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 2)
+            .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .toolTipFinisher(VA_Values.CommonStrings.VisAppendGigaFac);
         return tt;
     }
 

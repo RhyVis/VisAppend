@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.loader;
+package com.rhynia.gtnh.append.common.loader;
 
 import com.github.bartimaeusnek.bartworks.API.WerkstoffAdderRegistry;
 import com.rhynia.gtnh.append.common.block.BlockRegister;

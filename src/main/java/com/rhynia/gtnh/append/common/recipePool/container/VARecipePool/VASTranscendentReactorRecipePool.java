@@ -1,13 +1,13 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.BUCKETS;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_MAX;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UEV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UIV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UMV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.RECIPE_UXV;
-import static com.rhynia.gtnh.append.api.util.enums.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_MAX;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UIV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UMV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UXV;
+import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;
