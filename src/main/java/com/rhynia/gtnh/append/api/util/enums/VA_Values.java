@@ -12,6 +12,8 @@ import gregtech.api.enums.GT_Values;
 public class VA_Values {
 
     public static RecipeValues RV;
+    public static TextureSets TS;
+    public static CommonStrings CS;
 
     public static class RecipeValues {
 

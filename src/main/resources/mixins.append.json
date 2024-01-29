@@ -11,6 +11,7 @@
     "bw.MixinMegaMultiBase",
     "bw.MixinVoidMiner",
     "gtpp.MixinElementalDuplicator",
+    "gtpp.MixinIndustrialFluidHeater",
     "gtpp.MixinIndustrialMulti",
     "gtpp.MixinIndustrialWashPlant",
     "gtpp.MixinMacerator",
