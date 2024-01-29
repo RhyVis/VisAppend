@@ -47,8 +47,6 @@ import gregtech.api.util.GT_Utility;
 public class VA_TileEntity_ReinforcedAssemblyLine
     extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_ReinforcedAssemblyLine> {
 
-    private ItemStack currentTargetItem;
-
     // region Class Constructor
     public VA_TileEntity_ReinforcedAssemblyLine(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
@@ -95,7 +93,6 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 // Give out recipe
                 // TODO: Problem exists that when not given enough inputs, an error will be thrown
                 GT_Recipe.GT_Recipe_WithAlt pRecipe = getGTRecipe(tLookupResult);
-                currentTargetItem = pRecipe.mOutputs[0];
                 return Stream.of(pRecipe);
             }
 
