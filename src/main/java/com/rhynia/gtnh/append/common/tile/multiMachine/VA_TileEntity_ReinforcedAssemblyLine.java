@@ -14,11 +14,8 @@ import java.util.stream.Stream;
 import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
-import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
@@ -50,7 +47,7 @@ import gregtech.api.util.GT_Utility;
 public class VA_TileEntity_ReinforcedAssemblyLine
     extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_ReinforcedAssemblyLine> {
 
-    public byte mRecipeMode = 0;
+    private ItemStack currentTargetItem;
 
     // region Class Constructor
     public VA_TileEntity_ReinforcedAssemblyLine(int aID, String aName, String aNameRegional) {
@@ -98,6 +95,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 // Give out recipe
                 // TODO: Problem exists that when not given enough inputs, an error will be thrown
                 GT_Recipe.GT_Recipe_WithAlt pRecipe = getGTRecipe(tLookupResult);
+                currentTargetItem = pRecipe.mOutputs[0];
                 return Stream.of(pRecipe);
             }
 
@@ -133,16 +131,6 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @Override
     public RecipeMap<?> getRecipeMap() {
         return RecipeMaps.assemblylineVisualRecipes;
-    }
-
-    @Override
-    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
-        if (getBaseMetaTileEntity().isServerSide()) {
-            this.mRecipeMode = (byte) ((this.mRecipeMode + 1) % 3);
-            GT_Utility.sendChatToPlayer(
-                aPlayer,
-                StatCollector.translateToLocal("append.AssemblyMatrix.mRecipeMode." + this.mRecipeMode));
-        }
     }
 
     // endregion
@@ -265,7 +253,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("装配线")
-            .addInfo("综合装配线的控制器")
+            .addInfo("复合装配线的控制器")
             .addInfo("仅能执行一个配方, 但更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加2.")
@@ -283,16 +271,5 @@ public class VA_TileEntity_ReinforcedAssemblyLine
         return tt;
     }
 
-    @Override
-    public void saveNBTData(NBTTagCompound aNBT) {
-        super.saveNBTData(aNBT);
-        aNBT.setInteger("mRecipeMode", mRecipeMode);
-    }
-
-    @Override
-    public void loadNBTData(final NBTTagCompound aNBT) {
-        super.loadNBTData(aNBT);
-        mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
-    }
     // endregion
 }
