@@ -127,7 +127,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     public float rSpeedBonus() {
-        return (float) Math.max(0.1F, Math.pow(0.95, GT_Utility.getTier(this.getMaxInputVoltage())));
+        return (float) Math.max(0.3F, Math.pow(0.9, GT_Utility.getTier(this.getMaxInputVoltage())));
     }
 
     @Override
@@ -265,11 +265,11 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("装配线")
-            .addInfo("复式装配线的控制器")
+            .addInfo("综合装配线的控制器")
             .addInfo("仅能执行一个配方, 但更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加2.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时(叠乘), 最高90%加速.")
+            .addInfo("电压每提高1级, 额外降低10%配方耗时(叠乘), 最高70%加速.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)

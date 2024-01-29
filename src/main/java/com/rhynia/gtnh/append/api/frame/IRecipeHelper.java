@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.api.util;
+package com.rhynia.gtnh.append.api.frame;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

@@ -234,25 +234,15 @@ public class VASAstraForgeRecipePool implements IRecipePool {
         // SiO2
         Materials[] SiliconDioxide = { Materials.SiliconDioxide, Materials.NetherQuartz, Materials.CertusQuartz,
             Materials.Quartzite };
-        for (Materials materials : SiliconDioxide) {
+        for (Materials s : SiliconDioxide) {
+            ItemStack[] inputArray = new ItemStack[16];
+            inputArray[0] = GT_Utility.getIntegratedCircuit(8);
+            inputArray[1] = VAItemList.LensAstriumInfinity.get(0);
+            for (int j = 2; j < 16; j++) {
+                inputArray[j] = s.getDust(64);
+            }
             GT_Values.RA.stdBuilder()
-                .itemInputs(
-                    GT_Utility.getIntegratedCircuit(8),
-                    VAItemList.LensAstriumInfinity.get(0),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64),
-                    materials.getDust(64))
+                .itemInputs(inputArray)
                 .itemOutputs(
                     Materials.Silicon.getDust(64),
                     Materials.Silicon.getDust(64),
