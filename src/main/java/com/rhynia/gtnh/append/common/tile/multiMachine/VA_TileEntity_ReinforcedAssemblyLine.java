@@ -71,7 +71,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @NotNull
             @Override
             public CheckRecipeResult process() {
-                setEuModifier(rEUModifier());
+                setSpeedBonus(rSpeedBonus());
                 setMaxParallel(rMaxParallel());
                 return super.process();
             }
