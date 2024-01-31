@@ -1,13 +1,13 @@
 package com.rhynia.gtnh.append.api.recipe;
 
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
+import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.recipe.frontend.AstralForgeFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.SimpleFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
-import com.rhynia.gtnh.append.api.util.enums.VA_Values;
 import com.rhynia.gtnh.append.common.VAItemList;
 
 import gregtech.api.gui.modularui.GT_UITextures;

@@ -13,17 +13,22 @@ import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_Fusi
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.stream.Stream;
+
+import javax.annotation.Nonnull;
+import javax.annotation.Nullable;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
+import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.util.enums.VA_Values;
+import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -38,8 +43,6 @@ import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_DataAccess;
 import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
-import gregtech.api.recipe.RecipeMapBackend;
-import gregtech.api.recipe.RecipeMapBuilder;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
@@ -70,51 +73,58 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     // endregion
 
     // region Processing Logic
-    /**
-     * This is the temp container of recipes used in RAL
-     */
-    private static final RecipeMap<RecipeMapBackend> tempMapRAL = RecipeMapBuilder.of("va.recipe.tempMapRAL")
-        .disableOptimize()
-        .maxIO(16, 1, 4, 0)
-        .disableRegisterNEI()
-        .build();
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
         return new ProcessingLogic() {
 
-            @NotNull
             @Override
+            @NotNull
             public CheckRecipeResult process() {
                 ArrayList<ItemStack> tDataStickCheckList = getDataItems(2);
                 if (tDataStickCheckList.isEmpty()) {
                     return CheckRecipeResultRegistry.NO_DATA_STICKS;
                 }
-                // Fill RecipeMaps with recipes given by data sticks
-                pFillRecipeMap(tDataStickCheckList);
-                // All set
-                setRecipeMap(tempMapRAL);
                 setSpeedBonus(rSpeedBonus());
                 setMaxParallel(rMaxParallel());
                 return super.process();
             }
 
-            private void pFillRecipeMap(@NotNull ArrayList<ItemStack> tDataStickList) {
-                // Remove all recipes previously exist
-                tempMapRAL.getBackend()
-                    .clearRecipes();
-                // This is all-selection mode
-                for (ItemStack tDataStick : tDataStickList) {
-                    // Check if Recipe valid
-                    GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
-                        .findAssemblyLineRecipeFromDataStick(tDataStick, false);
-                    if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
-                        continue;
+            @Override
+            @Nonnull
+            protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
+                ArrayList<ItemStack> tDataStickList = getDataItems(2);
+                ArrayList<GT_Recipe> pDataStickRecipes = new ArrayList<>();
+
+                if (!tDataStickList.isEmpty()) {
+                    for (ItemStack tDataStick : tDataStickList) {
+                        GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
+                            .findAssemblyLineRecipeFromDataStick(tDataStick, false);
+                        if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
+                            continue;
+                        }
+                        GT_Recipe.GT_Recipe_WithAlt pRecipe = transformRecipe(tLookupResult);
+                        pDataStickRecipes.add(pRecipe);
                     }
-                    // Give out recipe to list
-                    GT_Recipe.GT_Recipe_WithAlt pRecipe = transformRecipe(tLookupResult);
-                    tempMapRAL.addRecipe(pRecipe);
+
+                    if (lastRecipe != null && examineRecipe(lastRecipe, inputItems, inputFluids)) {
+                        pDataStickRecipes.add(lastRecipe);
+                    }
+
+                    if (!pDataStickRecipes.isEmpty()) {
+                        return pDataStickRecipes.stream()
+                            .filter(recipe -> examineRecipe(recipe, inputItems, inputFluids));
+                    }
                 }
+
+                return Stream.empty();
+            }
+
+            private boolean examineRecipe(GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
+                if (recipe.mEnabled && !recipe.mFakeRecipe) {
+                    return recipe.isRecipeInputEqual(false, false, inputFluid, inputItem);
+                }
+                return false;
             }
 
             @NotNull

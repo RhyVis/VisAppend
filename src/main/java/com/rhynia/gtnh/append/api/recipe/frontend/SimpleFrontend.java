@@ -6,7 +6,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 import com.gtnewhorizons.modularui.api.math.Pos2d;
 import com.gtnewhorizons.modularui.api.math.Size;
-import com.rhynia.gtnh.append.api.util.enums.VA_Values;
+import com.rhynia.gtnh.append.api.enums.VA_Values;
 
 import gregtech.api.recipe.BasicUIPropertiesBuilder;
 import gregtech.api.recipe.NEIRecipePropertiesBuilder;

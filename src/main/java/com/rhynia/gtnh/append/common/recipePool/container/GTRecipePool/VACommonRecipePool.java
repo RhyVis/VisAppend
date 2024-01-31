@@ -1,9 +1,9 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.BUCKETS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_MV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_MV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.API.recipe.BartWorksRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;
