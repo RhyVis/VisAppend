@@ -68,10 +68,20 @@ public class VALaserEngraverRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(15 * SECONDS)
             .addTo(LE);
+        // 生物活性晶圆
+        GT_Values.RA.stdBuilder()
+            .itemInputs(ItemList.Circuit_Silicon_Wafer6.get(1), VAItemList.LensAstriumMagic.get(0))
+            .itemOutputs(ItemList.Circuit_Wafer_Bioware.get(4))
+            .fluidInputs(Materials.BioMediumSterilized.getFluid(4000), VAMaterials.Astrium.getMolten(10 * INGOTS))
+            .fluidOutputs(Materials.UUMatter.getFluid(500))
+            .noOptimize()
+            .eut(RECIPE_UHV)
+            .duration(40 * SECONDS)
+            .addTo(LE);
         // 光子强化晶圆
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                ItemList.Circuit_Silicon_Wafer6.get(1L),
+                ItemList.Circuit_Silicon_Wafer6.get(1),
                 Materials.Glowstone.getNanite(1),
                 VAItemList.LensAstriumMagic.get(0),
                 GT_ModHandler.getModItem(SuperSolarPanels.ID, "solarsplitter", 0L, 0))
