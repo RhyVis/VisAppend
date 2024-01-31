@@ -16,7 +16,8 @@
     "gtpp.MixinIndustrialWashPlant",
     "gtpp.MixinMacerator",
     "gtpp.MixinMassFabricator",
-    "gtpp.MixinMegaABS"
+    "gtpp.MixinMegaABS",
+    "gtpp.MixinTreeFarm"
   ],
   "client": [],
   "server": []
