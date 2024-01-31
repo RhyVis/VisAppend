@@ -7,12 +7,12 @@ import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
+import static gregtech.api.util.GT_Utility.filterValidMTEs;
 import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
-import java.util.stream.Stream;
-
-import javax.annotation.Nonnull;
-import javax.annotation.Nullable;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
 
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -29,20 +29,27 @@ import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Textures;
+import gregtech.api.interfaces.IHatchElement;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_DataAccess;
 import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBackend;
+import gregtech.api.recipe.RecipeMapBuilder;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_AssemblyLineUtils;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
 import gregtech.api.util.GT_Utility;
+import gregtech.api.util.IGT_HatchAdder;
 
 public class VA_TileEntity_ReinforcedAssemblyLine
     extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_ReinforcedAssemblyLine> {
@@ -63,6 +70,14 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     // endregion
 
     // region Processing Logic
+    /**
+     * This is the temp container of recipes used in RAL
+     */
+    private static final RecipeMap<RecipeMapBackend> tempMapRAL = RecipeMapBuilder.of("va.recipe.tempMapRAL")
+        .disableOptimize()
+        .maxIO(16, 1, 4, 0)
+        .disableRegisterNEI()
+        .build();
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
@@ -71,33 +86,40 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @NotNull
             @Override
             public CheckRecipeResult process() {
+                ArrayList<ItemStack> tDataStickCheckList = getDataItems(2);
+                if (tDataStickCheckList.isEmpty()) {
+                    return CheckRecipeResultRegistry.NO_DATA_STICKS;
+                }
+                // Fill RecipeMaps with recipes given by data sticks
+                pFillRecipeMap(tDataStickCheckList);
+                // All set
+                setRecipeMap(tempMapRAL);
                 setSpeedBonus(rSpeedBonus());
                 setMaxParallel(rMaxParallel());
                 return super.process();
             }
 
-            @Nonnull
-            @Override
-            protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
-                ItemStack tDataStick = getControllerSlot();
-                // Check if DataStick exists
-                if (tDataStick == null || !tDataStick.isItemEqual(ItemList.Tool_DataStick.get(1))) {
-                    return Stream.empty();
+            private void pFillRecipeMap(@NotNull ArrayList<ItemStack> tDataStickList) {
+                // Remove all recipes previously exist
+                tempMapRAL.getBackend()
+                    .clearRecipes();
+                // This is all-selection mode
+                for (ItemStack tDataStick : tDataStickList) {
+                    // Check if Recipe valid
+                    GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
+                        .findAssemblyLineRecipeFromDataStick(tDataStick, false);
+                    if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
+                        continue;
+                    }
+                    // Give out recipe to list
+                    GT_Recipe.GT_Recipe_WithAlt pRecipe = transformRecipe(tLookupResult);
+                    tempMapRAL.addRecipe(pRecipe);
                 }
-                // Check if Recipe valid
-                GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
-                    .findAssemblyLineRecipeFromDataStick(tDataStick, false);
-                if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
-                    return Stream.empty();
-                }
-                // Give out recipe
-                // TODO: Problem exists that when not given enough inputs, an error will be thrown
-                GT_Recipe.GT_Recipe_WithAlt pRecipe = getGTRecipe(tLookupResult);
-                return Stream.of(pRecipe);
             }
 
             @NotNull
-            private static GT_Recipe.GT_Recipe_WithAlt getGTRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
+            private static GT_Recipe.GT_Recipe_WithAlt transformRecipe(
+                GT_AssemblyLineUtils.LookupResult tLookupResult) {
                 GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
                 return new GT_Recipe.GT_Recipe_WithAlt(
                     false,
@@ -138,6 +160,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @Override
     public boolean checkMachine(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
         removeMaintenance();
+        mDataAccessHatches.clear();
         return checkPiece(STRUCTURE_PIECE_MAIN, hOffset, vOffset, dOffset);
     }
 
@@ -184,6 +207,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 'F',
                 GT_HatchElementBuilder.<VA_TileEntity_ReinforcedAssemblyLine>builder()
                     .atLeast(InputBus, InputHatch)
+                    .shouldReject(s -> s.mInputBusses.size() > 1 || s.mInputHatches.size() > 15)
                     .adder(VA_TileEntity_ReinforcedAssemblyLine::addInputToMachineList)
                     .dot(2)
                     .casingIndex(16)
@@ -197,6 +221,15 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .casingIndex(16)
                     .buildAndChain(GregTech_API.sBlockCasings2, 0))
             .addElement('H', ofBlock(GregTech_API.sBlockCasings2, 0))
+            .addElement(
+                'I',
+                GT_HatchElementBuilder.<VA_TileEntity_ReinforcedAssemblyLine>builder()
+                    .atLeast(DataHatchElement.DataAccess)
+                    .shouldReject(s -> s.mDataAccessHatches.size() > 1)
+                    .adder(VA_TileEntity_ReinforcedAssemblyLine::addDataAccessToMachineList)
+                    .dot(4)
+                    .casingIndex(42)
+                    .buildAndChain(GregTech_API.sBlockCasings3, 10))
             .build();
     }
 
@@ -204,11 +237,11 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @SuppressWarnings("SpellCheckingInspection")
     private final String[][] STRUCTURE = new String[][]{
         {"                ","BBBBBBBBBBBBBBBB","                "},
-        {"~EEEEEEEEEEEEEEE","DDDDDDDDDDDDDDDD","EEEEEEEEEEEEEEEE"},
+        {"~IEEEEEEEEEEEEEE","DDDDDDDDDDDDDDDD","EEEEEEEEEEEEEEEE"},
         {"AAAAAAAAAAAAAAAA","CCCCCCCCCCCCCCCC","AAAAAAAAAAAAAAAA"},
         {"HHHHHHHHHHHHHHHH","FFFFFFFFFFFFFFFG","HHHHHHHHHHHHHHHH"}
     };
-    //spotless:on
+    // spotless:on
 
     @Override
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
@@ -242,6 +275,66 @@ public class VA_TileEntity_ReinforcedAssemblyLine
         return new ITexture[] { Textures.BlockIcons
             .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 0)) };
     }
+
+    private enum DataHatchElement implements IHatchElement<VA_TileEntity_ReinforcedAssemblyLine> {
+
+        DataAccess;
+
+        @Override
+        public List<? extends Class<? extends IMetaTileEntity>> mteClasses() {
+            return Collections.singletonList(GT_MetaTileEntity_Hatch_DataAccess.class);
+        }
+
+        @Override
+        public IGT_HatchAdder<VA_TileEntity_ReinforcedAssemblyLine> adder() {
+            return VA_TileEntity_ReinforcedAssemblyLine::addDataAccessToMachineList;
+        }
+
+        @Override
+        public long count(VA_TileEntity_ReinforcedAssemblyLine t) {
+            return t.mDataAccessHatches.size();
+        }
+    }
+
+    public boolean addDataAccessToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
+        if (aTileEntity == null) return false;
+        IMetaTileEntity aMetaTileEntity = aTileEntity.getMetaTileEntity();
+        if (aMetaTileEntity == null) return false;
+        if (aMetaTileEntity instanceof GT_MetaTileEntity_Hatch_DataAccess) {
+            ((GT_MetaTileEntity_Hatch) aMetaTileEntity).updateTexture(aBaseCasingIndex);
+            return mDataAccessHatches.add((GT_MetaTileEntity_Hatch_DataAccess) aMetaTileEntity);
+        }
+        return false;
+    }
+
+    private boolean isCorrectDataItem(ItemStack aStack, int state) {
+        if ((state & 1) != 0 && ItemList.Circuit_Integrated.isStackEqual(aStack, true, true)) return true;
+        if ((state & 2) != 0 && ItemList.Tool_DataStick.isStackEqual(aStack, false, true)) return true;
+        return (state & 4) != 0 && ItemList.Tool_DataOrb.isStackEqual(aStack, false, true);
+    }
+
+    public ArrayList<ItemStack> getDataItems(int state) {
+        ArrayList<ItemStack> rList = new ArrayList<>();
+        if (GT_Utility.isStackValid(mInventory[1]) && isCorrectDataItem(mInventory[1], state)) {
+            rList.add(mInventory[1]);
+        }
+        for (GT_MetaTileEntity_Hatch_DataAccess tHatch : filterValidMTEs(mDataAccessHatches)) {
+            for (int i = 0; i < tHatch.getBaseMetaTileEntity()
+                .getSizeInventory(); i++) {
+                if (tHatch.getBaseMetaTileEntity()
+                    .getStackInSlot(i) != null && isCorrectDataItem(
+                        tHatch.getBaseMetaTileEntity()
+                            .getStackInSlot(i),
+                        state))
+                    rList.add(
+                        tHatch.getBaseMetaTileEntity()
+                            .getStackInSlot(i));
+            }
+        }
+        return rList;
+    }
+
+    public ArrayList<GT_MetaTileEntity_Hatch_DataAccess> mDataAccessHatches = new ArrayList<>();
     // endregion
 
     // region TT
@@ -251,7 +344,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("装配线")
             .addInfo("复合装配线的控制器")
-            .addInfo("仅能执行一个配方, 但更加高效, 支持输入总成.")
+            .addInfo("更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
             .addInfo("电压每提高1级, 最大并行增加2.")
             .addInfo("电压每提高1级, 额外降低10%配方耗时(叠乘), 最高70%加速.")

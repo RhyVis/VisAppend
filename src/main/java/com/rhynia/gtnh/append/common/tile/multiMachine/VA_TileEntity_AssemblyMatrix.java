@@ -1,8 +1,6 @@
 package com.rhynia.gtnh.append.common.tile.multiMachine;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
-import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofChain;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
 import static gregtech.api.enums.GT_HatchElement.Energy;
 import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
@@ -37,6 +35,7 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
@@ -154,13 +153,7 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     public IStructureDefinition<VA_TileEntity_AssemblyMatrix> getStructureDefinition() {
         return StructureDefinition.<VA_TileEntity_AssemblyMatrix>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
-            .addElement(
-                'A',
-                ofChain(
-                    ofBlockUnlocalizedName("IC2", "blockAlloyGlass", 0, true),
-                    ofBlockUnlocalizedName("bartworks", "BW_GlasBlocks", 0, true),
-                    // Warded Glass
-                    ofBlockUnlocalizedName("Thaumcraft", "blockCosmeticOpaque", 2, false)))
+            .addElement('A', Glasses.chainAllGlasses())
             .addElement('B', ofBlock(GregTech_API.sBlockCasings2, 5))
             .addElement(
                 'C',
