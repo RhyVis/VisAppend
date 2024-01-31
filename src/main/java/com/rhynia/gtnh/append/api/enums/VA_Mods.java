@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.api.util.enums;
+package com.rhynia.gtnh.append.api.enums;
 
 import java.util.Locale;
 

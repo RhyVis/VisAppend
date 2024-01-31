@@ -1,9 +1,9 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.FullChance;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_LV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_MV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.FullChance;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_MV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 import com.rhynia.gtnh.append.common.recipePool.IRecipePool;

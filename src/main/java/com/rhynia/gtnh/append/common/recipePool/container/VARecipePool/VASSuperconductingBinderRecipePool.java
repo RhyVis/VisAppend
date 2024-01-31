@@ -1,8 +1,8 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UMV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UMV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.VAItemList;

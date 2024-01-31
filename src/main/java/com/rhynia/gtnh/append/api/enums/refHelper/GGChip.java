@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.api.util.enums.recipeHelper;
+package com.rhynia.gtnh.append.api.enums.refHelper;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;

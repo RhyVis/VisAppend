@@ -1,8 +1,8 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UIV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UXV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UIV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UXV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static gregtech.api.util.GT_RecipeConstants.COIL_HEAT;
 
 import com.rhynia.gtnh.append.common.VAItemList;

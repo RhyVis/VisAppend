@@ -1,12 +1,12 @@
 package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.BUCKETS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UEV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UHV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_ZPM;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 
 import net.minecraftforge.fluids.FluidRegistry;

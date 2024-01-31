@@ -1,17 +1,17 @@
 package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
 
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.BUCKETS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.FullChance;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_EV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_HV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_IV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_LuV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UEV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UHV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_UV;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.RECIPE_ZPM;
-import static com.rhynia.gtnh.append.api.util.enums.VA_Values.RecipeValues.SECONDS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.FullChance;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_EV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_HV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_IV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
