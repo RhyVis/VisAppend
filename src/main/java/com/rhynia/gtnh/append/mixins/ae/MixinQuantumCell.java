@@ -7,6 +7,7 @@ import org.spongepowered.asm.mixin.injection.Redirect;
 import appeng.core.api.definitions.ApiItems;
 import appeng.items.storage.ItemExtremeStorageCell;
 
+@SuppressWarnings("SpellCheckingInspection")
 @Mixin(value = ApiItems.class, remap = false)
 public class MixinQuantumCell {
 

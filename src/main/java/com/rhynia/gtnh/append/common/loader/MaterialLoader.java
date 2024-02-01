@@ -1,9 +1,10 @@
 package com.rhynia.gtnh.append.common.loader;
 
+import static com.rhynia.gtnh.append.api.enums.VA_Values.VM;
+
 import com.github.bartimaeusnek.bartworks.API.WerkstoffAdderRegistry;
 import com.rhynia.gtnh.append.common.block.BlockRegister;
 import com.rhynia.gtnh.append.common.item.ItemRegister;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
 
 public class MaterialLoader {
 
@@ -12,7 +13,7 @@ public class MaterialLoader {
         ItemRegister.registry();
         BlockRegister.registry();
 
-        WerkstoffAdderRegistry.addWerkstoffAdder(new VAMaterials());
+        WerkstoffAdderRegistry.addWerkstoffAdder(VM);
 
     }
 }
