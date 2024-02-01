@@ -90,6 +90,13 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 return super.process();
             }
 
+            /**
+             * Generate a stream of matched recipes referencing data sticks,
+             * and will be examined by real inputs, just like the original method does.
+             * 
+             * @param map fake map of assembly line, useless in the method
+             * @return a stream of recipes that is available for processing
+             */
             @Override
             @Nonnull
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
@@ -120,13 +127,27 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 return Stream.empty();
             }
 
-            private boolean examineRecipe(GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
+            /**
+             * Similar to the filterFindRecipe used in recipeMap-based search
+             * 
+             * @param recipe     the recipe that needs to be checked
+             * @param inputItem  real inputs of items in machine
+             * @param inputFluid real inputs of fluids in machine
+             * @return if the real inputs capable to process the recipe
+             */
+            private boolean examineRecipe(@NotNull GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
                 if (recipe.mEnabled && !recipe.mFakeRecipe) {
                     return recipe.isRecipeInputEqual(false, false, inputFluid, inputItem);
                 }
                 return false;
             }
 
+            /**
+             * This method will generate a general GT_Recipe out of the assembly specific recipe
+             * 
+             * @param tLookupResult the data of the scanned data sticks
+             * @return a GT_Recipe with oredict alt info
+             */
             @NotNull
             private static GT_Recipe.GT_Recipe_WithAlt transformRecipe(
                 GT_AssemblyLineUtils.LookupResult tLookupResult) {
