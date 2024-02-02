@@ -21,7 +21,8 @@ va.recipe.thermonuclearControl=Thermonuclear Control
 va.recipe.transcendentReactor=Transcendent Reactor
 va.recipe.integratedAssembly=Integrated Assembly
 va.recipe.microAssembly=Micro Assembly
-va.recipe.superconductingAssembly=Superconducting Assembly
+va.recipe.superconductingForming=Superconducting Foaming
+va.recipe.voidEnergyGenerator=Astral Energy
 
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode
