@@ -537,7 +537,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 BWPart.Opt_Card.getItemStack(8),
                 BWPart.Opt_CPUCasing.getItemStack(8),
-                ItemList.Circuit_Chip_Optical.get(64),
+                BWPart.Opt_Card.getItemStack(4),
                 GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 15470)),
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Tritanium, 32),
                 GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Draconium, 32))

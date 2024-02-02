@@ -109,10 +109,7 @@ public class AppendRecipeMaps {
         .of("va.recipe.voidEnergyGenerator")
         .maxIO(2, 2, 2, 2)
         .minInputs(1, 0)
-        .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
-        .progressBarSize(17, 17)
-        .progressBarPos(79, 27)
-        .neiTransferRect(79, 27, 17, 17)
+        .logo(VA_Values.TextureSets.VA_LOGO_32)
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.VoidEnergyGenerator.get(1))
                 .setMaxRecipesPerPage(2))
