@@ -300,6 +300,22 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(3 * 5 * SECONDS)
             .addTo(MA);
+        // T5
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemRefer.HiC_T4.get(8),
+                GT_ModHandler.getModItem("dreamcraft", "item.EngravedManyullynCrystalChip", 32),
+                ItemList.Circuit_Chip_BioCPU.get(1))
+            .fluidInputs(
+                MyMaterial.titaniumBetaC.getMolten(4 * 1728),
+                MyMaterial.signalium.getMolten(4 * 1152),
+                MyMaterial.lumiium.getMolten(4 * 576),
+                MyMaterial.dalisenite.getMolten(4 * 288),
+                Materials.TungstenCarbide.getMolten(4 * 8 * INGOTS))
+            .itemOutputs(ItemRefer.HiC_T5.get(4))
+            .eut(RECIPE_UHV)
+            .duration(3 * 5 * SECONDS)
+            .addTo(MA);
         // endregion
     }
 
