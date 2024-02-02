@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
+package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.HOURS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV;
@@ -8,8 +8,8 @@ import static gregtech.api.util.GT_RecipeConstants.AssemblyLine;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_ITEM;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_TIME;
 
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;

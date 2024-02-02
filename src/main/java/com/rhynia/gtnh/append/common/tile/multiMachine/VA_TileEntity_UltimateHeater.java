@@ -163,6 +163,11 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
     private final int hOffSet = 7, vOffSet = 0, dOffSet = 7;
 
     @Override
+    public boolean isFlipChangeAllowed() {
+        return false;
+    }
+
+    @Override
     public boolean isRotationChangeAllowed() {
         return false;
     }
@@ -349,7 +354,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("线圈每提高1级, 同样减少10%配方耗时(叠乘).")
             .addInfo("时间缩减的极限是原配方时间的10%.")
             .addInfo("线圈等级在海珀珍及以上时，解锁无损超频.")
-            .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.RESET + "来倍增总并行，同时不增加耗能.")
+            .addInfo("可以在控制器中放入" + EnumChatFormatting.BOLD + "星阵" + EnumChatFormatting.GRAY + "来倍增总并行，同时不增加耗能.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)

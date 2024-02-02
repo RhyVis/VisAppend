@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
+package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
@@ -7,13 +7,11 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
-
 import com.dreammaster.gthandler.CustomItemList;
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
@@ -33,17 +31,6 @@ public class VAHammerRecipePool implements IRecipePool {
         final IRecipeMap HM = RecipeMaps.hammerRecipes;
 
         // region 杂项
-        // Am
-        GT_Values.RA.stdBuilder()
-            .itemInputs(
-                GT_Bees.combs.getStackForType(CombType.AMERICIUM, 16),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 4))
-            .itemOutputs(Materials.Americium.getDust(32))
-            .fluidOutputs(VAMaterials.AstriumMagic.getMolten(125))
-            .noOptimize()
-            .eut(RECIPE_LuV)
-            .duration(25 * SECONDS)
-            .addTo(HM);
         // Nt
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -55,6 +42,17 @@ public class VAHammerRecipePool implements IRecipePool {
             .eut(RECIPE_LuV)
             .duration(25 * SECONDS)
             .addTo(HM);
+        // SpNt
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Bees.combs.getStackForType(CombType.COSMICNEUTRONIUM, 16),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 12))
+            .itemOutputs(Materials.CosmicNeutronium.getIngots(2))
+            .fluidOutputs(VAMaterials.AstriumMagic.getMolten(12), Materials.CosmicNeutronium.getMolten(2304))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(25 * SECONDS)
+            .addTo(HM);
         // Kevlar
         GT_Values.RA.stdBuilder()
             .itemInputs(
@@ -62,7 +60,7 @@ public class VAHammerRecipePool implements IRecipePool {
                 VAMaterials.Astrium.get(OrePrefixes.dust, 12))
             .fluidOutputs(
                 VAMaterials.AstriumMagic.getMolten(12),
-                new FluidStack(FluidRegistry.getFluid("molten.kevlar"), 4608))
+                FluidHelper.getFluidStackByFluidName("molten.kevlar", 4608))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(25 * SECONDS)

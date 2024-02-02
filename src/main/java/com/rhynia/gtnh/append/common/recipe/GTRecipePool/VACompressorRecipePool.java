@@ -1,8 +1,8 @@
-package com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool;
+package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;

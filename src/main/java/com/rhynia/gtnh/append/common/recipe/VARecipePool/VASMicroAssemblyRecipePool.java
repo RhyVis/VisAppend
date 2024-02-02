@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipe.VARecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
@@ -11,15 +11,17 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
+import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.dreammaster.gthandler.CustomItemList;
 import com.dreammaster.gthandler.GT_CoreModSupport;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
+import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import goodgenerator.items.MyMaterial;
 import goodgenerator.util.ItemRefer;
@@ -27,6 +29,7 @@ import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
+import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
@@ -35,12 +38,21 @@ import gregtech.api.util.GT_Utility;
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
     private final IRecipeMap MA = AppendRecipeMaps.microAssemblyRecipes;
+    final boolean EnableTSTRecipes = true;
 
     @Override
     public void loadRecipesPostInit() {}
 
     @Override
     public void loadRecipesCompleteInit() {
+        if (EnableTSTRecipes && VA_Mods.TwistSpaceTechnology.isModLoaded()) {
+            loadTSTRecipes();
+        }
+
+        loadMainRecipes();
+    }
+
+    public void loadMainRecipes() {
         int multiple = 1;
         // region 生物系
         // 生物超级电脑 UHV
@@ -290,4 +302,27 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .addTo(MA);
         // endregion
     }
+
+    // region TST
+    public void loadTSTRecipes() {
+        // Optical SOC
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                BWPart.Opt_CPU.getItemStack(16),
+                BWPart.Opt_Ram.getItemStack(32),
+                BWPart.Opt_Capacitor.getItemStack(64),
+                BWPart.Opt_Diode.getItemStack(64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64),
+                MyMaterial.orundum.get(OrePrefixes.dust, 64))
+            .fluidInputs(
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(48 * INGOTS),
+                Materials.Sunnarium.getMolten(32 * INGOTS),
+                VAMaterials.Astrium.getMolten(32 * INGOTS))
+            .itemOutputs(GTCMItemList.OpticalSOC.get(64))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(512 * SECONDS)
+            .addTo(MA);
+    }
+    // endregion
 }
