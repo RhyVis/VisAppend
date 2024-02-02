@@ -15,16 +15,17 @@ import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAPlasmaForgeRecipePool
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASAstraForgeRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASIntegratedAssemblyRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASMicroAssemblyRecipePool;
-import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASSuperconductingBinderRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASSuperconductingFormingRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASThermonuclearControlRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASTranscendentReactorRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASVoidEnergyGeneratorRecipePool;
 
 public class RecipeLoader {
 
     public static void loadRecipesPostInit() {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
-            new VASIntegratedAssemblyRecipePool(), new VASSuperconductingBinderRecipePool(),
+            new VASIntegratedAssemblyRecipePool(), new VASVoidEnergyGeneratorRecipePool(),
             new VASThermonuclearControlRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
@@ -35,9 +36,10 @@ public class RecipeLoader {
     public static void loadRecipesCompleteInit() {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
-            new VASIntegratedAssemblyRecipePool(), new VASSuperconductingBinderRecipePool(),
+            new VASIntegratedAssemblyRecipePool(), new VASVoidEnergyGeneratorRecipePool(),
             new VASThermonuclearControlRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool(),
             new VASTranscendentReactorRecipePool(), new VAPlasmaForgeRecipePool(),
+            new VASSuperconductingFormingRecipePool(),
             // Basic & Misc Recipe
             new VACommonRecipePool(), new VAMachineRecipePool(),
             // GT Recipe

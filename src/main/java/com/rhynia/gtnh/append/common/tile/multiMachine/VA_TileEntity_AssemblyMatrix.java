@@ -21,11 +21,9 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
-import com.Nxer.TwistSpaceTechnology.common.recipeMap.GTCMRecipe;
 import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
@@ -37,6 +35,7 @@ import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -45,7 +44,7 @@ import gregtech.common.blocks.GT_Block_Casings2;
 
 public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBase<VA_TileEntity_AssemblyMatrix> {
 
-    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes
+    public byte mRecipeMode = 0; // 0-sAssemblyMatrixRecipes,1-sMicroAssemblyRecipes,2-SC recipes
 
     // region Class Constructor
     public VA_TileEntity_AssemblyMatrix(int aID, String aName, String aNameRegional) {
@@ -66,7 +65,7 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public int rMaxParallel() {
-        return 32 * GT_Utility.getTier(this.getMaxInputVoltage());
+        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
     }
 
     @Override
@@ -76,33 +75,21 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public RecipeMap<?> getRecipeMap() {
-        switch (mRecipeMode) {
-            case 0 -> {
-                return AppendRecipeMaps.integratedAssemblyRecipes;
-            }
-            case 1 -> {
-                return AppendRecipeMaps.microAssemblyRecipes;
-            }
-            case 2 -> {
-                if (VA_Mods.TwistSpaceTechnology.isModLoaded()) {
-                    return GTCMRecipe.AssemblyLineWithoutResearchRecipe;
-                } else return AppendRecipeMaps.integratedAssemblyRecipes;
-            }
-        }
-        return null;
+        return switch (mRecipeMode) {
+            case 0 -> AppendRecipeMaps.integratedAssemblyRecipes;
+            case 1 -> AppendRecipeMaps.microAssemblyRecipes;
+            case 2 -> AppendRecipeMaps.superconductingFormingRecipes;
+            default -> RecipeMaps.nanoForgeRecipes;
+        };
     }
 
     @Nonnull
     @Override
     public Collection<RecipeMap<?>> getAvailableRecipeMaps() {
-        if (VA_Mods.TwistSpaceTechnology.isModLoaded()) {
-            return Arrays.asList(
-                AppendRecipeMaps.integratedAssemblyRecipes,
-                AppendRecipeMaps.microAssemblyRecipes,
-                GTCMRecipe.AssemblyLineWithoutResearchRecipe);
-        } else {
-            return Arrays.asList(AppendRecipeMaps.integratedAssemblyRecipes, AppendRecipeMaps.microAssemblyRecipes);
-        }
+        return Arrays.asList(
+            AppendRecipeMaps.integratedAssemblyRecipes,
+            AppendRecipeMaps.microAssemblyRecipes,
+            AppendRecipeMaps.superconductingFormingRecipes);
     }
 
     @Override
@@ -223,11 +210,11 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
     @Override
     protected GT_Multiblock_Tooltip_Builder createTooltip() {
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
-        tt.addMachineType("集成装配线 | 微加工装配线")
+        tt.addMachineType("集成装配线 | 微加工装配线 | 超导成型机")
             .addInfo("组装矩阵的控制器")
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
-            .addInfo("电压每提高1级, 最大并行增加32.")
+            .addInfo("电压每提高1级, 最大并行增加16.")
             .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()

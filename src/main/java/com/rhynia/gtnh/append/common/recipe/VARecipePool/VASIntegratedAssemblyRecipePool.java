@@ -16,6 +16,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.TICKS;
+import static gregtech.api.enums.Mods.AdvancedSolarPanel;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.Avaritia;
 import static gregtech.api.enums.Mods.EternalSingularity;
@@ -514,19 +515,22 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // Optical RAM
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GT_ModHandler.getModItem("OpenComputers", "item", 64, 39),
-                ItemList.Circuit_Chip_Optical.get(64),
-                GT_ModHandler.getModItem("AdvancedSolarPanel", "asp_crafting_items", 32, 5),
-                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 15470)),
-                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 16),
-                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.EnrichedHolmium, 8))
+                GGChip.UV.getItemStack(1),
+                BWPart.Elite_Board.getItemStack(4),
+                BWPart.Opt_Card.getItemStack(4),
+                GT_ModHandler.getModItem(AdvancedSolarPanel.ID, "asp_crafting_items", 32, 5),
+                BWPart.Part_RAM.getItemStack(64),
+                BWPart.Part_SOC.getItemStack(64),
+                BWPart.Part_NAND.getItemStack(64),
+                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 15470)))
             .fluidInputs(
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(48 * INGOTS),
-                Materials.Infinity.getMolten(32 * INGOTS))
-            .itemOutputs(GT_Utility.copyAmountUnsafe(128, ItemList.Optically_Compatible_Memory.get(1)))
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(16 * 48 * INGOTS),
+                Materials.VanadiumGallium.getMolten(16 * 16 * INGOTS),
+                Materials.Infinity.getMolten(16 * 32 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(2048, ItemList.Optically_Compatible_Memory.get(1)))
             .noOptimize()
             .eut(RECIPE_UEV)
-            .duration(80 * SECONDS)
+            .duration(12 * 80 * SECONDS)
             .addTo(IA);
         // Optical CPU
         GT_Values.RA.stdBuilder()
