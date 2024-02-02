@@ -6,6 +6,7 @@ import net.minecraftforge.fluids.FluidStack;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GT_Recipe;
 
+@SuppressWarnings("unused")
 public class VA_RecipeBuilder {
 
     public static VA_RecipeBuilder builder() {

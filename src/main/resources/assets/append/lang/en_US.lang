@@ -25,7 +25,7 @@ va.recipe.superconductingAssembly=Superconducting Assembly
 
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode
-append.AssemblyMatrix.mRecipeMode.2=Assembly Line Mode
+append.AssemblyMatrix.mRecipeMode.2=Superconducting Foaming Mode
 
 append.UltimateHeater.mRecipeMode.0=Ultimate Heater Mode
 append.UltimateHeater.mRecipeMode.1=Transcendent Reactor Mode

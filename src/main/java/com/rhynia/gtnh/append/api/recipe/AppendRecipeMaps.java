@@ -6,7 +6,6 @@ import com.rhynia.gtnh.append.api.recipe.backend.VA_RecipeMapBackend;
 import com.rhynia.gtnh.append.api.recipe.frontend.AstralForgeFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
-import com.rhynia.gtnh.append.api.recipe.frontend.SimpleFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
 import com.rhynia.gtnh.append.common.VAItemList;
@@ -109,7 +108,7 @@ public class AppendRecipeMaps {
     public static final RecipeMap<RecipeMapBackend> voidEnergyGeneratorRecipes = RecipeMapBuilder
         .of("va.recipe.voidEnergyGenerator")
         .maxIO(2, 2, 2, 2)
-        .minInputs(1, 1)
+        .minInputs(1, 0)
         .progressBar(GT_UITextures.PROGRESSBAR_ARROW_MULTIPLE)
         .progressBarSize(17, 17)
         .progressBarPos(79, 27)
@@ -117,6 +116,15 @@ public class AppendRecipeMaps {
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.VoidEnergyGenerator.get(1))
                 .setMaxRecipesPerPage(2))
-        .frontend(SimpleFrontend::new)
+        .build();
+    /** Superconducting Forming (SF) Recipe (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> superconductingFormingRecipes = RecipeMapBuilder
+        .of("va.recipe.superconductingForming", VA_RecipeMapBackend::new)
+        .maxIO(6, 2, 3, 2)
+        .minInputs(1, 0)
+        .logo(VA_Values.TextureSets.VA_LOGO_32)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+                .setMaxRecipesPerPage(2))
         .build();
 }
