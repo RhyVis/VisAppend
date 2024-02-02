@@ -3,12 +3,14 @@ package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_HV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_IV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 
 import goodgenerator.items.MyMaterial;
@@ -99,6 +101,37 @@ public class VAMixerRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_ZPM)
             .duration(20 * SECONDS)
+            .addTo(MX);
+        // endregion
+
+        // region 极寒-烈焰
+        // 极寒
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.CallistoIce.getDust(12),
+                Materials.Ledox.getDust(12),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 18),
+                GT_Utility.getIntegratedCircuit(15))
+            .itemOutputs(Materials.Cryotheum.getDust(128))
+            .fluidInputs(GT_ModHandler.getDistilledWater(64 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByFluidName("cryotheum", 256 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_IV)
+            .duration(32 * SECONDS)
+            .addTo(MX);
+        // 烈焰
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.Sulfur.getDust(12),
+                Materials.Coal.getDust(12),
+                VAMaterials.Astrium.get(OrePrefixes.dust, 18),
+                GT_Utility.getIntegratedCircuit(16))
+            .itemOutputs(Materials.Pyrotheum.getDust(128))
+            .fluidInputs(Materials.Lava.getFluid(64 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByFluidName("pyrotheum", 256 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_IV)
+            .duration(32 * SECONDS)
             .addTo(MX);
         // endregion
     }

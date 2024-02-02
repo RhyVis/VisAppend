@@ -76,18 +76,6 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(4 * SECONDS)
             .addTo(CF);
-        // 深空冰
-        GT_Values.RA.stdBuilder()
-            .itemInputs(Materials.CallistoIce.getDust(4))
-            .itemOutputs(
-                Materials.Ice.getDust(2),
-                Materials.Cryotheum.getDust(1),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 1))
-            .outputChances(FullChance, FullChance, 5000)
-            .noOptimize()
-            .eut(RECIPE_HV)
-            .duration(8 * SECONDS)
-            .addTo(CF);
         // 离心秘银
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Mithril.getDust(6))

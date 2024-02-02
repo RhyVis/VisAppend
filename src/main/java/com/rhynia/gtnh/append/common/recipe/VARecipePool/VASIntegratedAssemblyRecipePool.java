@@ -17,6 +17,8 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.TICKS;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
+import static gregtech.api.enums.Mods.Avaritia;
+import static gregtech.api.enums.Mods.EternalSingularity;
 import static gregtech.api.enums.Mods.GTPlusPlus;
 
 import net.minecraft.item.ItemStack;
@@ -838,17 +840,17 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 奇点原件
         VA_RecipeBuilder.builder()
             .itemInputs(
-                GT_ModHandler.getModItem(AppliedEnergistics2.ID, "tile.BlockCraftingUnit", 4),
-                ItemList.Field_Generator_UIV.get(16),
-                CustomItemList.PikoCircuit.get(8),
-                GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.TranscendentMetal, 4))
+                GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 12, 60),
+                ItemList.Quantum_Chest_IV.get(8),
+                GT_ModHandler.getModItem(Avaritia.ID, "Resource", 4, 5),
+                GT_ModHandler.getModItem(EternalSingularity.ID, "eternal_singularity", 1))
             .fluidInputs(
-                Materials.Infinity.getMolten(24 * 8 * INGOTS),
-                MaterialsUEVplus.SpaceTime.getMolten(16 * INGOTS))
+                Materials.CosmicNeutronium.getMolten(12 * 9 * INGOTS),
+                Materials.Infinity.getMolten(4 * 9 * INGOTS))
             .itemOutputs(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemExtremeStorageCell.Singularity", 1))
             .noOptimize()
-            .eut(RECIPE_UMV)
-            .duration(20 * SECONDS)
+            .eut(RECIPE_UEV)
+            .duration(4 * SECONDS)
             .addTo(IA_R);
         // endregion
     }
