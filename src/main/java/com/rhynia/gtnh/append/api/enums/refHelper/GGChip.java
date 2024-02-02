@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.api.enums.refHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.rhynia.gtnh.append.api.frame.IRecipeHelper;
+import com.rhynia.gtnh.append.api.interfaces.IRecipeHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 
 import gregtech.api.enums.Materials;

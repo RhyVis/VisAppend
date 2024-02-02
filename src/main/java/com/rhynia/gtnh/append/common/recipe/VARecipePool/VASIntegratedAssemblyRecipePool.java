@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.recipePool.container.VARecipePool;
+package com.rhynia.gtnh.append.common.recipe.VARecipePool;
 
 import static com.github.technus.tectech.loader.recipe.BaseRecipeLoader.getItemContainer;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
@@ -16,20 +16,25 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.TICKS;
+import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.GTPlusPlus;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
+import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.dreammaster.gthandler.CustomItemList;
+import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
+import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
 
 import galaxyspace.core.register.GSItems;
 import goodgenerator.items.MyMaterial;
@@ -40,6 +45,7 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
@@ -51,7 +57,9 @@ import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
     private final IRecipeMap IA = AppendRecipeMaps.integratedAssemblyRecipes;
+    private final RecipeMap<?> IA_R = AppendRecipeMaps.integratedAssemblyRecipes;
     final boolean EnableWirelessRecipes = true;
+    final boolean EnableTSTRecipes = true;
 
     @Override
     public void loadRecipesPostInit() {
@@ -85,6 +93,11 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         if (EnableWirelessRecipes) {
             loadWirelessHatchRecipes();
         }
+
+        if (EnableTSTRecipes && VA_Mods.TwistSpaceTechnology.isModLoaded()) {
+            loadTSTRecipes();
+        }
+
         loadMainRecipes();
 
     }
@@ -439,7 +452,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
 
         // region 防辐射板
         // 防辐射板 64x
-        GT_Values.RA.stdBuilder()
+        VA_RecipeBuilder.builder()
             .itemInputs(
                 Materials.NaquadahAlloy.getPlates(64),
                 Materials.NaquadahAlloy.getPlates(64),
@@ -457,29 +470,25 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemOutputs(ItemRefer.Radiation_Protection_Plate.get(64))
             .noOptimize()
             .eut(RECIPE_EV)
-            .duration(12 * 4 * 20 * SECONDS)
-            .addTo(IA);
-        // 进阶防辐射板 16x
-        GT_Values.RA.stdBuilder()
+            .duration(12 * 80 * SECONDS)
+            .addTo(IA_R);
+        // 进阶防辐射板 64x
+        VA_RecipeBuilder.builder()
             .itemInputs(
-                Materials.ElectrumFlux.getPlates(64),
-                Materials.ElectrumFlux.getPlates(64),
-                Materials.Trinium.getPlates(64),
-                Materials.Trinium.getPlates(64),
-                Materials.Osmiridium.getPlates(64),
-                Materials.Osmiridium.getPlates(64),
-                Materials.VibrantAlloy.getPlates(64),
-                Materials.VibrantAlloy.getPlates(64))
+                ItemHelper.setStackSize(Materials.NaquadahAlloy.getPlates(64), 1280),
+                ItemHelper.setStackSize(Materials.Lanthanum.getPlates(64), 512),
+                ItemHelper.setStackSize(Materials.ElectrumFlux.getPlates(64), 256),
+                ItemHelper.setStackSize(Materials.Trinium.getPlates(64), 256),
+                ItemHelper.setStackSize(Materials.Osmiridium.getPlates(64), 256),
+                ItemHelper.setStackSize(Materials.VibrantAlloy.getPlates(64), 256))
             .fluidInputs(
-                SolderMaterial.IndaAlloy.getFluidStack(16 * 16 * INGOTS),
-                Materials.NaquadahAlloy.getMolten(10 * 64 * INGOTS),
-                Materials.Lanthanum.getMolten(4 * 64 * INGOTS),
-                Materials.Lead.getMolten(32 * 16 * INGOTS))
-            .itemOutputs(ItemRefer.Advanced_Radiation_Protection_Plate.get(32))
+                SolderMaterial.IndaAlloy.getFluidStack(16 * 32 * INGOTS),
+                Materials.Lead.getMolten(32 * 32 * INGOTS))
+            .itemOutputs(ItemRefer.Advanced_Radiation_Protection_Plate.get(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
-            .duration(12 * 100 * SECONDS)
-            .addTo(IA);
+            .duration(24 * 100 * SECONDS)
+            .addTo(IA_R);
         // endregion
 
         // region 戴森球模块
@@ -499,24 +508,40 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .addTo(IA);
         // endregion
 
-        // region 光学
-        // 光学内存
+        // region Optical
+        // Optical RAM
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_ModHandler.getModItem("OpenComputers", "item", 64, 39),
-                GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32724),
-                GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 64, 15470),
-                GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 64, 15470),
-                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64),
-                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 64))
+                ItemList.Circuit_Chip_Optical.get(64),
+                GT_ModHandler.getModItem("AdvancedSolarPanel", "asp_crafting_items", 32, 5),
+                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 15470)),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.InfinityCatalyst, 16),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.EnrichedHolmium, 8))
             .fluidInputs(
-                Materials.Infinity.getMolten(64 * INGOTS),
-                SolderMaterial.MutatedLivingAlloy.getFluidStack(96 * INGOTS))
-            .itemOutputs(
-                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 1, 32725)))
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(48 * INGOTS),
+                Materials.Infinity.getMolten(32 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(128, ItemList.Optically_Compatible_Memory.get(1)))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(80 * SECONDS)
+            .addTo(IA);
+        // Optical CPU
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                BWPart.Opt_Card.getItemStack(8),
+                BWPart.Opt_CPUCasing.getItemStack(8),
+                ItemList.Circuit_Chip_Optical.get(64),
+                GT_Utility.copyAmountUnsafe(128, GT_ModHandler.getModItem("gregtech", "gt.blockmachines", 1, 15470)),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Tritanium, 32),
+                GT_OreDictUnificator.get(OrePrefixes.wireFine, Materials.Draconium, 32))
+            .fluidInputs(
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(48 * INGOTS),
+                Materials.CosmicNeutronium.getMolten(64 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(128, ItemList.Optically_Perfected_CPU.get(1)))
+            .noOptimize()
+            .eut(RECIPE_UEV)
+            .duration(120 * SECONDS)
             .addTo(IA);
         // endregion
 
@@ -808,6 +833,41 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .duration(12 * 15 * SECONDS)
             .addTo(IA);
         // endregion
+
+        // region AE2
+        // 奇点原件
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                GT_ModHandler.getModItem(AppliedEnergistics2.ID, "tile.BlockCraftingUnit", 4),
+                ItemList.Field_Generator_UIV.get(16),
+                CustomItemList.PikoCircuit.get(8),
+                GT_OreDictUnificator.get(OrePrefixes.nanite, MaterialsUEVplus.TranscendentMetal, 4))
+            .fluidInputs(
+                Materials.Infinity.getMolten(24 * 8 * INGOTS),
+                MaterialsUEVplus.SpaceTime.getMolten(16 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemExtremeStorageCell.Singularity", 1))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(20 * SECONDS)
+            .addTo(IA_R);
+        // endregion
+    }
+
+    public void loadTSTRecipes() {
+        // Particle Trap SpaceTime Shield
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                BWPart.Opt_CPUCasing.getItemStack(2),
+                VAItemList.PreTesseract.get(8),
+                VAItemList.AstriumInfinityGem.get(1))
+            .fluidInputs(
+                VAMaterials.AstriumMagic.getMolten(8 * INGOTS),
+                MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS))
+            .itemOutputs(GTCMItemList.ParticleTrapTimeSpaceShield.get(64))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(60 * SECONDS)
+            .addTo(IA);
     }
 
     // region Wireless Buffed Recipes

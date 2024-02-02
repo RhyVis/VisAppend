@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.api.recipe;
 
 import com.gtnewhorizons.modularui.common.widget.ProgressBar;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.recipe.backend.VA_RecipeMapBackend;
 import com.rhynia.gtnh.append.api.recipe.frontend.AstralForgeFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
@@ -68,9 +69,9 @@ public class AppendRecipeMaps {
         .neiRecipeBackgroundSize(170, 10 + 6 * 18)
         .frontend(TranscendentReactorFrontend::new)
         .build();
-    /** Integrated Assembly (IA) Recipe */
-    public static final RecipeMap<RecipeMapBackend> integratedAssemblyRecipes = RecipeMapBuilder
-        .of("va.recipe.integratedAssembly")
+    /** Integrated Assembly (IA) Recipe (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> integratedAssemblyRecipes = RecipeMapBuilder
+        .of("va.recipe.integratedAssembly", VA_RecipeMapBackend::new)
         .maxIO(12, 1, 8, 0)
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)

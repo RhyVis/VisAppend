@@ -1,23 +1,23 @@
 package com.rhynia.gtnh.append.common.loader;
 
-import com.rhynia.gtnh.append.common.recipePool.IRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VACentrifugeRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAChemicalReactorRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VACommonRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VACompressorRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAElectrolyzeRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAFusionRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAHammerRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VALaserEngraverRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAMachineRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAMixerRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.GTRecipePool.VAPlasmaForgeRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASAstraForgeRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASIntegratedAssemblyRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASMicroAssemblyRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASSuperconductingBinderRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASThermonuclearControlRecipePool;
-import com.rhynia.gtnh.append.common.recipePool.container.VARecipePool.VASTranscendentReactorRecipePool;
+import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VACentrifugeRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAChemicalReactorRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VACommonRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VACompressorRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAElectrolyzeRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAFusionRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAHammerRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VALaserEngraverRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAMachineRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAMixerRecipePool;
+import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAPlasmaForgeRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASAstraForgeRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASIntegratedAssemblyRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASMicroAssemblyRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASSuperconductingBinderRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASThermonuclearControlRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASTranscendentReactorRecipePool;
 
 public class RecipeLoader {
 
