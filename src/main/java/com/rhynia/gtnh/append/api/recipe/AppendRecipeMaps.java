@@ -51,9 +51,9 @@ public class AppendRecipeMaps {
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(ThermonuclearControlFrontend::new)
         .build();
-    /** Transcendent Reactor (TR) Recipe */
-    public static final RecipeMap<RecipeMapBackend> transcendentReactorRecipes = RecipeMapBuilder
-        .of("va.recipe.transcendentReactor")
+    /** Transcendent Reactor (TR) Recipe (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> transcendentReactorRecipes = RecipeMapBuilder
+        .of("va.recipe.transcendentReactor", VA_RecipeMapBackend::new)
         .maxIO(16, 6, 8, 6)
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)
