@@ -166,7 +166,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 3];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
-        nStr[oStr.length] = EnumChatFormatting.AQUA + "并行" + ": " + EnumChatFormatting.GOLD + this.rMaxParallel();
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "最大并行" + ": " + EnumChatFormatting.GOLD + this.rMaxParallel();
         nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "速度乘数" + ": " + EnumChatFormatting.GOLD + this.rSpeedBonus();
         nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "功率乘数" + ": " + EnumChatFormatting.GOLD + this.rEUModifier();
         return nStr;

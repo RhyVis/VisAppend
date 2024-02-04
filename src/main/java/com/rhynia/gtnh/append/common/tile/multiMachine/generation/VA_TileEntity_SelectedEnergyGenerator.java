@@ -208,7 +208,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         tt.addMachineType("虚空发电机")
             .addInfo("虚空发电机的控制器")
             .addInfo("使用电路板编号*电路板数量指定输出电量.")
-            .addInfo("在控制器内放入" + EnumChatFormatting.AQUA + "星极" + EnumChatFormatting.GRAY + "来决定基数幂")
+            .addInfo("在控制器内放入" + EnumChatFormatting.AQUA + "星极" + EnumChatFormatting.GRAY + "来决定基数幂.")
             .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.BluePrintTip)
