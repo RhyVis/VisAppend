@@ -20,7 +20,6 @@ import java.util.Collection;
 import javax.annotation.Nonnull;
 
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumChatFormatting;
@@ -33,8 +32,8 @@ import org.jetbrains.annotations.NotNull;
 import com.github.technus.tectech.thing.CustomItemList;
 import com.github.technus.tectech.thing.casing.TT_Container_Casings;
 import com.google.common.collect.ImmutableList;
-import com.gtnewhorizon.structurelib.structure.IItemSource;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
+import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
@@ -184,20 +183,17 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
         this.buildPiece(STRUCTURE_PIECE_MAIN, stackSize, hintsOnly, hOffSet, vOffSet, dOffSet);
     }
 
-    @SuppressWarnings("deprecation")
     @Override
-    public int survivalConstruct(ItemStack stackSize, int elementBudget, IItemSource source, EntityPlayerMP actor) {
-        if (this.mMachine) return -1;
-        int realBudget = elementBudget >= 200 ? elementBudget : Math.min(200, elementBudget * 5);
-        return this.survivialBuildPiece(
+    public int survivalConstruct(ItemStack stackSize, int elementBudget, ISurvivalBuildEnvironment env) {
+        if (mMachine) return -1;
+        return survivialBuildPiece(
             STRUCTURE_PIECE_MAIN,
             stackSize,
             hOffSet,
             vOffSet,
             dOffSet,
-            realBudget,
-            source,
-            actor,
+            elementBudget,
+            env,
             false,
             true);
     }
@@ -376,9 +372,9 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
         String[] o = super.getInfoData();
         String[] n = new String[o.length + 3];
         System.arraycopy(o, 0, n, 0, o.length);
-        n[o.length] = EnumChatFormatting.AQUA + "Spacetime Compression Field" + ": " + EnumChatFormatting.GOLD + x;
-        n[o.length + 1] = EnumChatFormatting.AQUA + "Time Acceleration Field" + ": " + EnumChatFormatting.GOLD + y;
-        n[o.length + 2] = EnumChatFormatting.AQUA + "Star Array Count" + ": " + EnumChatFormatting.GOLD + z;
+        n[o.length] = EnumChatFormatting.AQUA + "时空压缩" + ": " + EnumChatFormatting.GOLD + x;
+        n[o.length + 1] = EnumChatFormatting.AQUA + "时间加速" + ": " + EnumChatFormatting.GOLD + y;
+        n[o.length + 2] = EnumChatFormatting.AQUA + "星阵数量" + ": " + EnumChatFormatting.GOLD + z;
         return n;
     }
 
