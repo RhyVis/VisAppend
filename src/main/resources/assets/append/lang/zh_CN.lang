@@ -35,5 +35,9 @@ append.UltimateHeater.mRecipeMode.2=聚变模式
 append.HeatDeathSimulator.mRecipeMode.0=真空冷冻机模式
 append.HeatDeathSimulator.mRecipeMode.1=热动力学解析模式(Not added)
 
+va.gui.desc.import_energy=能量输出
+
+GT5U.gui.text.importing_energy=导入能量中
+GT5U.gui.text.no_user=没有找到无线电网
 GT5U.gui.text.no_astrium=§7熔融星辉不足
 GT5U.gui.text.no_mode_set=没有用电路设定模式

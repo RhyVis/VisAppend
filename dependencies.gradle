@@ -51,4 +51,5 @@ dependencies {
     compileOnly(project.files("localDeps/TwistSpaceTechnology-0.4.14-2.5.1fitted-dev.jar"))
 
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:nei-custom-diagram:1.5.14')
+    runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.5')
 }
