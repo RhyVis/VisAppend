@@ -34,6 +34,11 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     // region Function
 
     /**
+     * Shared name for simple structure shape
+     */
+    protected static final String STRUCTURE_PIECE_MAIN = "main";
+
+    /**
      * Disable maintenance problems from happening.
      */
     protected void removeMaintenance() {
@@ -140,7 +145,9 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      * @return Max parallel for the machine
      */
     @OverrideOnly
-    protected abstract int rMaxParallel();
+    protected int rMaxParallel() {
+        return 1;
+    }
 
     /**
      * Set Duration Modifier
@@ -148,7 +155,9 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
      * @return Multiplier applied to duration
      */
     @OverrideOnly
-    protected abstract float rSpeedBonus();
+    protected float rSpeedBonus() {
+        return 1;
+    }
     // endregion
 
     // region ToolTips and Info

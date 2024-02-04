@@ -69,6 +69,10 @@ public class MathHelper {
         return (T[]) totals.toArray(new Object[0]);
     }
 
+    public static int clampInt(int process, int min, int max) {
+        return process < min ? min : (Math.min(process, max));
+    }
+
     public static int min(int... values) {
         Arrays.sort(values);
         return values[0];

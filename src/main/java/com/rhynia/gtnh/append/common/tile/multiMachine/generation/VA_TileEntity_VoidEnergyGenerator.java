@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tile.multiMachine;
+package com.rhynia.gtnh.append.common.tile.multiMachine.generation;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlockUnlocalizedName;
@@ -8,7 +8,6 @@ import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.enums.GT_HatchElement.OutputHatch;
-import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import java.math.BigInteger;
 import java.util.HashMap;
@@ -281,6 +280,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
 
     // region Structure
     private final int hOffset = 1, vOffset = 1, dOffset = 0;
+    private final String STRUCTURE_PIECE_MAIN = "main";
 
     @Override
     public boolean checkMachine_EM(IGregTechTileEntity aBaseMetaTileEntity, ItemStack aStack) {
@@ -425,7 +425,7 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
             + ": "
             + EnumChatFormatting.GOLD
             + this.getAstriumInfinity();
-        nStr[oStr.length + 3] = EnumChatFormatting.AQUA + "Probably Generates"
+        nStr[oStr.length + 4] = EnumChatFormatting.AQUA + "Probably Generates"
             + ": "
             + EnumChatFormatting.GOLD
             + GT_Utility.formatNumbers(pOutput);

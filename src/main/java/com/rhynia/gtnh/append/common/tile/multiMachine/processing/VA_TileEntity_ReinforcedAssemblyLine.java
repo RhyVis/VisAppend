@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.tile.multiMachine;
+package com.rhynia.gtnh.append.common.tile.multiMachine.processing;
 
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
@@ -8,7 +8,6 @@ import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
 import static gregtech.api.util.GT_Utility.filterValidMTEs;
-import static gregtech.common.tileentities.machines.multi.GT_MetaTileEntity_FusionComputer.STRUCTURE_PIECE_MAIN;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -93,7 +92,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             /**
              * Generate a stream of matched recipes referencing data sticks,
              * and will be examined by real inputs, just like the original method does.
-             * 
+             *
              * @param map fake map of assembly line, useless in the method
              * @return a stream of recipes that is available for processing
              */
@@ -129,7 +128,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
             /**
              * Similar to the filterFindRecipe used in recipeMap-based search
-             * 
+             *
              * @param recipe     the recipe that needs to be checked
              * @param inputItem  real inputs of items in machine
              * @param inputFluid real inputs of fluids in machine
@@ -144,7 +143,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
             /**
              * This method will generate a general GT_Recipe out of the assembly specific recipe
-             * 
+             *
              * @param tLookupResult the data of the scanned data sticks
              * @return a GT_Recipe with oredict alt info
              */

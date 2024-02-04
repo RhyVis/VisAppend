@@ -35,5 +35,8 @@ append.UltimateHeater.mRecipeMode.2=Fusion Mode
 append.HeatDeathSimulator.mRecipeMode.0=Vacuum Mode
 append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
 
+va.gui.desc.import_energy=Energy Level
+
+GT5U.gui.text.importing_energy=§bImporting Energy
 GT5U.gui.text.no_astrium=§7Not enough Astrium
 GT5U.gui.text.no_mode_set=No IC found for mode setting

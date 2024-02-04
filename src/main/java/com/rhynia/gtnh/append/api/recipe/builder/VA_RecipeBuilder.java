@@ -69,6 +69,9 @@ public class VA_RecipeBuilder {
         return this;
     }
 
+    /**
+     * Just for compatibility use
+     */
     public VA_RecipeBuilder noOptimize() {
         return this;
     }
@@ -91,5 +94,24 @@ public class VA_RecipeBuilder {
 
         recipeMap.add(tempRecipe);
         return this;
+    }
+
+    public GT_Recipe generateRecipe() {
+        GT_Recipe tempRecipe = new GT_Recipe(
+            false,
+            inputItems,
+            outputItems,
+            null,
+            outputChance,
+            inputFluids,
+            outputFluids,
+            duration,
+            eut,
+            specialValue);
+
+        tempRecipe.mInputs = inputItems.clone();
+        tempRecipe.mOutputs = outputItems.clone();
+
+        return tempRecipe;
     }
 }
