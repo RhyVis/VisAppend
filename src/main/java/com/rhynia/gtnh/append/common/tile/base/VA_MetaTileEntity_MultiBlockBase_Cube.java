@@ -3,12 +3,7 @@ package com.rhynia.gtnh.append.common.tile.base;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.isAir;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.ofBlock;
 import static com.gtnewhorizon.structurelib.structure.StructureUtility.transpose;
-import static gregtech.api.enums.GT_HatchElement.Energy;
-import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
-import static gregtech.api.enums.GT_HatchElement.InputHatch;
-import static gregtech.api.enums.GT_HatchElement.OutputBus;
-import static gregtech.api.enums.GT_HatchElement.OutputHatch;
 
 import net.minecraft.block.Block;
 import net.minecraft.item.ItemStack;
@@ -92,7 +87,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase_Cube<T extends VA_MetaTil
             .addElement(
                 'C',
                 GT_HatchElementBuilder.<T>builder()
-                    .atLeast(InputBus, InputHatch, OutputBus, OutputHatch, Energy.or(ExoticEnergy))
+                    .atLeast(InputBus)
                     .adder(T::addToMachineList)
                     .dot(1)
                     .casingIndex(sCasingIndex())
