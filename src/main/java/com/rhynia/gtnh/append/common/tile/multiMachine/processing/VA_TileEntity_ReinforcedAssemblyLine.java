@@ -26,8 +26,10 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
+import com.rhynia.gtnh.append.config.Config;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
@@ -108,8 +110,12 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                         if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
                             continue;
                         }
-                        GT_Recipe.GT_Recipe_WithAlt pRecipe = transformRecipe(tLookupResult);
+                        GT_Recipe pRecipe = transformRecipe(tLookupResult);
                         pDataStickRecipes.add(pRecipe);
+                    }
+
+                    if (Config.Debug_Mode) {
+                        VisAppend.LOG.info("RAL found " + pDataStickRecipes.size() + " recipes.");
                     }
 
                     if (lastRecipe != null && examineRecipe(lastRecipe, inputItems, inputFluids)) {
@@ -135,7 +141,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
              */
             private boolean examineRecipe(@NotNull GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
                 if (recipe.mEnabled && !recipe.mFakeRecipe) {
-                    return recipe.isRecipeInputEqual(false, false, inputFluid, inputItem);
+                    return recipe.isRecipeInputEqual(false, inputFluid, inputItem);
                 }
                 return false;
             }
@@ -147,10 +153,9 @@ public class VA_TileEntity_ReinforcedAssemblyLine
              * @return a GT_Recipe with oredict alt info
              */
             @NotNull
-            private static GT_Recipe.GT_Recipe_WithAlt transformRecipe(
-                GT_AssemblyLineUtils.LookupResult tLookupResult) {
+            private static GT_Recipe transformRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
                 GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
-                return new GT_Recipe.GT_Recipe_WithAlt(
+                return new GT_Recipe(
                     false,
                     tRecipe.mInputs,
                     new ItemStack[] { tRecipe.mOutput },
@@ -160,8 +165,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     null,
                     tRecipe.mDuration,
                     tRecipe.mEUt,
-                    0,
-                    tRecipe.mOreDictAlt);
+                    0);
             }
         };
     }
