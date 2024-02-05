@@ -8,6 +8,7 @@ import java.util.List;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import gregtech.api.metatileentity.MetaTileEntity;
@@ -17,10 +18,12 @@ public class MathHelper {
 
     private static final double LOG_2 = Math.log(2);
 
+    @Contract(pure = true)
     public static int safeInt(long number, int margin) {
         return number > Integer.MAX_VALUE - margin ? Integer.MAX_VALUE - margin : (int) number;
     }
 
+    @Contract("null -> null")
     public static ItemStack[] sortNoNullArray(ItemStack... itemStacks) {
         if (itemStacks == null) return null;
         List<ItemStack> list = new ArrayList<>();
@@ -32,6 +35,7 @@ public class MathHelper {
         return list.toArray(new ItemStack[0]);
     }
 
+    @Contract("null -> null")
     public static FluidStack[] sortNoNullArray(FluidStack... fluidStacks) {
         if (fluidStacks == null) return null;
         List<FluidStack> list = new ArrayList<>();
@@ -43,6 +47,7 @@ public class MathHelper {
         return list.toArray(new FluidStack[0]);
     }
 
+    @Contract("null -> null")
     public static Object[] sortNoNullArray(Object... objects) {
         if (objects == null) return null;
         List<Object> list = new ArrayList<>();
@@ -54,7 +59,8 @@ public class MathHelper {
         return list.toArray(new Object[0]);
     }
 
-    public static <T extends Collection<E>, E extends MetaTileEntity> T filterValidMTEs(T metaTileEntities) {
+    @Contract("_ -> param1")
+    public static <T extends Collection<E>, E extends MetaTileEntity> @NotNull T filterValidMTEs(T metaTileEntities) {
         metaTileEntities.removeIf(mte -> mte == null || !mte.isValid());
         return metaTileEntities;
     }
@@ -70,6 +76,10 @@ public class MathHelper {
     }
 
     public static int clampInt(int process, int min, int max) {
+        return process < min ? min : (Math.min(process, max));
+    }
+
+    public static long clampLong(long process, long min, long max) {
         return process < min ? min : (Math.min(process, max));
     }
 

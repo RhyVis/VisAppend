@@ -13,6 +13,7 @@ public class Config {
     // endregion
 
     // region Definition
+    public static boolean Debug_Mode = false;
     // Recipes-IA
     public static boolean Recipes_IA_Wireless_Enable = true;
     // Recipes-TR
@@ -25,6 +26,8 @@ public class Config {
 
     public static void synchronizeConfiguration(File configFile) {
         Configuration configuration = new Configuration(configFile);
+
+        Debug_Mode = configuration.getBoolean("Debug_Mode", GENERAL, false, "调试模式");
 
         Recipes_IA_Wireless_Enable = configuration
             .getBoolean("Recipes_IA_Wireless_Enable", RECIPE, true, "是否启用无线仓的IA简化配方");
