@@ -7,6 +7,7 @@ import static gregtech.api.enums.GT_HatchElement.ExoticEnergy;
 import static gregtech.api.enums.GT_HatchElement.InputBus;
 import static gregtech.api.enums.GT_HatchElement.InputHatch;
 import static gregtech.api.enums.GT_HatchElement.OutputBus;
+import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
 import static gregtech.api.util.GT_Utility.filterValidMTEs;
 
 import java.util.ArrayList;
@@ -16,7 +17,11 @@ import java.util.stream.Stream;
 
 import javax.annotation.Nullable;
 
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
@@ -24,6 +29,9 @@ import org.jetbrains.annotations.NotNull;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
+import com.gtnewhorizons.modularui.api.screen.ModularWindow;
+import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
+import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.util.AssemblyLineHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
@@ -31,6 +39,7 @@ import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Textures;
+import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.interfaces.IHatchElement;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -70,6 +79,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     // region Processing Logic
 
+    protected boolean pCheck = true;
+
     @Override
     protected ProcessingLogic createProcessingLogic() {
         return new ProcessingLogic() {
@@ -93,6 +104,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
+                    .check(pCheck)
                     .generate();
             }
 
@@ -112,6 +124,13 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @Override
     public RecipeMap<?> getRecipeMap() {
         return RecipeMaps.assemblylineVisualRecipes;
+    }
+
+    @Override
+    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
+        if (getBaseMetaTileEntity().isServerSide()) {
+            this.pCheck = !this.pCheck;
+        }
     }
 
     // endregion
@@ -235,6 +254,24 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .getCasingTextureForId(GT_Utility.getCasingTextureIndex(GregTech_API.sBlockCasings2, 0)) };
     }
 
+    @Override
+    public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
+        super.addUIWidgets(builder, buildContext);
+        builder.widget(
+            new CycleButtonWidget().setToggle(() -> pCheck, val -> pCheck = val)
+                .setTextureGetter(
+                    state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_RECIPE_LOCKED
+                        : GT_UITextures.OVERLAY_BUTTON_RECIPE_UNLOCKED)
+                .setBackground(GT_UITextures.BUTTON_STANDARD)
+                .setPos(80, 91)
+                .setSize(16, 16)
+                .dynamicTooltip(
+                    () -> Collections
+                        .singletonList(StatCollector.translateToLocal("append.RALCheck." + (pCheck ? 1 : 0))))
+                .setUpdateTooltipEveryTick(true)
+                .setTooltipShowUpDelay(TOOLTIP_DELAY));
+    }
+
     private enum DataHatchElement implements IHatchElement<VA_TileEntity_ReinforcedAssemblyLine> {
 
         DataAccess;
@@ -318,6 +355,27 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .addEnergyHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
             .toolTipFinisher(VA_Values.CommonStrings.VisAppendGigaFac);
         return tt;
+    }
+
+    @Override
+    public String[] getInfoData() {
+        String[] oStr = super.getInfoData();
+        String[] nStr = new String[oStr.length + 1];
+        System.arraycopy(oStr, 0, nStr, 0, oStr.length);
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "验证配方" + ": " + EnumChatFormatting.GOLD + this.pCheck;
+        return nStr;
+    }
+
+    @Override
+    public void saveNBTData(NBTTagCompound aNBT) {
+        super.saveNBTData(aNBT);
+        aNBT.setBoolean("pCheck", pCheck);
+    }
+
+    @Override
+    public void loadNBTData(final NBTTagCompound aNBT) {
+        super.loadNBTData(aNBT);
+        pCheck = aNBT.getBoolean("pCheck");
     }
 
     // endregion

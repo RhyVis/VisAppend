@@ -35,6 +35,9 @@ append.UltimateHeater.mRecipeMode.2=Fusion Mode
 append.HeatDeathSimulator.mRecipeMode.0=Vacuum Mode
 append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
 
+append.RALCheck.0=Disable Recipe Check
+append.RALCheck.1=Enable Recipe Check
+
 va.gui.desc.import_energy=Energy Level
 
 GT5U.gui.text.importing_energy=§bImporting Energy
