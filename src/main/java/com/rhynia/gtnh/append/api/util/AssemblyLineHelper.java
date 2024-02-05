@@ -24,6 +24,7 @@ public class AssemblyLineHelper {
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
+    protected boolean bCheck = true;
     protected boolean bEnableDebug = false;
 
     public AssemblyLineHelper() {}
@@ -58,6 +59,11 @@ public class AssemblyLineHelper {
         return this;
     }
 
+    public AssemblyLineHelper check(boolean check) {
+        bCheck = check;
+        return this;
+    }
+
     public AssemblyLineHelper enableDebug() {
         bEnableDebug = true;
         return this;
@@ -71,8 +77,8 @@ public class AssemblyLineHelper {
      * @param inputFluid real inputs of fluids in machine
      * @return if the real inputs capable to process the recipe
      */
-    private boolean examineRecipe(@NotNull GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
-        if (recipe.mEnabled && !recipe.mFakeRecipe) {
+    private boolean examineRecipe(@NotNull GT_Recipe recipe, FluidStack[] inputFluid, ItemStack[] inputItem) {
+        if (recipe.mEnabled) {
             return recipe.isRecipeInputEqual(false, inputFluid, inputItem);
         }
         return false;
@@ -100,6 +106,9 @@ public class AssemblyLineHelper {
             0);
     }
 
+    /**
+     * Returns a Stream of available recipes.
+     */
     public Stream<GT_Recipe> generate() {
 
         if (!pRawDataSticks.isEmpty()) {
@@ -117,13 +126,17 @@ public class AssemblyLineHelper {
                 VisAppend.LOG.info("RAL found " + pRecipes.size() + " recipes.");
             }
 
-            if (pLastRecipe != null && examineRecipe(pLastRecipe, pInputItems, pInputFluids)) {
+            if (pLastRecipe != null && examineRecipe(pLastRecipe, pInputFluids, pInputItems)) {
                 pRecipes.add(pLastRecipe);
             }
 
             if (!pRecipes.isEmpty()) {
-                return pRecipes.stream()
-                    .filter(recipe -> examineRecipe(recipe, pInputItems, pInputFluids));
+                if (bCheck) {
+                    return pRecipes.stream()
+                        .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
+                } else {
+                    return pRecipes.stream();
+                }
             }
         }
 
