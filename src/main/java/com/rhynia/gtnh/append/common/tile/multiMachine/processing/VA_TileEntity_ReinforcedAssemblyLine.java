@@ -14,22 +14,19 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Stream;
 
-import javax.annotation.Nonnull;
 import javax.annotation.Nullable;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.common.util.ForgeDirection;
-import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
 
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
-import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.util.AssemblyLineHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
-import com.rhynia.gtnh.append.config.Config;
 
 import gregtech.api.GregTech_API;
 import gregtech.api.enums.ItemList;
@@ -47,7 +44,6 @@ import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
-import gregtech.api.util.GT_AssemblyLineUtils;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Recipe;
@@ -81,8 +77,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @Override
             @NotNull
             public CheckRecipeResult process() {
-                ArrayList<ItemStack> tDataStickCheckList = getDataItems(2);
-                if (tDataStickCheckList.isEmpty()) {
+                if (getDataItems(2).isEmpty()) {
                     return CheckRecipeResultRegistry.NO_DATA_STICKS;
                 }
                 setSpeedBonus(rSpeedBonus());
@@ -90,83 +85,17 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 return super.process();
             }
 
-            /**
-             * Generate a stream of matched recipes referencing data sticks,
-             * and will be examined by real inputs, just like the original method does.
-             *
-             * @param map fake map of assembly line, useless in the method
-             * @return a stream of recipes that is available for processing
-             */
             @Override
-            @Nonnull
-            protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
-                ArrayList<ItemStack> tDataStickList = getDataItems(2);
-                ArrayList<GT_Recipe> pDataStickRecipes = new ArrayList<>();
-
-                if (!tDataStickList.isEmpty()) {
-                    for (ItemStack tDataStick : tDataStickList) {
-                        GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
-                            .findAssemblyLineRecipeFromDataStick(tDataStick, false);
-                        if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
-                            continue;
-                        }
-                        GT_Recipe pRecipe = transformRecipe(tLookupResult);
-                        pDataStickRecipes.add(pRecipe);
-                    }
-
-                    if (Config.Debug_Mode) {
-                        VisAppend.LOG.info("RAL found " + pDataStickRecipes.size() + " recipes.");
-                    }
-
-                    if (lastRecipe != null && examineRecipe(lastRecipe, inputItems, inputFluids)) {
-                        pDataStickRecipes.add(lastRecipe);
-                    }
-
-                    if (!pDataStickRecipes.isEmpty()) {
-                        return pDataStickRecipes.stream()
-                            .filter(recipe -> examineRecipe(recipe, inputItems, inputFluids));
-                    }
-                }
-
-                return Stream.empty();
-            }
-
-            /**
-             * Similar to the filterFindRecipe used in recipeMap-based search
-             *
-             * @param recipe     the recipe that needs to be checked
-             * @param inputItem  real inputs of items in machine
-             * @param inputFluid real inputs of fluids in machine
-             * @return if the real inputs capable to process the recipe
-             */
-            private boolean examineRecipe(@NotNull GT_Recipe recipe, ItemStack[] inputItem, FluidStack[] inputFluid) {
-                if (recipe.mEnabled && !recipe.mFakeRecipe) {
-                    return recipe.isRecipeInputEqual(false, inputFluid, inputItem);
-                }
-                return false;
-            }
-
-            /**
-             * This method will generate a general GT_Recipe out of the assembly specific recipe
-             *
-             * @param tLookupResult the data of the scanned data sticks
-             * @return a GT_Recipe with oredict alt info
-             */
             @NotNull
-            private static GT_Recipe transformRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
-                GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
-                return new GT_Recipe(
-                    false,
-                    tRecipe.mInputs,
-                    new ItemStack[] { tRecipe.mOutput },
-                    null,
-                    null,
-                    tRecipe.mFluidInputs,
-                    null,
-                    tRecipe.mDuration,
-                    tRecipe.mEUt,
-                    0);
+            protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
+                return AssemblyLineHelper.builder()
+                    .setRawDataSticks(getDataItems(2))
+                    .setInputItems(inputItems)
+                    .setInputFluids(inputFluids)
+                    .setLastRecipe(lastRecipe)
+                    .generate();
             }
+
         };
     }
 

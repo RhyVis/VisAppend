@@ -13,14 +13,14 @@ public class VA_RecipeBuilder {
         return new VA_RecipeBuilder();
     }
 
-    public ItemStack[] inputItems = new ItemStack[0];
-    public ItemStack[] outputItems = new ItemStack[0];
-    public FluidStack[] inputFluids = new FluidStack[0];
-    public FluidStack[] outputFluids = new FluidStack[0];
-    public int[] outputChance;
-    public int eut = 0;
-    public int duration = 0;
-    public int specialValue = 0;
+    protected ItemStack[] inputItems = new ItemStack[0];
+    protected ItemStack[] outputItems = new ItemStack[0];
+    protected FluidStack[] inputFluids = new FluidStack[0];
+    protected FluidStack[] outputFluids = new FluidStack[0];
+    protected int[] outputChance;
+    protected int eut = 0;
+    protected int duration = 0;
+    protected int specialValue = 0;
 
     public VA_RecipeBuilder() {}
 
