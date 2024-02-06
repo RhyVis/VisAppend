@@ -11,9 +11,16 @@ import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import com.rhynia.gtnh.append.VisAppend;
-import com.rhynia.gtnh.append.config.Config;
+import com.rhynia.gtnh.append.api.recipe.backend.VA_RecipeMapBackend;
+import com.rhynia.gtnh.append.common.VAItemList;
 
+import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.OrePrefixes;
+import gregtech.api.objects.ItemData;
+import gregtech.api.recipe.RecipeMap;
+import gregtech.api.recipe.RecipeMapBuilder;
 import gregtech.api.util.GT_AssemblyLineUtils;
+import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 
 @SuppressWarnings("unused")
@@ -24,11 +31,41 @@ public class AssemblyLineHelper {
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
-    protected boolean bCheck = true;
+    protected boolean bEnableCompatibilityRecipeMap = false;
+    protected boolean bEnableAltCheck = false;
     protected boolean bEnableDebug = false;
+
+    /** RAL Compatibility Map (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> compatibilityRALMap = RecipeMapBuilder
+        .of("va.recipe.compatibilityRALMap", VA_RecipeMapBackend::new)
+        .maxIO(16, 1, 4, 0)
+        .minInputs(1, 0)
+        .disableOptimize()
+        .disableRegisterNEI()
+        .build();
+
+    @Contract(" -> new")
+    @NotNull
+    private GT_Recipe getDummy() {
+        VisAppend.LOG.error("A recipe build got error! Return dummy recipe.");
+        return new GT_Recipe(
+            false,
+            new ItemStack[] { VAItemList.Test.get(1) },
+            new ItemStack[] { VAItemList.Test.get(64) },
+            null,
+            null,
+            null,
+            null,
+            128,
+            128,
+            0);
+    }
 
     public AssemblyLineHelper() {}
 
+    /**
+     * Start calling builder.
+     */
     @Contract(value = " -> new", pure = true)
     public static @NotNull AssemblyLineHelper builder() {
         return new AssemblyLineHelper();
@@ -59,13 +96,42 @@ public class AssemblyLineHelper {
         return this;
     }
 
-    public AssemblyLineHelper check(boolean check) {
-        bCheck = check;
+    /**
+     * Inject compatibilityRALMap into recipe findings, no data sticks req, inputs req.
+     */
+    public AssemblyLineHelper enableCompatibilityRecipeMap(boolean b) {
+        bEnableCompatibilityRecipeMap = b;
         return this;
     }
 
+    /**
+     * Experimental: Attempt to fix circuit input problem.
+     */
+    public AssemblyLineHelper enableAltCheck() {
+        bEnableAltCheck = true;
+        return this;
+    }
+
+    /**
+     * Print debug info during running.
+     */
     public AssemblyLineHelper enableDebug() {
         bEnableDebug = true;
+        return this;
+    }
+
+    /**
+     * I don't know why it is here...
+     */
+    public AssemblyLineHelper clear() {
+        pRawDataSticks = new ArrayList<>();
+        pRecipes = new ArrayList<>();
+        pLastRecipe = null;
+        pInputItems = new ItemStack[0];
+        pInputFluids = new FluidStack[0];
+        bEnableCompatibilityRecipeMap = false;
+        bEnableAltCheck = false;
+        bEnableDebug = false;
         return this;
     }
 
@@ -90,20 +156,76 @@ public class AssemblyLineHelper {
      * @param tLookupResult the data of the scanned data sticks
      * @return a GT_Recipe with oredict alt info
      */
+    @Contract("_ -> new")
     @NotNull
-    private GT_Recipe transformRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
+    private GT_Recipe buildRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
         GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
+
+        ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
+        ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
+        FluidStack[] tInputFluidStacks = tRecipe.mFluidInputs.clone();
+        int tDur = tRecipe.mDuration;
+        int tEUt = tRecipe.mDuration;
+
         return new GT_Recipe(
             false,
-            tRecipe.mInputs,
-            new ItemStack[] { tRecipe.mOutput },
+            tInputItemStacks,
+            tOutputItemStacks,
             null,
             null,
-            tRecipe.mFluidInputs,
+            tInputFluidStacks,
             null,
-            tRecipe.mDuration,
-            tRecipe.mEUt,
+            tDur,
+            tEUt,
             0);
+
+    }
+
+    /**
+     * This method will generate a general GT_Recipe out of the assembly specific recipe,
+     * by the way it will also fix the circuit alt problem caused by AssemblyLineRecipe
+     *
+     * @param tLookupResult the data of the scanned data sticks
+     * @return a GT_Recipe with oredict alt info
+     */
+    @Contract("_ -> new")
+    @NotNull
+    private GT_Recipe buildRecipeChecked(GT_AssemblyLineUtils.LookupResult tLookupResult) {
+        GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
+
+        ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
+        ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
+        FluidStack[] tInputFluidStacks = tRecipe.mFluidInputs.clone();
+        int tDur = tRecipe.mDuration;
+        int tEUt = tRecipe.mEUt;
+
+        ItemStack[][] tAlts = tRecipe.mOreDictAlt.clone();
+
+        for (int i = 0; i < tInputItemStacks.length; i++) {
+            if (tAlts[i] != null) {
+                ItemStack tItemStackAlterable = tInputItemStacks[i];
+                ItemData tAltInfo = GT_OreDictUnificator.getAssociation(tItemStackAlterable);
+
+                if (tAltInfo == null) continue;
+
+                if (tAltInfo.mPrefix == OrePrefixes.circuit) {
+                    if (bEnableDebug) {
+                        VisAppend.LOG.info("Found" + tAltInfo.mMaterial + "circuit, send alt stack.");
+                    }
+                    tInputItemStacks[i] = GT_OreDictUnificator
+                        .get(OrePrefixes.circuit, tAltInfo.mMaterial.mMaterial, tItemStackAlterable.stackSize);
+                }
+            }
+        }
+
+        return GT_Values.RA.stdBuilder()
+            .itemInputs(tInputItemStacks)
+            .itemOutputs(tOutputItemStacks)
+            .fluidInputs(tInputFluidStacks)
+            .eut(tEUt)
+            .duration(tDur)
+            .build()
+            .orElseGet(this::getDummy);
     }
 
     /**
@@ -118,11 +240,15 @@ public class AssemblyLineHelper {
                 if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
                     continue;
                 }
-                GT_Recipe pRecipe = transformRecipe(tLookupResult);
-                pRecipes.add(pRecipe);
+
+                if (bEnableAltCheck) {
+                    pRecipes.add(buildRecipeChecked(tLookupResult));
+                } else {
+                    pRecipes.add(buildRecipe(tLookupResult));
+                }
             }
 
-            if (Config.Debug_Mode && bEnableDebug) {
+            if (bEnableDebug) {
                 VisAppend.LOG.info("RAL found " + pRecipes.size() + " recipes.");
             }
 
@@ -131,11 +257,17 @@ public class AssemblyLineHelper {
             }
 
             if (!pRecipes.isEmpty()) {
-                if (bCheck) {
+                if (!bEnableCompatibilityRecipeMap) {
                     return pRecipes.stream()
                         .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
                 } else {
-                    return pRecipes.stream();
+                    return Stream.concat(
+                        pRecipes.stream()
+                            .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems)),
+                        compatibilityRALMap.findRecipeQuery()
+                            .items(pInputItems)
+                            .fluids(pInputFluids)
+                            .findAll());
                 }
             }
         }
