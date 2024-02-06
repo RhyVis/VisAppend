@@ -13,6 +13,7 @@ import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAMachineRecipePool;
 import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAMixerRecipePool;
 import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAPlasmaForgeRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASAstraForgeRecipePool;
+import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASCompatibilityRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASIntegratedAssemblyRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASMicroAssemblyRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASSuperconductingFormingRecipePool;
@@ -40,6 +41,8 @@ public class RecipeLoader {
             new VASThermonuclearControlRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool(),
             new VASTranscendentReactorRecipePool(), new VAPlasmaForgeRecipePool(),
             new VASSuperconductingFormingRecipePool(),
+            // Compatibility
+            new VASCompatibilityRecipePool(),
             // Basic & Misc Recipe
             new VACommonRecipePool(), new VAMachineRecipePool(),
             // GT Recipe

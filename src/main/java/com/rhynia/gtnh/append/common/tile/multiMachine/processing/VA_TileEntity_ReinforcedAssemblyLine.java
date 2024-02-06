@@ -79,7 +79,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     // region Processing Logic
 
-    protected boolean pCheck = true;
+    protected boolean pInjectCompatibilityMap = false;
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
@@ -104,7 +104,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
-                    .check(pCheck)
+                    .enableAltCheck()
+                    .enableCompatibilityRecipeMap(pInjectCompatibilityMap)
                     .generate();
             }
 
@@ -127,9 +128,14 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     }
 
     @Override
+    public boolean supportsInputSeparation() {
+        return false;
+    }
+
+    @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.pCheck = !this.pCheck;
+            this.pInjectCompatibilityMap = !this.pInjectCompatibilityMap;
         }
     }
 
@@ -258,16 +264,15 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
         builder.widget(
-            new CycleButtonWidget().setToggle(() -> pCheck, val -> pCheck = val)
+            new CycleButtonWidget().setToggle(() -> pInjectCompatibilityMap, val -> pInjectCompatibilityMap = val)
                 .setTextureGetter(
-                    state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_RECIPE_LOCKED
-                        : GT_UITextures.OVERLAY_BUTTON_RECIPE_UNLOCKED)
+                    state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_IMPORT : GT_UITextures.OVERLAY_BUTTON_DISABLE)
                 .setBackground(GT_UITextures.BUTTON_STANDARD)
                 .setPos(80, 91)
                 .setSize(16, 16)
                 .dynamicTooltip(
-                    () -> Collections
-                        .singletonList(StatCollector.translateToLocal("append.RALCheck." + (pCheck ? 1 : 0))))
+                    () -> Collections.singletonList(
+                        StatCollector.translateToLocal("append.RALCheck." + (pInjectCompatibilityMap ? 1 : 0))))
                 .setUpdateTooltipEveryTick(true)
                 .setTooltipShowUpDelay(TOOLTIP_DELAY));
     }
@@ -362,20 +367,23 @@ public class VA_TileEntity_ReinforcedAssemblyLine
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 1];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
-        nStr[oStr.length] = EnumChatFormatting.AQUA + "验证配方" + ": " + EnumChatFormatting.GOLD + this.pCheck;
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "兼容配方"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + this.pInjectCompatibilityMap;
         return nStr;
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         super.saveNBTData(aNBT);
-        aNBT.setBoolean("pCheck", pCheck);
+        aNBT.setBoolean("pInjectCompatibilityMap", pInjectCompatibilityMap);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
         super.loadNBTData(aNBT);
-        pCheck = aNBT.getBoolean("pCheck");
+        pInjectCompatibilityMap = aNBT.getBoolean("pInjectCompatibilityMap");
     }
 
     // endregion
