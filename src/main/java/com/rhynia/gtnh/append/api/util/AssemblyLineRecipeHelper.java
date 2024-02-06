@@ -24,7 +24,7 @@ import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Recipe;
 
 @SuppressWarnings("unused")
-public class AssemblyLineHelper {
+public class AssemblyLineRecipeHelper {
 
     protected ArrayList<ItemStack> pRawDataSticks = new ArrayList<>();
     protected ArrayList<GT_Recipe> pRecipes = new ArrayList<>();
@@ -61,37 +61,37 @@ public class AssemblyLineHelper {
             0);
     }
 
-    public AssemblyLineHelper() {}
+    public AssemblyLineRecipeHelper() {}
 
     /**
      * Start calling builder.
      */
     @Contract(value = " -> new", pure = true)
-    public static @NotNull AssemblyLineHelper builder() {
-        return new AssemblyLineHelper();
+    public static @NotNull AssemblyLineRecipeHelper builder() {
+        return new AssemblyLineRecipeHelper();
     }
 
-    public AssemblyLineHelper addRawDataSticks(ItemStack dataSticks) {
+    public AssemblyLineRecipeHelper addRawDataSticks(ItemStack dataSticks) {
         pRawDataSticks.add(dataSticks);
         return this;
     }
 
-    public AssemblyLineHelper setRawDataSticks(ArrayList<ItemStack> dataSticks) {
+    public AssemblyLineRecipeHelper setRawDataSticks(ArrayList<ItemStack> dataSticks) {
         pRawDataSticks = dataSticks;
         return this;
     }
 
-    public AssemblyLineHelper setInputItems(ItemStack... inputs) {
+    public AssemblyLineRecipeHelper setInputItems(ItemStack... inputs) {
         pInputItems = inputs;
         return this;
     }
 
-    public AssemblyLineHelper setInputFluids(FluidStack... inputs) {
+    public AssemblyLineRecipeHelper setInputFluids(FluidStack... inputs) {
         pInputFluids = inputs;
         return this;
     }
 
-    public AssemblyLineHelper setLastRecipe(@Nullable GT_Recipe recipe) {
+    public AssemblyLineRecipeHelper setLastRecipe(@Nullable GT_Recipe recipe) {
         pLastRecipe = recipe;
         return this;
     }
@@ -99,7 +99,7 @@ public class AssemblyLineHelper {
     /**
      * Inject compatibilityRALMap into recipe findings, no data sticks req, inputs req.
      */
-    public AssemblyLineHelper enableCompatibilityRecipeMap(boolean b) {
+    public AssemblyLineRecipeHelper enableCompatibilityRecipeMap(boolean b) {
         bEnableCompatibilityRecipeMap = b;
         return this;
     }
@@ -107,7 +107,7 @@ public class AssemblyLineHelper {
     /**
      * Experimental: Attempt to fix circuit input problem.
      */
-    public AssemblyLineHelper enableAltCheck() {
+    public AssemblyLineRecipeHelper enableAltCheck() {
         bEnableAltCheck = true;
         return this;
     }
@@ -115,7 +115,7 @@ public class AssemblyLineHelper {
     /**
      * Print debug info during running.
      */
-    public AssemblyLineHelper enableDebug() {
+    public AssemblyLineRecipeHelper enableDebug() {
         bEnableDebug = true;
         return this;
     }
@@ -123,7 +123,7 @@ public class AssemblyLineHelper {
     /**
      * I don't know why it is here...
      */
-    public AssemblyLineHelper clear() {
+    public AssemblyLineRecipeHelper clear() {
         pRawDataSticks = new ArrayList<>();
         pRecipes = new ArrayList<>();
         pLastRecipe = null;
@@ -158,7 +158,7 @@ public class AssemblyLineHelper {
      */
     @Contract("_ -> new")
     @NotNull
-    private GT_Recipe buildRecipe(GT_AssemblyLineUtils.LookupResult tLookupResult) {
+    private GT_Recipe buildRecipe(@NotNull GT_AssemblyLineUtils.LookupResult tLookupResult) {
         GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
 
         ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
@@ -190,7 +190,7 @@ public class AssemblyLineHelper {
      */
     @Contract("_ -> new")
     @NotNull
-    private GT_Recipe buildRecipeChecked(GT_AssemblyLineUtils.LookupResult tLookupResult) {
+    private GT_Recipe buildRecipeChecked(@NotNull GT_AssemblyLineUtils.LookupResult tLookupResult) {
         GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
 
         ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
