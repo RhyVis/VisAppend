@@ -515,7 +515,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // Optical RAM
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                GGChip.UV.getItemStack(1),
+                GGChip.LuV.getItemStack(4),
                 BWPart.Elite_Board.getItemStack(4),
                 BWPart.Opt_Card.getItemStack(4),
                 GT_ModHandler.getModItem(AdvancedSolarPanel.ID, "asp_crafting_items", 32, 5),

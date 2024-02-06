@@ -3,7 +3,7 @@
 	"modList": [{
 		"modid": "${modId}",
 		"name": "${modName}",
-		"description": "A simple mod used in GTNH for tewak use.",
+		"description": "A simple mod used in GTNH for tweak use.",
 		"version": "${modVersion}",
 		"mcversion": "${minecraftVersion}",
 		"url": "https://github.com/RhyVis/VisAppend",
