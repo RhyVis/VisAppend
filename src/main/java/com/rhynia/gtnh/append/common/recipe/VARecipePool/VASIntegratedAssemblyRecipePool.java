@@ -21,6 +21,7 @@ import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.Avaritia;
 import static gregtech.api.enums.Mods.EternalSingularity;
 import static gregtech.api.enums.Mods.GTPlusPlus;
+import static gregtech.api.enums.Mods.SuperSolarPanels;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidRegistry;
@@ -31,6 +32,7 @@ import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
+import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
@@ -855,6 +857,30 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(4 * SECONDS)
+            .addTo(IA_R);
+        // endregion
+
+        // region Solar Panel
+        // UV
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(CustomItemList.PicoWafer.get(1), 4 * 64),
+                ItemHelper.setStackSize(CustomItemList.RawPicoWafer.get(1), 2 * 64),
+                GGChip.UEV.getItemStack(8),
+                GGChip.UHV.getItemStack(8),
+                ItemHelper.setStackSize(Materials.Carbon.getPlates(1), 1024),
+                BWPart.Part_IC_P.getItemStack(16),
+                GT_ModHandler.getModItem(SuperSolarPanels.ID, "solarsplitter", 8, 0),
+                VAItemList.CrystalMatrix.get(2))
+            .fluidInputs(
+                Materials.SiliconSG.getMolten(64 * 12 * 9 * INGOTS),
+                SCPart.UHV.getMolten(12 * 64 * INGOTS),
+                Materials.ReinforceGlass.getMolten(4 * 64 * INGOTS),
+                Materials.Neutronium.getMolten(256 * INGOTS))
+            .itemOutputs(ItemList.Cover_SolarPanel_UV.get(64))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(32 * 8 * SECONDS)
             .addTo(IA_R);
         // endregion
     }
