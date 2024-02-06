@@ -33,7 +33,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
-import com.rhynia.gtnh.append.api.util.AssemblyLineHelper;
+import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -99,7 +99,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @Override
             @NotNull
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
-                return AssemblyLineHelper.builder()
+                return AssemblyLineRecipeHelper.builder()
                     .setRawDataSticks(getDataItems(2))
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
@@ -114,12 +114,14 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     public int rMaxParallel() {
-        return 2 * GT_Utility.getTier(this.getMaxInputVoltage());
+        double rParallelTimes = Math.floor(Math.log10(this.getMaxInputAmps()) / Math.log(4));
+        return 4 * ((int) (1 + rParallelTimes));
     }
 
     @Override
     public float rSpeedBonus() {
-        return (float) Math.max(0.3F, Math.pow(0.9, GT_Utility.getTier(this.getMaxInputVoltage())));
+        long rSpeedTimes = this.getMaxInputEu() / (64L * VA_Values.RecipeValues.MAX);
+        return (float) Math.max(0.3F, Math.pow(0.9F, rSpeedTimes));
     }
 
     @Override
@@ -267,6 +269,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             new CycleButtonWidget().setToggle(() -> pInjectCompatibilityMap, val -> pInjectCompatibilityMap = val)
                 .setTextureGetter(
                     state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_IMPORT : GT_UITextures.OVERLAY_BUTTON_DISABLE)
+                .setPlayClickSound(true)
                 .setBackground(GT_UITextures.BUTTON_STANDARD)
                 .setPos(80, 91)
                 .setSize(16, 16)
@@ -347,8 +350,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .addInfo("复合装配线的控制器")
             .addInfo("更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
-            .addInfo("电压每提高1级, 最大并行增加2.")
-            .addInfo("电压每提高1级, 额外降低10%配方耗时(叠乘), 最高70%加速.")
+            .addInfo("初始并行为4, 每4^n输入电流将提供n倍并行")
+            .addInfo("每64A-MAX的输入功率将提供10%加速(叠乘), 最高70%加速.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)
