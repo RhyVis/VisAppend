@@ -60,7 +60,7 @@ public class VAHammerRecipePool implements IRecipePool {
                 VAMaterials.Astrium.get(OrePrefixes.dust, 12))
             .fluidOutputs(
                 VAMaterials.AstriumMagic.getMolten(12),
-                FluidHelper.getFluidStackByFluidName("molten.kevlar", 4608))
+                FluidHelper.getFluidStackByName("molten.kevlar", 4608))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(25 * SECONDS)

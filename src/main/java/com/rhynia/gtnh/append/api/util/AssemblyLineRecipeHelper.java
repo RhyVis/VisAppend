@@ -31,6 +31,7 @@ public class AssemblyLineRecipeHelper {
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
+    protected long pVoltage = 0L;
     protected boolean bEnableCompatibilityRecipeMap = false;
     protected boolean bEnableAltCheck = false;
     protected boolean bEnableDebug = false;
@@ -93,6 +94,11 @@ public class AssemblyLineRecipeHelper {
 
     public AssemblyLineRecipeHelper setLastRecipe(@Nullable GT_Recipe recipe) {
         pLastRecipe = recipe;
+        return this;
+    }
+
+    public AssemblyLineRecipeHelper setVoltage(long vol) {
+        pVoltage = vol;
         return this;
     }
 
@@ -167,18 +173,14 @@ public class AssemblyLineRecipeHelper {
         int tDur = tRecipe.mDuration;
         int tEUt = tRecipe.mDuration;
 
-        return new GT_Recipe(
-            false,
-            tInputItemStacks,
-            tOutputItemStacks,
-            null,
-            null,
-            tInputFluidStacks,
-            null,
-            tDur,
-            tEUt,
-            0);
-
+        return GT_Values.RA.stdBuilder()
+            .itemInputs(tInputItemStacks)
+            .itemOutputs(tOutputItemStacks)
+            .fluidInputs(tInputFluidStacks)
+            .eut(tEUt)
+            .duration(tDur)
+            .build()
+            .orElseGet(this::getDummy);
     }
 
     /**

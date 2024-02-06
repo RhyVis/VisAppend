@@ -1,13 +1,13 @@
 package com.rhynia.gtnh.append.api.util;
 
-import static com.rhynia.gtnh.append.VisAppend.LOG;
-
 import net.minecraft.item.ItemStack;
+
+import com.rhynia.gtnh.append.VisAppend;
 
 @SuppressWarnings("unused")
 public class ItemHelper {
 
-    // region about ItemStack
+    // region ItemStack
     public static boolean metaItemEqual(ItemStack a, ItemStack b) {
         if (a == b) return true;
         if (a == null || b == null) return false;
@@ -74,7 +74,8 @@ public class ItemHelper {
     public static ItemStack setStackSize(ItemStack itemStack, int amount) {
         if (itemStack == null) return null;
         if (amount < 0) {
-            LOG.info("Error! Trying to set a item stack size lower than zero! " + itemStack + " to amount " + amount);
+            VisAppend.LOG
+                .info("Error! Trying to set a item stack size lower than zero! " + itemStack + " to amount " + amount);
             return itemStack;
         }
         itemStack.stackSize = amount;
