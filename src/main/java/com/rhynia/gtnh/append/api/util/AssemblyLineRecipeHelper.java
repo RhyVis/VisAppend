@@ -198,8 +198,6 @@ public class AssemblyLineRecipeHelper {
         ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
         ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
         FluidStack[] tInputFluidStacks = tRecipe.mFluidInputs.clone();
-        int tDur = tRecipe.mDuration;
-        int tEUt = tRecipe.mEUt;
 
         ItemStack[][] tAlts = tRecipe.mOreDictAlt.clone();
 
@@ -224,8 +222,8 @@ public class AssemblyLineRecipeHelper {
             .itemInputs(tInputItemStacks)
             .itemOutputs(tOutputItemStacks)
             .fluidInputs(tInputFluidStacks)
-            .eut(tEUt)
-            .duration(tDur)
+            .eut(tRecipe.mEUt)
+            .duration(tRecipe.mDuration)
             .build()
             .orElseGet(this::getDummy);
     }
