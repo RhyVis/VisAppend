@@ -34,9 +34,11 @@ import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
 import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
+import com.rhynia.gtnh.append.api.enums.refHelper.Tier;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
@@ -840,6 +842,82 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_UEV)
             .duration(12 * 15 * SECONDS)
             .addTo(IA);
+        // endregion
+
+        // region Casing Fusion
+        // FRF Coil I
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                Tier.UHV.getCircuitWrap(1),
+                Tier.UV.getComponent(Tier.Component.Field_Generator, 32),
+                ItemHelper.setStackSize(Tier.UV.getComponent(Tier.Component.Electric_Pump, 1), 128),
+                ItemHelper.setStackSize(ItemList.Circuit_Wafer_PPIC.get(1), 32 * 16))
+            .fluidInputs(
+                SCPart.ZPM.getSxEqualFluid(128 * 16),
+                Materials.Americium.getMolten(8 * 9 * 16 * INGOTS),
+                Materials.BlackPlutonium.getMolten(16 * 3 * 16 * INGOTS),
+                Materials.Osmium.getMolten(2 * 16 * INGOTS),
+                Materials.ElectrumFlux.getMolten(64 * 16 * INGOTS),
+                FluidHelper.getFluidStackByName("lubricant", 128000 * 16))
+            .itemOutputs(ItemRefer.Field_Restriction_Coil_T1.get(16))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 900 * SECONDS)
+            .addTo(IA_R);
+        // FRF Coil II
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                Tier.UEV.getCircuitWrap(1),
+                Tier.UHV.getComponent(Tier.Component.Field_Generator, 32),
+                ItemHelper.setStackSize(Tier.UHV.getComponent(Tier.Component.Electric_Pump, 1), 128),
+                ItemHelper.setStackSize(ItemList.Circuit_Wafer_PPIC.get(1), 48 * 16))
+            .fluidInputs(
+                SCPart.UV.getSxEqualFluid(2 * 128 * 16),
+                Materials.Infinity.getMolten(8 * 9 * 16 * INGOTS),
+                Materials.Neutronium.getMolten(16 * 3 * 16 * INGOTS),
+                Materials.CosmicNeutronium.getMolten(2 * 16 * INGOTS),
+                Materials.DraconiumAwakened.getMolten(64 * 16 * INGOTS),
+                FluidHelper.getFluidStackByName("lubricant", 128000 * 16))
+            .itemOutputs(ItemRefer.Field_Restriction_Coil_T2.get(16))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 1800 * SECONDS)
+            .addTo(IA_R);
+        // FRF Coil III
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                Tier.UIV.getCircuitWrap(1),
+                Tier.UEV.getComponent(Tier.Component.Field_Generator, 32),
+                ItemHelper.setStackSize(Tier.UEV.getComponent(Tier.Component.Electric_Pump, 1), 128),
+                ItemHelper.setStackSize(ItemList.Circuit_Wafer_PPIC.get(1), 64 * 16))
+            .fluidInputs(
+                SCPart.UHV.getSxEqualFluid(4 * 128 * 16),
+                MaterialsUEVplus.TranscendentMetal.getMolten(8 * 9 * 16 * INGOTS),
+                Materials.Infinity.getMolten((16 * 3 + 2) * 16 * INGOTS),
+                Materials.Neutronium.getMolten(64 * 16 * INGOTS),
+                FluidHelper.getFluidStackByName("lubricant", 128000 * 16))
+            .itemOutputs(ItemRefer.Field_Restriction_Coil_T3.get(16))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 3600 * SECONDS)
+            .addTo(IA_R);
+        // FRF Coil IV
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                Tier.UMV.getCircuitWrap(1),
+                Tier.UIV.getComponent(Tier.Component.Field_Generator, 32),
+                ItemHelper.setStackSize(Tier.UIV.getComponent(Tier.Component.Electric_Pump, 1), 128),
+                ItemHelper.setStackSize(ItemList.Circuit_Wafer_PPIC.get(1), 64 * 16))
+            .fluidInputs(
+                SCPart.UEV.getSxEqualFluid(4 * 128 * 16),
+                MaterialsUEVplus.SpaceTime.getMolten((8 * 9 + 16 * 3 + 2) * 16 * INGOTS),
+                MaterialsUEVplus.TranscendentMetal.getMolten(64 * 16 * INGOTS),
+                FluidHelper.getFluidStackByName("lubricant", 128000 * 16))
+            .itemOutputs(ItemRefer.Field_Restriction_Coil_T4.get(16))
+            .noOptimize()
+            .eut(RECIPE_ZPM)
+            .duration(12 * 7200 * SECONDS)
+            .addTo(IA_R);
         // endregion
 
         // region AE2

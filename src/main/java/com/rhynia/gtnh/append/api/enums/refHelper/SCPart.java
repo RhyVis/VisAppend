@@ -119,7 +119,7 @@ public enum SCPart {
      */
     public ItemStack getPump(int amount) {
         return Tier.valueOf(this.toString())
-            .getComponent(amount, Tier.Type.Electric_Pump);
+            .getComponent(Tier.Component.Electric_Pump, amount);
     }
 
     /**
@@ -128,6 +128,14 @@ public enum SCPart {
     public ItemStack getSolenoid(int amount) {
         return ItemList.valueOf("Superconducting_Magnet_Solenoid_" + this)
             .get(amount);
+    }
+
+    public ItemStack getPrefix(OrePrefixes prefix, int amount) {
+        return getPrefix(prefix, amount, true);
+    }
+
+    public ItemStack getPrefix(OrePrefixes prefix, int amount, boolean base) {
+        return GT_OreDictUnificator.get(prefix, base ? this.raw : this.production, amount);
     }
 
     public FluidStack getSxEqualFluid(int originalAmount) {

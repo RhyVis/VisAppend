@@ -1,14 +1,22 @@
 package com.rhynia.gtnh.append.api.enums.refHelper;
 
+import static gregtech.api.enums.Mods.GTPlusPlus;
+
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
+import org.jetbrains.annotations.NotNull;
+
+import com.github.technus.tectech.loader.recipe.BaseRecipeLoader;
+import com.github.technus.tectech.thing.CustomItemList;
+import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.common.VAItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
+import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 
 @SuppressWarnings("unused")
@@ -22,7 +30,7 @@ public enum Tier {
     IV(Materials.Elite),
     LuV(Materials.Master),
     ZPM(Materials.Ultimate),
-    UV(Materials.SuperconductorUHV),
+    UV(Materials.SuperconductorUHV), // Due to optimization
     UHV(Materials.Infinite),
     UEV(Materials.Bio),
     UIV(Materials.Optical),
@@ -40,6 +48,38 @@ public enum Tier {
     Tier(Materials material, Materials altMaterial) {
         this.material = material;
         this.altMaterial = altMaterial;
+    }
+
+    public enum Component {
+
+        Electric_Motor,
+        Electric_Piston,
+        Electric_Pump,
+        Robot_Arm,
+        Conveyor_Module,
+        Emitter,
+        Sensor,
+        Field_Generator;
+
+        @Override
+        public String toString() {
+            return super.toString() + "_";
+        }
+
+    }
+
+    public enum Hatch {
+
+        Dynamo,
+        Energy,
+        Energy4A,
+        Energy16A,
+        Energy64A;
+
+        @Override
+        public String toString() {
+            return super.toString();
+        }
     }
 
     public long getVoltage() {
@@ -90,27 +130,110 @@ public enum Tier {
         return GGChip.values()[this.ordinal()].getItemStack(amount);
     }
 
-    public enum Type {
-
-        Electric_Motor,
-        Electric_Piston,
-        Electric_Pump,
-        Robot_Arm,
-        Conveyor_Module,
-        Emitter,
-        Sensor,
-        Field_Generator;
-
-        @Override
-        public String toString() {
-            return super.toString() + "_";
-        }
-
+    public ItemStack getComponent(Component component, int amount) {
+        if (this == ULV) {
+            VisAppend.LOG.error("Attempting to get ULV component, but it's already removed!");
+            return VAItemList.Test.get(amount);
+        } else return ItemList.valueOf(component.toString() + this)
+            .get(amount, VAItemList.Test.get(1));
     }
 
-    public ItemStack getComponent(int amount, Type type) {
-        if (this == ULV) return VAItemList.Test.get(amount);
-        return ItemList.valueOf(type.toString() + this)
-            .get(amount);
+    public ItemStack getCoil(int amount) {
+        if (this == UEV || this == UIV || this == UMV || this == UXV || this == MAX) {
+            VisAppend.LOG.error("Attempting to get " + this + " component, but it doesn't exist!");
+            return VAItemList.Test.get(amount);
+        } else return ItemList.valueOf(this + "_Coil")
+            .get(amount, VAItemList.Test.get(1));
+    }
+
+    public ItemStack getBufferCore(int amount) {
+        if (this == UHV || this == UEV || this == UIV || this == UMV || this == UXV) {
+            VisAppend.LOG.error("Attempting to get " + this + " buffer core, but it doesn't exist!");
+            return VAItemList.Test.get(amount);
+        } else if (this == MAX) {
+            return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore10", amount);
+        } else return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore" + (this.ordinal() + 1), amount);
+    }
+
+    public ItemStack getHatch(@NotNull Hatch hatch, int amount) {
+        return switch (hatch.toString()) {
+            case "Dynamo" -> this.getDynamoHatch(amount);
+            case "Energy" -> this.getEnergyHatch(amount);
+            case "Energy4A" -> this.getEnergyHatch4A(amount);
+            case "Energy16A" -> this.getEnergyHatch16A(amount);
+            case "Energy64A" -> this.getEnergyHatch64A(amount);
+            default -> throw new IllegalStateException("Unexpected value: " + hatch);
+        };
+    }
+
+    public ItemStack getHatch(@NotNull String hatch, int amount) {
+        return switch (hatch) {
+            case "Dynamo" -> this.getDynamoHatch(amount);
+            case "Energy" -> this.getEnergyHatch(amount);
+            case "Energy4A" -> this.getEnergyHatch4A(amount);
+            case "Energy16A" -> this.getEnergyHatch16A(amount);
+            case "Energy64A" -> this.getEnergyHatch64A(amount);
+            default -> throw new IllegalStateException("Unexpected value: " + hatch);
+        };
+    }
+
+    public ItemStack getDynamoHatch(int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV -> ItemList.valueOf("Hatch_Dynamo_" + this)
+                .get(amount);
+            case UHV, UEV, UIV, UMV, UXV, MAX -> BaseRecipeLoader.getItemContainer("Hatch_Dynamo_" + this)
+                .get(amount);
+        };
+    }
+
+    public ItemStack getEnergyHatch(int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV -> ItemList.valueOf("Hatch_Energy_" + this)
+                .get(amount);
+            case UHV, UEV, UIV, UMV, UXV, MAX -> BaseRecipeLoader.getItemContainer("Hatch_Energy_" + this)
+                .get(amount);
+        };
+    }
+
+    public ItemStack getEnergyHatch4A(int amount) {
+        switch (this) {
+            case ULV, LV, MV, HV, MAX -> {
+                VisAppend.LOG.error("Attempting to get " + this + " 4A energy hatch, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
+                return CustomItemList.valueOf("eM_energyMulti4_" + this)
+                    .get(amount);
+            }
+        }
+        return VAItemList.Test.get(1);
+    }
+
+    public ItemStack getEnergyHatch16A(int amount) {
+        switch (this) {
+            case ULV, LV, MV, HV, MAX -> {
+                VisAppend.LOG.error("Attempting to get " + this + " 16A energy hatch, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
+                return CustomItemList.valueOf("eM_energyMulti16_" + this)
+                    .get(amount);
+            }
+        }
+        return VAItemList.Test.get(1);
+    }
+
+    public ItemStack getEnergyHatch64A(int amount) {
+        switch (this) {
+            case ULV, LV, MV, HV, MAX -> {
+                VisAppend.LOG.error("Attempting to get " + this + " 64A energy hatch, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
+                return CustomItemList.valueOf("eM_energyMulti64_" + this)
+                    .get(amount);
+            }
+        }
+        return VAItemList.Test.get(1);
     }
 }
