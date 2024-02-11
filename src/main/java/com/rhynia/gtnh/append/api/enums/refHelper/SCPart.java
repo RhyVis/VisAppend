@@ -14,17 +14,24 @@ import gregtech.api.util.GT_OreDictUnificator;
 @SuppressWarnings("unused")
 public enum SCPart {
 
-    MV,
-    HV,
-    EV,
-    IV,
-    LuV,
-    ZPM,
-    UV,
-    UHV,
-    UEV,
-    UIV,
-    UMV;
+    MV(Materials.SuperconductorMV, Materials.Pentacadmiummagnesiumhexaoxid),
+    HV(Materials.SuperconductorHV, Materials.Titaniumonabariumdecacoppereikosaoxid),
+    EV(Materials.SuperconductorEV, Materials.Uraniumtriplatinid),
+    IV(Materials.SuperconductorIV, Materials.Vanadiumtriindinid),
+    LuV(Materials.SuperconductorLuV, Materials.Tetraindiumditindibariumtitaniumheptacoppertetrakaidekaoxid),
+    ZPM(Materials.SuperconductorZPM, Materials.Tetranaquadahdiindiumhexaplatiumosminid),
+    UV(Materials.SuperconductorUV, Materials.Longasssuperconductornameforuvwire),
+    UHV(Materials.SuperconductorUHV, Materials.Longasssuperconductornameforuhvwire),
+    UEV(Materials.SuperconductorUEV, Materials.SuperconductorUEVBase),
+    UIV(Materials.SuperconductorUIV, Materials.SuperconductorUIVBase),
+    UMV(Materials.SuperconductorUMV, Materials.SuperconductorUMVBase);
+
+    private final Materials production, raw;
+
+    SCPart(Materials production, Materials raw) {
+        this.production = production;
+        this.raw = raw;
+    }
 
     /**
      * Get the Material
@@ -33,35 +40,7 @@ public enum SCPart {
      * @return Material in GT
      */
     public final Materials getMaterial(boolean base) {
-        if (!base) {
-            return switch (this) {
-                case MV -> Materials.SuperconductorMV;
-                case HV -> Materials.SuperconductorHV;
-                case EV -> Materials.SuperconductorEV;
-                case IV -> Materials.SuperconductorIV;
-                case LuV -> Materials.SuperconductorLuV;
-                case ZPM -> Materials.SuperconductorZPM;
-                case UV -> Materials.SuperconductorUV;
-                case UHV -> Materials.SuperconductorUHV;
-                case UEV -> Materials.SuperconductorUEV;
-                case UIV -> Materials.SuperconductorUIV;
-                case UMV -> Materials.SuperconductorUMV;
-            };
-        } else {
-            return switch (this) {
-                case MV -> Materials.Pentacadmiummagnesiumhexaoxid;
-                case HV -> Materials.Titaniumonabariumdecacoppereikosaoxid;
-                case EV -> Materials.Uraniumtriplatinid;
-                case IV -> Materials.Vanadiumtriindinid;
-                case LuV -> Materials.Tetraindiumditindibariumtitaniumheptacoppertetrakaidekaoxid;
-                case ZPM -> Materials.Tetranaquadahdiindiumhexaplatiumosminid;
-                case UV -> Materials.Longasssuperconductornameforuvwire;
-                case UHV -> Materials.Longasssuperconductornameforuhvwire;
-                case UEV -> Materials.SuperconductorUEVBase;
-                case UIV -> Materials.SuperconductorUIVBase;
-                case UMV -> Materials.SuperconductorUMVBase;
-            };
-        }
+        return base ? this.raw : this.production;
     }
 
     public final int getMultiplier() {
@@ -104,7 +83,7 @@ public enum SCPart {
      * @return GT Wire x1, by default superconductor
      */
     public final ItemStack getWire(int amount) {
-        return GT_OreDictUnificator.get(OrePrefixes.wireGt01, this.getMaterial(false), amount);
+        return GT_OreDictUnificator.get(OrePrefixes.wireGt01, this.production, amount);
     }
 
     /**
@@ -118,60 +97,37 @@ public enum SCPart {
      * @return GT Fine Wire
      */
     public final ItemStack getWireFine(int amount) {
-        return GT_OreDictUnificator.get(OrePrefixes.wireFine, this.getMaterial(true), amount);
+        return GT_OreDictUnificator.get(OrePrefixes.wireFine, this.raw, amount);
     }
 
     /**
      * @return GT Frame of base material
      */
     public ItemStack getFrame(int amount) {
-        return GT_OreDictUnificator.get(OrePrefixes.frameGt, this.getMaterial(true), amount);
+        return GT_OreDictUnificator.get(OrePrefixes.frameGt, this.raw, amount);
     }
 
     /**
      * @return Dust of base material
      */
     public ItemStack getDust(int amount) {
-        return this.getMaterial(true)
-            .getDust(amount);
+        return this.raw.getDust(amount);
     }
 
     /**
      * @return Pumps used to assemble wire
      */
     public ItemStack getPump(int amount) {
-        return switch (this) {
-            case MV -> ItemList.Electric_Pump_MV.get(amount);
-            case HV -> ItemList.Electric_Pump_HV.get(amount);
-            case EV -> ItemList.Electric_Pump_EV.get(amount);
-            case IV -> ItemList.Electric_Pump_IV.get(amount);
-            case LuV -> ItemList.Electric_Pump_LuV.get(amount);
-            case ZPM -> ItemList.Electric_Pump_ZPM.get(amount);
-            case UV -> ItemList.Electric_Pump_UV.get(amount);
-            case UHV -> ItemList.Electric_Pump_UHV.get(amount);
-            case UEV -> ItemList.Electric_Pump_UEV.get(amount);
-            case UIV -> ItemList.Electric_Pump_UIV.get(amount);
-            case UMV -> ItemList.Electric_Pump_UMV.get(amount);
-        };
+        return Tier.valueOf(this.toString())
+            .getComponent(amount, Tier.Type.Electric_Pump);
     }
 
     /**
      * @return Solenoid of base material
      */
     public ItemStack getSolenoid(int amount) {
-        return switch (this) {
-            case MV -> ItemList.Superconducting_Magnet_Solenoid_MV.get(amount);
-            case HV -> ItemList.Superconducting_Magnet_Solenoid_HV.get(amount);
-            case EV -> ItemList.Superconducting_Magnet_Solenoid_EV.get(amount);
-            case IV -> ItemList.Superconducting_Magnet_Solenoid_IV.get(amount);
-            case LuV -> ItemList.Superconducting_Magnet_Solenoid_LuV.get(amount);
-            case ZPM -> ItemList.Superconducting_Magnet_Solenoid_ZPM.get(amount);
-            case UV -> ItemList.Superconducting_Magnet_Solenoid_UV.get(amount);
-            case UHV -> ItemList.Superconducting_Magnet_Solenoid_UHV.get(amount);
-            case UEV -> ItemList.Superconducting_Magnet_Solenoid_UEV.get(amount);
-            case UIV -> ItemList.Superconducting_Magnet_Solenoid_UIV.get(amount);
-            case UMV -> ItemList.Superconducting_Magnet_Solenoid_UMV.get(amount);
-        };
+        return ItemList.valueOf("Superconducting_Magnet_Solenoid_" + this)
+            .get(amount);
     }
 
     public FluidStack getSxEqualFluid(int originalAmount) {

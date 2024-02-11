@@ -1,5 +1,6 @@
 package com.rhynia.gtnh.append.api.util;
 
+import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidRegistry;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -8,8 +9,14 @@ import org.jetbrains.annotations.NotNull;
 @SuppressWarnings("unused")
 public class FluidHelper {
 
-    public static FluidStack getFluidStackByFluidName(@NotNull String fluidName, int amount) {
-        return new FluidStack(FluidRegistry.getFluid(fluidName), amount);
+    @NotNull
+    public static FluidStack getFluidStackByName(@NotNull String fluidName, int amount) {
+        Fluid fluid = FluidRegistry.getFluid(fluidName);
+        if (fluid != null) {
+            return new FluidStack(fluid, amount);
+        } else {
+            throw new IllegalArgumentException("Null fluid found with" + fluidName);
+        }
     }
 
     public static boolean fluidStackEqualAbsolutely(FluidStack[] fsa1, FluidStack[] fsa2) {
@@ -21,7 +28,7 @@ public class FluidHelper {
         return true;
     }
 
-    public static boolean fluidStackEqualFuzzy(FluidStack[] fsa1, FluidStack[] fsa2) {
+    public static boolean fluidStackEqualFuzzy(@NotNull FluidStack[] fsa1, FluidStack[] fsa2) {
         if (fsa1.length != fsa2.length) return false;
         for (FluidStack fluidStack1 : fsa1) {
             boolean flag = false;

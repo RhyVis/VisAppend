@@ -11,13 +11,12 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import net.minecraft.item.ItemStack;
-import net.minecraftforge.fluids.FluidRegistry;
-import net.minecraftforge.fluids.FluidStack;
 
 import com.dreammaster.gthandler.CustomItemList;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 
@@ -53,7 +52,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Neon.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.neon"), 16 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("plasma.neon", 16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
@@ -71,7 +70,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Krypton.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.krypton"), 16 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("plasma.krypton", 16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
@@ -80,7 +79,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Xenon.getFluidOrGas(16 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("plasma.xenon"), 16 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("plasma.xenon", 16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(12 * SECONDS)
@@ -144,7 +143,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(64))
             .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(144 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.metastable oganesson"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.metastable oganesson", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UMV)
             .duration(115 * SECONDS)
@@ -157,7 +156,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(4))
             .fluidInputs(ALLOY.NITINOL_60.getFluidStack(1000 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.advancednitinol", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(135 * SECONDS)
@@ -169,7 +168,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Nickel.getMolten(400 * INGOTS), Materials.Titanium.getMolten(600 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.advancednitinol"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.advancednitinol", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(100 * SECONDS)
@@ -182,7 +181,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Titanium.getMolten(1000 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.astraltitanium"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.astraltitanium", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(120 * SECONDS)
@@ -195,7 +194,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Glass.getMolten(1000 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.chromaticglass"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.chromaticglass", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(195 * SECONDS)
@@ -208,7 +207,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Tungsten.getMolten(1000 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.celestialtungsten"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.celestialtungsten", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(145 * SECONDS)
@@ -223,7 +222,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .fluidInputs(
                 Materials.DraconiumAwakened.getMolten(1000 * INGOTS),
                 VAMaterials.Astrium.getMolten(12 * BUCKETS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.dragonblood"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("molten.dragonblood", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(3 * MINUTES)
@@ -236,7 +235,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(16))
             .fluidInputs(Materials.Radon.getGas(750 * INGOTS), Materials.Nitrogen.getGas(750 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.neptunium"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("plasma.neptunium", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UIV)
             .duration(40 * SECONDS)
@@ -249,7 +248,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
                 esCata,
                 VAItemList.AstriumInfinityGem.get(16))
             .fluidInputs(Materials.Americium.getMolten(750 * INGOTS), Materials.Boron.getMolten(750 * INGOTS))
-            .fluidOutputs(new FluidStack(FluidRegistry.getFluid("molten.fermium"), 1000 * INGOTS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("plasma.fermium", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UIV)
             .duration(40 * SECONDS)
