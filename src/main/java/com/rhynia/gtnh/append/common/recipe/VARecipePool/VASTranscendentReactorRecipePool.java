@@ -10,9 +10,11 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UXV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static gregtech.api.enums.Mods.GTPlusPlus;
 
+import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
@@ -28,6 +30,7 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 
 @SuppressWarnings({ "SpellCheckingInspection", "IntegerMultiplicationImplicitCastToLong" })
@@ -188,6 +191,78 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
     }
 
     public void loadMiscRecipes() {
+        // region SC
+        // UV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(4))
+            .fluidInputs(
+                Materials.Samarium.getMolten(1816 * INGOTS),
+                Materials.Europium.getMolten(1816 * INGOTS),
+                Materials.Osmiridium.getMolten(5448 * INGOTS),
+                Materials.Naquadria.getMolten(7264 * INGOTS))
+            .fluidOutputs(SCPart.UV.getMolten(16344 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(4 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(4 * SECONDS)
+            .addTo(TR);
+        // UHV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(8))
+            .fluidInputs(
+                Materials.Draconium.getMolten(2016 * INGOTS),
+                Materials.Americium.getMolten(2016 * INGOTS),
+                Materials.CosmicNeutronium.getMolten(2352 * INGOTS),
+                Materials.Tritanium.getMolten(1680 * INGOTS))
+            .fluidOutputs(SCPart.UHV.getMolten(8064 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(8 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(8 * SECONDS)
+            .addTo(TR);
+        // UEV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(16))
+            .fluidInputs(
+                ELEMENT.STANDALONE.ADVANCED_NITINOL.getFluidStack(168 * INGOTS),
+                ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(168 * INGOTS),
+                Materials.DraconiumAwakened.getMolten(840 * INGOTS),
+                Materials.Infinity.getMolten(840 * INGOTS),
+                Materials.Iron.getMolten(168 * INGOTS))
+            .fluidOutputs(SCPart.UEV.getMolten(2016 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(16 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(16 * SECONDS)
+            .addTo(TR);
+        // UIV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("molten.radoxpoly", 160 * INGOTS),
+                MaterialsUEVplus.TranscendentMetal.getMolten(400 * INGOTS),
+                ELEMENT.STANDALONE.RHUGNOR.getFluidStack(240 * INGOTS),
+                ELEMENT.STANDALONE.CHRONOMATIC_GLASS.getFluidStack(200 * INGOTS),
+                Materials.Bismuth.getMolten(40 * INGOTS))
+            .fluidOutputs(SCPart.UIV.getMolten(1000 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(32 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(32 * SECONDS)
+            .addTo(TR);
+        // UMV
+        GT_Values.RA.stdBuilder()
+            .itemInputs(GT_Utility.getIntegratedCircuit(10), VAItemList.AstriumInfinityGem.get(64))
+            .fluidInputs(
+                MaterialsUEVplus.SpaceTime.getMolten(216 * INGOTS),
+                MyMaterial.orundum.getMolten(108 * INGOTS),
+                ELEMENT.STANDALONE.HYPOGEN.getFluidStack(396 * INGOTS),
+                ALLOY.TITANSTEEL.getFluidStack(180 * INGOTS),
+                FluidHelper.getFluidStackByName("molten.dragonblood", 72 * INGOTS),
+                Materials.Oxygen.getMolten(36 * INGOTS))
+            .fluidOutputs(SCPart.UMV.getMolten(972 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(64 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(64 * SECONDS)
+            .addTo(TR);
+        // endregion
+
         // Sx ONE-STEP
         GT_Values.RA.stdBuilder()
             .itemInputs(
