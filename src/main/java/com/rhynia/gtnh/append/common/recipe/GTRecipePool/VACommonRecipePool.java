@@ -16,6 +16,7 @@ import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
+import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ELEMENT;
 
 public class VACommonRecipePool implements IRecipePool {
@@ -44,6 +45,14 @@ public class VACommonRecipePool implements IRecipePool {
             .itemOutputs(VAItemList.AstriumInfinityGem.get(1))
             .noOptimize()
             .eut(6000000)
+            .duration(1)
+            .addTo(IMP);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(MaterialsUEVplus.SpaceTime.getDust(64), ELEMENT.STANDALONE.HYPOGEN.getDust(32))
+            .fluidInputs(VAMaterials.AstriumInfinity.getMolten(48 * INGOTS))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, VAItemList.AstriumInfinityGem.get(1)))
+            .noOptimize()
+            .eut(24000000)
             .duration(1)
             .addTo(IMP);
         // 星辉残留
