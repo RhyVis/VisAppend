@@ -131,7 +131,7 @@ public enum SCPart {
     }
 
     public ItemStack getPrefix(OrePrefixes prefix, int amount) {
-        return getPrefix(prefix, amount, true);
+        return getPrefix(prefix, amount, false);
     }
 
     public ItemStack getPrefix(OrePrefixes prefix, int amount, boolean base) {

@@ -1,6 +1,8 @@
 package com.rhynia.gtnh.append.api.enums.refHelper;
 
+import static gregtech.api.enums.Mods.BartWorks;
 import static gregtech.api.enums.Mods.GTPlusPlus;
+import static gregtech.api.enums.Mods.GoodGenerator;
 
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
@@ -19,7 +21,7 @@ import gregtech.api.enums.OrePrefixes;
 import gregtech.api.util.GT_ModHandler;
 import gregtech.api.util.GT_OreDictUnificator;
 
-@SuppressWarnings("unused")
+@SuppressWarnings({ "unused", "SpellCheckingInspection" })
 public enum Tier {
 
     ULV(Materials.Primitive),
@@ -91,10 +93,11 @@ public enum Tier {
     }
 
     public SCPart getSC() {
-        if (this == ULV || this == LV || this == UXV || this == MAX) {
-            throw new IllegalArgumentException("This tier has no standard superconducting!");
-        } else {
-            return SCPart.values()[this.ordinal() - 2];
+        switch (this) {
+            case ULV, LV, UXV, MAX -> throw new IllegalArgumentException("This tier has no standard superconducting!");
+            default -> {
+                return SCPart.values()[this.ordinal() - 2];
+            }
         }
     }
 
@@ -117,8 +120,8 @@ public enum Tier {
 
     public Materials getCircuitMaterial(boolean compatibility) {
         return switch (this) {
-            case ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, MAX -> this.material;
             case UMV, UXV -> compatibility ? this.altMaterial : this.material;
+            default -> this.material;
         };
     }
 
@@ -139,20 +142,54 @@ public enum Tier {
     }
 
     public ItemStack getCoil(int amount) {
-        if (this == UEV || this == UIV || this == UMV || this == UXV || this == MAX) {
-            VisAppend.LOG.error("Attempting to get " + this + " component, but it doesn't exist!");
+        switch (this) {
+            case UEV, UIV, UMV, UXV, MAX -> {
+                VisAppend.LOG.error("Attempting to get " + this + " component, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            default -> {
+                return ItemList.valueOf(this + "_Coil")
+                    .get(amount, VAItemList.Test.get(1));
+            }
+        }
+    }
+
+    public ItemStack getComponentAssemblyCasing(int amount) {
+        if (this == ULV) {
+            VisAppend.LOG.error("Attempting to get ULV casing, but it doesn't exist!");
             return VAItemList.Test.get(amount);
-        } else return ItemList.valueOf(this + "_Coil")
-            .get(amount, VAItemList.Test.get(1));
+        } else return GT_ModHandler
+            .getModItem(GoodGenerator.ID, "componentAssemblylineCasing", amount, this.ordinal() - 1);
+    }
+
+    public ItemStack getGlass(int amount) {
+        switch (this) {
+            case ULV, LV, MV -> {
+                VisAppend.LOG.error("Attempting to get " + this + " glass, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            case UMV, UXV, MAX -> {
+                return GT_ModHandler.getModItem(BartWorks.ID, "BW_GlasBlocks2", amount);
+            }
+            default -> {
+                return GT_ModHandler.getModItem(BartWorks.ID, "BW_GlasBlocks", amount, this.ordinal() - 3);
+            }
+        }
     }
 
     public ItemStack getBufferCore(int amount) {
-        if (this == UHV || this == UEV || this == UIV || this == UMV || this == UXV) {
-            VisAppend.LOG.error("Attempting to get " + this + " buffer core, but it doesn't exist!");
-            return VAItemList.Test.get(amount);
-        } else if (this == MAX) {
-            return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore10", amount);
-        } else return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore" + (this.ordinal() + 1), amount);
+        switch (this) {
+            case UHV, UEV, UIV, UMV, UXV -> {
+                VisAppend.LOG.error("Attempting to get " + this + " buffer core, but it doesn't exist!");
+                return VAItemList.Test.get(amount);
+            }
+            case MAX -> {
+                return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore10", amount);
+            }
+            default -> {
+                return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore" + (this.ordinal() + 1), amount);
+            }
+        }
     }
 
     public ItemStack getHatch(@NotNull Hatch hatch, int amount) {

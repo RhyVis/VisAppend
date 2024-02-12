@@ -1,11 +1,23 @@
 package com.rhynia.gtnh.append.api.util;
 
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+
+import org.jetbrains.annotations.NotNull;
 
 import com.rhynia.gtnh.append.VisAppend;
 
 @SuppressWarnings("unused")
 public class ItemHelper {
+
+    @NotNull
+    public static ItemStack getItemStack(Item item, int amount) {
+        if (item != null) {
+            return new ItemStack(item, amount);
+        } else {
+            throw new IllegalArgumentException("Null item!");
+        }
+    }
 
     // region ItemStack
     public static boolean metaItemEqual(ItemStack a, ItemStack b) {
