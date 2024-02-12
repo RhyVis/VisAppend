@@ -1115,7 +1115,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_UXV)
             .duration(12 * 120 * SECONDS)
             .addTo(IA_R);
-        // region
+        // endregion
 
         // region AE2
         // 奇点存储元件
