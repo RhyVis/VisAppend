@@ -537,7 +537,6 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Cover_SolarPanel_UV.get(1),
-                GT_ModHandler.getModItem(GalaxySpace.ID, "DysonSwarmParts", 32, 3),
                 ItemRefer.Radiation_Protection_Plate.get(4),
                 BWPart.Part_IC_Q.getItemStack(1),
                 GGChip.UHV.getItemStack(1),
