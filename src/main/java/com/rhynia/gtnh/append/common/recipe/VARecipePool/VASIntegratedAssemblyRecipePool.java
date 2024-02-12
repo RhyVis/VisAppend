@@ -22,7 +22,6 @@ import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.Avaritia;
 import static gregtech.api.enums.Mods.EternalSingularity;
 import static gregtech.api.enums.Mods.GTPlusPlus;
-import static gregtech.api.enums.Mods.GalaxySpace;
 import static gregtech.api.enums.Mods.GraviSuite;
 import static gregtech.api.enums.Mods.GregTech;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
@@ -48,6 +47,7 @@ import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 
+import galaxyspace.core.register.GSItems;
 import goodgenerator.items.MyMaterial;
 import goodgenerator.util.ItemRefer;
 import gregtech.api.enums.GT_Values;
@@ -527,8 +527,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .fluidInputs(
                 SolderMaterial.IndaAlloy.getFluidStack(128 * INGOTS),
                 ALLOY.SILICON_CARBIDE.getFluidStack(48 * INGOTS))
-            .itemOutputs(
-                ItemHelper.setStackSize(GT_ModHandler.getModItem(GalaxySpace.ID, "DysonSwarmParts", 1, 3), 1024))
+            .itemOutputs(ItemHelper.setStackSize(ItemHelper.getItemStack(GSItems.DysonSwarmItems, 1, 3), 1024))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(200 * SECONDS)
@@ -537,15 +536,14 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 ItemList.Cover_SolarPanel_UV.get(1),
-                GT_ModHandler.getModItem(GalaxySpace.ID, "DysonSwarmParts", 32, 3),
+                ItemHelper.getItemStack(GSItems.DysonSwarmItems, 32, 3),
                 ItemRefer.Radiation_Protection_Plate.get(4),
                 BWPart.Part_IC_Q.getItemStack(1),
                 GGChip.UHV.getItemStack(1),
                 ItemList.Emitter_UEV.get(4),
                 ItemList.Sensor_UEV.get(4))
             .fluidInputs(SolderMaterial.MutatedLivingAlloy.getFluidStack(256 * INGOTS))
-            .itemOutputs(
-                GT_Utility.copyAmountUnsafe(8 * 64, GT_ModHandler.getModItem(GalaxySpace.ID, "DysonSwarmParts", 1, 0)))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(8 * 64, ItemHelper.getItemStack(GSItems.DysonSwarmItems, 1, 0)))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(5 * SECONDS)
