@@ -3,6 +3,7 @@ package com.rhynia.gtnh.append.api.util;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 
+import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import com.rhynia.gtnh.append.VisAppend;
@@ -10,10 +11,21 @@ import com.rhynia.gtnh.append.VisAppend;
 @SuppressWarnings("unused")
 public class ItemHelper {
 
+    @Contract("!null, _ -> new; null, _ -> fail")
     @NotNull
     public static ItemStack getItemStack(Item item, int amount) {
         if (item != null) {
             return new ItemStack(item, amount);
+        } else {
+            throw new IllegalArgumentException("Null item!");
+        }
+    }
+
+    @Contract("!null, _, _ -> new; null, _, _ -> fail")
+    @NotNull
+    public static ItemStack getItemStack(Item item, int amount, int meta) {
+        if (item != null) {
+            return new ItemStack(item, amount, meta);
         } else {
             throw new IllegalArgumentException("Null item!");
         }
