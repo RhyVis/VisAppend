@@ -286,6 +286,21 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .eut(RECIPE_UMV)
             .duration(25 * SECONDS)
             .addTo(TC);
+        // ELEMENT.STANDALONE.RHUGNOR.getFluidStack(240 * INGOTS)
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                esCata,
+                GT_Utility.copyAmountUnsafe(96, VAItemList.AstriumInfinityGem.get(1)))
+            .fluidInputs(Materials.Infinity.getMolten(256 * INGOTS), ALLOY.QUANTUM.getFluidStack(256 * INGOTS))
+            .fluidOutputs(
+                ELEMENT.STANDALONE.RHUGNOR.getFluidStack(512 * INGOTS),
+                VAMaterials.AstralResidue.getFluidOrGas(5000))
+            .noOptimize()
+            .eut(RECIPE_UIV)
+            .duration(80 * SECONDS)
+            .addTo(TC);
         // endregion
 
         // region Gas to Plasma (UEV)

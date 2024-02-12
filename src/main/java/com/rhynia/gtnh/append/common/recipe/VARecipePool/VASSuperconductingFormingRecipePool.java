@@ -2,7 +2,6 @@ package com.rhynia.gtnh.append.common.recipe.VARecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
-import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.NUGGETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
@@ -11,7 +10,6 @@ import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
 
 import gregtech.api.enums.Materials;
@@ -25,22 +23,6 @@ public class VASSuperconductingFormingRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipesCompleteInit() {
-
-        // Molten from dust
-        for (SCPart SC : SCPart.values()) {
-            VA_RecipeBuilder.builder()
-                .itemInputs(
-                    GT_Utility.getIntegratedCircuit(23),
-                    VAItemList.LensOriginium.get(0),
-                    ItemHelper.setStackSize(SC.getDust(1), 128))
-                .fluidInputs(Materials.Hydrogen.getGas(SC.getMultiplier() * 2L * BUCKETS))
-                .fluidOutputs(
-                    VAMaterials.SuperconductorFluxRaw.getMolten((SC.ordinal() + 2) * 4 * NUGGETS),
-                    SC.getMolten(192 * INGOTS))
-                .eut(SC.getRecipeVoltage())
-                .duration(30 * SECONDS)
-                .addTo(SF);
-        }
 
         // Wire x1 from dust
         for (SCPart SC : SCPart.values()) {
