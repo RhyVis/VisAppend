@@ -23,7 +23,6 @@ import static gregtech.api.enums.Mods.Avaritia;
 import static gregtech.api.enums.Mods.EternalSingularity;
 import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.Mods.GraviSuite;
-import static gregtech.api.enums.Mods.GregTech;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 
 import net.minecraft.item.ItemStack;
@@ -131,7 +130,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 SCPart.LuV.getPrefix(OrePrefixes.wireGt16, 4),
-                GT_ModHandler.getModItem(GregTech.ID, "gt.blockmachines", 16, 2405),
+                ItemList.IV_Coil.get(16),
                 GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Copper, 64),
                 GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Copper, 64))
             .fluidInputs(FluidHelper.getFluidStackByName("supercoolant", 32 * BUCKETS))
