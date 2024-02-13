@@ -255,7 +255,7 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
                 ELEMENT.STANDALONE.HYPOGEN.getFluidStack(396 * INGOTS),
                 ALLOY.TITANSTEEL.getFluidStack(180 * INGOTS),
                 FluidHelper.getFluidStackByName("molten.dragonblood", 72 * INGOTS),
-                Materials.Oxygen.getMolten(36 * INGOTS))
+                Materials.Oxygen.getGas(36 * INGOTS))
             .fluidOutputs(SCPart.UMV.getMolten(972 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(64 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UXV)
