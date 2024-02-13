@@ -13,6 +13,7 @@ dependencies {
     implementation('com.github.GTNewHorizons:GTNH-Lanthanides:0.11.8:dev')
     implementation('com.github.GTNewHorizons:GTNH-Intergalactic:1.3.0:dev')
 
+    compileOnly('com.github.GTNewHorizons:TinkersGregworks:GTNH-1.0.25-pre:dev')
     compileOnly(project.files("localDeps/TwistSpaceTechnology-0.4.14-2.5.1fitted-dev.jar"))
 
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.5')
