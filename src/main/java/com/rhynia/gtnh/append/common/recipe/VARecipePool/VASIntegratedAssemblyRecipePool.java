@@ -27,7 +27,6 @@ import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.Mods.GraviSuite;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.Mods.TinkerConstruct;
-import static gregtech.api.enums.Mods.TinkersGregworks;
 
 import net.minecraft.item.ItemStack;
 
@@ -64,6 +63,8 @@ import gregtech.api.util.GT_Utility;
 import gtPlusPlus.core.material.ALLOY;
 import gtPlusPlus.core.material.ELEMENT;
 import gtPlusPlus.xmod.gregtech.api.enums.GregtechItemList;
+import vexatos.tgregworks.reference.PartTypes;
+import vexatos.tgregworks.util.TGregUtils;
 
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASIntegratedAssemblyRecipePool implements IRecipePool {
@@ -154,7 +155,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 Tier.UHV.getCircuit(4),
                 GT_ModHandler.getModItem(Avaritia.ID, "Resource", 8, 1),
                 GT_ModHandler.getModItem(TinkerConstruct.ID, "heavyPlate", 10, 500),
-                GT_ModHandler.getModItem(TinkersGregworks.ID, "tGregToolPartLargePlate", 8, 1657),
+                TGregUtils.newItemStack(Materials.BlackPlutonium, PartTypes.LargePlate, 8),
                 GT_ModHandler.getModItem(TinkerConstruct.ID, "heavyPlate", 6, 315))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(8 * 9 * INGOTS),

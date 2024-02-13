@@ -36,7 +36,7 @@ public class ItemRegister {
         // Special Item
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
     }
-    //spotless:on
+    // spotless:on
     public static void registry() {
         registryItems();
         registryItemContainers();
