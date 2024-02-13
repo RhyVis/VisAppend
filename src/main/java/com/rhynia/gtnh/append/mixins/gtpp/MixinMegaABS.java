@@ -20,11 +20,11 @@ public class MixinMegaABS {
      */
     @Inject(method = "getCoilDiscount", at = @At("HEAD"), cancellable = true)
     private void bh$getCoilDiscount(HeatingCoilLevel lvl, CallbackInfoReturnable<Double> cir) {
-        cir.setReturnValue(1.0 - Math.pow(0.9, lvl.getTier()));
+        cir.setReturnValue(1.0 - Math.min(Math.pow(0.8, lvl.getTier()), 0.3));
     }
 
     /**
-     * Modify parallel limit to 1024.
+     * Increase parallel limit to 1024.
      *
      * @since 1.0.0
      */
