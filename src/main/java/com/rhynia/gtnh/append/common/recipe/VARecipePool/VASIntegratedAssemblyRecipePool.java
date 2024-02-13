@@ -516,18 +516,8 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 防辐射板 64x
         VA_RecipeBuilder.builder()
             .itemInputs(
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.NaquadahAlloy.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64),
-                Materials.Lanthanum.getPlates(64))
+                ItemHelper.setStackSize(Materials.NaquadahAlloy.getPlates(64), 8 * 64),
+                ItemHelper.setStackSize(Materials.Lanthanum.getPlates(64), 4 * 64))
             .fluidInputs(Materials.Lead.getMolten(64 * 8 * INGOTS))
             .itemOutputs(ItemRefer.Radiation_Protection_Plate.get(64))
             .noOptimize()
@@ -537,15 +527,15 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
         // 进阶防辐射板 64x
         VA_RecipeBuilder.builder()
             .itemInputs(
-                ItemHelper.setStackSize(Materials.NaquadahAlloy.getPlates(64), 1280),
-                ItemHelper.setStackSize(Materials.Lanthanum.getPlates(64), 512),
                 ItemHelper.setStackSize(Materials.ElectrumFlux.getPlates(64), 256),
                 ItemHelper.setStackSize(Materials.Trinium.getPlates(64), 256),
                 ItemHelper.setStackSize(Materials.Osmiridium.getPlates(64), 256),
                 ItemHelper.setStackSize(Materials.VibrantAlloy.getPlates(64), 256))
             .fluidInputs(
                 SolderMaterial.IndaAlloy.getFluidStack(16 * 32 * INGOTS),
-                Materials.Lead.getMolten(32 * 32 * INGOTS))
+                Materials.Lead.getMolten(32 * 32 * INGOTS),
+                Materials.NaquadahAlloy.getMolten(1280 * INGOTS),
+                Materials.Lanthanum.getMolten(512 * INGOTS))
             .itemOutputs(ItemRefer.Advanced_Radiation_Protection_Plate.get(64))
             .noOptimize()
             .eut(RECIPE_ZPM)
