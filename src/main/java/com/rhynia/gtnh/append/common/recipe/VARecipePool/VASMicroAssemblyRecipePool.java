@@ -10,6 +10,8 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UMV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
+import static gregtech.api.enums.Mods.Computronics;
+import static gregtech.api.enums.Mods.OpenComputers;
 
 import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.dreammaster.gthandler.CustomItemList;
@@ -19,6 +21,7 @@ import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
+import com.rhynia.gtnh.append.api.enums.refHelper.Tier;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
@@ -315,6 +318,47 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .itemOutputs(ItemRefer.HiC_T5.get(4))
             .eut(RECIPE_UHV)
             .duration(3 * 5 * SECONDS)
+            .addTo(MA);
+        // endregion
+
+        // region OC
+        // Magic RAM
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Optically_Compatible_Memory.get(6),
+                Tier.UEV.getCircuit(6),
+                GT_ModHandler.getModItem(OpenComputers.ID, "item", 2, 103),
+                ItemList.Circuit_Chip_PPIC.get(8),
+                Materials.Neutronium.getPlates(24))
+            .fluidInputs(Materials.ElectrumFlux.getMolten(12 * INGOTS), Materials.Infinity.getMolten(2 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem(Computronics.ID, "computronics.ocSpecialParts", 1, 0))
+            .eut(RECIPE_UEV)
+            .duration(4 * SECONDS)
+            .addTo(MA);
+        // APU T3
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_ModHandler.getModItem(OpenComputers.ID, "item", 1, 102),
+                GT_ModHandler.getModItem(OpenComputers.ID, "item", 1, 43),
+                GT_ModHandler.getModItem(OpenComputers.ID, "item", 1, 10),
+                Tier.UV.getCircuit(2),
+                Tier.LuV.getCircuit(4),
+                Tier.IV.getCircuit(16))
+            .itemOutputs(GT_ModHandler.getModItem(OpenComputers.ID, "item", 1, 103))
+            .eut(RECIPE_UV)
+            .duration(4 * SECONDS)
+            .addTo(MA);
+        // Super Server
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_ModHandler.getModItem(OpenComputers.ID, "case3", 1, 0),
+                GT_ModHandler.getModItem(OpenComputers.ID, "item", 2, 103),
+                Tier.UV.getCircuit(2),
+                Tier.LuV.getCircuit(16),
+                Tier.IV.getCircuit(4))
+            .itemOutputs(GT_ModHandler.getModItem(OpenComputers.ID, "item", 1, 69))
+            .eut(RECIPE_UV)
+            .duration(4 * SECONDS)
             .addTo(MA);
         // endregion
     }
