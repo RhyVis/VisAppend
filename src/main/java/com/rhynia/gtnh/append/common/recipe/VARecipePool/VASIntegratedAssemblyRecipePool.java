@@ -135,9 +135,9 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 10, 60),
                 ItemList.Quantum_Chest_IV.get(18),
                 GT_ModHandler.getModItem(Avaritia.ID, "Resource", 36, 0),
-                GT_ModHandler.getModItem(Avaritia.ID, "Resource", 2, 5),
                 Basic.getSingularity(1))
             .fluidInputs(
+                Materials.InfinityCatalyst.getMolten(64 * INGOTS),
                 Materials.Infinity.getMolten((4 + 4 * 9) * INGOTS),
                 Materials.CosmicNeutronium.getMolten(6 * 9 * INGOTS))
             .itemOutputs(GT_ModHandler.getModItem(AvaritiaAddons.ID, "InfinityChest", 1, 0))
