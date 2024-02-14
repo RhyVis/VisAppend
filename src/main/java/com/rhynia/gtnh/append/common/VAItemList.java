@@ -43,7 +43,8 @@ public enum VAItemList implements IItemContainer {
     VoidEnergyGenerator,
     KelvinTransformField,
     ReinforcedAssemblyLine,
-    SelectedEnergyGenerator;
+    SelectedEnergyGenerator,
+    Creator;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

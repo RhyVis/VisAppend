@@ -215,7 +215,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
             .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.BluePrintTip)
-            .beginStructureBlock(3, 3, 7, false)
+            .beginStructureBlock(3, 3, 3, false)
             .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
             .toolTipFinisher(VA_Values.CommonStrings.VisAppendMagical);
         return tt;

@@ -25,6 +25,7 @@ import static gregtech.api.enums.Mods.AvaritiaAddons;
 import static gregtech.api.enums.Mods.EternalSingularity;
 import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.Mods.GraviSuite;
+import static gregtech.api.enums.Mods.IndustrialCraft2;
 import static gregtech.api.enums.Mods.SuperSolarPanels;
 import static gregtech.api.enums.Mods.TinkerConstruct;
 
@@ -176,7 +177,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 Materials.Titanium.getMolten(5 * INGOTS),
                 Materials.Aluminium.getMolten(4 * INGOTS),
                 VAMaterials.LapotronEnhancedFluid.getFluidOrGas(200))
-            .itemOutputs(GT_ModHandler.getModItem(Avaritia.ID, "Neutronium_Compressor", 1, 0))
+            .itemOutputs(GT_ModHandler.getModItem(IndustrialCraft2.ID, "blockMachine2", 1, 0))
             .noOptimize()
             .eut(RECIPE_EV)
             .duration(4 * SECONDS)
