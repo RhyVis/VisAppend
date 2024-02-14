@@ -5,7 +5,6 @@ import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
 import java.util.Collections;
 import java.util.List;
 
-import gregtech.common.blocks.GT_Block_Casings8;
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
@@ -42,6 +41,7 @@ import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
+import gregtech.common.blocks.GT_Block_Casings8;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_OutputBus_ME;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_Output_ME;
 import mcp.mobius.waila.api.IWailaConfigHandler;
@@ -350,7 +350,8 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
         IWailaConfigHandler config) {
         super.getWailaBody(itemStack, currentTip, accessor, config);
         final NBTTagCompound tag = accessor.getNBTData();
-        if (!tag.getString("pName").isEmpty()) {
+        if (!tag.getString("pName")
+            .isEmpty()) {
             currentTip.add(EnumChatFormatting.WHITE + "复制目标: " + EnumChatFormatting.AQUA + tag.getString("pName"));
             currentTip.add(
                 EnumChatFormatting.WHITE + "生产总量: "
