@@ -165,6 +165,22 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(4 * SECONDS)
             .addTo(IA);
+        // 传送机
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Hull_HV.get(1),
+                Tier.EV.getComponent(Tier.Component.Electric_Motor, 2),
+                Tier.HV.getComponent(Tier.Component.Field_Generator, 1),
+                GT_OreDictUnificator.get(OrePrefixes.lens, Materials.NetherStar, 2))
+            .fluidInputs(
+                Materials.Titanium.getMolten(5 * INGOTS),
+                Materials.Aluminium.getMolten(4 * INGOTS),
+                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(200))
+            .itemOutputs(GT_ModHandler.getModItem(Avaritia.ID, "Neutronium_Compressor", 1, 0))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(4 * SECONDS)
+            .addTo(IA);
         // Gravitation Engine
         GT_Values.RA.stdBuilder()
             .itemInputs(
