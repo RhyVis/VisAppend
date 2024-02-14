@@ -1,5 +1,10 @@
 package com.rhynia.gtnh.append.common.tile.base;
 
+import static gregtech.api.util.GT_Utility.filterValidMTEs;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.item.ItemStack;
@@ -8,16 +13,22 @@ import net.minecraft.util.EnumChatFormatting;
 import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 import org.jetbrains.annotations.NotNull;
 
+import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
 
+import gregtech.api.interfaces.IHatchElement;
+import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
+import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Dynamo;
 import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.util.IGT_HatchAdder;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
 
+@SuppressWarnings("unused")
 public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T>>
     extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T> implements IConstructable, ISurvivalConstructable {
 
@@ -56,12 +67,65 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     @Override
     public boolean addToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
         return super.addToMachineList(aTileEntity, aBaseCasingIndex)
-            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
+            || addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex)
+            || addExoticDynamoToMachineList(aTileEntity, aBaseCasingIndex);
     }
 
     public boolean addEnergyInputToMachineListExtended(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
         return super.addEnergyInputToMachineList(aTileEntity, aBaseCasingIndex)
             || super.addExoticEnergyInputToMachineList(aTileEntity, aBaseCasingIndex);
+    }
+
+    public boolean addDynamoToMachineListExtended(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
+        return super.addDynamoToMachineList(aTileEntity, aBaseCasingIndex)
+            || addExoticDynamoToMachineList(aTileEntity, aBaseCasingIndex);
+    }
+
+    public boolean addExoticDynamoToMachineList(IGregTechTileEntity aTileEntity, int aBaseCasingIndex) {
+        if (aTileEntity == null) return false;
+        IMetaTileEntity aMetaTileEntity = aTileEntity.getMetaTileEntity();
+        if (aMetaTileEntity == null) return false;
+        if (aMetaTileEntity instanceof GT_MetaTileEntity_Hatch_DynamoMulti hatchDynamoMulti) {
+            hatchDynamoMulti.updateTexture(aBaseCasingIndex);
+            hatchDynamoMulti.updateCraftingIcon(this.getMachineCraftingIcon());
+            return mExoticDynamoHatches.add(hatchDynamoMulti);
+        }
+        return false;
+    }
+
+    protected List<GT_MetaTileEntity_Hatch_DynamoMulti> mExoticDynamoHatches = new ArrayList<>();
+
+    public enum HatchElement implements IHatchElement<VA_MetaTileEntity_MultiBlockBase<?>> {
+
+        ExoticDynamo(VA_MetaTileEntity_MultiBlockBase::addDynamoToMachineList,
+            GT_MetaTileEntity_Hatch_DynamoMulti.class) {
+
+            @Override
+            public long count(VA_MetaTileEntity_MultiBlockBase vaMultiBase) {
+                return vaMultiBase.mExoticDynamoHatches.size();
+            }
+        };
+
+        private final List<Class<? extends IMetaTileEntity>> mteClasses;
+        private final IGT_HatchAdder<VA_MetaTileEntity_MultiBlockBase<?>> adder;
+
+        @SafeVarargs
+        HatchElement(IGT_HatchAdder<VA_MetaTileEntity_MultiBlockBase<?>> adder,
+            Class<? extends IMetaTileEntity>... mteClasses) {
+            this.adder = adder;
+            this.mteClasses = Collections.unmodifiableList(Arrays.asList(mteClasses));
+        }
+
+        @Override
+        public List<? extends Class<? extends IMetaTileEntity>> mteClasses() {
+            return mteClasses;
+        }
+
+        @Override
+        public IGT_HatchAdder<? super VA_MetaTileEntity_MultiBlockBase<?>> adder() {
+            return adder;
+        }
+
     }
 
     // endregion
@@ -158,6 +222,51 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     protected float rSpeedBonus() {
         return 1;
     }
+
+    /**
+     * Extend support for ExoticDynamo
+     */
+    @Override
+    public boolean addEnergyOutputMultipleDynamos(long totalEU, boolean aAllowMixedVoltageDynamos) {
+        // Check positive
+        if (totalEU < 0) totalEU = -totalEU;
+        // Store free capacity of dynamo hatch
+        long freeCapacity;
+        // Check Normal Dynamo
+        for (GT_MetaTileEntity_Hatch_Dynamo tHatch : filterValidMTEs(mDynamoHatches)) {
+            freeCapacity = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity()
+                .getStoredEU();
+            if (freeCapacity > 0) {
+                if (totalEU > freeCapacity) {
+                    tHatch.setEUVar(tHatch.maxEUStore());
+                    totalEU -= freeCapacity;
+                } else {
+                    tHatch.setEUVar(
+                        tHatch.getBaseMetaTileEntity()
+                            .getStoredEU() + totalEU);
+                    return true;
+                }
+            }
+        }
+        // Check Multi Dynamo
+        for (GT_MetaTileEntity_Hatch_DynamoMulti tHatch : filterValidMTEs(mExoticDynamoHatches)) {
+            freeCapacity = tHatch.maxEUStore() - tHatch.getBaseMetaTileEntity()
+                .getStoredEU();
+            if (freeCapacity > 0) {
+                if (totalEU > freeCapacity) {
+                    tHatch.setEUVar(tHatch.maxEUStore());
+                    totalEU -= freeCapacity;
+                } else {
+                    tHatch.setEUVar(
+                        tHatch.getBaseMetaTileEntity()
+                            .getStoredEU() + totalEU);
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     // endregion
 
     // region ToolTips and Info

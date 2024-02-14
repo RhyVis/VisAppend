@@ -37,6 +37,8 @@ append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
 
 append.RALCheck.0=Disable Compatibility Map
 append.RALCheck.1=Enable Compatibility Map
+append.pItemProcess.0=Fluid Mode
+append.pItemProcess.1=Item Mode
 
 va.gui.desc.import_energy=Energy Level
 

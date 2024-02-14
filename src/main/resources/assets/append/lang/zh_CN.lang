@@ -37,6 +37,8 @@ append.HeatDeathSimulator.mRecipeMode.1=热动力学解析模式(Not added)
 
 append.RALCheck.0=禁用兼容配方
 append.RALCheck.1=启用兼容配方
+append.pItemProcess.0=流体模式
+append.pItemProcess.1=物品模式
 
 va.gui.desc.import_energy=能量输出
 
