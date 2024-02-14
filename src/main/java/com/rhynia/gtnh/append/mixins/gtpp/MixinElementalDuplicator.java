@@ -3,9 +3,7 @@ package com.rhynia.gtnh.append.mixins.gtpp;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.Constant;
-import org.spongepowered.asm.mixin.injection.Inject;
 import org.spongepowered.asm.mixin.injection.ModifyConstant;
-import org.spongepowered.asm.mixin.injection.callback.CallbackInfoReturnable;
 
 import com.llamalad7.mixinextras.injector.ModifyReturnValue;
 
@@ -30,11 +28,9 @@ public class MixinElementalDuplicator {
      *
      * @since 1.0.7
      */
-    @Inject(method = "createProcessingLogic", at = @At("RETURN"), cancellable = true)
-    private void bh$injectEUModifier(CallbackInfoReturnable<ProcessingLogic> cir) {
-        cir.setReturnValue(
-            cir.getReturnValue()
-                .setEuModifier(0.75F));
+    @ModifyReturnValue(method = "createProcessingLogic", at = @At("RETURN"))
+    private ProcessingLogic bh$injectEUModifier(ProcessingLogic o) {
+        return o.setEuModifier(1.0F / 2.0F);
     }
 
     /**
