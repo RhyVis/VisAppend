@@ -4,10 +4,13 @@ import java.math.BigInteger;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.util.StatCollector;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
@@ -240,8 +243,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 1];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
-        nStr[oStr.length] = EnumChatFormatting.AQUA + "Probably Generates"
-            + ": "
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "等效能量: "
             + EnumChatFormatting.GOLD
             + GT_Utility.formatNumbers(pValue)
             + "MAX EU/t";
@@ -252,16 +254,29 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     public void getWailaBody(ItemStack itemStack, List<String> currentTip, IWailaDataAccessor accessor,
         IWailaConfigHandler config) {
         super.getWailaBody(itemStack, currentTip, accessor, config);
+        final NBTTagCompound tag = accessor.getNBTData();
         currentTip.add(
             EnumChatFormatting.WHITE + "等效能量: "
                 + EnumChatFormatting.AQUA
-                + GT_Utility.formatNumbers(pValue)
+                + GT_Utility.formatNumbers(tag.getLong("pValue"))
                 + " "
                 + EnumChatFormatting.WHITE
                 + EnumChatFormatting.UNDERLINE
                 + "MAX"
                 + EnumChatFormatting.WHITE
                 + " EU/t");
+    }
+
+    @Override
+    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
+        int z) {
+        super.getWailaNBTData(player, tile, tag, world, x, y, z);
+        final IGregTechTileEntity tileEntity = getBaseMetaTileEntity();
+        if (tileEntity != null) {
+            if (tileEntity.isActive()) {
+                tag.setLong("pValue", pValue);
+            }
+        }
     }
 
     @Override
