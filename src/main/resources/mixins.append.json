@@ -8,8 +8,11 @@
   "mixins": [
     "ae.MixinPortableCell",
     "ae.MixinQuantumCell",
+    "bw.MixinMegaMultiBase"
+  ],
+  "client": [],
+  "server": [
     "bw.MixinCAL",
-    "bw.MixinMegaMultiBase",
     "bw.MixinVoidMiner",
     "gtpp.MixinElementalDuplicator",
     "gtpp.MixinIndustrialFluidHeater",
@@ -19,7 +22,5 @@
     "gtpp.MixinMassFabricator",
     "gtpp.MixinMegaABS",
     "gtpp.MixinTreeFarm"
-  ],
-  "client": [],
-  "server": []
+  ]
 }
