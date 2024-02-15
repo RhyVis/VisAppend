@@ -36,6 +36,8 @@ public enum VAItemList implements IItemContainer {
     InfiniteLubricantHatch,
     InfiniteSteamHatch,
     ZeroGenerator,
+    HumongousCalibrationInputHatch,
+    HumongousCalibrationHalfInputHatch,
     // Machine Controller
     AstraForge,
     UltimateHeater,

@@ -9,6 +9,8 @@ import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_L
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Lubricant;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Oil;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Steam;
+import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_HumongousCalibrationHalfInputHatch;
+import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_HumongousCalibrationInputHatch;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_Creator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.generation.VA_TileEntity_SelectedEnergyGenerator;
@@ -29,6 +31,8 @@ public class MachineLoader {
     public static ItemStack InfiniteLubricantHatch;
     public static ItemStack InfiniteSteamHatch;
     public static ItemStack ZeroGenerator;
+    public static ItemStack HumongousCalibrationInputHatch;
+    public static ItemStack HumongousCalibrationHalfInputHatch;
     // endregion
 
     // region multi Machine controller
@@ -75,6 +79,14 @@ public class MachineLoader {
         InfiniteSteamHatch = new VA_MetaTileEntity_Hatch_Steam(17406, "HatchInfiniteSteam", "无限蒸汽仓", 8).getStackForm(1);
         ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
             .getStackForm(1L);
+        HumongousCalibrationInputHatch = new VA_MetaTileEntity_HumongousCalibrationInputHatch(
+            17451,
+            "HatchHumongousCalibration",
+            "鸿蒙标定仓").getStackForm(1);
+        HumongousCalibrationHalfInputHatch = new VA_MetaTileEntity_HumongousCalibrationHalfInputHatch(
+            17452,
+            "HatchHumongousCalibrationHalf",
+            "鸿蒙半标定仓").getStackForm(1);
         // endregion
 
         // region ItemList
@@ -95,6 +107,8 @@ public class MachineLoader {
         VAItemList.InfiniteLubricantHatch.set(InfiniteLubricantHatch);
         VAItemList.InfiniteSteamHatch.set(InfiniteSteamHatch);
         VAItemList.ZeroGenerator.set(ZeroGenerator);
+        VAItemList.HumongousCalibrationInputHatch.set(HumongousCalibrationInputHatch);
+        VAItemList.HumongousCalibrationHalfInputHatch.set(HumongousCalibrationHalfInputHatch);
         // endregion
     }
 
