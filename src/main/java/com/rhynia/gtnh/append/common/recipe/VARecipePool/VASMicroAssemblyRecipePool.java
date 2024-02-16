@@ -20,11 +20,16 @@ import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
+import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
 import com.rhynia.gtnh.append.api.enums.refHelper.Tier;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
+import com.rhynia.gtnh.append.api.util.FluidHelper;
+import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.config.Config;
 
 import goodgenerator.items.MyMaterial;
 import goodgenerator.util.ItemRefer;
@@ -34,14 +39,19 @@ import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
+import gregtech.api.recipe.RecipeMap;
 import gregtech.api.util.GT_ModHandler;
+import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
+import gtPlusPlus.core.material.ALLOY;
 
 @SuppressWarnings({ "SpellCheckingInspection" })
 public class VASMicroAssemblyRecipePool implements IRecipePool {
 
     private final IRecipeMap MA = AppendRecipeMaps.microAssemblyRecipes;
+    private final RecipeMap<?> MA_R = AppendRecipeMaps.microAssemblyRecipes;
     final boolean EnableTSTRecipes = true;
+    int partOpticalMult = Config.Recipe_OPT_Mult;
 
     @Override
     public void loadRecipesPostInit() {}
@@ -56,6 +66,91 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
     }
 
     public void loadMainRecipes() {
+        // region 光学元件
+        // 二极管
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Tritanium, 1),
+                    partOpticalMult * 32 * 4),
+                ItemHelper.setStackSize(ALLOY.LAFIUM.getFoil(1), partOpticalMult * 32 * 2),
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, SCPart.ZPM.getMaterial(true), 1),
+                    partOpticalMult * 32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("xenoxene", partOpticalMult * 32 * INGOTS),
+                SCPart.LuV.getMolten(partOpticalMult * 16 * INGOTS))
+            .itemOutputs(ItemHelper.setStackSize(ItemList.Circuit_Parts_DiodeXSMD.get(1), partOpticalMult * 32 * 64))
+            .eut(RECIPE_ZPM)
+            .duration(partOpticalMult * 32 * 5 * SECONDS)
+            .addTo(MA_R);
+        // 电阻
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Naquadria, 1),
+                    partOpticalMult * 32 * 4),
+                ItemHelper.setStackSize(ALLOY.PIKYONIUM.getFoil(1), partOpticalMult * 32 * 2),
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, SCPart.ZPM.getMaterial(true), 1),
+                    partOpticalMult * 32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("xenoxene", partOpticalMult * 32 * INGOTS),
+                SCPart.LuV.getMolten(partOpticalMult * 16 * INGOTS))
+            .itemOutputs(ItemHelper.setStackSize(ItemList.Circuit_Parts_ResistorXSMD.get(1), partOpticalMult * 32 * 32))
+            .eut(RECIPE_ZPM)
+            .duration(partOpticalMult * 32 * 5 * SECONDS)
+            .addTo(MA_R);
+        // 晶体管
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, Materials.BlackPlutonium, 1),
+                    partOpticalMult * 32 * 4),
+                ItemHelper.setStackSize(ALLOY.TRINIUM_REINFORCED_STEEL.getFoil(1), partOpticalMult * 32 * 2),
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, SCPart.ZPM.getMaterial(true), 1),
+                    partOpticalMult * 32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("xenoxene", partOpticalMult * 32 * INGOTS),
+                SCPart.LuV.getMolten(partOpticalMult * 16 * INGOTS))
+            .itemOutputs(
+                ItemHelper.setStackSize(ItemList.Circuit_Parts_TransistorXSMD.get(1), partOpticalMult * 32 * 32))
+            .eut(RECIPE_ZPM)
+            .duration(partOpticalMult * 32 * 5 * SECONDS)
+            .addTo(MA_R);
+        // 电容
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, Materials.Draconium, 1),
+                    partOpticalMult * 32 * 4),
+                ItemHelper.setStackSize(ALLOY.CINOBITE.getFoil(1), partOpticalMult * 32 * 2),
+                ItemHelper.setStackSize(
+                    GT_OreDictUnificator.get(OrePrefixes.foil, SCPart.ZPM.getMaterial(true), 1),
+                    partOpticalMult * 32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("xenoxene", partOpticalMult * 32 * INGOTS),
+                SCPart.LuV.getMolten(partOpticalMult * 16 * INGOTS))
+            .itemOutputs(
+                ItemHelper.setStackSize(ItemList.Circuit_Parts_CapacitorXSMD.get(1), partOpticalMult * 32 * 32))
+            .eut(RECIPE_ZPM)
+            .duration(partOpticalMult * 32 * 5 * SECONDS)
+            .addTo(MA_R);
+        // 电感
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(MyMaterial.hikarium.get(OrePrefixes.foil, 1), partOpticalMult * 32 * 4),
+                ItemHelper.setStackSize(MyMaterial.artheriumSn.get(OrePrefixes.foil, 1), partOpticalMult * 32))
+            .fluidInputs(
+                FluidHelper.getFluidStackByName("xenoxene", partOpticalMult * 32 * INGOTS),
+                SCPart.LuV.getMolten(partOpticalMult * 16 * INGOTS))
+            .itemOutputs(ItemHelper.setStackSize(ItemList.Circuit_Parts_InductorXSMD.get(1), partOpticalMult * 32 * 32))
+            .eut(RECIPE_ZPM)
+            .duration(partOpticalMult * 32 * 5 * SECONDS)
+            .addTo(MA_R);
+        // endregion
+
         int multiple = 1;
         // region 生物系
         // 生物超级电脑 UHV
