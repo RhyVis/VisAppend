@@ -22,6 +22,7 @@ public class Config {
     public static int Recipe_TR_OutputMult = 250;
     public static int Recipe_TR_CatalystACAMult = 4000;
     public static int Recipe_TR_CatalystACRMult = 2000;
+    public static int Recipe_OPT_Mult = 4;
     // endregion
 
     public static void synchronizeConfiguration(File configFile) {
@@ -45,6 +46,8 @@ public class Config {
             "TR进行单次合成时的ACA催化剂消耗，不受合成倍率影响，单位L");
         Recipe_TR_CatalystACRMult = configuration
             .getInt("Recipe_TR_CatalystACRMult", RECIPE, 250, 1, Integer.MAX_VALUE, "TR进行单次合成时的ACR催化剂消耗，不受合成倍率影响，单位L");
+        Recipe_OPT_Mult = configuration
+            .getInt("Recipe_OPT_Mult", RECIPE, 4, 1, Integer.MAX_VALUE / 16, "Recipe_OPT_Mult");
 
         if (configuration.hasChanged()) {
             configuration.save();

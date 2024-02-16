@@ -86,9 +86,9 @@ public class AppendRecipeMaps {
         .neiRecipeBackgroundSize(170, 10 + 5 * 18)
         .frontend(IntegratedAssemblyFrontend::new)
         .build();
-    /** Micro Assembly (MA) Recipe */
-    public static final RecipeMap<RecipeMapBackend> microAssemblyRecipes = RecipeMapBuilder
-        .of("va.recipe.microAssembly")
+    /** Micro Assembly (MA) Recipe (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> microAssemblyRecipes = RecipeMapBuilder
+        .of("va.recipe.microAssembly", VA_RecipeMapBackend::new)
         .maxIO(8, 1, 8, 0)
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)
