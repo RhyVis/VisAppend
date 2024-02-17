@@ -1,7 +1,6 @@
 package com.rhynia.gtnh.append.common.loader;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAAssemblerRecipePool;
 import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VACentrifugeRecipePool;
 import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VAChemicalReactorRecipePool;
 import com.rhynia.gtnh.append.common.recipe.GTRecipePool.VACommonRecipePool;
@@ -49,7 +48,7 @@ public class RecipeLoader {
             // GT Recipe
             new VACentrifugeRecipePool(), new VAElectrolyzeRecipePool(), new VAMixerRecipePool(),
             new VAChemicalReactorRecipePool(), new VAHammerRecipePool(), new VALaserEngraverRecipePool(),
-            new VAFusionRecipePool(), new VACompressorRecipePool(), new VAAssemblerRecipePool() };
+            new VAFusionRecipePool(), new VACompressorRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipesCompleteInit();

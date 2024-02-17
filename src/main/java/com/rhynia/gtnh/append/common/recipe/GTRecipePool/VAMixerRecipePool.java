@@ -28,9 +28,6 @@ import gtPlusPlus.core.material.ELEMENT;
 public class VAMixerRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap MX = RecipeMaps.mixerRecipes;
         final IRecipeMap MXGTPP = GTPPRecipeMaps.mixerNonCellRecipes;
@@ -84,6 +81,7 @@ public class VAMixerRecipePool implements IRecipePool {
                 Materials.Quartzite.getDust(4))
             .fluidInputs(Materials.Water.getFluid(16 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("wet.concrete", 18 * BUCKETS))
+            .noOptimize()
             .eut(RECIPE_MV)
             .duration(5 * SECONDS)
             .addTo(MX);

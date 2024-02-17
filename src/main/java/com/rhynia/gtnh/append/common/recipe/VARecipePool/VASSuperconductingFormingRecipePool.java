@@ -90,7 +90,4 @@ public class VASSuperconductingFormingRecipePool implements IRecipePool {
         }
 
     }
-
-    @Override
-    public void loadRecipesPostInit() {}
 }

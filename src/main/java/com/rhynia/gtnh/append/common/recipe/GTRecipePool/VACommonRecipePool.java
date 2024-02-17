@@ -22,9 +22,6 @@ import gtPlusPlus.core.material.ELEMENT;
 public class VACommonRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap EMS = RecipeMaps.electroMagneticSeparatorRecipes;
         final IRecipeMap IMP = BartWorksRecipeMaps.electricImplosionCompressorRecipes;

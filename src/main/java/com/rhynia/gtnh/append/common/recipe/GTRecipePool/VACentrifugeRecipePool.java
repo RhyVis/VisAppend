@@ -24,9 +24,6 @@ import gtPlusPlus.core.material.MISC_MATERIALS;
 public class VACentrifugeRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap CF = RecipeMaps.centrifugeRecipes;
         final IRecipeMap CFGTPP = GTPPRecipeMaps.centrifugeNonCellRecipes;

@@ -24,7 +24,4 @@ public class VASCompatibilityRecipePool implements IRecipePool {
             .addTo(RAL);
         // Maybe future use one day
     }
-
-    @Override
-    public void loadRecipesPostInit() {}
 }

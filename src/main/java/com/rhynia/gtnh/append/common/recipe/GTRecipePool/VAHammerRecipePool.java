@@ -24,9 +24,6 @@ import gregtech.loaders.misc.GT_Bees;
 public class VAHammerRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap HM = RecipeMaps.hammerRecipes;
 

@@ -24,9 +24,6 @@ import gregtech.api.util.GT_Utility;
 public class VAChemicalReactorRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap LCR = RecipeMaps.multiblockChemicalReactorRecipes;
 

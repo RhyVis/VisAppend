@@ -55,7 +55,4 @@ public class VAPlasmaForgeRecipePool implements IRecipePool {
             .metadata(COIL_HEAT, 10800 + 2700)
             .addTo(PF);
     }
-
-    @Override
-    public void loadRecipesPostInit() {}
 }

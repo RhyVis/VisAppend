@@ -29,9 +29,6 @@ import gregtech.api.util.GT_ModHandler;
 public class VALaserEngraverRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap LE = RecipeMaps.laserEngraverRecipes;
 
