@@ -12,10 +12,7 @@ import gregtech.api.recipe.RecipeMaps;
 public class VACompressorRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesCompleteInit() {}
-
-    @Override
-    public void loadRecipesPostInit() {
+    public void loadRecipesCompleteInit() {
         final IRecipeMap CP = RecipeMaps.compressorRecipes;
 
         // 青金石

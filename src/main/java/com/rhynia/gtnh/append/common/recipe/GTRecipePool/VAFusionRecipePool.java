@@ -15,9 +15,6 @@ import gregtech.api.recipe.RecipeMaps;
 public class VAFusionRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap FS = RecipeMaps.fusionRecipes;
         // ACR

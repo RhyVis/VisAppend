@@ -19,9 +19,6 @@ import gtPlusPlus.core.material.MISC_MATERIALS;
 public class VAElectrolyzeRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         final IRecipeMap EC = RecipeMaps.electrolyzerRecipes;
 

@@ -18,9 +18,6 @@ public class VASVoidEnergyGeneratorRecipePool implements IRecipePool {
     private final IRecipeMap VEG = AppendRecipeMaps.voidEnergyGeneratorRecipes;
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         // region 超导配方
 

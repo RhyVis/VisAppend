@@ -20,9 +20,6 @@ import gregtech.api.util.GT_ModHandler;
 public class VAMachineRecipePool implements IRecipePool {
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         // Infinite Liquid Air Hatch
         GT_Values.RA.stdBuilder()
