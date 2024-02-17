@@ -43,9 +43,6 @@ public class VASTranscendentReactorRecipePool implements IRecipePool {
     final int CatalystACA = Config.Recipe_TR_CatalystACAMult;
 
     @Override
-    public void loadRecipesPostInit() {}
-
-    @Override
     public void loadRecipesCompleteInit() {
         // DTC Conf
         if (EnableDTCRecipes) {

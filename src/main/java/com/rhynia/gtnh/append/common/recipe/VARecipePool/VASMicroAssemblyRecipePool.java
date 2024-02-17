@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.common.recipe.VARecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_EV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_IV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV;
@@ -10,8 +11,11 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UMV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
+import static gregtech.api.enums.Mods.AppliedEnergistics2;
 import static gregtech.api.enums.Mods.Computronics;
+import static gregtech.api.enums.Mods.NewHorizonsCoreMod;
 import static gregtech.api.enums.Mods.OpenComputers;
+import static gregtech.api.enums.Mods.SuperSolarPanels;
 
 import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.dreammaster.gthandler.CustomItemList;
@@ -52,9 +56,6 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
     private final RecipeMap<?> MA_R = AppendRecipeMaps.microAssemblyRecipes;
     final boolean EnableTSTRecipes = true;
     int partOpticalMult = Config.Recipe_OPT_Mult;
-
-    @Override
-    public void loadRecipesPostInit() {}
 
     @Override
     public void loadRecipesCompleteInit() {
@@ -149,6 +150,22 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_ZPM)
             .duration(partOpticalMult * 32 * 5 * SECONDS)
             .addTo(MA_R);
+        // endregion
+
+        // region MISC
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                Materials.Plastic.getPlates(32),
+                Materials.Obsidian.getPlates(64),
+                BWPart.Adv_Board.getItemStack(4),
+                Tier.HV.getCircuit(4),
+                GT_ModHandler.getModItem(SuperSolarPanels.ID, "redcomponent", 4),
+                GT_ModHandler.getModItem(SuperSolarPanels.ID, "greencomponent", 4),
+                GT_ModHandler.getModItem(SuperSolarPanels.ID, "bluecomponent", 4))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(256, GT_ModHandler.getModItem(OpenComputers.ID, "hologram2", 1)))
+            .eut(RECIPE_IV)
+            .duration(16 * SECONDS)
+            .addTo(MA);
         // endregion
 
         int multiple = 1;
@@ -455,6 +472,61 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .eut(RECIPE_UV)
             .duration(4 * SECONDS)
             .addTo(MA);
+        // endregion
+
+        // region AE
+        // Spacial 1
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_ModHandler.getModItem(NewHorizonsCoreMod.ID, "item.EngineeringProcessorSpatialPulsatingCore", 16),
+                GT_ModHandler.getModItem(NewHorizonsCoreMod.ID, "item.ChargedCertusQuartzPlate", 64),
+                Materials.Redstone.getPlates(64),
+                Materials.NetherQuartz.getPlates(64))
+            .fluidInputs(
+                SolderMaterial.SolderingAlloy.getFluidStack(4 * INGOTS),
+                Materials.Glowstone.getMolten(64 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 16, 32))
+            .noOptimize()
+            .eut(RECIPE_EV)
+            .duration(4 * SECONDS)
+            .addTo(MA);
+        // Spacial 2
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                GT_ModHandler.getModItem(NewHorizonsCoreMod.ID, "item.EngineeringProcessorSpatialPulsatingCore", 64),
+                ItemHelper.setStackSize(
+                    GT_ModHandler.getModItem(NewHorizonsCoreMod.ID, "item.ChargedCertusQuartzPlate", 64),
+                    4 * 64),
+                ItemHelper.setStackSize(Materials.Redstone.getPlates(64), 4 * 64),
+                ItemHelper.setStackSize(Materials.NetherQuartz.getPlates(64), 4 * 64))
+            .fluidInputs(
+                SolderMaterial.IndaAlloy.getFluidStack(4 * INGOTS),
+                Materials.EnderPearl.getMolten(64 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 4, 33))
+            .noOptimize()
+            .eut(RECIPE_LuV)
+            .duration(4 * SECONDS)
+            .addTo(MA_R);
+        // Spacial 3
+        VA_RecipeBuilder.builder()
+            .itemInputs(
+                ItemHelper.setStackSize(
+                    GT_ModHandler
+                        .getModItem(NewHorizonsCoreMod.ID, "item.EngineeringProcessorSpatialPulsatingCore", 64),
+                    256),
+                ItemHelper.setStackSize(
+                    GT_ModHandler.getModItem(NewHorizonsCoreMod.ID, "item.ChargedCertusQuartzPlate", 64),
+                    16 * 64),
+                ItemHelper.setStackSize(Materials.Redstone.getPlates(64), 16 * 64),
+                ItemHelper.setStackSize(Materials.NetherQuartz.getPlates(64), 16 * 64))
+            .fluidInputs(
+                SolderMaterial.MutatedLivingAlloy.getFluidStack(4 * INGOTS),
+                Materials.EnderEye.getMolten(64 * INGOTS))
+            .itemOutputs(GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 1, 34))
+            .noOptimize()
+            .eut(RECIPE_UV)
+            .duration(4 * SECONDS)
+            .addTo(MA_R);
         // endregion
     }
 
