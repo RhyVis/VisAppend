@@ -5,6 +5,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_HV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_IV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_MV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
@@ -75,6 +76,17 @@ public class VAMixerRecipePool implements IRecipePool {
             .eut(RECIPE_UHV)
             .duration(30 * SECONDS)
             .addTo(MXGTPP);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(3),
+                Materials.Clay.getDust(4),
+                Materials.Calcite.getDust(4),
+                Materials.Quartzite.getDust(4))
+            .fluidInputs(Materials.Water.getFluid(16 * BUCKETS))
+            .fluidOutputs(FluidHelper.getFluidStackByName("wet.concrete", 18 * BUCKETS))
+            .eut(RECIPE_MV)
+            .duration(5 * SECONDS)
+            .addTo(MX);
         // endregion
 
         // region 生物培养基

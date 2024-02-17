@@ -12,11 +12,13 @@ import cpw.mods.fml.common.Loader;
 @SuppressWarnings("unused")
 public enum VA_Mods {
 
-    TwistSpaceTechnology(Names.TWIST_SPACE_TECHNOLOGY),;
+    TwistSpaceTechnology(Names.TWIST_SPACE_TECHNOLOGY),
+    BoxPlusPlus(Names.BOX_PLUS_PLUS);
 
     public static class Names {
 
         public static final String TWIST_SPACE_TECHNOLOGY = "TwistSpaceTechnology";
+        public static final String BOX_PLUS_PLUS = "boxplusplus";
 
     }
 
