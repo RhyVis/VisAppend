@@ -48,7 +48,8 @@ public enum VAItemList implements IItemContainer {
     SelectedEnergyGenerator,
     Creator,
     WirelessTunnel9001,
-    WirelessTunnel9001Debug,;
+    WirelessTunnel9001Debug,
+    UltimateOfHarmony;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

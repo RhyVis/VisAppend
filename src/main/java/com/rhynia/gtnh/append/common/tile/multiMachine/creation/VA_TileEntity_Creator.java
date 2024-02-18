@@ -6,6 +6,7 @@ import java.util.Collections;
 import java.util.List;
 
 import net.minecraft.block.Block;
+import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -67,6 +68,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
 
     // region Process
     private boolean pItemProcess = true;
+    private byte pRecipeTime = 0;
     private int pMultiplier = 0;
     private int pBase = 0;
     private long pProduce = 0L;
@@ -76,6 +78,14 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
     private FluidStack pFluidStackStore = pFluidStackZeroPoint;
     private final ItemStack pItemStackZeroPoint = VAItemList.Test.get(1);
     private ItemStack pItemStackStore = pItemStackZeroPoint;
+
+    @Override
+    public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
+        if (getBaseMetaTileEntity().isServerSide()) {
+            this.pRecipeTime = (byte) ((this.pRecipeTime + 1) % 5);
+            GT_Utility.sendChatToPlayer(aPlayer, "合成时间: " + (this.pRecipeTime + 1) + "s");
+        }
+    }
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
@@ -182,7 +192,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
     }
 
     private void resetState() {
-        mMaxProgresstime = 128;
+        mMaxProgresstime = 20 * (pRecipeTime + 1);
         mEfficiencyIncrease = 10000;
         pBase = 0;
         pMultiplier = 0;
@@ -375,6 +385,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
+        aNBT.setByte("pRecipeTime", pRecipeTime);
         aNBT.setInteger("pMultiplier", pMultiplier);
         aNBT.setInteger("pBase", pBase);
         aNBT.setLong("pProduce", pProduce);
@@ -389,6 +400,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
+        pRecipeTime = aNBT.getByte("pRecipeTime");
         pMultiplier = aNBT.getInteger("pMultiplier");
         pBase = aNBT.getInteger("pBase");
         pProduce = aNBT.getLong("pProduce");
