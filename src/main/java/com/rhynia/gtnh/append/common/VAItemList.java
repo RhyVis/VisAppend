@@ -46,7 +46,9 @@ public enum VAItemList implements IItemContainer {
     KelvinTransformField,
     ReinforcedAssemblyLine,
     SelectedEnergyGenerator,
-    Creator;
+    Creator,
+    WirelessTunnel9001,
+    WirelessTunnel9001Debug,;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

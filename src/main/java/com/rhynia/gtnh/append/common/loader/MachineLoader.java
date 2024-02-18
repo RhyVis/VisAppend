@@ -1,8 +1,11 @@
 package com.rhynia.gtnh.append.common.loader;
 
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.UXV;
+
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_Hatch_WirelessMulti;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_LiquidAir;
@@ -33,6 +36,8 @@ public class MachineLoader {
     public static ItemStack ZeroGenerator;
     public static ItemStack HumongousCalibrationInputHatch;
     public static ItemStack HumongousCalibrationHalfInputHatch;
+    public static ItemStack WirelessTunnel9001;
+    public static ItemStack WirelessTunnel9001Debug;
     // endregion
 
     // region multi Machine controller
@@ -87,6 +92,20 @@ public class MachineLoader {
             17452,
             "HatchHumongousCalibrationHalf",
             "鸿蒙半标定仓").getStackForm(1);
+        WirelessTunnel9001 = new VA_MetaTileEntity_Hatch_WirelessMulti(
+            17453,
+            "HatchWirelessTunnel9001",
+            "传奇无线能源仓",
+            13,
+            (int) UXV,
+            false).getStackForm(1);
+        WirelessTunnel9001Debug = new VA_MetaTileEntity_Hatch_WirelessMulti(
+            17454,
+            "HatchWirelessTunnel9001Debug",
+            "传奇调试能源仓",
+            13,
+            (int) UXV,
+            true).getStackForm(1);
         // endregion
 
         // region ItemList
@@ -109,6 +128,8 @@ public class MachineLoader {
         VAItemList.ZeroGenerator.set(ZeroGenerator);
         VAItemList.HumongousCalibrationInputHatch.set(HumongousCalibrationInputHatch);
         VAItemList.HumongousCalibrationHalfInputHatch.set(HumongousCalibrationHalfInputHatch);
+        VAItemList.WirelessTunnel9001.set(WirelessTunnel9001);
+        VAItemList.WirelessTunnel9001Debug.set(WirelessTunnel9001Debug);
         // endregion
     }
 
