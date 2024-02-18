@@ -16,6 +16,7 @@ import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Humongo
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_HumongousCalibrationInputHatch;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_Creator;
+import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_UltimateOfHarmony;
 import com.rhynia.gtnh.append.common.tile.multiMachine.generation.VA_TileEntity_SelectedEnergyGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.generation.VA_TileEntity_VoidEnergyGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_AssemblyMatrix;
@@ -49,6 +50,7 @@ public class MachineLoader {
     public static ItemStack ReinforcedAssemblyLine;
     public static ItemStack SelectedEnergyGenerator;
     public static ItemStack Creator;
+    public static ItemStack UltimateOfHarmony;
     // endregion
 
     public static void loadMachines() {
@@ -67,6 +69,8 @@ public class MachineLoader {
             "MultiSelectedEnergyGenerator",
             "虚空发电机").getStackForm(1);
         Creator = new VA_TileEntity_Creator(17508, "MultiCreator", "逆向奇点").getStackForm(1);
+        UltimateOfHarmony = new VA_TileEntity_UltimateOfHarmony(17509, "MultiUltimateOfHarmony", "终极之眼")
+            .getStackForm(1);
         // endregion
 
         // region Single claim
@@ -118,6 +122,7 @@ public class MachineLoader {
         VAItemList.ReinforcedAssemblyLine.set(ReinforcedAssemblyLine);
         VAItemList.SelectedEnergyGenerator.set(SelectedEnergyGenerator);
         VAItemList.Creator.set(Creator);
+        VAItemList.UltimateOfHarmony.set(UltimateOfHarmony);
         // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);

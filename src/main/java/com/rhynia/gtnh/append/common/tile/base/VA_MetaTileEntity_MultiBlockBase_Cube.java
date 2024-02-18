@@ -47,7 +47,9 @@ public abstract class VA_MetaTileEntity_MultiBlockBase_Cube<T extends VA_MetaTil
     protected abstract Block sCasingBlock();
 
     @OverrideOnly
-    protected abstract Block sCoreBlock();
+    protected Block sCoreBlock() {
+        return null;
+    }
 
     @OverrideOnly
     protected abstract int sCasingIndex();
@@ -56,7 +58,9 @@ public abstract class VA_MetaTileEntity_MultiBlockBase_Cube<T extends VA_MetaTil
     protected abstract int sCasingBlockMeta();
 
     @OverrideOnly
-    protected abstract int sCoreBlockMeta();
+    protected int sCoreBlockMeta() {
+        return 0;
+    }
 
     protected final int hOffSet = 1, vOffSet = 1, dOffSet = 0;
 
