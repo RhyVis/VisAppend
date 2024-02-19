@@ -4,6 +4,7 @@ import static com.rhynia.gtnh.append.common.item.container.RegMetaItem01.initIte
 
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.EnumChatFormatting;
 
 import com.rhynia.gtnh.append.common.VAItemList;
 
@@ -33,6 +34,7 @@ public class ItemRegister {
         VAItemList.LensPrimoium.set(initItem01("原石透镜", 7, new String[]{ "异世界的能量?" }));
         VAItemList.LensOriginium.set(initItem01("源石透镜", 8, new String[]{ "操作时请注意源石尘" }));
         VAItemList.PreTesseract.set(initItem01("准超立方体", 9, new String[]{ "即将达到高维工程学" }));
+        VAItemList.AstriumInfinityComplex.set(initItem01("星矩", 10, new String[]{ "-[Aμⁿ-Aμⁿ]-", EnumChatFormatting.DARK_RED + "高维能量络合物" }));
         // Special Item
         VAItemList.ItemUltimate.set(new ItemStack(ItemBasic.Ultimate,1));
     }

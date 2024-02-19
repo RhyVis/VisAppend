@@ -1,5 +1,8 @@
 package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.BUCKETS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.HOURS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UIV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UXV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
@@ -16,6 +19,7 @@ import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_ModHandler;
+import gregtech.api.util.GT_Utility;
 
 public class VAPlasmaForgeRecipePool implements IRecipePool {
 
@@ -52,6 +56,22 @@ public class VAPlasmaForgeRecipePool implements IRecipePool {
             .fluidOutputs(MaterialsUEVplus.SpaceTime.getMolten(4 * 576))
             .eut(2_000_000_000)
             .duration(20 * SECONDS)
+            .metadata(COIL_HEAT, 10800 + 2700)
+            .addTo(PF);
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                VAItemList.LensAstriumInfinity.get(0),
+                GT_Utility.copyAmountUnsafe(2048, VAItemList.AstriumInfinityGem.get(64)),
+                GT_Utility.copyAmountUnsafe(1024, ItemList.Tesseract.get(1024)))
+            .fluidInputs(
+                MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(512 * BUCKETS),
+                MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getFluid(256 * BUCKETS),
+                Materials.Infinity.getMolten(512 * INGOTS),
+                MaterialsUEVplus.Space.getFluid(1024 * INGOTS),
+                MaterialsUEVplus.Time.getFluid(1024 * INGOTS))
+            .itemOutputs(VAItemList.AstriumInfinityComplex.get(1))
+            .eut(2_000_000_000)
+            .duration(8 * HOURS)
             .metadata(COIL_HEAT, 10800 + 2700)
             .addTo(PF);
     }
