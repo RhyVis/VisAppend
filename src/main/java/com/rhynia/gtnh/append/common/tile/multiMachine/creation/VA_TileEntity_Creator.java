@@ -323,6 +323,8 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
             .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 3, false)
             .addInputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputBus(VA_Values.CommonStrings.BluePrintInfo, 1)
+            .addOutputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
             .toolTipFinisher(VA_Values.CommonStrings.VisAppendMagical);
         return tt;
     }

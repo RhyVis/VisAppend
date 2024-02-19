@@ -124,4 +124,14 @@ public class AppendRecipeMaps {
             builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
                 .setMaxRecipesPerPage(2))
         .build();
+    /** Quark Refactoring (QR) Recipe (Allow 64+ Stack) */
+    public static final RecipeMap<VA_RecipeMapBackend> quarkRefactoringRecipes = RecipeMapBuilder
+        .of("va.recipe.quarkRefactoring", VA_RecipeMapBackend::new)
+        .maxIO(6, 2, 3, 2)
+        .minInputs(1, 0)
+        .logo(VA_Values.TextureSets.VA_LOGO_32)
+        .neiHandlerInfo(
+            builder -> builder.setDisplayStack(VAItemList.DenseEndpoint.get(1))
+                .setMaxRecipesPerPage(2))
+        .build();
 }

@@ -94,6 +94,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
                 }
                 setEuModifier(rEUModifier());
                 setMaxParallel(rMaxParallel());
+                setSpeedBonus(rSpeedBonus());
                 setOverclock(rPerfectOverclock() ? 2 : 1, 2);
                 return super.process();
             }

@@ -60,15 +60,15 @@ public class VAPlasmaForgeRecipePool implements IRecipePool {
             .addTo(PF);
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                VAItemList.LensAstriumInfinity.get(0),
                 GT_Utility.copyAmountUnsafe(4096, VAItemList.AstriumInfinityGem.get(1)),
-                GT_Utility.copyAmountUnsafe(2048, ItemList.Tesseract.get(1)))
+                GT_Utility.copyAmountUnsafe(2048, ItemList.Tesseract.get(1)),
+                VAItemList.LensAstriumInfinity.get(0))
             .fluidInputs(
                 MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(512 * BUCKETS),
-                MaterialsUEVplus.MagnetohydrodynamicallyConstrainedStarMatter.getFluid(256 * BUCKETS),
+                MaterialsUEVplus.RawStarMatter.getFluid(256 * BUCKETS),
                 Materials.Infinity.getMolten(512 * INGOTS),
-                MaterialsUEVplus.Space.getFluid(1024 * INGOTS),
-                MaterialsUEVplus.Time.getFluid(1024 * INGOTS))
+                MaterialsUEVplus.Space.getMolten(1024 * INGOTS),
+                MaterialsUEVplus.Time.getMolten(1024 * INGOTS))
             .itemOutputs(VAItemList.AstriumInfinityComplex.get(1))
             .eut(2_000_000_000)
             .duration(8 * HOURS)

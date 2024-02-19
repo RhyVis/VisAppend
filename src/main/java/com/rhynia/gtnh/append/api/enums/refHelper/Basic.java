@@ -1,6 +1,7 @@
 package com.rhynia.gtnh.append.api.enums.refHelper;
 
 import static gregtech.api.enums.Mods.EternalSingularity;
+import static gregtech.api.enums.Mods.GTPlusPlus;
 import static gregtech.api.enums.Mods.GoodGenerator;
 import static gregtech.api.enums.Mods.KekzTech;
 
@@ -34,5 +35,13 @@ public class Basic {
     public static ItemStack getTFFTCell(int tier, int amount) {
         int tierMeta = MathHelper.clampInt(tier, 1, 10);
         return GT_ModHandler.getModItem(KekzTech.ID, "kekztech_tfftstoragefield_block", amount, tierMeta);
+    }
+
+    public static ItemStack getQuantumAnomaly(int amount) {
+        return GT_ModHandler.getModItem(GTPlusPlus.ID, "MU-metaitem.01", amount, 32105);
+    }
+
+    public static ItemStack getFusionMatrixCatalyst() {
+        return GT_ModHandler.getModItem(GTPlusPlus.ID, "MU-metaitem.01", 0, 32100);
     }
 }
