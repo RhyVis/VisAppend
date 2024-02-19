@@ -120,6 +120,7 @@ public class AppendRecipeMaps {
         .maxIO(6, 2, 3, 2)
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)
+        .disableOptimize()
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
                 .setMaxRecipesPerPage(2))
@@ -130,6 +131,7 @@ public class AppendRecipeMaps {
         .maxIO(6, 2, 3, 2)
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)
+        .disableOptimize()
         .neiHandlerInfo(
             builder -> builder.setDisplayStack(VAItemList.DenseEndpoint.get(1))
                 .setMaxRecipesPerPage(2))
