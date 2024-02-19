@@ -15,7 +15,6 @@ dependencies {
     implementation('com.github.GTNewHorizons:TinkersGregworks:GTNH-1.0.27:dev') { transitive = false }
 
     compileOnly(project.files("localDeps/TwistSpaceTechnology-0.4.16-2.5.1fitted-dev.jar"))
-    compileOnly(project.files("localDeps/boxplusplus-1.6.1-dev.jar"))
 
     runtimeOnlyNonPublishable('com.github.GTNewHorizons:KekzTech:0.9.5')
 }
