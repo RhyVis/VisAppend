@@ -49,7 +49,7 @@ public enum VAItemList implements IItemContainer {
     Creator,
     WirelessTunnel9001,
     WirelessTunnel9001Debug,
-    UltimateOfHarmony;
+    EyeOfUltimate,;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

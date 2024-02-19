@@ -50,21 +50,21 @@ import gregtech.common.blocks.GT_Block_Casings1;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_OutputBus_ME;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_Output_ME;
 
-public class VA_TileEntity_UltimateOfHarmony
-    extends VA_MetaTileEntity_MultiBlockBase_Cube<VA_TileEntity_UltimateOfHarmony> implements IGlobalWirelessEnergy {
+public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBase_Cube<VA_TileEntity_EyeOfUltimate>
+    implements IGlobalWirelessEnergy {
 
     // region Builder
-    public VA_TileEntity_UltimateOfHarmony(int aID, String aName, String aNameRegional) {
+    public VA_TileEntity_EyeOfUltimate(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
 
-    public VA_TileEntity_UltimateOfHarmony(String aName) {
+    public VA_TileEntity_EyeOfUltimate(String aName) {
         super(aName);
     }
 
     @Override
     public IMetaTileEntity newMetaEntity(IGregTechTileEntity aTileEntity) {
-        return new VA_TileEntity_UltimateOfHarmony(this.mName);
+        return new VA_TileEntity_EyeOfUltimate(this.mName);
     }
     // endregion
 
@@ -264,8 +264,8 @@ public class VA_TileEntity_UltimateOfHarmony
     }
 
     @Override
-    public IStructureDefinition<VA_TileEntity_UltimateOfHarmony> getStructureDefinition() {
-        return StructureDefinition.<VA_TileEntity_UltimateOfHarmony>builder()
+    public IStructureDefinition<VA_TileEntity_EyeOfUltimate> getStructureDefinition() {
+        return StructureDefinition.<VA_TileEntity_EyeOfUltimate>builder()
             .addShape(STRUCTURE_PIECE_MAIN, transpose(STRUCTURE))
             .addElement(
                 'B',
@@ -286,9 +286,9 @@ public class VA_TileEntity_UltimateOfHarmony
                     t -> t.pSpacetimeCompressionFieldMetadata))
             .addElement(
                 'C',
-                GT_HatchElementBuilder.<VA_TileEntity_UltimateOfHarmony>builder()
+                GT_HatchElementBuilder.<VA_TileEntity_EyeOfUltimate>builder()
                     .atLeast(InputBus, OutputBus, OutputHatch)
-                    .adder(VA_TileEntity_UltimateOfHarmony::addToMachineList)
+                    .adder(VA_TileEntity_EyeOfUltimate::addToMachineList)
                     .dot(1)
                     .casingIndex(sCasingIndex())
                     .buildAndChain(sCasingBlock(), sCasingBlockMeta()))
@@ -354,24 +354,24 @@ public class VA_TileEntity_UltimateOfHarmony
         aNBT.setInteger("pSpacetimeCompressionFieldMetadata", pSpacetimeCompressionFieldMetadata);
 
         NBTTagCompound itemStackListNBTTag = new NBTTagCompound();
-        itemStackListNBTTag.setLong("UOHItems", outputItems.size());
+        itemStackListNBTTag.setLong("EOUItems", outputItems.size());
         int indexItems = 0;
         for (ItemStackLong itemStackLong : outputItems) {
             itemStackListNBTTag.setLong(indexItems + "stackSize", itemStackLong.stackSize);
             aNBT.setTag(indexItems + "itemStack", itemStackLong.itemStack.writeToNBT(new NBTTagCompound()));
             indexItems++;
         }
-        aNBT.setTag("UOHItemsTag", itemStackListNBTTag);
+        aNBT.setTag("EOUItemsTag", itemStackListNBTTag);
 
         NBTTagCompound fluidStackListNBTTag = new NBTTagCompound();
-        fluidStackListNBTTag.setLong("UOHFluids", outputFluids.size());
+        fluidStackListNBTTag.setLong("EOUFluids", outputFluids.size());
         int indexFluids = 0;
         for (FluidStackLong fluidStackLong : outputFluids) {
             fluidStackListNBTTag.setLong(indexFluids + "amount", fluidStackLong.amount);
             aNBT.setTag(indexFluids + "fluidStack", fluidStackLong.fluidStack.writeToNBT(new NBTTagCompound()));
             indexFluids++;
         }
-        aNBT.setTag("UOHFluidsTag", fluidStackListNBTTag);
+        aNBT.setTag("EOUFluidsTag", fluidStackListNBTTag);
 
         super.saveNBTData(aNBT);
     }
@@ -383,15 +383,15 @@ public class VA_TileEntity_UltimateOfHarmony
         pRecipeTime = aNBT.getByte("pRecipeTime");
         pSpacetimeCompressionFieldMetadata = aNBT.getInteger("pSpacetimeCompressionFieldMetadata");
 
-        NBTTagCompound tempItemTag = aNBT.getCompoundTag("UOHItemsTag");
-        for (int indexItems = 0; indexItems < tempItemTag.getInteger("UOHItems"); indexItems++) {
+        NBTTagCompound tempItemTag = aNBT.getCompoundTag("EOUItemsTag");
+        for (int indexItems = 0; indexItems < tempItemTag.getInteger("EOUItems"); indexItems++) {
             long stackSize = tempItemTag.getLong(indexItems + "stackSize");
             ItemStack itemStack = ItemStack.loadItemStackFromNBT(aNBT.getCompoundTag(indexItems + "itemStack"));
             outputItems.add(new ItemStackLong(itemStack, stackSize));
         }
 
-        NBTTagCompound tempFluidTag = aNBT.getCompoundTag("UOHFluidsTag");
-        for (int indexFluids = 0; indexFluids < tempFluidTag.getInteger("UOHFluids"); indexFluids++) {
+        NBTTagCompound tempFluidTag = aNBT.getCompoundTag("EOUFluidsTag");
+        for (int indexFluids = 0; indexFluids < tempFluidTag.getInteger("EOUFluids"); indexFluids++) {
             long fluidAmount = tempFluidTag.getLong(indexFluids + "amount");
             FluidStack fluidStack = FluidStack.loadFluidStackFromNBT(aNBT.getCompoundTag(indexFluids + "fluidStack"));
             outputFluids.add(new FluidStackLong(fluidStack, fluidAmount));
