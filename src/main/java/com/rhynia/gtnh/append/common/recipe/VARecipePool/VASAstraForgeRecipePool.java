@@ -10,6 +10,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_LuV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UXV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
@@ -28,6 +29,7 @@ import com.rhynia.gtnh.append.common.material.VAMaterials;
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
+import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.util.GT_ModHandler;
@@ -62,6 +64,23 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(40 * SECONDS)
+            .addTo(AF);
+        // Enteral
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                GT_Utility.getIntegratedCircuit(10),
+                VAItemList.LensAstriumInfinity.get(0),
+                VAItemList.AstriumInfinityGem.get(4))
+            .fluidInputs(
+                MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(4 * BUCKETS),
+                MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS))
+            .itemOutputs(MyMaterial.shirabon.get(OrePrefixes.dust, 16))
+            .fluidOutputs(
+                MaterialsUEVplus.Eternity.getMolten(8 * INGOTS),
+                MaterialsUEVplus.PrimordialMatter.getFluid(2 * BUCKETS))
+            .noOptimize()
+            .eut(RECIPE_UXV)
+            .duration(10 * SECONDS)
             .addTo(AF);
         // endregion
     }
