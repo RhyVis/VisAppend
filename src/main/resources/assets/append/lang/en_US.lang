@@ -15,6 +15,7 @@ va.MetaItem01.6.name=Astral Magical Lens
 va.MetaItem01.7.name=Primoium Lens
 va.MetaItem01.8.name=Originium Lens
 va.MetaItem01.9.name=Pre Tesseract
+va.MetaItem01.10.name=Astral Moment
 
 va.recipe.astralForge=Astra Forge
 va.recipe.thermonuclearControl=Thermonuclear Control
@@ -23,6 +24,7 @@ va.recipe.integratedAssembly=Integrated Assembly
 va.recipe.microAssembly=Micro Assembly
 va.recipe.superconductingForming=Superconducting Foaming
 va.recipe.voidEnergyGenerator=Astral Energy
+va.recipe.quarkRefactoring=Quark Refactoring
 
 append.AssemblyMatrix.mRecipeMode.0=Matrix Assembly Mode
 append.AssemblyMatrix.mRecipeMode.1=Micro Assembly Mode
@@ -34,6 +36,10 @@ append.UltimateHeater.mRecipeMode.2=Fusion Mode
 
 append.HeatDeathSimulator.mRecipeMode.0=Vacuum Mode
 append.HeatDeathSimulator.mRecipeMode.1=Thermodynamics Mode(Not added)
+
+append.DenseEndpoint.pRecipeMode.0=Electric Implosion Compressor Mode
+append.DenseEndpoint.pRecipeMode.1=Nano Forge Mode
+append.DenseEndpoint.pRecipeMode.2=Quark Refactoring Mode
 
 append.RALCheck.0=Disable Compatibility Map
 append.RALCheck.1=Enable Compatibility Map

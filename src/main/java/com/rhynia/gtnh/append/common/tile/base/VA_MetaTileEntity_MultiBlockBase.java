@@ -177,6 +177,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
             public CheckRecipeResult process() {
                 setEuModifier(rEUModifier());
                 setMaxParallel(rMaxParallel());
+                setSpeedBonus(rSpeedBonus());
                 setOverclock(rPerfectOverclock() ? 2 : 1, 2);
                 return super.process();
             }

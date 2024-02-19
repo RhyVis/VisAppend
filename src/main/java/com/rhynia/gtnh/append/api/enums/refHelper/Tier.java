@@ -94,7 +94,14 @@ public enum Tier {
 
     public SCPart getSC() {
         switch (this) {
-            case ULV, LV, UXV, MAX -> throw new IllegalArgumentException("This tier has no standard superconducting!");
+            case ULV, LV -> {
+                VisAppend.LOG.error(this + "tier has no standard SC material!");
+                return SCPart.MV;
+            }
+            case UXV, MAX -> {
+                VisAppend.LOG.error(this + "tier has no standard SC material!");
+                return SCPart.UMV;
+            }
             default -> {
                 return SCPart.values()[this.ordinal() - 2];
             }
