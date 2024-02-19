@@ -24,6 +24,7 @@ import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_ExtendedPowerMultiBlockBase;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_Dynamo;
 import gregtech.api.recipe.check.CheckRecipeResult;
+import gregtech.api.util.GT_Utility;
 import gregtech.api.util.IGT_HatchAdder;
 import mcp.mobius.waila.api.IWailaConfigHandler;
 import mcp.mobius.waila.api.IWailaDataAccessor;
@@ -273,12 +274,19 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     // region ToolTips and Info
     @Override
     public String[] getInfoData() {
+        double speedDisplayRaw = Math.round(this.rSpeedBonus() * 1000D) / 10D;
+        double euModifierDisplayRaw = Math.round(this.rEUModifier() * 1000D) / 10D;
+        String speedDisplay = speedDisplayRaw + "%";
+        String euModifierDisplay = euModifierDisplayRaw + "%";
+
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 3];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
-        nStr[oStr.length] = EnumChatFormatting.AQUA + "最大并行" + ": " + EnumChatFormatting.GOLD + this.rMaxParallel();
-        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "速度乘数" + ": " + EnumChatFormatting.GOLD + this.rSpeedBonus();
-        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "功率乘数" + ": " + EnumChatFormatting.GOLD + this.rEUModifier();
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "最大并行: "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(this.rMaxParallel());
+        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "速度乘数: " + EnumChatFormatting.GOLD + speedDisplay;
+        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "功率乘数: " + EnumChatFormatting.GOLD + euModifierDisplay;
         return nStr;
     }
 

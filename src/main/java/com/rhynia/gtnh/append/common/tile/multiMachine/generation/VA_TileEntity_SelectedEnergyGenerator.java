@@ -150,11 +150,6 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     }
 
     @Override
-    protected Block sCoreBlock() {
-        return null;
-    }
-
-    @Override
     protected int sCasingIndex() {
         return ((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12);
     }
@@ -162,11 +157,6 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     @Override
     protected int sCasingBlockMeta() {
         return 12;
-    }
-
-    @Override
-    protected int sCoreBlockMeta() {
-        return 0;
     }
 
     @Override

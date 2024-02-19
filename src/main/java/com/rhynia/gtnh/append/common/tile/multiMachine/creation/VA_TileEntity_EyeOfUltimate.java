@@ -14,6 +14,7 @@ import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.EnumChatFormatting;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -354,6 +355,17 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
             .addOutputHatch(VA_Values.CommonStrings.BluePrintInfo, 1)
             .toolTipFinisher(VA_Values.CommonStrings.VisAppendGigaFac);
         return tt;
+    }
+
+    @Override
+    public String[] getInfoData() {
+        String[] oStr = super.getInfoData();
+        String[] nStr = new String[oStr.length + 1];
+        System.arraycopy(oStr, 0, nStr, 0, oStr.length);
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "执行并行: "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(pMultiplier);
+        return nStr;
     }
 
     @Override

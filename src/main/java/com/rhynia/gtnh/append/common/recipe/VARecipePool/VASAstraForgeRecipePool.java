@@ -28,6 +28,7 @@ import com.rhynia.gtnh.append.common.material.VAMaterials;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.ItemList;
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.MaterialsUEVplus;
 import gregtech.api.enums.OrePrefixes;
@@ -74,7 +75,8 @@ public class VASAstraForgeRecipePool implements IRecipePool {
             .fluidInputs(
                 MaterialsUEVplus.DimensionallyTranscendentResidue.getFluid(4 * BUCKETS),
                 MaterialsUEVplus.SpaceTime.getMolten(4 * INGOTS))
-            .itemOutputs(MyMaterial.shirabon.get(OrePrefixes.dust, 16))
+            .itemOutputs(MyMaterial.shirabon.get(OrePrefixes.dust, 64), ItemList.Timepiece.get(4))
+            .outputChances(8000, 6000)
             .fluidOutputs(
                 MaterialsUEVplus.Eternity.getMolten(8 * INGOTS),
                 MaterialsUEVplus.PrimordialMatter.getFluid(2 * BUCKETS))
