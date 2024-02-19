@@ -162,10 +162,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
                 }
             }
         }
-        pMultiplier = 8L * pBaseA + 2L * pBaseB;
-        if (pMultiplier == 0) {
-            pMultiplier = 1L;
-        }
+        pMultiplier = 8L * pBaseA + 2L * pBaseB + 1L;
     }
 
     private void resetState() {
