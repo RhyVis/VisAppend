@@ -21,6 +21,7 @@ import org.apache.commons.lang3.tuple.Pair;
 import org.jetbrains.annotations.NotNull;
 
 import com.github.technus.tectech.recipe.EyeOfHarmonyRecipe;
+import com.github.technus.tectech.thing.CustomItemList;
 import com.github.technus.tectech.thing.casing.TT_Container_Casings;
 import com.github.technus.tectech.util.FluidStackLong;
 import com.github.technus.tectech.util.ItemStackLong;
@@ -28,7 +29,7 @@ import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
-import com.rhynia.gtnh.append.api.util.MathHelper;
+import com.rhynia.gtnh.append.common.VAItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
@@ -71,7 +72,8 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     // region Process
     private byte pRecipeTime = 0;
     private long pMultiplier = 0;
-    private int pBase = 0;
+    private int pBaseA = 0;
+    private int pBaseB = 0;
     private int pSpacetimeCompressionFieldMetadata = -1;
     private String pUUID = "";
     private EyeOfHarmonyRecipe pCurrentRecipe;
@@ -81,7 +83,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
-            this.pRecipeTime = (byte) ((this.pRecipeTime + 1) % 5);
+            this.pRecipeTime = (byte) ((this.pRecipeTime + 1) % 6);
             GT_Utility.sendChatToPlayer(aPlayer, "合成时间: " + (this.pRecipeTime + 1) + "s");
         }
     }
@@ -150,18 +152,26 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     private void getIndex() {
         for (GT_MetaTileEntity_Hatch_InputBus inputBus : mInputBusses) {
             for (ItemStack itemStack : inputBus.getRealInventory()) {
-                if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
-                    pBase += MathHelper.clampInt(itemStack.getItemDamage(), 0, 24);
+                if (itemStack != null) {
+                    if (itemStack.isItemEqual(CustomItemList.astralArrayFabricator.get(1))) {
+                        pBaseA += itemStack.stackSize;
+                    }
+                    if (itemStack.isItemEqual(VAItemList.AstriumInfinityComplex.get(1))) {
+                        pBaseB += itemStack.stackSize;
+                    }
                 }
             }
         }
-        pMultiplier = (long) Math.pow(2, MathHelper.clampInt(pBase, 0, 32));
+        pMultiplier = 8L * pBaseA + 2L * pBaseB;
+        if (pMultiplier == 0) {
+            pMultiplier = 1L;
+        }
     }
 
     private void resetState() {
         mMaxProgresstime = 20 * (pRecipeTime + 1);
         mEfficiencyIncrease = 10000;
-        pBase = 0;
+        pBaseA = pBaseB = 0;
         pMultiplier = 0;
         pCurrentRecipe = null;
     }
@@ -337,7 +347,8 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         tt.addMachineType("终极之眼")
             .addInfo("终极之眼的控制器")
             .addInfo("执行鸿蒙之眼配方.")
-            .addInfo("直接从无线电网获取所需能量.")
+            .addInfo("每个星阵提供8并行, 每个星矩提供2并行.")
+            .addInfo("不产出能量, 直接从无线电网获取所需能量.")
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.BluePrintTip)
             .beginStructureBlock(3, 3, 3, false)
@@ -349,7 +360,8 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         aNBT.setLong("pMultiplier", pMultiplier);
-        aNBT.setInteger("pBase", pBase);
+        aNBT.setInteger("pBaseA", pBaseA);
+        aNBT.setInteger("pBaseB", pBaseB);
         aNBT.setByte("pRecipeTime", pRecipeTime);
         aNBT.setInteger("pSpacetimeCompressionFieldMetadata", pSpacetimeCompressionFieldMetadata);
 
@@ -379,7 +391,8 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
         pMultiplier = aNBT.getLong("pMultiplier");
-        pBase = aNBT.getInteger("pBase");
+        pBaseA = aNBT.getInteger("pBaseA");
+        pBaseB = aNBT.getInteger("pBaseB");
         pRecipeTime = aNBT.getByte("pRecipeTime");
         pSpacetimeCompressionFieldMetadata = aNBT.getInteger("pSpacetimeCompressionFieldMetadata");
 
