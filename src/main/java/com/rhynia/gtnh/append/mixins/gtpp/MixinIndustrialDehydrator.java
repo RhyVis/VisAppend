@@ -16,11 +16,11 @@ public class MixinIndustrialDehydrator {
 
     @ModifyConstant(method = "createProcessingLogic", constant = @Constant(floatValue = 0.5F))
     private float va$eu(float f) {
-        return 1F / 12F;
+        return 1F / 8F;
     }
 
     @ModifyConstant(method = "getMaxParallelRecipes", constant = @Constant(intValue = 4))
     private int va$parallel(int i) {
-        return 32768;
+        return 16384;
     }
 }
