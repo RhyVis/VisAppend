@@ -11,10 +11,10 @@ public abstract class VA_MetaTileEntity_MultiBlockBase_EM extends GT_MetaTileEnt
     protected VA_MetaTileEntity_MultiBlockBase_EM(int aID, String aName, String aNameRegional) {
         super(aID, aName, aNameRegional);
     }
-    // endregion
 
     protected VA_MetaTileEntity_MultiBlockBase_EM(String aName) {
         super(aName);
     }
+    // endregion
 
 }
