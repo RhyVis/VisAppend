@@ -96,7 +96,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
 
     protected List<GT_MetaTileEntity_Hatch_DynamoMulti> mExoticDynamoHatches = new ArrayList<>();
 
-    public enum HatchElement implements IHatchElement<VA_MetaTileEntity_MultiBlockBase<?>> {
+    protected enum HatchElement implements IHatchElement<VA_MetaTileEntity_MultiBlockBase<?>> {
 
         ExoticDynamo(VA_MetaTileEntity_MultiBlockBase::addDynamoToMachineList,
             GT_MetaTileEntity_Hatch_DynamoMulti.class) {

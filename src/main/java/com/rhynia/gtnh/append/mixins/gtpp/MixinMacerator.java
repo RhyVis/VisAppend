@@ -16,16 +16,16 @@ public class MixinMacerator {
 
     @ModifyConstant(method = "createProcessingLogic", constant = @Constant(floatValue = 1.0F / 1.6F))
     private float bh$rSpeedBounus(float c) {
-        return 1.0F / 8.0F;
+        return 1.0F / 16.0F;
     }
 
     @ModifyReturnValue(method = "createProcessingLogic", at = @At("RETURN"))
     private ProcessingLogic bh$injectEUModifier(ProcessingLogic o) {
-        return o.setEuModifier(1.0F / 10.0F);
+        return o.setEuModifier(1.0F / 20.0F);
     }
 
     @ModifyReturnValue(method = "getMaxParallelRecipes", at = @At("RETURN"))
     private int bh$rParallel(int o) {
-        return o * 32;
+        return o * 128;
     }
 }

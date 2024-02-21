@@ -8,7 +8,8 @@
   "mixins": [
     "ae.MixinPortableCell",
     "ae.MixinQuantumCell",
-    "bw.MixinMegaMultiBase"
+    "bw.MixinMegaMultiBase",
+    "gtpp.MixinIndustrialDehydrator"
   ],
   "client": [],
   "server": [
