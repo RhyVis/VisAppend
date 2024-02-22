@@ -10,7 +10,7 @@ import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.enums.OrePrefixes;
@@ -33,7 +33,7 @@ public class VASSuperconductingFormingRecipePool implements IRecipePool {
                     ItemHelper.setStackSize(SC.getDust(1), 128))
                 .itemOutputs(ItemHelper.setStackSize(SC.getWire(1), 512))
                 .fluidInputs(
-                    VAMaterials.Astrium.getMolten(SC.getMultiplier() * INGOTS),
+                    VA_Materials.Astrium.getMolten(SC.getMultiplier() * INGOTS),
                     SC.getSxEqualFluid(32),
                     Materials.Helium.getGas(SC.getMultiplier() * 8L * BUCKETS))
                 .eut(SC.getRecipeVoltage())
@@ -80,7 +80,7 @@ public class VASSuperconductingFormingRecipePool implements IRecipePool {
                 .itemInputs(
                     GT_Utility.getIntegratedCircuit(24),
                     SC.getSolenoid(0),
-                    ItemHelper.setStackSize(VAMaterials.Astrium.get(OrePrefixes.dust, 1), 16 * SC.getMultiplier()))
+                    ItemHelper.setStackSize(VA_Materials.Astrium.get(OrePrefixes.dust, 1), 16 * SC.getMultiplier()))
                 .itemOutputs(SC.getDust(64))
                 .fluidInputs(SC.getSxEqualFluid(16), Materials.UUMatter.getFluid(SC.getPowValue() * 500L))
                 .fluidOutputs(SC.getMolten(512 * INGOTS))

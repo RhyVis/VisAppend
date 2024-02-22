@@ -5,7 +5,7 @@ item.Ultimate.name=无效证明
 item.LapoMatrix.name=兰波顿矩阵(弃用)
 item.CrystalMatrix.name=晶体矩阵(弃用)
 
-va.MetaItem01.0.name=测试物品
+va.MetaItem01.0.name=测试物品 - 01
 va.MetaItem01.1.name=兰波顿矩阵
 va.MetaItem01.2.name=晶体矩阵
 va.MetaItem01.3.name=致密绝缘云母
@@ -16,6 +16,21 @@ va.MetaItem01.7.name=原石透镜
 va.MetaItem01.8.name=源石透镜
 va.MetaItem01.9.name=准超立方体
 va.MetaItem01.10.name=星矩
+
+va.MetaItem02.0.name=标定指示
+va.MetaItem02.1.name=套件 - DTPF
+
+va.MetaBlock01.0.name=这是什么?
+
+va.EyeOfHarmonyCore.0.name=§f粗制§r集成时空卷积器
+va.EyeOfHarmonyCore.1.name=§f原始§r集成时空卷积器
+va.EyeOfHarmonyCore.2.name=§f稳定§r集成时空卷积器
+va.EyeOfHarmonyCore.3.name=§f先进§r集成时空卷积器
+va.EyeOfHarmonyCore.4.name=§f卓越§r集成时空卷积器
+va.EyeOfHarmonyCore.5.name=§f异星§r集成时空卷积器
+va.EyeOfHarmonyCore.6.name=§f完美§r集成时空卷积器
+va.EyeOfHarmonyCore.7.name=§f太初§r集成时空卷积器
+va.EyeOfHarmonyCore.8.name=§f§l鸿蒙§r集成时空卷积器
 
 va.recipe.astralForge=星辉聚能转化
 va.recipe.thermonuclearControl=热核控制过程
@@ -51,3 +66,4 @@ va.gui.desc.import_energy=能量输出
 GT5U.gui.text.importing_energy=§b导入能量中
 GT5U.gui.text.no_astrium=§7熔融星辉不足
 GT5U.gui.text.no_mode_set=没有用电路设定模式
+GT5U.gui.text.no_recipe_map_set=没有可用配方图

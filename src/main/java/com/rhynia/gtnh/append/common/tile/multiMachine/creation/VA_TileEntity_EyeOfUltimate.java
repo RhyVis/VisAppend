@@ -12,9 +12,12 @@ import java.util.List;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
+import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.FluidStack;
 
@@ -30,7 +33,8 @@ import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.block.BlockBasic;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
@@ -51,6 +55,8 @@ import gregtech.api.util.GT_Utility;
 import gregtech.common.blocks.GT_Block_Casings1;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_OutputBus_ME;
 import gregtech.common.tileentities.machines.GT_MetaTileEntity_Hatch_Output_ME;
+import mcp.mobius.waila.api.IWailaConfigHandler;
+import mcp.mobius.waila.api.IWailaDataAccessor;
 
 public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBase_Cube<VA_TileEntity_EyeOfUltimate>
     implements IGlobalWirelessEnergy {
@@ -76,6 +82,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     private int pBaseA = 0;
     private int pBaseB = 0;
     private int pSpacetimeCompressionFieldMetadata = -1;
+    private String pDisplayName = "";
     private String pUUID = "";
     private EyeOfHarmonyRecipe pCurrentRecipe;
     private List<ItemStackLong> outputItems = new ArrayList<ItemStackLong>();
@@ -106,6 +113,8 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         if (pCurrentRecipe == null) {
             return CheckRecipeResultRegistry.NO_RECIPE;
         }
+
+        pDisplayName = tempStack.getDisplayName();
 
         CheckRecipeResult result = processRecipe(pCurrentRecipe);
 
@@ -157,7 +166,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
                     if (itemStack.isItemEqual(CustomItemList.astralArrayFabricator.get(1))) {
                         pBaseA += itemStack.stackSize;
                     }
-                    if (itemStack.isItemEqual(VAItemList.AstriumInfinityComplex.get(1))) {
+                    if (itemStack.isItemEqual(VA_ItemList.AstriumInfinityComplex.get(1))) {
                         pBaseB += itemStack.stackSize;
                     }
                 }
@@ -172,6 +181,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         pBaseA = pBaseB = 0;
         pMultiplier = 0;
         pCurrentRecipe = null;
+        pDisplayName = "";
     }
 
     @Override
@@ -278,17 +288,17 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
             .addElement(
                 'B',
                 ofBlocksTiered(
-                    (block, meta) -> block == TT_Container_Casings.SpacetimeCompressionFieldGenerators ? meta : null,
+                    (block, meta) -> block == BlockBasic.EyeOfHarmonyCoreCasing ? meta : null,
                     ImmutableList.of(
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 0),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 1),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 2),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 3),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 4),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 5),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 6),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 7),
-                        Pair.of(TT_Container_Casings.SpacetimeCompressionFieldGenerators, 8)),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 0),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 1),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 2),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 3),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 4),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 5),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 6),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 7),
+                        Pair.of(BlockBasic.EyeOfHarmonyCoreCasing, 8)),
                     -1,
                     (t, meta) -> t.pSpacetimeCompressionFieldMetadata = meta,
                     t -> t.pSpacetimeCompressionFieldMetadata))
@@ -369,12 +379,39 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
     }
 
     @Override
+    public void getWailaBody(ItemStack itemStack, List<String> currentTip, IWailaDataAccessor accessor,
+        IWailaConfigHandler config) {
+        super.getWailaBody(itemStack, currentTip, accessor, config);
+        final NBTTagCompound tag = accessor.getNBTData();
+
+        if (!tag.getString("pDisplayNameW")
+            .isEmpty()) {
+            currentTip
+                .add(EnumChatFormatting.WHITE + "执行配方: " + EnumChatFormatting.AQUA + tag.getString("pDisplayNameW"));
+        }
+
+    }
+
+    @Override
+    public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
+        int z) {
+        super.getWailaNBTData(player, tile, tag, world, x, y, z);
+        final IGregTechTileEntity tileEntity = getBaseMetaTileEntity();
+        if (tileEntity != null) {
+            if (tileEntity.isActive()) {
+                tag.setString("pDisplayNameW", pDisplayName);
+            }
+        }
+    }
+
+    @Override
     public void saveNBTData(NBTTagCompound aNBT) {
         aNBT.setLong("pMultiplier", pMultiplier);
         aNBT.setInteger("pBaseA", pBaseA);
         aNBT.setInteger("pBaseB", pBaseB);
         aNBT.setByte("pRecipeTime", pRecipeTime);
         aNBT.setInteger("pSpacetimeCompressionFieldMetadata", pSpacetimeCompressionFieldMetadata);
+        aNBT.setString("pDisplayName", pDisplayName);
 
         NBTTagCompound itemStackListNBTTag = new NBTTagCompound();
         itemStackListNBTTag.setLong("EOUItems", outputItems.size());
@@ -406,6 +443,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         pBaseB = aNBT.getInteger("pBaseB");
         pRecipeTime = aNBT.getByte("pRecipeTime");
         pSpacetimeCompressionFieldMetadata = aNBT.getInteger("pSpacetimeCompressionFieldMetadata");
+        pDisplayName = aNBT.getString("pDisplayName");
 
         NBTTagCompound tempItemTag = aNBT.getCompoundTag("EOUItemsTag");
         for (int indexItems = 0; indexItems < tempItemTag.getInteger("EOUItems"); indexItems++) {

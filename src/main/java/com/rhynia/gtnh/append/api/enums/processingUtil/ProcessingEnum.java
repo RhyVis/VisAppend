@@ -2,6 +2,8 @@ package com.rhynia.gtnh.append.api.enums.processingUtil;
 
 import net.minecraft.item.ItemStack;
 
+import com.rhynia.gtnh.append.common.VA_ItemList;
+
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gtPlusPlus.api.recipe.GTPPRecipeMaps;
@@ -22,7 +24,8 @@ public enum ProcessingEnum {
         GregtechItemList.Controller_MolecularTransformer.get(1)),
     OreWash(RecipeMaps.oreWasherRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
     SimpleWash(GTPPRecipeMaps.simpleWasherRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
-    ChemicalWash(RecipeMaps.chemicalBathRecipes, GregtechItemList.Industrial_WashPlant.get(1)),;
+    ChemicalWash(RecipeMaps.chemicalBathRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
+    DTPF(RecipeMaps.plasmaForgeRecipes, VA_ItemList.Assembly_DTPF.get(1)),;
 
     private final RecipeMap<?> pRecipeMap;
     private final ItemStack pMachine;

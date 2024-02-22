@@ -6,14 +6,18 @@ import net.minecraft.item.ItemStack;
 public class ItemStackLong {
 
     protected ItemStack originalStack;
-    protected long stackSize;
+    protected long originalSize;
 
     public ItemStackLong(ItemStack stack, long amount) {
         originalStack = stack;
-        stackSize = amount;
+        originalSize = amount;
+    }
+
+    public ItemStack getOriginalStack() {
+        return this.originalStack;
     }
 
     public long getStackSize() {
-        return this.stackSize;
+        return this.originalSize;
     }
 }

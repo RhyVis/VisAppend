@@ -11,7 +11,7 @@ import net.minecraftforge.fluids.FluidStack;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
@@ -69,7 +69,7 @@ public class VAChemicalReactorRecipePool implements IRecipePool {
             .addTo(LCR);
         // 干细胞
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAMaterials.Astrium.get(OrePrefixes.dust, 12), Materials.Osmiridium.getDust(8))
+            .itemInputs(VA_Materials.Astrium.get(OrePrefixes.dust, 12), Materials.Osmiridium.getDust(8))
             .itemOutputs(
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32073),
                 GT_ModHandler.getModItem("gregtech", "gt.metaitem.03", 64, 32073),

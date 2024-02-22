@@ -18,9 +18,8 @@ public class MathHelper {
 
     private static final double LOG_2 = Math.log(2);
 
-    @Contract(pure = true)
     public static int safeInt(long number, int margin) {
-        return number > Integer.MAX_VALUE - margin ? Integer.MAX_VALUE - margin : (int) number;
+        return number > (long) (Integer.MAX_VALUE - margin) ? Integer.MAX_VALUE - margin : (int) number;
     }
 
     @Contract("null -> null")

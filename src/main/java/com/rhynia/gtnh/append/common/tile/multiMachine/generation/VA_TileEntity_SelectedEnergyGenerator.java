@@ -21,7 +21,7 @@ import com.gtnewhorizons.modularui.common.widget.SlotWidget;
 import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.util.MathHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
@@ -92,7 +92,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
 
         if (controlStack == null) {
             pBase = 1;
-        } else if (controlStack.isItemEqual(VAItemList.AstriumInfinityGem.get(1))) {
+        } else if (controlStack.isItemEqual(VA_ItemList.AstriumInfinityGem.get(1))) {
             pBase = (int) Math.pow(2, MathHelper.clampInt(controlStack.stackSize, 0, 24));
         }
 

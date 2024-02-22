@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipeHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;
@@ -100,13 +100,13 @@ public enum BWPart implements IRecipeHelper {
                 "gt.bwMetaGeneratedItem0",
                 1,
                 this.ordinal() + WrapCircuit_Offset,
-                VAItemList.Test.get(1)));
+                VA_ItemList.Test01.get(1)));
         else return GT_ModHandler.getModItem(
             "bartworks",
             "gt.bwMetaGeneratedItem0",
             aAmount,
             this.ordinal() + WrapCircuit_Offset,
-            VAItemList.Test.get(1));
+            VA_ItemList.Test01.get(1));
     }
 
     @Override

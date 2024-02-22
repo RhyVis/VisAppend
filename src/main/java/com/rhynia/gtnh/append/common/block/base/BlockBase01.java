@@ -1,8 +1,8 @@
-package com.rhynia.gtnh.append.common.block.container;
+package com.rhynia.gtnh.append.common.block.base;
 
 import static com.rhynia.gtnh.append.client.VA_Tab.tabMetaBlock01;
-import static com.rhynia.gtnh.append.common.block.BlockBasicItem.MetaBlockSet01;
-import static com.rhynia.gtnh.append.common.block.container.BlockStaticDataClientOnly.iconsBlockMap01;
+import static com.rhynia.gtnh.append.client.block.BlockStaticDataClientOnly.iconsBlockMap01;
+import static com.rhynia.gtnh.append.common.block.base.BlockBaseItem01.MetaBlockSet01;
 
 import java.util.List;
 
@@ -39,22 +39,22 @@ public class BlockBase01 extends Block {
     }
 
     // endregion
-    // -----------------------
+
     // region member variables
 
     private String unlocalizedName;
 
     // endregion
-    // -----------------------
+
     // region getters
 
     @Override
     public String getUnlocalizedName() {
-        return this.unlocalizedName;
+        return "va." + this.unlocalizedName;
     }
 
     // endregion
-    // -----------------------
+
     // region setters
 
     public void setUnlocalizedName(String aUnlocalizedName) {
@@ -62,12 +62,12 @@ public class BlockBase01 extends Block {
     }
 
     // endregion
-    // -----------------------
+
     // region Overrides
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIcon(int side, int meta) {
-        return meta < iconsBlockMap01.size() ? iconsBlockMap01.get(meta) : iconsBlockMap01.get(0);
+        return iconsBlockMap01.containsKey(meta) ? iconsBlockMap01.get(meta) : iconsBlockMap01.get(0);
     }
 
     @Override

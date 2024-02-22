@@ -12,12 +12,14 @@ import gregtech.api.util.GT_OreDictUnificator;
 import gregtech.api.util.GT_Utility;
 
 @SuppressWarnings({ "deprecation", "unused" })
-public enum VAItemList implements IItemContainer {
+public enum VA_ItemList implements IItemContainer {
 
-    // Item
+    // region Regular Item
     ItemUltimate,
-    // Meta-Item 01
-    Test,
+    // endregion
+
+    // region MetaItem01
+    Test01,
     LapoMatrix,
     CrystalMatrix,
     DenseMicaInsulatorFoil,
@@ -29,17 +31,26 @@ public enum VAItemList implements IItemContainer {
     LensOriginium,
     PreTesseract,
     AstriumInfinityComplex,
-    // Sig Block
-    InfiniteLiquidAirHatch,
-    InfiniteDistilledWaterHatch,
-    InfiniteLavaHatch,
-    InfiniteOilHatch,
-    InfiniteLubricantHatch,
-    InfiniteSteamHatch,
-    ZeroGenerator,
-    HumongousCalibrationInputHatch,
-    HumongousCalibrationHalfInputHatch,
-    // Machine Controller
+
+    // region MetaItem02
+    Calibration,
+    Assembly_DTPF,
+    // endregion
+
+    // region Block
+    Test_MetaBlock_01,
+    EOH_Core_T1,
+    EOH_Core_T2,
+    EOH_Core_T3,
+    EOH_Core_T4,
+    EOH_Core_T5,
+    EOH_Core_T6,
+    EOH_Core_T7,
+    EOH_Core_T8,
+    EOH_Core_T9,
+    // endregion
+
+    // region Machine Controller
     AstraForge,
     UltimateHeater,
     AssemblyMatrix,
@@ -50,23 +61,37 @@ public enum VAItemList implements IItemContainer {
     Creator,
     WirelessTunnel9001,
     WirelessTunnel9001Debug,
+    HumongousCalibrationInputHatch,
+    HumongousCalibrationHalfInputHatch,
     EyeOfUltimate,
     DenseEndpoint,
-    ProcessingArray,;
-    // region Member Variables
+    ProcessingMatrix,
 
+    // Sig Block
+    InfiniteLiquidAirHatch,
+    InfiniteDistilledWaterHatch,
+    InfiniteLavaHatch,
+    InfiniteOilHatch,
+    InfiniteLubricantHatch,
+    InfiniteSteamHatch,
+    ZeroGenerator,;
+    // endregion;
+
+    // endregion
+
+    // region Member Variables
     private boolean mHasNotBeenSet;
     private boolean mDeprecated;
     private boolean mWarned;
 
     private ItemStack mStack;
-
     // endregion
-    VAItemList() {
+
+    VA_ItemList() {
         mHasNotBeenSet = true;
     }
 
-    VAItemList(boolean aDeprecated) {
+    VA_ItemList(boolean aDeprecated) {
         if (aDeprecated) {
             mDeprecated = true;
             mHasNotBeenSet = true;

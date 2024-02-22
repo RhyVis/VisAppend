@@ -12,7 +12,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.api.recipe.backend.VA_RecipeMapBackend;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.OrePrefixes;
@@ -52,8 +52,8 @@ public class AssemblyLineRecipeHelper {
         VisAppend.LOG.error("A recipe build got error! Return dummy recipe.");
         return new GT_Recipe(
             false,
-            new ItemStack[] { VAItemList.Test.get(1) },
-            new ItemStack[] { VAItemList.Test.get(64) },
+            new ItemStack[] { VA_ItemList.Test01.get(1) },
+            new ItemStack[] { VA_ItemList.Test01.get(64) },
             null,
             null,
             null,

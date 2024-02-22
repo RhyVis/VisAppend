@@ -9,6 +9,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UEV
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UHV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UMV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UV;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_UXV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_ZPM;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 import static gregtech.api.enums.Mods.AppliedEnergistics2;
@@ -32,7 +33,8 @@ import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
 import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 import com.rhynia.gtnh.append.config.Config;
 
 import goodgenerator.items.MyMaterial;
@@ -64,6 +66,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
         }
 
         loadMainRecipes();
+        loadMachineAssmbly();
     }
 
     public void loadMainRecipes() {
@@ -208,7 +211,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 Materials.Tritanium.getMolten(8 * INGOTS * multiple),
                 Materials.Silicone.getMolten(16 * INGOTS * multiple),
                 Materials.Polybenzimidazole.getMolten(16 * INGOTS * multiple),
-                VAMaterials.SuperconductorFlux.getFluidOrGas(4 * INGOTS * multiple))
+                VA_Materials.SuperconductorFlux.getFluidOrGas(4 * INGOTS * multiple))
             .itemOutputs(ItemList.Circuit_Biomainframe.get(multiple))
             .eut(RECIPE_UHV)
             .duration(150 * SECONDS * multiple)
@@ -278,7 +281,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 Materials.Tritanium.getMolten(16 * INGOTS * multiple),
                 Materials.Silicone.getMolten(32 * INGOTS * multiple),
                 Materials.Polybenzimidazole.getMolten(32 * INGOTS * multiple),
-                VAMaterials.SuperconductorFlux.getFluidOrGas(16 * INGOTS * multiple))
+                VA_Materials.SuperconductorFlux.getFluidOrGas(16 * INGOTS * multiple))
             .itemOutputs(ItemList.Circuit_OpticalMainframe.get(multiple))
             .eut(RECIPE_UEV)
             .duration(150 * SECONDS * multiple)
@@ -341,7 +344,7 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
                 BWPart.Part_IC_Q.getItemStack(48))
             .fluidInputs(
                 SolderMaterial.IndaAlloy.getFluidStack(24 * INGOTS),
-                VAMaterials.SuperconductorFlux.getFluidOrGas(6 * INGOTS),
+                VA_Materials.SuperconductorFlux.getFluidOrGas(6 * INGOTS),
                 Materials.Infinity.getMolten(4 * INGOTS))
             .itemOutputs(GT_Utility.copyAmountUnsafe(256, CustomItemList.HighEnergyFlowCircuit.get(1)))
             .eut(RECIPE_LuV)
@@ -528,6 +531,41 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .duration(4 * SECONDS)
             .addTo(MA_R);
         // endregion
+
+        // region EOHC
+        // EOHC
+        for (int i = 1; i < 10; i++) {
+            GT_Values.RA.stdBuilder()
+                .itemInputs(
+                    Tier.UXV.getCircuitWrap(4),
+                    GT_Utility.copyAmountUnsafe(
+                        138,
+                        com.github.technus.tectech.thing.CustomItemList
+                            .valueOf("SpacetimeCompressionFieldGeneratorTier" + (i - 1))
+                            .get(1)),
+                    GT_Utility.copyAmountUnsafe(
+                        168,
+                        com.github.technus.tectech.thing.CustomItemList
+                            .valueOf("TimeAccelerationFieldGeneratorTier" + (i - 1))
+                            .get(1)),
+                    GT_Utility.copyAmountUnsafe(
+                        48,
+                        com.github.technus.tectech.thing.CustomItemList
+                            .valueOf("StabilisationFieldGeneratorTier" + (i - 1))
+                            .get(1)))
+                .fluidInputs(
+                    SolderMaterial.MutatedLivingAlloy.getFluidStack(128 * i * INGOTS),
+                    MaterialsUEVplus.SpaceTime.getMolten(96 * i * INGOTS))
+                .itemOutputs(
+                    VA_ItemList.valueOf("EOH_Core_T" + i)
+                        .get(1))
+                .noOptimize()
+                .eut(RECIPE_UXV)
+                .duration(16 * i * SECONDS)
+                .addTo(MA);
+        }
+        // endregion
+
     }
 
     // region TST
@@ -544,11 +582,34 @@ public class VASMicroAssemblyRecipePool implements IRecipePool {
             .fluidInputs(
                 SolderMaterial.MutatedLivingAlloy.getFluidStack(48 * INGOTS),
                 Materials.Sunnarium.getMolten(32 * INGOTS),
-                VAMaterials.Astrium.getMolten(32 * INGOTS))
+                VA_Materials.Astrium.getMolten(32 * INGOTS))
             .itemOutputs(GTCMItemList.OpticalSOC.get(64))
             .noOptimize()
             .eut(RECIPE_UMV)
             .duration(512 * SECONDS)
+            .addTo(MA);
+    }
+    // endregion
+
+    // region Machine Assembly
+    private void loadMachineAssmbly() {
+        // Calibration
+        GT_ModHandler.addShapelessCraftingRecipe(
+            VA_ItemList.Calibration.get(1),
+            new Object[] { Tier.UV.getCircuit(1), Tier.UHV.getCircuit(1), Tier.UEV.getCircuit(1) });
+        // DTPF
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Machine_Multi_PlasmaForge.get(1),
+                GT_Utility.copyAmountUnsafe(2121, ItemList.Casing_Dim_Trans.get(1)),
+                GT_Utility.copyAmountUnsafe(1273, ItemList.Casing_Dim_Injector.get(1)),
+                GT_Utility.copyAmountUnsafe(120, ItemList.Casing_Dim_Bridge.get(1)),
+                GT_Utility.copyAmountUnsafe(2112, ItemList.Casing_Coil_Eternal.get(1)))
+            .fluidInputs(SolderMaterial.MutatedLivingAlloy.getFluidStack(64 * INGOTS))
+            .itemOutputs(VA_ItemList.Assembly_DTPF.get(1))
+            .noOptimize()
+            .eut(RECIPE_UMV)
+            .duration(16 * SECONDS)
             .addTo(MA);
     }
     // endregion

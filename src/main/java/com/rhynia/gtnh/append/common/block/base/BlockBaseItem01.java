@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.block;
+package com.rhynia.gtnh.append.common.block.base;
 
 import static com.rhynia.gtnh.append.api.util.MetaItemStack.initMetaItemStack;
 import static com.rhynia.gtnh.append.api.util.MetaItemStack.metaItemStackTooltipsAdd;
@@ -21,17 +21,18 @@ import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
 import gregtech.api.util.GT_LanguageManager;
 
-public class BlockBasicItem extends ItemBlock {
+public class BlockBaseItem01 extends ItemBlock {
+
     // region statics
 
     public static final Map<Integer, String[]> MetaBlockTooltipsMap01 = new HashMap<>();
     public static final Set<Integer> MetaBlockSet01 = new HashSet<>();
 
     // endregion
-    // -----------------------
+
     // region Constructors
 
-    public BlockBasicItem(Block aBlock) {
+    public BlockBaseItem01(Block aBlock) {
         super(aBlock);
         setHasSubtypes(true);
         setMaxDamage(0);
@@ -39,7 +40,7 @@ public class BlockBasicItem extends ItemBlock {
     }
 
     // endregion
-    // -----------------------
+
     // region MetaBlock Generators
 
     public static ItemStack initMetaBlock01(String i18nName, int Meta) {
@@ -54,7 +55,7 @@ public class BlockBasicItem extends ItemBlock {
     }
 
     // endregion
-    // -----------------------
+
     // region Member Variables
 
     public final String mNoMobsToolTip = GT_LanguageManager
@@ -63,14 +64,11 @@ public class BlockBasicItem extends ItemBlock {
         .addStringLocalization("gt.notileentityinthisblock", "This is NOT a TileEntity!");
 
     // endregion
-    // -----------------------
+
     // region Overrides
 
     /**
      * Handle the tooltips.
-     *
-     * @param aItemStack
-     * @param theTooltipsList
      */
     @SideOnly(Side.CLIENT)
     @Override

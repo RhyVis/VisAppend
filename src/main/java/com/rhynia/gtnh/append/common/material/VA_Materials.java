@@ -6,7 +6,7 @@ import com.github.bartimaeusnek.bartworks.system.material.Werkstoff;
 
 import gregtech.api.enums.TextureSet;
 
-public class VAMaterials implements Runnable {
+public class VA_Materials implements Runnable {
 
     private static final int Offset_Element = 23000, Offset_Mix = 23100, Offset_Production = 23200;
 

@@ -4,7 +4,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.UXV;
 
 import net.minecraft.item.ItemStack;
 
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_Hatch_WirelessMulti;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Lava;
@@ -23,7 +23,7 @@ import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_DenseEndpoint;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_KelvinTransformField;
-import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ProcessingArray;
+import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ProcessingMatrix;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_UltimateHeater;
 
@@ -54,7 +54,7 @@ public class MachineLoader {
     public static ItemStack Creator;
     public static ItemStack EyeOfUltimate;
     public static ItemStack DenseEndpoint;
-    public static ItemStack ProcessingArray;
+    public static ItemStack ProcessingMatrix;
     // endregion
 
     public static void loadMachines() {
@@ -75,7 +75,7 @@ public class MachineLoader {
         Creator = new VA_TileEntity_Creator(17508, "MultiCreator", "逆向奇点").getStackForm(1);
         EyeOfUltimate = new VA_TileEntity_EyeOfUltimate(17509, "MultiEyeOfUltimate", "终极之眼").getStackForm(1);
         DenseEndpoint = new VA_TileEntity_DenseEndpoint(17510, "MultiDenseEndpoint", "致密极点").getStackForm(1);
-        ProcessingArray = new VA_TileEntity_ProcessingArray(17511, "NameProcessingArray", "处理阵列").getStackForm(1);
+        ProcessingMatrix = new VA_TileEntity_ProcessingMatrix(17511, "NameProcessingMatrix", "处理矩阵").getStackForm(1);
         // endregion
 
         // region Single claim
@@ -119,29 +119,29 @@ public class MachineLoader {
 
         // region ItemList
         // Multi
-        VAItemList.AstraForge.set(AstraForge);
-        VAItemList.UltimateHeater.set(UltimateHeater);
-        VAItemList.AssemblyMatrix.set(AssemblyMatrix);
-        VAItemList.VoidEnergyGenerator.set(VoidEnergyGenerator);
-        VAItemList.KelvinTransformField.set(KelvinTransformField);
-        VAItemList.ReinforcedAssemblyLine.set(ReinforcedAssemblyLine);
-        VAItemList.SelectedEnergyGenerator.set(SelectedEnergyGenerator);
-        VAItemList.Creator.set(Creator);
-        VAItemList.EyeOfUltimate.set(EyeOfUltimate);
-        VAItemList.DenseEndpoint.set(DenseEndpoint);
-        VAItemList.ProcessingArray.set(ProcessingArray);
+        VA_ItemList.AstraForge.set(AstraForge);
+        VA_ItemList.UltimateHeater.set(UltimateHeater);
+        VA_ItemList.AssemblyMatrix.set(AssemblyMatrix);
+        VA_ItemList.VoidEnergyGenerator.set(VoidEnergyGenerator);
+        VA_ItemList.KelvinTransformField.set(KelvinTransformField);
+        VA_ItemList.ReinforcedAssemblyLine.set(ReinforcedAssemblyLine);
+        VA_ItemList.SelectedEnergyGenerator.set(SelectedEnergyGenerator);
+        VA_ItemList.Creator.set(Creator);
+        VA_ItemList.EyeOfUltimate.set(EyeOfUltimate);
+        VA_ItemList.DenseEndpoint.set(DenseEndpoint);
+        VA_ItemList.ProcessingMatrix.set(ProcessingMatrix);
         // Single
-        VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
-        VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
-        VAItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
-        VAItemList.InfiniteOilHatch.set(InfiniteOilHatch);
-        VAItemList.InfiniteLubricantHatch.set(InfiniteLubricantHatch);
-        VAItemList.InfiniteSteamHatch.set(InfiniteSteamHatch);
-        VAItemList.ZeroGenerator.set(ZeroGenerator);
-        VAItemList.HumongousCalibrationInputHatch.set(HumongousCalibrationInputHatch);
-        VAItemList.HumongousCalibrationHalfInputHatch.set(HumongousCalibrationHalfInputHatch);
-        VAItemList.WirelessTunnel9001.set(WirelessTunnel9001);
-        VAItemList.WirelessTunnel9001Debug.set(WirelessTunnel9001Debug);
+        VA_ItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
+        VA_ItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
+        VA_ItemList.InfiniteLavaHatch.set(InfiniteLavaHatch);
+        VA_ItemList.InfiniteOilHatch.set(InfiniteOilHatch);
+        VA_ItemList.InfiniteLubricantHatch.set(InfiniteLubricantHatch);
+        VA_ItemList.InfiniteSteamHatch.set(InfiniteSteamHatch);
+        VA_ItemList.ZeroGenerator.set(ZeroGenerator);
+        VA_ItemList.HumongousCalibrationInputHatch.set(HumongousCalibrationInputHatch);
+        VA_ItemList.HumongousCalibrationHalfInputHatch.set(HumongousCalibrationHalfInputHatch);
+        VA_ItemList.WirelessTunnel9001.set(WirelessTunnel9001);
+        VA_ItemList.WirelessTunnel9001Debug.set(WirelessTunnel9001Debug);
         // endregion
     }
 
