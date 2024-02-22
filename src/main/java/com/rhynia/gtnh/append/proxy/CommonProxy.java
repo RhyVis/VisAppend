@@ -4,6 +4,7 @@ import static com.rhynia.gtnh.append.VisAppend.MOD_NAME;
 import static com.rhynia.gtnh.append.VisAppend.VERSION;
 
 import com.rhynia.gtnh.append.VisAppend;
+import com.rhynia.gtnh.append.api.util.ProcessingMap;
 import com.rhynia.gtnh.append.common.loader.MachineLoader;
 import com.rhynia.gtnh.append.common.loader.MaterialLoader;
 import com.rhynia.gtnh.append.common.loader.RecipeLoader;
@@ -37,6 +38,7 @@ public class CommonProxy {
     public void completeInit(FMLLoadCompleteEvent event) {
         VisAppend.LOG.info("Loading recipes stage 2/2.");
         RecipeLoader.loadRecipesCompleteInit();// Complete left recipes
+        ProcessingMap.generateMap();// Generate Map
     }
 
     public void serverStarting(FMLServerStartingEvent event) {

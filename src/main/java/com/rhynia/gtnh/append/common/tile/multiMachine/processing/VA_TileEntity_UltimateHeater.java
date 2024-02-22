@@ -36,6 +36,7 @@ import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
@@ -82,7 +83,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
+        return new VA_ProcessingLogic() {
 
             @NotNull
             @Override

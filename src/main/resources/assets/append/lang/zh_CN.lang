@@ -41,8 +41,8 @@ append.DenseEndpoint.pRecipeMode.0=电动聚爆模式
 append.DenseEndpoint.pRecipeMode.1=纳米锻炉模式
 append.DenseEndpoint.pRecipeMode.2=夸克重构模式
 
-append.RALCheck.0=禁用兼容配方
-append.RALCheck.1=启用兼容配方
+append.RAL.pFocusMode.0=禁用专注模式
+append.RAL.pFocusMode.1=启用专注模式
 append.pItemProcess.0=流体模式
 append.pItemProcess.1=物品模式
 

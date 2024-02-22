@@ -23,6 +23,7 @@ import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_DenseEndpoint;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_KelvinTransformField;
+import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ProcessingArray;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_UltimateHeater;
 
@@ -53,6 +54,7 @@ public class MachineLoader {
     public static ItemStack Creator;
     public static ItemStack EyeOfUltimate;
     public static ItemStack DenseEndpoint;
+    public static ItemStack ProcessingArray;
     // endregion
 
     public static void loadMachines() {
@@ -73,6 +75,7 @@ public class MachineLoader {
         Creator = new VA_TileEntity_Creator(17508, "MultiCreator", "逆向奇点").getStackForm(1);
         EyeOfUltimate = new VA_TileEntity_EyeOfUltimate(17509, "MultiEyeOfUltimate", "终极之眼").getStackForm(1);
         DenseEndpoint = new VA_TileEntity_DenseEndpoint(17510, "MultiDenseEndpoint", "致密极点").getStackForm(1);
+        ProcessingArray = new VA_TileEntity_ProcessingArray(17511, "NameProcessingArray", "处理阵列").getStackForm(1);
         // endregion
 
         // region Single claim
@@ -126,6 +129,7 @@ public class MachineLoader {
         VAItemList.Creator.set(Creator);
         VAItemList.EyeOfUltimate.set(EyeOfUltimate);
         VAItemList.DenseEndpoint.set(DenseEndpoint);
+        VAItemList.ProcessingArray.set(ProcessingArray);
         // Single
         VAItemList.InfiniteLiquidAirHatch.set(InfiniteLiquidAirHatch);
         VAItemList.InfiniteDistilledWaterHatch.set(InfiniteDistilledWaterHatch);
