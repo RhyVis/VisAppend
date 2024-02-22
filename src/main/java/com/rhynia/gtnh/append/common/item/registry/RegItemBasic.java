@@ -40,8 +40,6 @@ public class RegItemBasic extends Item {
         return this;
     }
 
-    //
-    //
     @Override
     public String getUnlocalizedName(ItemStack aItemStack) {
         return this.unlocalizedName + "." + aItemStack.getItemDamage();
@@ -52,18 +50,9 @@ public class RegItemBasic extends Item {
         return this.unlocalizedName;
     }
 
-    // @Override
-    // @SideOnly(Side.CLIENT)
-    // public void registerIcons(IIconRegister iconRegister) {
-    // icon = iconRegister.registerIcon(this.iconPath);
-    // }
-    // @Override
-    // public IIcon getIconFromDamage(int aMetaData) {
-    // return icon;
-    // }
-
     @Override
     @SideOnly(Side.CLIENT)
+    @SuppressWarnings({ "unchecked" })
     public void getSubItems(Item aItem, CreativeTabs aCreativeTabs, List aList) {
         aList.add(new ItemStack(aItem, 1, 0));
     }
@@ -72,7 +61,7 @@ public class RegItemBasic extends Item {
     @SuppressWarnings({ "unchecked" })
     public void addInformation(ItemStack aItemStack, EntityPlayer aEntityPlayer, List aTooltipsList,
         boolean p_77624_4_) {
-        if (tooltips.size() > 0) {
+        if (!tooltips.isEmpty()) {
             aTooltipsList.addAll(tooltips);
         }
     }

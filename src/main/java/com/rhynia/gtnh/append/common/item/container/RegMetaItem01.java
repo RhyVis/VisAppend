@@ -17,8 +17,8 @@ import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.IIcon;
 
+import com.rhynia.gtnh.append.client.item.ItemStaticDataClientOnly;
 import com.rhynia.gtnh.append.common.item.ItemBasic;
-import com.rhynia.gtnh.append.common.item.registry.ItemStaticDataClientOnly;
 import com.rhynia.gtnh.append.common.item.registry.RegItemBasic;
 
 import cpw.mods.fml.relauncher.Side;
@@ -95,7 +95,7 @@ public class RegMetaItem01 extends RegItemBasic {
     @Override
     @SideOnly(Side.CLIENT)
     public IIcon getIconFromDamage(int aMetaData) {
-        return aMetaData < ItemStaticDataClientOnly.iconsMap01.size()
+        return ItemStaticDataClientOnly.iconsMap01.containsKey(aMetaData)
             ? ItemStaticDataClientOnly.iconsMap01.get(aMetaData)
             : ItemStaticDataClientOnly.iconsMap01.get(0);
     }

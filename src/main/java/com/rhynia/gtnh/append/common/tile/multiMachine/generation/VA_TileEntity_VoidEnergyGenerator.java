@@ -25,7 +25,7 @@ import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_EM;
 
 import gregtech.api.GregTech_API;
@@ -90,13 +90,13 @@ public class VA_TileEntity_VoidEnergyGenerator extends VA_MetaTileEntity_MultiBl
         private FluidStack getFluidStack() {
             switch (this) {
                 case Astrium -> {
-                    return VAMaterials.Astrium.getMolten(1);
+                    return VA_Materials.Astrium.getMolten(1);
                 }
                 case AstriumMagic -> {
-                    return VAMaterials.AstriumMagic.getMolten(1);
+                    return VA_Materials.AstriumMagic.getMolten(1);
                 }
                 case AstriumInfinity -> {
-                    return VAMaterials.AstriumInfinity.getMolten(1);
+                    return VA_Materials.AstriumInfinity.getMolten(1);
                 }
             }
             return Materials.Water.getFluid(1);

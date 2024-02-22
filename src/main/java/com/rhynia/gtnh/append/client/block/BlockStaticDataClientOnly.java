@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.block.container;
+package com.rhynia.gtnh.append.client.block;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -12,5 +12,7 @@ public class BlockStaticDataClientOnly {
 
     @SideOnly(Side.CLIENT)
     public static Map<Integer, IIcon> iconsBlockMap01 = new HashMap<>();
+    @SideOnly(Side.CLIENT)
+    public static Map<Integer, IIcon> iconsEyeOfHarmonyCoreMap = new HashMap<>();
 
 }

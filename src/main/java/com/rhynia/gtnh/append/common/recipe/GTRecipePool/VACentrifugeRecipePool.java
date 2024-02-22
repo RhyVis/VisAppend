@@ -9,7 +9,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.Materials;
@@ -58,7 +58,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.Ledox.getDust(2),
                 WerkstoffLoader.Roquesit.get(OrePrefixes.dust, 1),
                 Materials.Firestone.getDust(1),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 1))
+                VA_Materials.Astrium.get(OrePrefixes.dust, 1))
             .outputChances(FullChance, FullChance, FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_HV)
@@ -67,7 +67,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
         // 山铜
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Orichalcum.getDust(12))
-            .itemOutputs(Materials.Copper.getDust(10), VAMaterials.Astrium.get(OrePrefixes.dust, 4))
+            .itemOutputs(Materials.Copper.getDust(10), VA_Materials.Astrium.get(OrePrefixes.dust, 4))
             .outputChances(FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_HV)
@@ -79,7 +79,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .itemOutputs(
                 Materials.Pyrotheum.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 2))
+                VA_Materials.Astrium.get(OrePrefixes.dust, 2))
             .outputChances(FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
@@ -93,7 +93,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.Thaumium.getDust(3),
                 Materials.AstralSilver.getDust(1),
                 WerkstoffLoader.PTMetallicPowder.get(OrePrefixes.dust, 2),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 2))
+                VA_Materials.Astrium.get(OrePrefixes.dust, 2))
             .outputChances(FullChance, FullChance, FullChance, FullChance, 5000)
             .noOptimize()
             .eut(RECIPE_MV)
@@ -136,7 +136,7 @@ public class VACentrifugeRecipePool implements IRecipePool {
                 Materials.ElectrumFlux.getDust(8),
                 Materials.Thaumium.getDust(2),
                 Materials.MysteriousCrystal.getDust(2),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 4))
+                VA_Materials.Astrium.get(OrePrefixes.dust, 4))
             .outputChances(FullChance, FullChance, 6500, 5000)
             .noOptimize()
             .eut(RECIPE_HV)
@@ -197,16 +197,16 @@ public class VACentrifugeRecipePool implements IRecipePool {
         // region 星辉燃料
         GT_Values.RA.stdBuilder()
             .itemInputs(GT_Utility.getIntegratedCircuit(1))
-            .fluidInputs(VAMaterials.AstralFuelMkIDepleted.getFluidOrGas(125))
+            .fluidInputs(VA_Materials.AstralFuelMkIDepleted.getFluidOrGas(125))
             .itemOutputs(
-                VAMaterials.Astrium.get(OrePrefixes.dust, 8),
-                VAMaterials.AstriumMagic.get(OrePrefixes.dust, 6),
-                VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 2),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 8),
+                VA_Materials.AstriumMagic.get(OrePrefixes.dust, 6),
+                VA_Materials.AstriumInfinity.get(OrePrefixes.dust, 2),
                 Materials.Naquadah.getDust(6),
                 Materials.Naquadria.getDust(6),
                 WerkstoffLoader.Tiberium.get(OrePrefixes.dust, 6))
             .outputChances(8000, 6000, 4000, 5000, 5000, 5000)
-            .fluidOutputs(VAMaterials.Astrium.getMolten(80), VAMaterials.AstriumInfinity.getMolten(20))
+            .fluidOutputs(VA_Materials.Astrium.getMolten(80), VA_Materials.AstriumInfinity.getMolten(20))
             .noOptimize()
             .eut(RECIPE_LuV)
             .duration(7 * SECONDS)

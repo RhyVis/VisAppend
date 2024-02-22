@@ -38,6 +38,7 @@ public class CommonProxy {
     public void completeInit(FMLLoadCompleteEvent event) {
         VisAppend.LOG.info("Loading recipes stage 2/2.");
         RecipeLoader.loadRecipesCompleteInit();// Complete left recipes
+        VisAppend.LOG.info("Generating processing matrix map.");
         ProcessingMap.generateMap();// Generate Map
     }
 

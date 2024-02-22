@@ -5,7 +5,7 @@ item.Ultimate.name=Useless
 item.LapoMatrix.name=Lapotron Matrix(Deprecated)
 item.CrystalMatrix.name=Crystal Matrix(Deprecated)
 
-va.MetaItem01.0.name=Test
+va.MetaItem01.0.name=Test - 01
 va.MetaItem01.1.name=Lapotron Matrix
 va.MetaItem01.2.name=Crystal Matrix
 va.MetaItem01.3.name=Dense Mica Insulator Foil
@@ -16,6 +16,21 @@ va.MetaItem01.7.name=Primoium Lens
 va.MetaItem01.8.name=Originium Lens
 va.MetaItem01.9.name=Pre Tesseract
 va.MetaItem01.10.name=Astral Moment
+
+va.MetaItem02.0.name=Calibration
+va.MetaItem02.1.name=Assembly - DTPF
+
+va.MetaBlock01.0.name=What?
+
+va.EyeOfHarmonyCore.0.name=§fCrude§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.1.name=§fPrimitive§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.2.name=§fStable§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.3.name=§fAdvanced§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.4.name=§fSuperb§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.5.name=§fExotic§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.6.name=§fPerfect§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.7.name=§fTipler§r Integrated Spatio-temporal Convolver
+va.EyeOfHarmonyCore.8.name=§f§lGallifreyan§r Integrated Spatio-temporal Convolver
 
 va.recipe.astralForge=Astra Forge
 va.recipe.thermonuclearControl=Thermonuclear Control
@@ -51,3 +66,4 @@ va.gui.desc.import_energy=Energy Level
 GT5U.gui.text.importing_energy=§bImporting Energy
 GT5U.gui.text.no_astrium=§7Not enough Astrium
 GT5U.gui.text.no_mode_set=No IC found for mode setting
+GT5U.gui.text.no_recipe_map_set=No available RecipeMap

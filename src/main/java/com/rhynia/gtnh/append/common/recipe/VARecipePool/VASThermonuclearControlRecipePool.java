@@ -17,8 +17,8 @@ import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.util.FluidHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
@@ -41,7 +41,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         // region 稀有气体
         // 等离子 He
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Helium.getGas(16 * BUCKETS))
             .fluidOutputs(Materials.Helium.getPlasma(16 * BUCKETS))
             .noOptimize()
@@ -50,7 +50,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .addTo(TC);
         // 等离子 Ne
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Neon.getFluidOrGas(16 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("plasma.neon", 16 * BUCKETS))
             .noOptimize()
@@ -59,7 +59,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .addTo(TC);
         // 等离子 Ar
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Argon.getGas(16 * BUCKETS))
             .fluidOutputs(Materials.Argon.getPlasma(16 * BUCKETS))
             .noOptimize()
@@ -68,7 +68,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .addTo(TC);
         // 等离子 Kr
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Krypton.getFluidOrGas(16 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("plasma.krypton", 16 * BUCKETS))
             .noOptimize()
@@ -77,7 +77,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .addTo(TC);
         // 等离子 Xe
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(WerkstoffLoader.Xenon.getFluidOrGas(16 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("plasma.xenon", 16 * BUCKETS))
             .noOptimize()
@@ -86,7 +86,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .addTo(TC);
         // 等离子 Rn
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+            .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
             .fluidInputs(Materials.Radon.getGas(16 * BUCKETS))
             .fluidOutputs(Materials.Radon.getPlasma(16 * BUCKETS))
             .noOptimize()
@@ -104,13 +104,13 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 CustomItemList.LapotronDust.get(64),
                 CustomItemList.LapotronDust.get(64))
-            .fluidInputs(VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(BUCKETS))
+            .fluidInputs(VA_Materials.AstralCatalystBaseExcited.getFluidOrGas(BUCKETS))
             .fluidOutputs(
-                VAMaterials.LapotronEnhancedFluid.getFluidOrGas(8 * BUCKETS),
-                VAMaterials.AstralResidue.getFluidOrGas(500))
+                VA_Materials.LapotronEnhancedFluid.getFluidOrGas(8 * BUCKETS),
+                VA_Materials.AstralResidue.getFluidOrGas(500))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(115 * SECONDS)
@@ -120,14 +120,14 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
                 esCata,
-                VAItemList.LensOriginium.get(0),
-                VAItemList.LensAstriumMagic.get(0))
+                VA_ItemList.LensOriginium.get(0),
+                VA_ItemList.LensAstriumMagic.get(0))
             .fluidInputs(
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(32 * BUCKETS),
-                VAMaterials.SuperconductorFluxRaw.getMolten(72 * INGOTS))
+                VA_Materials.AstralCatalystBaseExcited.getFluidOrGas(32 * BUCKETS),
+                VA_Materials.SuperconductorFluxRaw.getMolten(72 * INGOTS))
             .fluidOutputs(
-                VAMaterials.SuperconductorFlux.getFluidOrGas(64 * INGOTS),
-                VAMaterials.AstralResidue.getFluidOrGas(16 * BUCKETS))
+                VA_Materials.SuperconductorFlux.getFluidOrGas(64 * INGOTS),
+                VA_Materials.AstralResidue.getFluidOrGas(16 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(30 * SECONDS)
@@ -139,9 +139,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(64))
+                VA_ItemList.AstriumInfinityGem.get(64))
             .fluidInputs(WerkstoffLoader.Oganesson.getFluidOrGas(144 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.metastable oganesson", 1000 * INGOTS))
             .noOptimize()
@@ -152,9 +152,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(4))
+                VA_ItemList.AstriumInfinityGem.get(4))
             .fluidInputs(ALLOY.NITINOL_60.getFluidStack(1000 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.advancednitinol", 1000 * INGOTS))
             .noOptimize()
@@ -164,9 +164,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(8))
+                VA_ItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Nickel.getMolten(400 * INGOTS), Materials.Titanium.getMolten(600 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.advancednitinol", 1000 * INGOTS))
             .noOptimize()
@@ -177,9 +177,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(8))
+                VA_ItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Titanium.getMolten(1000 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.astraltitanium", 1000 * INGOTS))
             .noOptimize()
@@ -190,9 +190,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(8))
+                VA_ItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Glass.getMolten(1000 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.chromaticglass", 1000 * INGOTS))
             .noOptimize()
@@ -203,9 +203,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(8))
+                VA_ItemList.AstriumInfinityGem.get(8))
             .fluidInputs(Materials.Tungsten.getMolten(1000 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.celestialtungsten", 1000 * INGOTS))
             .noOptimize()
@@ -216,12 +216,12 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(16))
+                VA_ItemList.AstriumInfinityGem.get(16))
             .fluidInputs(
                 Materials.DraconiumAwakened.getMolten(1000 * INGOTS),
-                VAMaterials.Astrium.getMolten(12 * BUCKETS))
+                VA_Materials.Astrium.getMolten(12 * BUCKETS))
             .fluidOutputs(FluidHelper.getFluidStackByName("molten.dragonblood", 1000 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UEV)
@@ -231,9 +231,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(16))
+                VA_ItemList.AstriumInfinityGem.get(16))
             .fluidInputs(Materials.Radon.getGas(750 * INGOTS), Materials.Nitrogen.getGas(750 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("plasma.neptunium", 1000 * INGOTS))
             .noOptimize()
@@ -244,9 +244,9 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(16))
+                VA_ItemList.AstriumInfinityGem.get(16))
             .fluidInputs(Materials.Americium.getMolten(750 * INGOTS), Materials.Boron.getMolten(750 * INGOTS))
             .fluidOutputs(FluidHelper.getFluidStackByName("plasma.fermium", 1000 * INGOTS))
             .noOptimize()
@@ -257,16 +257,16 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.PreTesseract.get(64))
+                VA_ItemList.PreTesseract.get(64))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(64 * INGOTS),
-                VAMaterials.AstralCatalystBaseExcited.getFluidOrGas(4 * BUCKETS))
+                VA_Materials.AstralCatalystBaseExcited.getFluidOrGas(4 * BUCKETS))
             .fluidOutputs(
                 MaterialsUEVplus.TranscendentMetal.getMolten(32 * 64 * INGOTS),
                 ELEMENT.STANDALONE.CELESTIAL_TUNGSTEN.getFluidStack(16 * 64 * INGOTS),
-                VAMaterials.AstralResidue.getFluidOrGas(4 * BUCKETS))
+                VA_Materials.AstralResidue.getFluidOrGas(4 * BUCKETS))
             .noOptimize()
             .eut(RECIPE_UIV)
             .duration(30 * SECONDS)
@@ -275,13 +275,13 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                VAItemList.AstriumInfinityGem.get(32))
+                VA_ItemList.AstriumInfinityGem.get(32))
             .fluidInputs(
                 MyMaterial.metastableOganesson.getMolten(16 * INGOTS),
-                VAMaterials.AstralCatalystReforged.getFluidOrGas(250))
-            .fluidOutputs(MyMaterial.shirabon.getMolten(16 * INGOTS), VAMaterials.AstralResidue.getFluidOrGas(500))
+                VA_Materials.AstralCatalystReforged.getFluidOrGas(250))
+            .fluidOutputs(MyMaterial.shirabon.getMolten(16 * INGOTS), VA_Materials.AstralResidue.getFluidOrGas(500))
             .noOptimize()
             .eut(RECIPE_UMV)
             .duration(25 * SECONDS)
@@ -290,13 +290,13 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 GT_Utility.getIntegratedCircuit(10),
-                VAItemList.LensAstriumInfinity.get(0),
+                VA_ItemList.LensAstriumInfinity.get(0),
                 esCata,
-                GT_Utility.copyAmountUnsafe(96, VAItemList.AstriumInfinityGem.get(1)))
+                GT_Utility.copyAmountUnsafe(96, VA_ItemList.AstriumInfinityGem.get(1)))
             .fluidInputs(Materials.Infinity.getMolten(256 * INGOTS), ALLOY.QUANTUM.getFluidStack(256 * INGOTS))
             .fluidOutputs(
                 ELEMENT.STANDALONE.RHUGNOR.getFluidStack(512 * INGOTS),
-                VAMaterials.AstralResidue.getFluidOrGas(5000))
+                VA_Materials.AstralResidue.getFluidOrGas(5000))
             .noOptimize()
             .eut(RECIPE_UIV)
             .duration(80 * SECONDS)
@@ -308,7 +308,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             Materials.Chlorine };
         for (Materials materials : gas2plasma) {
             GT_Values.RA.stdBuilder()
-                .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+                .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
                 .fluidInputs(materials.getGas(128 * INGOTS))
                 .fluidOutputs(materials.getPlasma(128 * INGOTS))
                 .noOptimize()
@@ -325,7 +325,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             GT_Values.RA.stdBuilder()
                 .itemInputs(
                     GT_Utility.getIntegratedCircuit(12),
-                    VAItemList.LensAstriumInfinity.get(0),
+                    VA_ItemList.LensAstriumInfinity.get(0),
                     materials.getDust(64),
                     materials.getDust(64))
                 .fluidOutputs(materials.getPlasma(128 * INGOTS))
@@ -344,7 +344,7 @@ public class VASThermonuclearControlRecipePool implements IRecipePool {
             Materials.Osmium };
         for (Materials materials : molten2plasma) {
             GT_Values.RA.stdBuilder()
-                .itemInputs(GT_Utility.getIntegratedCircuit(12), VAItemList.LensAstriumInfinity.get(0))
+                .itemInputs(GT_Utility.getIntegratedCircuit(12), VA_ItemList.LensAstriumInfinity.get(0))
                 .fluidInputs(materials.getMolten(128 * INGOTS))
                 .fluidOutputs(materials.getPlasma(128 * INGOTS))
                 .noOptimize()

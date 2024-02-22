@@ -8,7 +8,7 @@ import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.recipe.RecipeMap;
@@ -29,7 +29,7 @@ public class AppendRecipeMaps {
         .progressBarSize(15, 15)
         .progressBarPos(80, 30)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.AstraForge.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.AstraForge.get(1))
                 .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 6 * 18)
         .frontend(AstralForgeFrontend::new)
@@ -46,7 +46,7 @@ public class AppendRecipeMaps {
         .progressBarSize(17, 17)
         .progressBarPos(79, 27)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.UltimateHeater.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.UltimateHeater.get(1))
                 .setMaxRecipesPerPage(2))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(ThermonuclearControlFrontend::new)
@@ -63,7 +63,7 @@ public class AppendRecipeMaps {
         .progressBarSize(15, 15)
         .progressBarPos(85, 27)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.UltimateHeater.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.UltimateHeater.get(1))
                 .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 6 * 18)
         .frontend(TranscendentReactorFrontend::new)
@@ -81,7 +81,7 @@ public class AppendRecipeMaps {
         .progressBarPos(9 + 88, 27)
         .neiTransferRect(9 + 88, 27, 17, 17)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.AssemblyMatrix.get(1))
                 .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 5 * 18)
         .frontend(IntegratedAssemblyFrontend::new)
@@ -99,7 +99,7 @@ public class AppendRecipeMaps {
         .progressBarPos(9 + 88, 27)
         .neiTransferRect(9 + 88, 27, 17, 17)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.AssemblyMatrix.get(1))
                 .setMaxRecipesPerPage(1))
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)
@@ -111,7 +111,7 @@ public class AppendRecipeMaps {
         .minInputs(1, 0)
         .logo(VA_Values.TextureSets.VA_LOGO_32)
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.VoidEnergyGenerator.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.VoidEnergyGenerator.get(1))
                 .setMaxRecipesPerPage(2))
         .build();
     /** Superconducting Forming (SF) Recipe (Allow 64+ Stack) */
@@ -122,7 +122,7 @@ public class AppendRecipeMaps {
         .logo(VA_Values.TextureSets.VA_LOGO_32)
         .disableOptimize()
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.AssemblyMatrix.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.AssemblyMatrix.get(1))
                 .setMaxRecipesPerPage(2))
         .build();
     /** Quark Refactoring (QR) Recipe (Allow 64+ Stack) */
@@ -133,7 +133,7 @@ public class AppendRecipeMaps {
         .logo(VA_Values.TextureSets.VA_LOGO_32)
         .disableOptimize()
         .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VAItemList.DenseEndpoint.get(1))
+            builder -> builder.setDisplayStack(VA_ItemList.DenseEndpoint.get(1))
                 .setMaxRecipesPerPage(2))
         .build();
 }

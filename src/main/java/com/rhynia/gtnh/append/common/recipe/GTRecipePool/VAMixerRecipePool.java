@@ -12,7 +12,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.util.FluidHelper;
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import goodgenerator.items.MyMaterial;
 import gregtech.api.enums.GT_Values;
@@ -43,9 +43,9 @@ public class VAMixerRecipePool implements IRecipePool {
             .addTo(MX);
         // 星辉催化剂
         GT_Values.RA.stdBuilder()
-            .itemInputs(VAMaterials.AstriumInfinity.get(OrePrefixes.dust, 8), Materials.InfinityCatalyst.getDust(17))
-            .itemOutputs(VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 50))
-            .fluidInputs(Materials.Helium.getGas(12 * BUCKETS), VAMaterials.Astrium.getMolten(4 * INGOTS))
+            .itemInputs(VA_Materials.AstriumInfinity.get(OrePrefixes.dust, 8), Materials.InfinityCatalyst.getDust(17))
+            .itemOutputs(VA_Materials.AstralCatalystBase.get(OrePrefixes.dust, 50))
+            .fluidInputs(Materials.Helium.getGas(12 * BUCKETS), VA_Materials.Astrium.getMolten(4 * INGOTS))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(12 * SECONDS)
@@ -53,7 +53,7 @@ public class VAMixerRecipePool implements IRecipePool {
         // 超导通流
         GT_Values.RA.stdBuilder()
             .itemInputs(
-                VAMaterials.AstralCatalystBase.get(OrePrefixes.dust, 12),
+                VA_Materials.AstralCatalystBase.get(OrePrefixes.dust, 12),
                 Materials.TengamPurified.getDust(11),
                 Materials.Infinity.getDust(10),
                 Materials.CosmicNeutronium.getDust(8),
@@ -63,8 +63,8 @@ public class VAMixerRecipePool implements IRecipePool {
                 ELEMENT.STANDALONE.ADVANCED_NITINOL.getDust(4),
                 ELEMENT.STANDALONE.ASTRAL_TITANIUM.getDust(4))
             .itemOutputs(
-                VAMaterials.SuperconductorFluxRaw.get(OrePrefixes.dust, 64),
-                VAMaterials.SuperconductorFluxRaw.get(OrePrefixes.dust, 15))
+                VA_Materials.SuperconductorFluxRaw.get(OrePrefixes.dust, 64),
+                VA_Materials.SuperconductorFluxRaw.get(OrePrefixes.dust, 15))
             .fluidInputs(
                 Materials.Helium.getPlasma(6 * BUCKETS),
                 Materials.DraconiumAwakened.getMolten(12 * INGOTS),
@@ -92,7 +92,7 @@ public class VAMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.Calcium.getDust(3),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 4),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 4),
                 GT_Utility.getIntegratedCircuit(15))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.GrowthMediumRaw.getFluid(8000))
@@ -104,7 +104,7 @@ public class VAMixerRecipePool implements IRecipePool {
         GT_Values.RA.stdBuilder()
             .itemInputs(
                 Materials.NetherStar.getDust(2),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 6),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 6),
                 GT_Utility.getIntegratedCircuit(16))
             .fluidInputs(GT_ModHandler.getDistilledWater(4000))
             .fluidOutputs(Materials.BioMediumRaw.getFluid(8000))
@@ -120,7 +120,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .itemInputs(
                 Materials.CallistoIce.getDust(12),
                 Materials.Ledox.getDust(12),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 18),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 18),
                 GT_Utility.getIntegratedCircuit(15))
             .itemOutputs(Materials.Cryotheum.getDust(128))
             .fluidInputs(GT_ModHandler.getDistilledWater(64 * BUCKETS))
@@ -134,7 +134,7 @@ public class VAMixerRecipePool implements IRecipePool {
             .itemInputs(
                 Materials.Sulfur.getDust(12),
                 Materials.Coal.getDust(12),
-                VAMaterials.Astrium.get(OrePrefixes.dust, 18),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 18),
                 GT_Utility.getIntegratedCircuit(16))
             .itemOutputs(Materials.Pyrotheum.getDust(128))
             .fluidInputs(Materials.Lava.getFluid(64 * BUCKETS))

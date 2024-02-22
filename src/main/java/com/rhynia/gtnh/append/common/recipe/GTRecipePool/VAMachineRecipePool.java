@@ -9,7 +9,7 @@ import static gregtech.api.util.GT_RecipeConstants.RESEARCH_ITEM;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_TIME;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -35,7 +35,7 @@ public class VAMachineRecipePool implements IRecipePool {
                 ItemList.UHV_Coil.get(1),
                 Materials.Infinity.getPlates(4))
             .fluidInputs(Materials.Neutronium.getMolten(1440))
-            .itemOutputs(VAItemList.InfiniteLiquidAirHatch.get(1))
+            .itemOutputs(VA_ItemList.InfiniteLiquidAirHatch.get(1))
             .noOptimize()
             .eut(RECIPE_UEV)
             .duration(140 * SECONDS)
@@ -43,7 +43,7 @@ public class VAMachineRecipePool implements IRecipePool {
 
         // Astra Forge
         GT_Values.RA.stdBuilder()
-            .metadata(RESEARCH_ITEM, VAItemList.AstriumInfinityGem.get(1))
+            .metadata(RESEARCH_ITEM, VA_ItemList.AstriumInfinityGem.get(1))
             .metadata(RESEARCH_TIME, 2 * HOURS)
             .itemInputs(
                 ItemList.Machine_IV_LaserEngraver.get(64),
@@ -51,7 +51,7 @@ public class VAMachineRecipePool implements IRecipePool {
                 ItemList.Sensor_UHV.get(8),
                 Materials.Infinity.getPlates(12))
             .fluidInputs(Materials.CosmicNeutronium.getMolten(10 * 144))
-            .itemOutputs(VAItemList.AstraForge.get(1))
+            .itemOutputs(VA_ItemList.AstraForge.get(1))
             .noOptimize()
             .eut(RECIPE_UHV)
             .duration(95 * SECONDS)

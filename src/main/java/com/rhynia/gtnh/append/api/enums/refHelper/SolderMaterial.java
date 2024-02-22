@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipeHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.Materials;
 import gtPlusPlus.core.material.ALLOY;
@@ -18,7 +18,7 @@ public enum SolderMaterial implements IRecipeHelper {
 
     @Override
     public ItemStack getItemStack(int aAmount) {
-        return VAItemList.Test.get(1);
+        return VA_ItemList.Test01.get(1);
     }
 
     /**

@@ -12,7 +12,7 @@ import org.jetbrains.annotations.NotNull;
 import com.github.technus.tectech.loader.recipe.BaseRecipeLoader;
 import com.github.technus.tectech.thing.CustomItemList;
 import com.rhynia.gtnh.append.VisAppend;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -143,20 +143,20 @@ public enum Tier {
     public ItemStack getComponent(Component component, int amount) {
         if (this == ULV) {
             VisAppend.LOG.error("Attempting to get ULV component, but it's already removed!");
-            return VAItemList.Test.get(amount);
+            return VA_ItemList.Test01.get(amount);
         } else return ItemList.valueOf(component.toString() + this)
-            .get(amount, VAItemList.Test.get(1));
+            .get(amount, VA_ItemList.Test01.get(1));
     }
 
     public ItemStack getCoil(int amount) {
         switch (this) {
             case UEV, UIV, UMV, UXV, MAX -> {
                 VisAppend.LOG.error("Attempting to get " + this + " component, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             default -> {
                 return ItemList.valueOf(this + "_Coil")
-                    .get(amount, VAItemList.Test.get(1));
+                    .get(amount, VA_ItemList.Test01.get(1));
             }
         }
     }
@@ -164,7 +164,7 @@ public enum Tier {
     public ItemStack getComponentAssemblyCasing(int amount) {
         if (this == ULV) {
             VisAppend.LOG.error("Attempting to get ULV casing, but it doesn't exist!");
-            return VAItemList.Test.get(amount);
+            return VA_ItemList.Test01.get(amount);
         } else return GT_ModHandler
             .getModItem(GoodGenerator.ID, "componentAssemblylineCasing", amount, this.ordinal() - 1);
     }
@@ -173,7 +173,7 @@ public enum Tier {
         switch (this) {
             case ULV, LV, MV -> {
                 VisAppend.LOG.error("Attempting to get " + this + " glass, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             case UMV, UXV, MAX -> {
                 return GT_ModHandler.getModItem(BartWorks.ID, "BW_GlasBlocks2", amount);
@@ -188,7 +188,7 @@ public enum Tier {
         switch (this) {
             case UHV, UEV, UIV, UMV, UXV -> {
                 VisAppend.LOG.error("Attempting to get " + this + " buffer core, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             case MAX -> {
                 return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore10", amount);
@@ -243,41 +243,41 @@ public enum Tier {
         switch (this) {
             case ULV, LV, MV, HV, MAX -> {
                 VisAppend.LOG.error("Attempting to get " + this + " 4A energy hatch, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti4_" + this)
                     .get(amount);
             }
         }
-        return VAItemList.Test.get(1);
+        return VA_ItemList.Test01.get(1);
     }
 
     public ItemStack getEnergyHatch16A(int amount) {
         switch (this) {
             case ULV, LV, MV, HV, MAX -> {
                 VisAppend.LOG.error("Attempting to get " + this + " 16A energy hatch, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti16_" + this)
                     .get(amount);
             }
         }
-        return VAItemList.Test.get(1);
+        return VA_ItemList.Test01.get(1);
     }
 
     public ItemStack getEnergyHatch64A(int amount) {
         switch (this) {
             case ULV, LV, MV, HV, MAX -> {
                 VisAppend.LOG.error("Attempting to get " + this + " 64A energy hatch, but it doesn't exist!");
-                return VAItemList.Test.get(amount);
+                return VA_ItemList.Test01.get(amount);
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti64_" + this)
                     .get(amount);
             }
         }
-        return VAItemList.Test.get(1);
+        return VA_ItemList.Test01.get(1);
     }
 }

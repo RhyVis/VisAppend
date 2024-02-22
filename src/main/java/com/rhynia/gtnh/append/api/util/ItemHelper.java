@@ -7,6 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import com.rhynia.gtnh.append.VisAppend;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 
 @SuppressWarnings("unused")
 public class ItemHelper {
@@ -104,6 +105,21 @@ public class ItemHelper {
         }
         itemStack.stackSize = amount;
         return itemStack;
+    }
+
+    public static boolean isAstralInfinityGem(ItemStack itemStack) {
+        if (itemStack == null) return false;
+        return itemStack.isItemEqual(VA_ItemList.AstriumInfinityGem.get(1));
+    }
+
+    public static boolean isAstralInfinityComplex(ItemStack itemStack) {
+        if (itemStack == null) return false;
+        return itemStack.isItemEqual(VA_ItemList.AstriumInfinityComplex.get(1));
+    }
+
+    public static boolean isCalibration(ItemStack itemStack) {
+        if (itemStack == null) return false;
+        return itemStack.isItemEqual(VA_ItemList.Calibration.get(1));
     }
 
 }

@@ -24,7 +24,7 @@ import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.util.MathHelper;
-import com.rhynia.gtnh.append.common.VAItemList;
+import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
@@ -76,7 +76,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
     private String pName = "";
     private final FluidStack pFluidStackZeroPoint = Materials.Water.getFluid(1);
     private FluidStack pFluidStackStore = pFluidStackZeroPoint;
-    private final ItemStack pItemStackZeroPoint = VAItemList.Test.get(1);
+    private final ItemStack pItemStackZeroPoint = VA_ItemList.Test01.get(1);
     private ItemStack pItemStackStore = pItemStackZeroPoint;
 
     @Override
@@ -100,7 +100,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
 
         for (GT_MetaTileEntity_Hatch_InputBus inputBus : mInputBusses) {
             for (ItemStack itemStack : inputBus.getRealInventory()) {
-                if (itemStack != null && itemStack.isItemEqual(VAItemList.AstriumInfinityGem.get(1))) {
+                if (itemStack != null && itemStack.isItemEqual(VA_ItemList.AstriumInfinityGem.get(1))) {
                     pBase += itemStack.stackSize;
                 }
                 if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {

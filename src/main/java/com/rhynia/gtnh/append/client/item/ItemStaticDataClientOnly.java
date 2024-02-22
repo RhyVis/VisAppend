@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.item.registry;
+package com.rhynia.gtnh.append.client.item;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -13,6 +13,8 @@ public class ItemStaticDataClientOnly {
 
     @SideOnly(Side.CLIENT)
     public static Map<Integer, IIcon> iconsMap01 = new HashMap<>();
+    @SideOnly(Side.CLIENT)
+    public static Map<Integer, IIcon> iconsMap02 = new HashMap<>();
 
     /**
      * @param aMetaName The Name of the Icon.
@@ -21,5 +23,10 @@ public class ItemStaticDataClientOnly {
     @SideOnly(Side.CLIENT)
     public static String getIconPath01(String aMetaName) {
         return "append:MetaItem01/" + aMetaName;
+    }
+
+    @SideOnly(Side.CLIENT)
+    public static String getIconPath02(String aMetaName) {
+        return "append:MetaItem02/" + aMetaName;
     }
 }

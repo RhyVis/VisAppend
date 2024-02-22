@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.api.enums.refHelper;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.rhynia.gtnh.append.common.material.VAMaterials;
+import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -139,14 +139,15 @@ public enum SCPart {
     }
 
     public FluidStack getSxEqualFluid(int originalAmount) {
-        return VAMaterials.SuperconductorFlux.getFluidOrGas((int) Math.pow(2, this.ordinal()) * originalAmount);
+        return VA_Materials.SuperconductorFlux.getFluidOrGas((int) Math.pow(2, this.ordinal()) * originalAmount);
     }
 
     public FluidStack getSxEqualFluid(int originalAmount, boolean raw) {
         if (!raw) {
             return getSxEqualFluid(originalAmount);
         } else {
-            return VAMaterials.SuperconductorFlux.getFluidOrGas((int) Math.pow(2, this.ordinal()) * originalAmount * 4);
+            return VA_Materials.SuperconductorFlux
+                .getFluidOrGas((int) Math.pow(2, this.ordinal()) * originalAmount * 4);
         }
     }
 

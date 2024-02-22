@@ -15,8 +15,8 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidStack;
 
-import com.Nxer.TwistSpaceTechnology.util.Utils;
-import com.Nxer.TwistSpaceTechnology.util.rewrites.TST_ItemID;
+import com.rhynia.gtnh.append.api.process.itemUtil.VA_ItemID;
+import com.rhynia.gtnh.append.api.util.MathHelper;
 
 import gregtech.api.enums.ItemList;
 import gregtech.api.interfaces.tileentity.IRecipeLockable;
@@ -444,12 +444,12 @@ public class VA_ParallelHelper extends GT_ParallelHelper {
         double tickTimeAfterOC = calculator.setParallel(originalMaxParallel)
             .calculateDurationUnderOneTick();
         if (tickTimeAfterOC < 1) {
-            maxParallel = Utils.safeInt((long) (maxParallel / tickTimeAfterOC), 1);
+            maxParallel = MathHelper.safeInt((long) (maxParallel / tickTimeAfterOC), 1);
         }
 
         int maxParallelBeforeBatchMode = maxParallel;
         if (batchMode) {
-            maxParallel = Utils.safeInt((long) maxParallel * batchModifier, 1);
+            maxParallel = MathHelper.safeInt((long) maxParallel * batchModifier, 1);
         }
 
         final ItemStack[] truncatedItemOutputs = recipe.mOutputs != null
@@ -736,22 +736,22 @@ public class VA_ParallelHelper extends GT_ParallelHelper {
         double remainingCost;
         int providedAmount;
         if (recipe.mInputs.length > 0) {
-            Map<TST_ItemID, Long> itemCost = new HashMap<>();
+            Map<VA_ItemID, Long> itemCost = new HashMap<>();
             if (isNBTSensitive) {
                 for (ItemStack recipeItemCost : recipe.mInputs) {
                     // for non-consumed input
                     if (recipeItemCost.stackSize == 0) continue;
-                    itemCost.merge(TST_ItemID.create(recipeItemCost), (long) recipeItemCost.stackSize, Long::sum);
+                    itemCost.merge(VA_ItemID.create(recipeItemCost), (long) recipeItemCost.stackSize, Long::sum);
                 }
             } else {
                 for (ItemStack recipeItemCost : recipe.mInputs) {
                     // for non-consumed input
                     if (recipeItemCost.stackSize == 0) continue;
-                    itemCost.merge(TST_ItemID.createNoNBT(recipeItemCost), (long) recipeItemCost.stackSize, Long::sum);
+                    itemCost.merge(VA_ItemID.createNoNBT(recipeItemCost), (long) recipeItemCost.stackSize, Long::sum);
                 }
             }
 
-            nextRecipeItemCost: for (Map.Entry<TST_ItemID, Long> itemID : itemCost.entrySet()) {
+            nextRecipeItemCost: for (Map.Entry<VA_ItemID, Long> itemID : itemCost.entrySet()) {
                 ItemStack unifiedItemCost;
                 if (isNBTSensitive) {
                     unifiedItemCost = GT_OreDictUnificator.get_nocopy(
