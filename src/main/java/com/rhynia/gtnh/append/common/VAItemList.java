@@ -51,7 +51,8 @@ public enum VAItemList implements IItemContainer {
     WirelessTunnel9001,
     WirelessTunnel9001Debug,
     EyeOfUltimate,
-    DenseEndpoint;
+    DenseEndpoint,
+    ProcessingArray,;
     // region Member Variables
 
     private boolean mHasNotBeenSet;

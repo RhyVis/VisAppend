@@ -12,14 +12,15 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
-
 import net.minecraft.world.World;
+
 import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 import org.jetbrains.annotations.NotNull;
 
 import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
+import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 
 import gregtech.api.interfaces.IHatchElement;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
@@ -173,9 +174,25 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     // endregion
 
     // region ProcessingLogic Helper
+    @OverrideOnly
+    protected boolean useAltLogic() {
+        return true;
+    }
+
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
+        return useAltLogic() ? new VA_ProcessingLogic() {
+
+            @NotNull
+            @Override
+            public CheckRecipeResult process() {
+                setEuModifier(rEUModifier());
+                setMaxParallel(rMaxParallel());
+                setSpeedBonus(rSpeedBonus());
+                setOverclock(rPerfectOverclock() ? 2 : 1, 2);
+                return super.process();
+            }
+        } : new ProcessingLogic() {
 
             @NotNull
             @Override
@@ -302,7 +319,7 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
 
     @Override
     public void getWailaNBTData(EntityPlayerMP player, TileEntity tile, NBTTagCompound tag, World world, int x, int y,
-                                int z) {
+        int z) {
         super.getWailaNBTData(player, tile, tag, world, x, y, z);
     }
 
