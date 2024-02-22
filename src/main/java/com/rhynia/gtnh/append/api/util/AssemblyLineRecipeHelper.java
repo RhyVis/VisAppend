@@ -33,8 +33,9 @@ public class AssemblyLineRecipeHelper {
     protected FluidStack[] pInputFluids = new FluidStack[0];
     protected long pVoltage = 0L;
     protected boolean bEnableCompatibilityRecipeMap = false;
-    protected boolean bEnableAltCheck = false;
     protected boolean bEnableDebug = false;
+    protected boolean bOnlyCheckFirst = false;
+    protected boolean bEnableAltCheck = true;
 
     /** RAL Compatibility Map (Allow 64+ Stack) */
     public static final RecipeMap<VA_RecipeMapBackend> compatibilityRALMap = RecipeMapBuilder
@@ -111,10 +112,18 @@ public class AssemblyLineRecipeHelper {
     }
 
     /**
-     * Experimental: Attempt to fix circuit input problem.
+     * Designed for focus mode.
      */
-    public AssemblyLineRecipeHelper enableAltCheck() {
-        bEnableAltCheck = true;
+    public AssemblyLineRecipeHelper onlyCheckFirst(boolean b) {
+        bOnlyCheckFirst = b;
+        return this;
+    }
+
+    /**
+     * Give up the attempt to fix circuit input problem.
+     */
+    public AssemblyLineRecipeHelper disableAltCheck() {
+        bEnableAltCheck = false;
         return this;
     }
 
@@ -234,18 +243,15 @@ public class AssemblyLineRecipeHelper {
     public Stream<GT_Recipe> generate() {
 
         if (!pRawDataSticks.isEmpty()) {
+
             for (ItemStack tDataStick : pRawDataSticks) {
                 GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
                     .findAssemblyLineRecipeFromDataStick(tDataStick, false);
                 if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
                     continue;
                 }
-
-                if (bEnableAltCheck) {
-                    pRecipes.add(buildRecipeChecked(tLookupResult));
-                } else {
-                    pRecipes.add(buildRecipe(tLookupResult));
-                }
+                pRecipes.add(buildRecipeChecked(tLookupResult));
+                if (bOnlyCheckFirst) break;
             }
 
             if (bEnableDebug) {

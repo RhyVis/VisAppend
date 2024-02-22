@@ -33,6 +33,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
@@ -80,10 +81,11 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     // region Processing Logic
 
     protected boolean pInjectCompatibilityMap = false;
+    protected boolean pFocusMode = false;
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
+        return new VA_ProcessingLogic() {
 
             @Override
             @NotNull
@@ -93,6 +95,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 }
                 setSpeedBonus(rSpeedBonus());
                 setMaxParallel(rMaxParallel());
+                setOverclock(rPerfectOverclock() ? 2 : 1, 2);
                 return super.process();
             }
 
@@ -100,11 +103,11 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @NotNull
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
                 return AssemblyLineRecipeHelper.builder()
-                    .setRawDataSticks(getDataItems(2))
+                    .addRawDataSticks(getDataItems(2).get(0))
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
-                    .enableAltCheck()
+                    .onlyCheckFirst(pFocusMode)
                     .enableCompatibilityRecipeMap(pInjectCompatibilityMap)
                     .generate();
             }
@@ -113,15 +116,22 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     }
 
     @Override
-    public int rMaxParallel() {
+    protected int rMaxParallel() {
+        if (pFocusMode) return Integer.MAX_VALUE;
         double rParallelTimes = Math.floor(Math.log10(this.getMaxInputAmps()) / Math.log(4));
         return 4 * ((int) (1 + rParallelTimes));
     }
 
     @Override
-    public float rSpeedBonus() {
+    protected float rSpeedBonus() {
+        if (pFocusMode) return 1.0F;
         long rSpeedTimes = this.getMaxInputEu() / (64L * VA_Values.RecipeValues.MAX);
         return (float) Math.max(0.3F, Math.pow(0.9F, rSpeedTimes));
+    }
+
+    @Override
+    protected boolean rPerfectOverclock() {
+        return pFocusMode;
     }
 
     @Override
@@ -137,8 +147,17 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @Override
     public final void onScrewdriverRightClick(ForgeDirection side, EntityPlayer aPlayer, float aX, float aY, float aZ) {
         if (getBaseMetaTileEntity().isServerSide()) {
+            this.pFocusMode = !this.pFocusMode;
+        }
+    }
+
+    @Override
+    public boolean onWireCutterRightClick(ForgeDirection side, ForgeDirection wrenchingSide, EntityPlayer aPlayer,
+        float aX, float aY, float aZ, ItemStack aTool) {
+        if (getBaseMetaTileEntity().isServerSide()) {
             this.pInjectCompatibilityMap = !this.pInjectCompatibilityMap;
         }
+        return false;
     }
 
     // endregion
@@ -266,16 +285,16 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     public void addUIWidgets(ModularWindow.Builder builder, UIBuildContext buildContext) {
         super.addUIWidgets(builder, buildContext);
         builder.widget(
-            new CycleButtonWidget().setToggle(() -> pInjectCompatibilityMap, val -> pInjectCompatibilityMap = val)
+            new CycleButtonWidget().setToggle(() -> pFocusMode, val -> pFocusMode = val)
                 .setTextureGetter(
-                    state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_IMPORT : GT_UITextures.OVERLAY_BUTTON_DISABLE)
+                    state -> state == 1 ? GT_UITextures.OVERLAY_BUTTON_IMPORT : GT_UITextures.OVERLAY_BUTTON_CYCLIC)
                 .setPlayClickSound(true)
                 .setBackground(GT_UITextures.BUTTON_STANDARD)
                 .setPos(80, 91)
                 .setSize(16, 16)
                 .dynamicTooltip(
-                    () -> Collections.singletonList(
-                        StatCollector.translateToLocal("append.RALCheck." + (pInjectCompatibilityMap ? 1 : 0))))
+                    () -> Collections
+                        .singletonList(StatCollector.translateToLocal("append.RAL.pFocusMode." + (pFocusMode ? 1 : 0))))
                 .setUpdateTooltipEveryTick(true)
                 .setTooltipShowUpDelay(TOOLTIP_DELAY));
     }
@@ -350,8 +369,12 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .addInfo("复合装配线的控制器")
             .addInfo("更加高效, 支持输入总成.")
             .addInfo("再见，进阶装配线!")
+            .addInfo("在普通模式下:")
             .addInfo("初始并行为4, 每4^n输入电流将提供n倍并行")
             .addInfo("每64A-MAX的输入功率将提供10%加速(叠乘), 最高70%加速.")
+            .addInfo("在专注模式下:")
+            .addInfo("只会执行第一个闪存的配方.")
+            .addInfo("近乎无限的并行, 执行无损超频.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)
@@ -368,10 +391,10 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     @Override
     public String[] getInfoData() {
         String[] oStr = super.getInfoData();
-        String[] nStr = new String[oStr.length + 1];
+        String[] nStr = new String[oStr.length + 2];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
-        nStr[oStr.length] = EnumChatFormatting.AQUA + "兼容配方"
-            + ": "
+        nStr[oStr.length] = EnumChatFormatting.AQUA + "专注模式: " + EnumChatFormatting.GOLD + this.pFocusMode;
+        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "兼容配方: "
             + EnumChatFormatting.GOLD
             + this.pInjectCompatibilityMap;
         return nStr;
@@ -381,12 +404,14 @@ public class VA_TileEntity_ReinforcedAssemblyLine
     public void saveNBTData(NBTTagCompound aNBT) {
         super.saveNBTData(aNBT);
         aNBT.setBoolean("pInjectCompatibilityMap", pInjectCompatibilityMap);
+        aNBT.setBoolean("pFocusMode", pFocusMode);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
         super.loadNBTData(aNBT);
         pInjectCompatibilityMap = aNBT.getBoolean("pInjectCompatibilityMap");
+        pFocusMode = aNBT.getBoolean("pFocusMode");
     }
 
     // endregion

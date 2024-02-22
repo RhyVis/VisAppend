@@ -41,8 +41,8 @@ append.DenseEndpoint.pRecipeMode.0=Electric Implosion Compressor Mode
 append.DenseEndpoint.pRecipeMode.1=Nano Forge Mode
 append.DenseEndpoint.pRecipeMode.2=Quark Refactoring Mode
 
-append.RALCheck.0=Disable Compatibility Map
-append.RALCheck.1=Enable Compatibility Map
+append.RAL.pFocusMode.0=Disable Focus Mode
+append.RAL.pFocusMode.1=Enable Focus Mode
 append.pItemProcess.0=Fluid Mode
 append.pItemProcess.1=Item Mode
 
