@@ -95,6 +95,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                 }
                 setSpeedBonus(rSpeedBonus());
                 setMaxParallel(rMaxParallel());
+                setEuModifier(rEUModifier());
                 setOverclock(rPerfectOverclock() ? 2 : 1, 2);
                 return super.process();
             }
@@ -107,7 +108,6 @@ public class VA_TileEntity_ReinforcedAssemblyLine
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
-                    .onlyCheckFirst(pFocusMode)
                     .enableCompatibilityRecipeMap(pInjectCompatibilityMap)
                     .generate();
             }
@@ -117,16 +117,21 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     protected int rMaxParallel() {
-        if (pFocusMode) return Integer.MAX_VALUE;
+        if (pFocusMode) return 1;
         double rParallelTimes = Math.floor(Math.log10(this.getMaxInputAmps()) / Math.log(4));
         return 4 * ((int) (1 + rParallelTimes));
     }
 
     @Override
     protected float rSpeedBonus() {
-        if (pFocusMode) return 1.0F;
+        if (pFocusMode) return 1 / 100F;
         long rSpeedTimes = this.getMaxInputEu() / (64L * VA_Values.RecipeValues.MAX);
         return (float) Math.max(0.3F, Math.pow(0.9F, rSpeedTimes));
+    }
+
+    @Override
+    protected float rEUModifier() {
+        return 1F / 2F;
     }
 
     @Override
@@ -373,8 +378,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .addInfo("初始并行为4, 每4^n输入电流将提供n倍并行")
             .addInfo("每64A-MAX的输入功率将提供10%加速(叠乘), 最高70%加速.")
             .addInfo("在专注模式下:")
-            .addInfo("只会执行第一个闪存的配方.")
-            .addInfo("近乎无限的并行, 执行无损超频.")
+            .addInfo("并行限制为1, 节省50%能量消耗.")
+            .addInfo("加速率接近极限, 执行无损超频.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)
