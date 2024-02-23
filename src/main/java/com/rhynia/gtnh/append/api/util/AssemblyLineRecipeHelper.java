@@ -251,7 +251,6 @@ public class AssemblyLineRecipeHelper {
                     continue;
                 }
                 pRecipes.add(buildRecipeChecked(tLookupResult));
-                if (bOnlyCheckFirst) break;
             }
 
             if (bEnableDebug) {
