@@ -33,7 +33,6 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
-import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
@@ -85,7 +84,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new VA_ProcessingLogic() {
+        return new ProcessingLogic() {
 
             @Override
             @NotNull
@@ -131,7 +130,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     protected float rEUModifier() {
-        return 1F / 2F;
+        return pFocusMode ? 1F / 2F : 1F;
     }
 
     @Override
