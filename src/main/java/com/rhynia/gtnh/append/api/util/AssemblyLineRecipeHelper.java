@@ -1,5 +1,8 @@
 package com.rhynia.gtnh.append.api.util;
 
+import static com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine.pRawDataSticksCache;
+import static com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine.pRecipesCache;
+
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -28,8 +31,6 @@ public class AssemblyLineRecipeHelper {
 
     protected ArrayList<ItemStack> pRawDataSticks = new ArrayList<>();
     protected ArrayList<GT_Recipe> pRecipes = new ArrayList<>();
-    protected static ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
-    protected static ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
