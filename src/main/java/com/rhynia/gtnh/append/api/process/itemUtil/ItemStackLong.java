@@ -13,6 +13,16 @@ public class ItemStackLong {
         originalSize = amount;
     }
 
+    public ItemStackLong() {}
+
+    public static ItemStackLong ISL = new ItemStackLong();
+
+    public ItemStackLong of(ItemStack stack, long amount) {
+        this.originalStack = stack;
+        this.originalSize = amount;
+        return this;
+    }
+
     public ItemStack getOriginalStack() {
         return this.originalStack;
     }
