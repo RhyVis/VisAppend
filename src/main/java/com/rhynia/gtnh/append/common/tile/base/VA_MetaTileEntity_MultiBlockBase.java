@@ -295,10 +295,8 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     // region ToolTips and Info
     @Override
     public String[] getInfoData() {
-        double speedDisplayRaw = Math.round(this.rSpeedBonus() * 1000D) / 10D;
-        double euModifierDisplayRaw = Math.round(this.rEUModifier() * 1000D) / 10D;
-        String speedDisplay = speedDisplayRaw + "%";
-        String euModifierDisplay = euModifierDisplayRaw + "%";
+        String dSpeed = String.format("%.3f", this.rSpeedBonus() * 100) + "%";
+        String dEUMod = String.format("%.3f", this.rEUModifier() * 100) + "%";
 
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 3];
@@ -306,8 +304,8 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
         nStr[oStr.length] = EnumChatFormatting.AQUA + "最大并行: "
             + EnumChatFormatting.GOLD
             + GT_Utility.formatNumbers(this.rMaxParallel());
-        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "速度乘数: " + EnumChatFormatting.GOLD + speedDisplay;
-        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "功率乘数: " + EnumChatFormatting.GOLD + euModifierDisplay;
+        nStr[oStr.length + 1] = EnumChatFormatting.AQUA + "速度乘数: " + EnumChatFormatting.GOLD + dSpeed;
+        nStr[oStr.length + 2] = EnumChatFormatting.AQUA + "功率乘数: " + EnumChatFormatting.GOLD + dEUMod;
         return nStr;
     }
 

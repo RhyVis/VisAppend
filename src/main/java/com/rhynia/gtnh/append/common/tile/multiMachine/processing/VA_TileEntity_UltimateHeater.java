@@ -38,6 +38,7 @@ import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.MathHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -120,7 +121,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public float rEUModifier() {
-        return (1.0F - (float) (0.0015D * uSpacetimeCompressionCount)) / (1 + uStarArrayCount);
+        return (1.0F - MathHelper.clampFloat((0.0005F * uSpacetimeCompressionCount), 0F, 0.9F)) / (1 + uStarArrayCount);
     }
 
     @Override
@@ -266,7 +267,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
                 'G',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
                     .atLeast(InputBus, InputHatch)
-                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
+                    .adder(VA_TileEntity_UltimateHeater::addInputToMachineList)
                     .dot(1)
                     .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
                     .buildAndChain(GregTech_API.sBlockCasings1, 12))
@@ -274,7 +275,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
                 'H',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
                     .atLeast(OutputBus, OutputHatch)
-                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
+                    .adder(VA_TileEntity_UltimateHeater::addOutputToMachineList)
                     .dot(2)
                     .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
                     .buildAndChain(GregTech_API.sBlockCasings1, 12))
@@ -282,7 +283,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
                 'I',
                 GT_HatchElementBuilder.<VA_TileEntity_UltimateHeater>builder()
                     .atLeast(Energy.or(ExoticEnergy))
-                    .adder(VA_TileEntity_UltimateHeater::addToMachineList)
+                    .adder(VA_TileEntity_UltimateHeater::addEnergyInputToMachineListExtended)
                     .dot(3)
                     .casingIndex(((GT_Block_Casings1) GregTech_API.sBlockCasings1).getTextureIndex(12))
                     .buildAndChain(GregTech_API.sBlockCasings1, 12))
@@ -346,7 +347,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("粒子宏的控制器")
             .addInfo("用纯粹的能量扭曲物质的存在.")
             .addInfo("每个时空压缩场提供2^(等级-1)的额外并行.")
-            .addInfo("并提供(0.15*等级)%的功耗减免.")
+            .addInfo("并提供(0.05*等级)%的功耗减免, 最高90%.")
             .addInfo("安装时间加速场后, 每级减少10%配方耗时(叠乘).")
             .addInfo("线圈每提高1级, 同样减少10%配方耗时(叠乘).")
             .addInfo("时间缩减的极限是原配方时间的10%.")
@@ -368,34 +369,40 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public String[] getInfoData() {
-        String x = String.valueOf(uSpacetimeCompressionCount);
-        String y = String.valueOf(uTimeAccelerationField);
-        String z = String.valueOf(uStarArrayCount);
         String[] o = super.getInfoData();
         String[] n = new String[o.length + 3];
         System.arraycopy(o, 0, n, 0, o.length);
-        n[o.length] = EnumChatFormatting.AQUA + "时空压缩" + ": " + EnumChatFormatting.GOLD + x;
-        n[o.length + 1] = EnumChatFormatting.AQUA + "时间加速" + ": " + EnumChatFormatting.GOLD + y;
-        n[o.length + 2] = EnumChatFormatting.AQUA + "星阵数量" + ": " + EnumChatFormatting.GOLD + z;
+        n[o.length] = EnumChatFormatting.AQUA + "时空压缩"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(uSpacetimeCompressionCount);
+        n[o.length + 1] = EnumChatFormatting.AQUA + "时间加速"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(uTimeAccelerationField);
+        n[o.length + 2] = EnumChatFormatting.AQUA + "星阵数量"
+            + ": "
+            + EnumChatFormatting.GOLD
+            + GT_Utility.formatNumbers(uStarArrayCount);
         return n;
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
-        super.saveNBTData(aNBT);
         aNBT.setInteger("mRecipeMode", mRecipeMode);
         aNBT.setInteger("uSpacetimeCompressionField", uSpacetimeCompressionCount);
         aNBT.setInteger("uTimeAccelerationField", uTimeAccelerationField);
         aNBT.setInteger("uStarArrayCount", uStarArrayCount);
+        super.saveNBTData(aNBT);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
-        super.loadNBTData(aNBT);
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
         uSpacetimeCompressionCount = aNBT.getInteger("uSpacetimeCompressionField");
         uTimeAccelerationField = aNBT.getInteger("uTimeAccelerationField");
         uStarArrayCount = aNBT.getInteger("uStarArrayCount");
+        super.loadNBTData(aNBT);
     }
 
     // endregion

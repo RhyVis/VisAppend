@@ -82,6 +82,10 @@ public class MathHelper {
         return process < min ? min : (Math.min(process, max));
     }
 
+    public static float clampFloat(float f, float min, float max) {
+        return f < min ? min : (Math.min(f, max));
+    }
+
     public static int min(int... values) {
         Arrays.sort(values);
         return values[0];
