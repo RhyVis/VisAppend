@@ -82,6 +82,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     protected boolean pInjectCompatibilityMap = false;
     protected boolean pFocusMode = false;
+    public static ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
+    public static ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
