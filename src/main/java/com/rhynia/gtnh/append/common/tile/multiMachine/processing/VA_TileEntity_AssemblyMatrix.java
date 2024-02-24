@@ -19,11 +19,15 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 
+import org.jetbrains.annotations.NotNull;
+
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.ISurvivalBuildEnvironment;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
+import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
 import gregtech.api.GregTech_API;
@@ -31,9 +35,11 @@ import gregtech.api.enums.Textures;
 import gregtech.api.interfaces.ITexture;
 import gregtech.api.interfaces.metatileentity.IMetaTileEntity;
 import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
+import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.multitileentity.multiblock.casing.Glasses;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;
+import gregtech.api.recipe.check.CheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_HatchElementBuilder;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -61,9 +67,42 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
 
     // region Processing Logic
 
+    private int pModifier = 1;
+
+    @Override
+    protected ProcessingLogic createProcessingLogic() {
+        return new VA_ProcessingLogic() {
+
+            @NotNull
+            @Override
+            public CheckRecipeResult process() {
+                pModifier = 1;
+                boolean perfectOC = false;
+                ItemStack stack = getControllerSlot();
+                if (stack != null) {
+                    if (ItemHelper.isAstralInfinityGem(stack)) {
+                        pModifier = stack.stackSize;
+                    } else if (ItemHelper.isAstralInfinityComplex(stack)) {
+                        pModifier = stack.stackSize * 128;
+                        perfectOC = true;
+                    }
+                }
+                setMaxParallel(rMaxParallel());
+                setSpeedBonus(rSpeedBonus());
+                setOverclock(perfectOC ? 2 : 1, 2);
+                return super.process();
+            }
+        };
+    }
+
     @Override
     public int rMaxParallel() {
-        return 16 * GT_Utility.getTier(this.getMaxInputVoltage());
+        return switch (mRecipeMode) {
+            case 0 -> 4096 * pModifier;
+            case 1 -> 1024 * pModifier;
+            case 2 -> 2048 * pModifier;
+            default -> 1;
+        };
     }
 
     @Override
@@ -209,8 +248,8 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
             .addInfo("组装矩阵的控制器")
             .addInfo("现代化的组装机构.")
             .addInfo("高效组装各类基础元件.")
-            .addInfo("电压每提高1级, 最大并行增加16.")
-            .addInfo("电压每提高1级, 额外降低5%配方耗时, 叠乘计算.")
+            .addInfo("在控制器内放入星极和星矩来决定并行.")
+            .addInfo("电压每提高1级, 加速5%(叠乘计算).")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)
@@ -226,14 +265,16 @@ public class VA_TileEntity_AssemblyMatrix extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
-        super.saveNBTData(aNBT);
         aNBT.setInteger("mRecipeMode", mRecipeMode);
+        aNBT.setInteger("pModifier", pModifier);
+        super.saveNBTData(aNBT);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
-        super.loadNBTData(aNBT);
         mRecipeMode = (byte) aNBT.getInteger("mRecipeMode");
+        pModifier = aNBT.getInteger("pModifier");
+        super.loadNBTData(aNBT);
     }
     // endregion
 }
