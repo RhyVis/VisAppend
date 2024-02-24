@@ -28,6 +28,8 @@ public class AssemblyLineRecipeHelper {
 
     protected ArrayList<ItemStack> pRawDataSticks = new ArrayList<>();
     protected ArrayList<GT_Recipe> pRecipes = new ArrayList<>();
+    protected static ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
+    protected static ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
@@ -73,13 +75,9 @@ public class AssemblyLineRecipeHelper {
         return new AssemblyLineRecipeHelper();
     }
 
-    public AssemblyLineRecipeHelper addRawDataSticks(ItemStack dataSticks) {
-        pRawDataSticks.add(dataSticks);
-        return this;
-    }
-
     public AssemblyLineRecipeHelper setRawDataSticks(ArrayList<ItemStack> dataSticks) {
         pRawDataSticks = dataSticks;
+        if (pRawDataSticksCache.isEmpty()) pRawDataSticksCache = dataSticks; // Only fill if cache doesn't exist
         return this;
     }
 
@@ -244,6 +242,21 @@ public class AssemblyLineRecipeHelper {
 
         if (!pRawDataSticks.isEmpty()) {
 
+            // Compare sticks
+            if (ItemHelper.itemStackArrayEqualAbsolutely(
+                pRawDataSticks.toArray(new ItemStack[0]),
+                pRawDataSticksCache.toArray(new ItemStack[0]))) {
+                if (!pRecipesCache.isEmpty()) { // Sticks equal and recipes have cache, return cache
+                    return pRecipesCache.stream()
+                        .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
+                }
+                // Sticks equal but recipes not generated yet, pass to generation
+            } else {
+                // Sticks diff, clear cache
+                pRawDataSticksCache.clear();
+                pRecipesCache.clear();
+            }
+
             for (ItemStack tDataStick : pRawDataSticks) {
                 GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
                     .findAssemblyLineRecipeFromDataStick(tDataStick, false);
@@ -262,6 +275,7 @@ public class AssemblyLineRecipeHelper {
             }
 
             if (!pRecipes.isEmpty()) {
+                pRecipesCache = pRecipes;
                 if (!bEnableCompatibilityRecipeMap) {
                     return pRecipes.stream()
                         .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
@@ -276,6 +290,9 @@ public class AssemblyLineRecipeHelper {
                 }
             }
         }
+
+        pRawDataSticksCache.clear();
+        pRecipesCache.clear();
 
         return Stream.empty();
     }

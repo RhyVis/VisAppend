@@ -33,6 +33,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase;
 
@@ -84,7 +85,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
-        return new ProcessingLogic() {
+        return new VA_ProcessingLogic() {
 
             @Override
             @NotNull
@@ -103,7 +104,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @NotNull
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
                 return AssemblyLineRecipeHelper.builder()
-                    .addRawDataSticks(getDataItems(2).get(0))
+                    .setRawDataSticks(getDataItems(2))
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
@@ -123,7 +124,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     @Override
     protected float rSpeedBonus() {
-        if (pFocusMode) return 1 / 100F;
+        if (pFocusMode) return 1 / 500F;
         long rSpeedTimes = this.getMaxInputEu() / (64L * VA_Values.RecipeValues.MAX);
         return (float) Math.max(0.3F, Math.pow(0.9F, rSpeedTimes));
     }
@@ -377,7 +378,7 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             .addInfo("初始并行为4, 每4^n输入电流将提供n倍并行")
             .addInfo("每64A-MAX的输入功率将提供10%加速(叠乘), 最高70%加速.")
             .addInfo("在专注模式下:")
-            .addInfo("并行限制为1, 节省50%能量消耗.")
+            .addInfo("并行限制为1, 节省50%能量.")
             .addInfo("加速率接近极限, 执行无损超频.")
             .addInfo(VA_Values.CommonStrings.ChangeModeByScrewdriver)
             .addSeparator()
