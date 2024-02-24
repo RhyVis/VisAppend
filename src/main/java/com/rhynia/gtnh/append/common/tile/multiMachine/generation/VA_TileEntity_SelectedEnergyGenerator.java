@@ -9,19 +9,14 @@ import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
-import net.minecraft.util.StatCollector;
 import net.minecraft.world.World;
 import net.minecraftforge.common.util.ForgeDirection;
 
 import org.jetbrains.annotations.NotNull;
 
-import com.gtnewhorizons.modularui.common.widget.DynamicPositionedColumn;
-import com.gtnewhorizons.modularui.common.widget.FakeSyncWidget;
-import com.gtnewhorizons.modularui.common.widget.SlotWidget;
-import com.gtnewhorizons.modularui.common.widget.TextWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.api.util.MathHelper;
-import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
@@ -33,7 +28,6 @@ import gregtech.api.interfaces.tileentity.IGregTechTileEntity;
 import gregtech.api.logic.ProcessingLogic;
 import gregtech.api.metatileentity.implementations.GT_MetaTileEntity_Hatch_InputBus;
 import gregtech.api.recipe.check.CheckRecipeResult;
-import gregtech.api.recipe.check.CheckRecipeResultRegistry;
 import gregtech.api.recipe.check.SimpleCheckRecipeResult;
 import gregtech.api.render.TextureFactory;
 import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
@@ -61,9 +55,10 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     // endregion
 
     // region Process
-    private int pMultiplier = 0;
-    private int pBase = 0;
-    private long pValue = 0L;
+    private int pCoreValue = 0;
+    private int pTweakValue = 0;
+    private long pBaseValue = 0L;
+    private BigInteger pConstruct = BigInteger.ZERO;
     private BigInteger pEnergy = BigInteger.ZERO;
     private String pUUID = "";
 
@@ -75,39 +70,54 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     @Override
     @NotNull
     public CheckRecipeResult checkProcessing() {
-        pMultiplier = pBase = 0;
-        pValue = 0L;
-        pEnergy = BigInteger.ZERO;
-        mMaxProgresstime = 128;
-        mEfficiencyIncrease = 10000;
+        resetState();
         ItemStack controlStack = getControllerSlot();
+
+        if (ItemHelper.isAstralInfinityComplex(controlStack)) {
+            pCoreValue = controlStack.stackSize;
+        } else {
+            return SimpleCheckRecipeResult.ofFailure("no_core_set");
+        }
 
         for (GT_MetaTileEntity_Hatch_InputBus inputBus : mInputBusses) {
             for (ItemStack itemStack : inputBus.getRealInventory()) {
-                if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
-                    pMultiplier += MathHelper.clampInt(itemStack.getItemDamage(), 0, 24) * itemStack.stackSize;
+                if (ItemHelper.isCalibration(itemStack)) {
+                    pBaseValue += itemStack.stackSize;
+                }
+                if (pTweakValue <= 0 && GT_Utility.isAnyIntegratedCircuit(itemStack)) {
+                    pTweakValue = MathHelper.clampInt(itemStack.getItemDamage(), 2, 24);
                 }
             }
         }
 
-        if (controlStack == null) {
-            pBase = 1;
-        } else if (controlStack.isItemEqual(VA_ItemList.AstriumInfinityGem.get(1))) {
-            pBase = (int) Math.pow(2, MathHelper.clampInt(controlStack.stackSize, 0, 24));
+        if (pBaseValue <= 0) {
+            pBaseValue = 1L;
+        }
+        if (pTweakValue <= 0) {
+            pTweakValue = 1;
         }
 
-        pValue = (long) pBase * pMultiplier;
+        pConstruct = BigInteger.valueOf(pBaseValue)
+            .multiply(
+                BigInteger.valueOf(pTweakValue)
+                    .pow(pCoreValue));
+        pEnergy = BigInteger.valueOf(Integer.MAX_VALUE)
+            .multiply(pConstruct)
+            .multiply(BigInteger.valueOf(128));
 
-        if (pValue > 0L) {
-            pEnergy = BigInteger.valueOf(Integer.MAX_VALUE)
-                .multiply(
-                    BigInteger.valueOf(pValue)
-                        .multiply(BigInteger.valueOf(128)));
-            addEUToGlobalEnergyMap(pUUID, pEnergy);
-            return SimpleCheckRecipeResult.ofSuccess("importing_energy");
-        }
+        addEUToGlobalEnergyMap(pUUID, pEnergy);
 
-        return CheckRecipeResultRegistry.NO_RECIPE;
+        return SimpleCheckRecipeResult.ofSuccess("importing_energy");
+    }
+
+    private void resetState() {
+        pCoreValue = 0;
+        pTweakValue = 0;
+        pBaseValue = 0L;
+        pConstruct = BigInteger.ZERO;
+        pEnergy = BigInteger.ZERO;
+        mMaxProgresstime = 128;
+        mEfficiencyIncrease = 10000;
     }
 
     @Override
@@ -200,8 +210,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         final GT_Multiblock_Tooltip_Builder tt = new GT_Multiblock_Tooltip_Builder();
         tt.addMachineType("虚空发电机")
             .addInfo("虚空发电机的控制器")
-            .addInfo("使用电路板编号*电路板数量指定输出电量.")
-            .addInfo("在控制器内放入" + EnumChatFormatting.AQUA + "星极" + EnumChatFormatting.GRAY + "来决定基数幂.")
+            .addInfo("发电 = 电路板编号^星矩 * 标定指示 * MAX A/t.")
             .addInfo("产出的能量将直接输出至无线网络.")
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.BluePrintTip)
@@ -212,30 +221,13 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
     }
 
     @Override
-    protected void drawTexts(DynamicPositionedColumn screenElements, SlotWidget inventorySlot) {
-        super.drawTexts(screenElements, inventorySlot);
-        screenElements
-            .widget(
-                new TextWidget(
-                    StatCollector.translateToLocal("va.gui.desc.import_energy") + ": "
-                        + GT_Utility.formatNumbers(pValue)
-                        + " "
-                        + EnumChatFormatting.UNDERLINE
-                        + "MAX"
-                        + EnumChatFormatting.WHITE
-                        + " EU/t").setDefaultColor(COLOR_TEXT_WHITE.get())
-                            .setEnabled(widget -> getBaseMetaTileEntity().getErrorDisplayID() == 0))
-            .widget(new FakeSyncWidget.LongSyncer(() -> pValue, val -> pValue = val));
-    }
-
-    @Override
     public String[] getInfoData() {
         String[] oStr = super.getInfoData();
         String[] nStr = new String[oStr.length + 1];
         System.arraycopy(oStr, 0, nStr, 0, oStr.length);
         nStr[oStr.length] = EnumChatFormatting.AQUA + "等效能量: "
             + EnumChatFormatting.GOLD
-            + GT_Utility.formatNumbers(pValue)
+            + GT_Utility.formatNumbers(pConstruct)
             + "MAX EU/t";
         return nStr;
     }
@@ -248,7 +240,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         currentTip.add(
             EnumChatFormatting.WHITE + "等效能量: "
                 + EnumChatFormatting.AQUA
-                + GT_Utility.formatNumbers(tag.getLong("pValue"))
+                + GT_Utility.formatNumbers(new BigInteger(tag.getByteArray("pConstructW")))
                 + " "
                 + EnumChatFormatting.WHITE
                 + EnumChatFormatting.UNDERLINE
@@ -264,25 +256,27 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         final IGregTechTileEntity tileEntity = getBaseMetaTileEntity();
         if (tileEntity != null) {
             if (tileEntity.isActive()) {
-                tag.setLong("pValue", pValue);
+                tag.setByteArray("pConstructW", pConstruct.toByteArray());
             }
         }
     }
 
     @Override
     public void saveNBTData(NBTTagCompound aNBT) {
-        aNBT.setInteger("pMultiplier", pMultiplier);
-        aNBT.setInteger("pBase", pBase);
-        aNBT.setLong("pValue", pValue);
+        aNBT.setInteger("pCoreValue", pCoreValue);
+        aNBT.setInteger("pTweakValue", pTweakValue);
+        aNBT.setLong("pBaseValue", pBaseValue);
+        aNBT.setByteArray("pConstruct", pConstruct.toByteArray());
         aNBT.setByteArray("pEnergy", pEnergy.toByteArray());
         super.saveNBTData(aNBT);
     }
 
     @Override
     public void loadNBTData(final NBTTagCompound aNBT) {
-        pMultiplier = aNBT.getInteger("pMultiplier");
-        pBase = aNBT.getInteger("pBase");
-        pValue = aNBT.getLong("pValue");
+        pCoreValue = aNBT.getInteger("pCoreValue");
+        pTweakValue = aNBT.getInteger("pTweakValue");
+        pBaseValue = aNBT.getLong("pBaseValue");
+        pConstruct = new BigInteger(aNBT.getByteArray("pConstruct"));
         pEnergy = new BigInteger(aNBT.getByteArray("pEnergy"));
         super.loadNBTData(aNBT);
     }
