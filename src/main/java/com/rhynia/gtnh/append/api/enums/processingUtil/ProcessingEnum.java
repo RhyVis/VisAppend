@@ -25,6 +25,7 @@ public enum ProcessingEnum {
     OreWash(RecipeMaps.oreWasherRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
     SimpleWash(GTPPRecipeMaps.simpleWasherRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
     ChemicalWash(RecipeMaps.chemicalBathRecipes, GregtechItemList.Industrial_WashPlant.get(1)),
+    // GT
     DTPF(RecipeMaps.plasmaForgeRecipes, VA_ItemList.Assembly_DTPF.get(1)),;
 
     private final RecipeMap<?> pRecipeMap;
