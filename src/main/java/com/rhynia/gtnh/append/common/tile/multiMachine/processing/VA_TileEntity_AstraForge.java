@@ -64,6 +64,11 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
     private int uStableField;
 
     @Override
+    protected boolean rPerfectOverclock() {
+        return uStableField >= 7;
+    }
+
+    @Override
     public int rMaxParallel() {
         int r = uStableField + 7;
         return (int) Math.max(1, Math.pow(2, r));
@@ -212,7 +217,8 @@ public class VA_TileEntity_AstraForge extends VA_MetaTileEntity_MultiBlockBase<V
             .addInfo(EnumChatFormatting.RED + "不要试图去理解原理.")
             .addInfo("使用星光将平凡转化为奇迹.")
             .addInfo("没有在指定位置安装稳定器时，最大并行为64.")
-            .addInfo("安装稳定器后, 最大并行=16*2^等级.")
+            .addInfo("安装稳定器后, 最大并行=64*2^等级.")
+            .addInfo("在太初及以上等级时, 启用无损超频.")
             .addInfo("且电压每提高1级, 额外降低(等级*2)%配方耗时(叠乘).")
             .addSeparator()
             .addInfo(VA_Values.CommonStrings.StructureTooComplex)
