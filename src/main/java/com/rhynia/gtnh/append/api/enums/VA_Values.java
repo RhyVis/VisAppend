@@ -5,6 +5,7 @@ import static com.rhynia.gtnh.append.VisAppend.MOD_ID;
 import net.minecraft.util.EnumChatFormatting;
 
 import com.gtnewhorizons.modularui.api.drawable.UITexture;
+import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
 import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.GT_Values;
@@ -16,6 +17,7 @@ public class VA_Values {
     public static TextureSets TS;
     public static CommonStrings CS;
     public static VA_Materials VM = new VA_Materials();
+    public static AssemblyLineRecipeHelper ALR = new AssemblyLineRecipeHelper();
 
     public static class RecipeValues {
 

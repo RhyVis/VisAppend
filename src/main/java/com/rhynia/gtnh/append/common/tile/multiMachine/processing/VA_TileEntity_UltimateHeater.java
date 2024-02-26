@@ -121,7 +121,7 @@ public class VA_TileEntity_UltimateHeater extends VA_MetaTileEntity_MultiBlockBa
 
     @Override
     public float rEUModifier() {
-        return (1.0F - MathHelper.clampFloat((0.0005F * uSpacetimeCompressionCount), 0F, 0.9F)) / (1 + uStarArrayCount);
+        return (1.0F - MathHelper.clampVal((0.0005F * uSpacetimeCompressionCount), 0F, 0.9F)) / (1 + uStarArrayCount);
     }
 
     @Override

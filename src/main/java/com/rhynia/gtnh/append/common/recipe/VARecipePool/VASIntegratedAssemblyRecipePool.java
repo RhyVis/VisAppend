@@ -35,7 +35,7 @@ import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.dreammaster.gthandler.CustomItemList;
 import com.rhynia.gtnh.append.api.enums.VA_Mods;
 import com.rhynia.gtnh.append.api.enums.refHelper.BWPart;
-import com.rhynia.gtnh.append.api.enums.refHelper.Basic;
+import com.rhynia.gtnh.append.api.enums.refHelper.BasicRef;
 import com.rhynia.gtnh.append.api.enums.refHelper.GGChip;
 import com.rhynia.gtnh.append.api.enums.refHelper.SCPart;
 import com.rhynia.gtnh.append.api.enums.refHelper.SolderMaterial;
@@ -136,7 +136,7 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
                 GT_ModHandler.getModItem(AppliedEnergistics2.ID, "item.ItemMultiMaterial", 10, 60),
                 ItemList.Quantum_Chest_IV.get(18),
                 GT_ModHandler.getModItem(Avaritia.ID, "Resource", 36, 0),
-                Basic.getSingularity(1))
+                BasicRef.getSingularity(1))
             .fluidInputs(
                 Materials.InfinityCatalyst.getMolten(64 * INGOTS),
                 Materials.Infinity.getMolten((4 + 4 * 9) * INGOTS),
@@ -1146,9 +1146,9 @@ public class VASIntegratedAssemblyRecipePool implements IRecipePool {
             .itemInputs(
                 GT_ModHandler.getModItem(AE2FluidCraft.ID, "fluid_part", 8, 7),
                 ItemList.Quantum_Tank_IV.get(8),
-                Basic.getYOTCell(7, 4),
+                BasicRef.getYOTCell(7, 4),
                 GT_ModHandler.getModItem(Avaritia.ID, "Resource", 4, 5),
-                Basic.getSingularity(1))
+                BasicRef.getSingularity(1))
             .fluidInputs(
                 Materials.CosmicNeutronium.getMolten(12 * 9 * INGOTS),
                 Materials.Infinity.getMolten(4 * 9 * INGOTS))

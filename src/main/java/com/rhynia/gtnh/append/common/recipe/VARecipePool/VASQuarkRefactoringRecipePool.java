@@ -7,7 +7,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.Nxer.TwistSpaceTechnology.common.GTCMItemList;
 import com.rhynia.gtnh.append.api.enums.VA_Mods;
-import com.rhynia.gtnh.append.api.enums.refHelper.Basic;
+import com.rhynia.gtnh.append.api.enums.refHelper.BasicRef;
 import com.rhynia.gtnh.append.api.enums.refHelper.Tier;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
@@ -33,9 +33,9 @@ public class VASQuarkRefactoringRecipePool implements IRecipePool {
     private void loadMainRecipes() {
         // 量子反常
         GT_Values.RA.stdBuilder()
-            .itemInputs(Tier.UXV.getCircuitWrap(1), Basic.getFusionMatrixCatalyst())
+            .itemInputs(Tier.UXV.getCircuitWrap(1), BasicRef.getFusionMatrixCatalyst())
             .fluidInputs(Materials.Duranium.getMolten(256 * INGOTS), MaterialsUEVplus.SpaceTime.getMolten(64 * INGOTS))
-            .itemOutputs(GT_Utility.copyAmountUnsafe(4096, Basic.getQuantumAnomaly(1)))
+            .itemOutputs(GT_Utility.copyAmountUnsafe(4096, BasicRef.getQuantumAnomaly(1)))
             .eut(RECIPE_UMV)
             .duration(16 * SECONDS)
             .addTo(QA);
@@ -44,7 +44,9 @@ public class VASQuarkRefactoringRecipePool implements IRecipePool {
     private void loadTSTRecipes() {
         // 临界光子
         GT_Values.RA.stdBuilder()
-            .itemInputs(GT_Utility.copyAmountUnsafe(128, Basic.getQuantumAnomaly(1)), Basic.getFusionMatrixCatalyst())
+            .itemInputs(
+                GT_Utility.copyAmountUnsafe(128, BasicRef.getQuantumAnomaly(1)),
+                BasicRef.getFusionMatrixCatalyst())
             .itemOutputs(GT_Utility.copyAmountUnsafe(512, GTCMItemList.CriticalPhoton.get(1)))
             .eut(RECIPE_MAX)
             .duration(16 * SECONDS)
