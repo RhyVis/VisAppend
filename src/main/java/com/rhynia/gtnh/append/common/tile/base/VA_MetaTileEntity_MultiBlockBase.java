@@ -13,6 +13,8 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumChatFormatting;
 import net.minecraft.world.World;
+import net.minecraftforge.fluids.Fluid;
+import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.ApiStatus.OverrideOnly;
 import org.jetbrains.annotations.NotNull;
@@ -20,6 +22,7 @@ import org.jetbrains.annotations.NotNull;
 import com.github.technus.tectech.thing.metaTileEntity.hatch.GT_MetaTileEntity_Hatch_DynamoMulti;
 import com.gtnewhorizon.structurelib.alignment.constructable.IConstructable;
 import com.gtnewhorizon.structurelib.alignment.constructable.ISurvivalConstructable;
+import com.rhynia.gtnh.append.api.interfaces.IProcessHelper;
 import com.rhynia.gtnh.append.api.process.processingLogic.VA_ProcessingLogic;
 
 import gregtech.api.interfaces.IHatchElement;
@@ -36,7 +39,8 @@ import mcp.mobius.waila.api.IWailaDataAccessor;
 
 @SuppressWarnings("unused")
 public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T>>
-    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T> implements IConstructable, ISurvivalConstructable {
+    extends GT_MetaTileEntity_ExtendedPowerMultiBlockBase<T>
+    implements IConstructable, ISurvivalConstructable, IProcessHelper {
 
     // region Builder
     protected VA_MetaTileEntity_MultiBlockBase(int aID, String aName, String aNameRegional) {
@@ -145,6 +149,11 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
     @Override
     public int getDamageToComponent(ItemStack aStack) {
         return 0;
+    }
+
+    @Override
+    public boolean doRandomMaintenanceDamage() {
+        return true;
     }
 
     @Override
@@ -288,6 +297,24 @@ public abstract class VA_MetaTileEntity_MultiBlockBase<T extends GT_MetaTileEnti
             }
         }
         return false;
+    }
+
+    @Override
+    public boolean consumeFluid(@NotNull Fluid fluid, int amount) {
+        if (getStoredFluids() == null || getStoredFluids().isEmpty()) return false;
+        int cost = amount;
+        for (FluidStack fluidStack : getStoredFluids()) {
+            if (fluidStack.getFluid() == fluid) {
+                if (fluidStack.amount >= cost) {
+                    fluidStack.amount -= cost;
+                    return true;
+                } else {
+                    cost -= fluidStack.amount;
+                    fluidStack.amount = 0;
+                }
+            }
+        }
+        return true;
     }
 
     // endregion

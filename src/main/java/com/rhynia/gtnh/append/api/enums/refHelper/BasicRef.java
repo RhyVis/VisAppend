@@ -12,7 +12,7 @@ import com.rhynia.gtnh.append.api.util.MathHelper;
 import gregtech.api.util.GT_ModHandler;
 
 @SuppressWarnings({ "unused", "SpellCheckingInspection" })
-public class Basic {
+public class BasicRef {
 
     public static ItemStack getSingularity(int amount) {
         return GT_ModHandler.getModItem(EternalSingularity.ID, "eternal_singularity", amount);
@@ -23,17 +23,17 @@ public class Basic {
     }
 
     public static ItemStack getFluidCore(int tier, int amount) {
-        int tierMeta = MathHelper.clampInt(tier, 1, 10) - 1;
+        int tierMeta = MathHelper.clampVal(tier, 1, 10) - 1;
         return GT_ModHandler.getModItem(GoodGenerator.ID, "fluidCore", amount, tierMeta);
     }
 
     public static ItemStack getYOTCell(int tier, int amount) {
-        int tierMeta = MathHelper.clampInt(tier, 1, 10) - 1;
+        int tierMeta = MathHelper.clampVal(tier, 1, 10) - 1;
         return GT_ModHandler.getModItem(GoodGenerator.ID, "yottaFluidTankCells", amount, tierMeta);
     }
 
     public static ItemStack getTFFTCell(int tier, int amount) {
-        int tierMeta = MathHelper.clampInt(tier, 1, 10);
+        int tierMeta = MathHelper.clampVal(tier, 1, 10);
         return GT_ModHandler.getModItem(KekzTech.ID, "kekztech_tfftstoragefield_block", amount, tierMeta);
     }
 

@@ -82,8 +82,8 @@ public class VA_TileEntity_ReinforcedAssemblyLine
 
     protected boolean pInjectCompatibilityMap = false;
     protected boolean pFocusMode = false;
-    public static ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
-    public static ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
+    public ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
+    public ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
 
     @Override
     protected ProcessingLogic createProcessingLogic() {
@@ -105,13 +105,18 @@ public class VA_TileEntity_ReinforcedAssemblyLine
             @Override
             @NotNull
             protected Stream<GT_Recipe> findRecipeMatches(@Nullable RecipeMap<?> map) {
-                return AssemblyLineRecipeHelper.builder()
-                    .setRawDataSticks(getDataItems(2))
+                AssemblyLineRecipeHelper helper = AssemblyLineRecipeHelper.builder()
+                    .setStickCache(pRawDataSticksCache)
+                    .setRecipeCache(pRecipesCache)
+                    .setSticks(getDataItems(2))
                     .setInputItems(inputItems)
                     .setInputFluids(inputFluids)
                     .setLastRecipe(lastRecipe)
                     .enableCompatibilityRecipeMap(pInjectCompatibilityMap)
                     .generate();
+                pRawDataSticksCache = helper.getStickCache();
+                pRecipesCache = helper.getRecipeCache();
+                return helper.getStream();
             }
 
         };

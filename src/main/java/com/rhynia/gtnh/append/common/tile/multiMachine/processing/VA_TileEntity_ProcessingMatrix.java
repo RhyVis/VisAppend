@@ -89,7 +89,7 @@ public class VA_TileEntity_ProcessingMatrix
                     for (ItemStack itemStack : inputBus.getRealInventory()) {
                         if (itemStack != null) {
                             if (!pCalibrationSet && ItemHelper.isCalibration(itemStack)) {
-                                pOrd = MathHelper.clampInt(itemStack.stackSize, 1, 24);
+                                pOrd = MathHelper.clampVal(itemStack.stackSize, 1, 24);
                                 pCalibrationSet = true;
                             }
                             if (ItemHelper.isAstralInfinityComplex(itemStack)) {
@@ -134,7 +134,7 @@ public class VA_TileEntity_ProcessingMatrix
             if (tempSize == 1) {
                 tempRecipeMap = tempArray.get(0);
             } else {
-                int ord = MathHelper.clampInt(ordinal, 1, tempSize) - 1;
+                int ord = MathHelper.clampVal(ordinal, 1, tempSize) - 1;
                 tempRecipeMap = tempArray.get(ord);
             }
             if (tempRecipeMap != null) pDisplayName = StatCollector.translateToLocal(tempRecipeMap.unlocalizedName);

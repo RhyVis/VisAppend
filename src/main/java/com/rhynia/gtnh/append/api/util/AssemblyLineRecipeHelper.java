@@ -1,8 +1,5 @@
 package com.rhynia.gtnh.append.api.util;
 
-import static com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine.pRawDataSticksCache;
-import static com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_ReinforcedAssemblyLine.pRecipesCache;
-
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -31,6 +28,9 @@ public class AssemblyLineRecipeHelper {
 
     protected ArrayList<ItemStack> pRawDataSticks = new ArrayList<>();
     protected ArrayList<GT_Recipe> pRecipes = new ArrayList<>();
+    protected ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
+    protected ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
+    protected Stream<GT_Recipe> pFinalStream = Stream.empty();
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
@@ -71,12 +71,13 @@ public class AssemblyLineRecipeHelper {
     /**
      * Start calling builder.
      */
-    @Contract(value = " -> new", pure = true)
-    public static @NotNull AssemblyLineRecipeHelper builder() {
+    public static AssemblyLineRecipeHelper ALH = new AssemblyLineRecipeHelper();
+
+    public static AssemblyLineRecipeHelper builder() {
         return new AssemblyLineRecipeHelper();
     }
 
-    public AssemblyLineRecipeHelper setRawDataSticks(ArrayList<ItemStack> dataSticks) {
+    public AssemblyLineRecipeHelper setSticks(ArrayList<ItemStack> dataSticks) {
         pRawDataSticks = dataSticks;
         if (pRawDataSticksCache.isEmpty()) pRawDataSticksCache = dataSticks; // Only fill if cache doesn't exist
         return this;
@@ -100,6 +101,24 @@ public class AssemblyLineRecipeHelper {
     public AssemblyLineRecipeHelper setVoltage(long vol) {
         pVoltage = vol;
         return this;
+    }
+
+    public AssemblyLineRecipeHelper setStickCache(ArrayList<ItemStack> stackArrayList) {
+        pRawDataSticksCache = stackArrayList;
+        return this;
+    }
+
+    public AssemblyLineRecipeHelper setRecipeCache(ArrayList<GT_Recipe> recipeArrayList) {
+        pRecipesCache = recipeArrayList;
+        return this;
+    }
+
+    public ArrayList<ItemStack> getStickCache() {
+        return pRawDataSticksCache;
+    }
+
+    public ArrayList<GT_Recipe> getRecipeCache() {
+        return pRecipesCache;
     }
 
     /**
@@ -237,9 +256,10 @@ public class AssemblyLineRecipeHelper {
     }
 
     /**
-     * Returns a Stream of available recipes.
+     * Generate a Stream of available recipes.
      */
-    public Stream<GT_Recipe> generate() {
+    public AssemblyLineRecipeHelper generate() {
+        pFinalStream = Stream.empty();
 
         if (!pRawDataSticks.isEmpty()) {
 
@@ -248,8 +268,9 @@ public class AssemblyLineRecipeHelper {
                 pRawDataSticks.toArray(new ItemStack[0]),
                 pRawDataSticksCache.toArray(new ItemStack[0]))) {
                 if (!pRecipesCache.isEmpty()) { // Sticks equal and recipes have cache, return cache
-                    return pRecipesCache.stream()
+                    pFinalStream = pRecipesCache.stream()
                         .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
+                    return this;
                 }
                 // Sticks equal but recipes not generated yet, pass to generation
             } else {
@@ -278,10 +299,10 @@ public class AssemblyLineRecipeHelper {
             if (!pRecipes.isEmpty()) {
                 pRecipesCache = pRecipes;
                 if (!bEnableCompatibilityRecipeMap) {
-                    return pRecipes.stream()
+                    pFinalStream = pRecipes.stream()
                         .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
                 } else {
-                    return Stream.concat(
+                    pFinalStream = Stream.concat(
                         pRecipes.stream()
                             .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems)),
                         compatibilityRALMap.findRecipeQuery()
@@ -289,13 +310,18 @@ public class AssemblyLineRecipeHelper {
                             .fluids(pInputFluids)
                             .findAll());
                 }
+                return this;
             }
         }
 
         pRawDataSticksCache.clear();
         pRecipesCache.clear();
 
-        return Stream.empty();
+        return this;
+    }
+
+    public Stream<GT_Recipe> getStream() {
+        return pFinalStream;
     }
 
 }

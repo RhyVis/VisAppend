@@ -2,6 +2,7 @@ package com.rhynia.gtnh.append.api.enums.processingUtil;
 
 import net.minecraft.item.ItemStack;
 
+import com.rhynia.gtnh.append.api.util.ProcessingSet;
 import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.recipe.RecipeMap;
@@ -31,9 +32,18 @@ public enum ProcessingEnum {
     private final RecipeMap<?> pRecipeMap;
     private final ItemStack pMachine;
 
+    private final ProcessingSet pSet;
+
     ProcessingEnum(RecipeMap<?> recipeMap, ItemStack machine) {
         this.pRecipeMap = recipeMap;
         this.pMachine = machine;
+        this.pSet = ProcessingSet.DEFAULT;
+    }
+
+    ProcessingEnum(RecipeMap<?> recipeMap, ItemStack machine, ProcessingSet set) {
+        this.pRecipeMap = recipeMap;
+        this.pMachine = machine;
+        this.pSet = set;
     }
 
     public RecipeMap<?> getProcessingRecipeMap() {
@@ -42,6 +52,10 @@ public enum ProcessingEnum {
 
     public ItemStack getProcessingMachine() {
         return this.pMachine;
+    }
+
+    public ProcessingSet getProcessingSet() {
+        return this.pSet;
     }
 
 }

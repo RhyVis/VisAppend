@@ -85,7 +85,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
                     pBaseValue += itemStack.stackSize;
                 }
                 if (pTweakValue <= 0 && GT_Utility.isAnyIntegratedCircuit(itemStack)) {
-                    pTweakValue = MathHelper.clampInt(itemStack.getItemDamage(), 2, 24);
+                    pTweakValue = MathHelper.clampVal(itemStack.getItemDamage(), 2, 24);
                 }
             }
         }

@@ -104,7 +104,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
                     pBase += itemStack.stackSize;
                 }
                 if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
-                    pMultiplier += MathHelper.clampInt(itemStack.getItemDamage(), 0, 24);
+                    pMultiplier += MathHelper.clampVal(itemStack.getItemDamage(), 0, 24);
                 }
             }
         }

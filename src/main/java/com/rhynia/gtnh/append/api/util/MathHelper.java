@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.api.util;
 
+import java.math.BigInteger;
+import java.text.DecimalFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
@@ -10,15 +12,18 @@ import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Range;
 
 import gregtech.api.metatileentity.MetaTileEntity;
 
 @SuppressWarnings("unused")
 public class MathHelper {
 
+    private static final DecimalFormat ef = new DecimalFormat("#.##E0");
+    private static final DecimalFormat bf = new DecimalFormat("#,##0.#");
     private static final double LOG_2 = Math.log(2);
 
-    public static int safeInt(long number, int margin) {
+    public static int safeInt(long number, @Range(from = 0, to = Integer.MAX_VALUE) int margin) {
         return number > (long) (Integer.MAX_VALUE - margin) ? Integer.MAX_VALUE - margin : (int) number;
     }
 
@@ -74,34 +79,50 @@ public class MathHelper {
         return (T[]) totals.toArray(new Object[0]);
     }
 
-    public static int clampInt(int process, int min, int max) {
-        return process < min ? min : (Math.min(process, max));
+    public static String formatE(int val) {
+        return ef.format(val);
     }
 
-    public static long clampLong(long process, long min, long max) {
-        return process < min ? min : (Math.min(process, max));
+    public static String formatE(long val) {
+        return ef.format(val);
     }
 
-    public static float clampFloat(float f, float min, float max) {
+    public static String formatE(BigInteger val) {
+        return ef.format(val);
+    }
+
+    public static int clampVal(int i, int min, int max) {
+        return i < min ? min : (Math.min(i, max));
+    }
+
+    public static long clampVal(long l, long min, long max) {
+        return l < min ? min : (Math.min(l, max));
+    }
+
+    public static float clampVal(float f, float min, float max) {
         return f < min ? min : (Math.min(f, max));
     }
 
-    public static int min(int... values) {
+    public static double clampVal(double d, double min, double max) {
+        return d < min ? min : (Math.min(d, max));
+    }
+
+    public static int minOf(int... values) {
         Arrays.sort(values);
         return values[0];
     }
 
-    public static int max(int... values) {
+    public static int maxOf(int... values) {
         Arrays.sort(values);
         return values[values.length - 1];
     }
 
-    public static long min(long... values) {
+    public static long minOf(long... values) {
         Arrays.sort(values);
         return values[0];
     }
 
-    public static long max(long... values) {
+    public static long maxOf(long... values) {
         Arrays.sort(values);
         return values[values.length - 1];
     }
