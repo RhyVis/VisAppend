@@ -1,5 +1,7 @@
 package com.rhynia.gtnh.append.api.util;
 
+import static gregtech.api.util.GT_AssemblyLineUtils.findAssemblyLineRecipeFromDataStick;
+
 import java.util.ArrayList;
 import java.util.stream.Stream;
 
@@ -28,9 +30,6 @@ public class AssemblyLineRecipeHelper {
 
     protected ArrayList<ItemStack> pRawDataSticks = new ArrayList<>();
     protected ArrayList<GT_Recipe> pRecipes = new ArrayList<>();
-    protected ArrayList<ItemStack> pRawDataSticksCache = new ArrayList<>();
-    protected ArrayList<GT_Recipe> pRecipesCache = new ArrayList<>();
-    protected Stream<GT_Recipe> pFinalStream = Stream.empty();
     protected GT_Recipe pLastRecipe = null;
     protected ItemStack[] pInputItems = new ItemStack[0];
     protected FluidStack[] pInputFluids = new FluidStack[0];
@@ -79,7 +78,6 @@ public class AssemblyLineRecipeHelper {
 
     public AssemblyLineRecipeHelper setSticks(ArrayList<ItemStack> dataSticks) {
         pRawDataSticks = dataSticks;
-        if (pRawDataSticksCache.isEmpty()) pRawDataSticksCache = dataSticks; // Only fill if cache doesn't exist
         return this;
     }
 
@@ -101,24 +99,6 @@ public class AssemblyLineRecipeHelper {
     public AssemblyLineRecipeHelper setVoltage(long vol) {
         pVoltage = vol;
         return this;
-    }
-
-    public AssemblyLineRecipeHelper setStickCache(ArrayList<ItemStack> stackArrayList) {
-        pRawDataSticksCache = stackArrayList;
-        return this;
-    }
-
-    public AssemblyLineRecipeHelper setRecipeCache(ArrayList<GT_Recipe> recipeArrayList) {
-        pRecipesCache = recipeArrayList;
-        return this;
-    }
-
-    public ArrayList<ItemStack> getStickCache() {
-        return pRawDataSticksCache;
-    }
-
-    public ArrayList<GT_Recipe> getRecipeCache() {
-        return pRecipesCache;
     }
 
     /**
@@ -221,6 +201,10 @@ public class AssemblyLineRecipeHelper {
     @NotNull
     private GT_Recipe buildRecipeChecked(@NotNull GT_AssemblyLineUtils.LookupResult tLookupResult) {
         GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
+        return buildRecipeChecked(tRecipe);
+    }
+
+    private GT_Recipe buildRecipeChecked(GT_Recipe.GT_Recipe_AssemblyLine tRecipe) {
 
         ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
         ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
@@ -258,70 +242,26 @@ public class AssemblyLineRecipeHelper {
     /**
      * Generate a Stream of available recipes.
      */
-    public AssemblyLineRecipeHelper generate() {
-        pFinalStream = Stream.empty();
-
+    public Stream<GT_Recipe> generate() {
         if (!pRawDataSticks.isEmpty()) {
-
-            // Compare sticks
-            if (ItemHelper.itemStackArrayEqualAbsolutely(
-                pRawDataSticks.toArray(new ItemStack[0]),
-                pRawDataSticksCache.toArray(new ItemStack[0]))) {
-                if (!pRecipesCache.isEmpty()) { // Sticks equal and recipes have cache, return cache
-                    pFinalStream = pRecipesCache.stream()
-                        .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
-                    return this;
-                }
-                // Sticks equal but recipes not generated yet, pass to generation
+            Stream<GT_Recipe> temp = pRawDataSticks.stream()
+                .filter(
+                    stick -> findAssemblyLineRecipeFromDataStick(stick, false).getType()
+                        == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK)
+                .map(stick -> buildRecipeChecked(findAssemblyLineRecipeFromDataStick(stick)))
+                .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
+            if (!bEnableCompatibilityRecipeMap) {
+                return temp;
             } else {
-                // Sticks diff, clear cache
-                pRawDataSticksCache.clear();
-                pRecipesCache.clear();
+                return Stream.concat(
+                    temp,
+                    compatibilityRALMap.findRecipeQuery()
+                        .items(pInputItems)
+                        .fluids(pInputFluids)
+                        .findAll());
             }
-
-            for (ItemStack tDataStick : pRawDataSticks) {
-                GT_AssemblyLineUtils.LookupResult tLookupResult = GT_AssemblyLineUtils
-                    .findAssemblyLineRecipeFromDataStick(tDataStick, false);
-                if (tLookupResult.getType() == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK) {
-                    continue;
-                }
-                pRecipes.add(buildRecipeChecked(tLookupResult));
-            }
-
-            if (bEnableDebug) {
-                VisAppend.LOG.info("RAL found " + pRecipes.size() + " recipes.");
-            }
-
-            if (pLastRecipe != null && examineRecipe(pLastRecipe, pInputFluids, pInputItems)) {
-                pRecipes.add(pLastRecipe);
-            }
-
-            if (!pRecipes.isEmpty()) {
-                pRecipesCache = pRecipes;
-                if (!bEnableCompatibilityRecipeMap) {
-                    pFinalStream = pRecipes.stream()
-                        .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
-                } else {
-                    pFinalStream = Stream.concat(
-                        pRecipes.stream()
-                            .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems)),
-                        compatibilityRALMap.findRecipeQuery()
-                            .items(pInputItems)
-                            .fluids(pInputFluids)
-                            .findAll());
-                }
-                return this;
-            }
+        } else {
+            return Stream.empty();
         }
-
-        pRawDataSticksCache.clear();
-        pRecipesCache.clear();
-
-        return this;
     }
-
-    public Stream<GT_Recipe> getStream() {
-        return pFinalStream;
-    }
-
 }
