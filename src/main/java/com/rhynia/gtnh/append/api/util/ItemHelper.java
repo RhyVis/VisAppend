@@ -117,6 +117,11 @@ public class ItemHelper {
         return itemStack.isItemEqual(VA_ItemList.AstriumInfinityComplex.get(1));
     }
 
+    public static boolean isAstralInfinityGauge(ItemStack itemStack) {
+        if (itemStack == null) return false;
+        return itemStack.isItemEqual(VA_ItemList.AstriumInfinityGauge.get(1));
+    }
+
     public static boolean isCalibration(ItemStack itemStack) {
         if (itemStack == null) return false;
         return itemStack.isItemEqual(VA_ItemList.Calibration.get(1));

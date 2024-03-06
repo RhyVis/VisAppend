@@ -23,6 +23,7 @@ import com.gtnewhorizons.modularui.api.screen.ModularWindow;
 import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
+import com.rhynia.gtnh.append.api.util.ItemHelper;
 import com.rhynia.gtnh.append.api.util.MathHelper;
 import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
@@ -100,7 +101,7 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
 
         for (GT_MetaTileEntity_Hatch_InputBus inputBus : mInputBusses) {
             for (ItemStack itemStack : inputBus.getRealInventory()) {
-                if (itemStack != null && itemStack.isItemEqual(VA_ItemList.AstriumInfinityGem.get(1))) {
+                if (ItemHelper.isAstralInfinityComplex(itemStack)) {
                     pBase += itemStack.stackSize;
                 }
                 if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
