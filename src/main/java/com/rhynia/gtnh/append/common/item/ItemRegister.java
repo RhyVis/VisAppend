@@ -35,8 +35,12 @@ public class ItemRegister {
         VA_ItemList.PreTesseract.set(initItem01("准超立方体", 4, new String[]{"即将达到高维工程学"}));
 
         // Res
-        VA_ItemList.AstriumInfinityGem.set(initItem01("星极", 1001, new String[]{"Aμⁿ", "浓缩的极限能量"}));
+        VA_ItemList.AstriumInfinityGem.set(initItem01("星极", 1001, new String[]{"Aμⁿ", "能量络合物"}));
         VA_ItemList.AstriumInfinityComplex.set(initItem01("星矩", 1002, new String[]{"-[Aμⁿ-Aμⁿ]-", EnumChatFormatting.DARK_RED + "高维能量络合物"}));
+        VA_ItemList.AstriumInfinityComplex.set(initItem01("星规", 1003, new String[]{
+            "┌Aμⁿ-Aμⁿ┐",
+            "└Aμⁿ-Aμⁿ┘",
+            EnumChatFormatting.DARK_PURPLE + "时空之空洞"}));
 
         // Lens
         VA_ItemList.LensAstriumInfinity.set(initItem01("星极天体透镜", 3001, new String[]{"能量聚集于此"}));
