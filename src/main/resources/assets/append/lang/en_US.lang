@@ -2,20 +2,20 @@ ModName=Vis Append
 itemGroup.GTAppend=Vis Append
 
 item.Ultimate.name=Useless
-item.LapoMatrix.name=Lapotron Matrix(Deprecated)
-item.CrystalMatrix.name=Crystal Matrix(Deprecated)
 
-va.MetaItem01.0.name=Test - 01
+va.MetaItem01.0.name=Test
 va.MetaItem01.1.name=Lapotron Matrix
 va.MetaItem01.2.name=Crystal Matrix
 va.MetaItem01.3.name=Dense Mica Insulator Foil
-va.MetaItem01.4.name=Astral Infinite Gem
-va.MetaItem01.5.name=Astral Energy Lens
-va.MetaItem01.6.name=Astral Magical Lens
-va.MetaItem01.7.name=Primoium Lens
-va.MetaItem01.8.name=Originium Lens
-va.MetaItem01.9.name=Pre Tesseract
-va.MetaItem01.10.name=Astral Moment
+va.MetaItem01.4.name=Pre Tesseract
+
+va.MetaItem01.1001.name=Astral Infinite Gem
+va.MetaItem01.1002.name=Astral Moment
+
+va.MetaItem01.3001.name=Astral Energy Lens
+va.MetaItem01.3002.name=Astral Magical Lens
+va.MetaItem01.3003.name=Primoium Lens
+va.MetaItem01.3004.name=Originium Lens
 
 va.MetaItem02.0.name=Calibration
 va.MetaItem02.1.name=Assembly - DTPF
