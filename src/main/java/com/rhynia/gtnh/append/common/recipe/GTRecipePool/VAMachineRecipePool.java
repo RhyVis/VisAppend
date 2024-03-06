@@ -9,7 +9,7 @@ import static gregtech.api.util.GT_RecipeConstants.RESEARCH_ITEM;
 import static gregtech.api.util.GT_RecipeConstants.RESEARCH_TIME;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;

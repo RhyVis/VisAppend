@@ -7,7 +7,7 @@ import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.github.bartimaeusnek.bartworks.API.recipe.BartWorksRecipeMaps;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.enums.GT_Values;

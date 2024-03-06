@@ -8,7 +8,7 @@ import com.rhynia.gtnh.append.api.recipe.frontend.IntegratedAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.MicroAssemblyFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.ThermonuclearControlFrontend;
 import com.rhynia.gtnh.append.api.recipe.frontend.TranscendentReactorFrontend;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import gregtech.api.gui.modularui.GT_UITextures;
 import gregtech.api.recipe.RecipeMap;

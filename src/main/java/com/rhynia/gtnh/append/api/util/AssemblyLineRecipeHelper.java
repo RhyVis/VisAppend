@@ -16,7 +16,7 @@ import org.jetbrains.annotations.Nullable;
 
 import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.api.recipe.backend.VA_RecipeMapBackend;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.OrePrefixes;

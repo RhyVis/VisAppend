@@ -33,7 +33,7 @@ import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
 import com.rhynia.gtnh.append.api.util.FluidHelper;
 import com.rhynia.gtnh.append.api.util.ItemHelper;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.material.VA_Materials;
 import com.rhynia.gtnh.append.config.Config;
 

@@ -3,10 +3,10 @@ package com.rhynia.gtnh.append.common.block;
 import static com.rhynia.gtnh.append.common.block.BlockBasic.EyeOfHarmonyCoreCasing;
 import static com.rhynia.gtnh.append.common.block.BlockBasic.MetaBlock01;
 
-import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.block.base.BlockBaseItem01;
 import com.rhynia.gtnh.append.common.block.casings.EyeOfHarmonyCore;
 import com.rhynia.gtnh.append.common.block.casings.EyeOfHarmonyCoreItem;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import cpw.mods.fml.common.registry.GameRegistry;
 

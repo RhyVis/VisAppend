@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.common.recipe.VARecipePool;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.builder.VA_RecipeBuilder;
 import com.rhynia.gtnh.append.api.util.AssemblyLineRecipeHelper;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import gregtech.api.recipe.RecipeMap;

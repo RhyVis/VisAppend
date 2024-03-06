@@ -8,11 +8,13 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Range;
 
 import com.github.technus.tectech.loader.recipe.BaseRecipeLoader;
 import com.github.technus.tectech.thing.CustomItemList;
 import com.rhynia.gtnh.append.VisAppend;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_WirelessExtraItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.ItemList;
@@ -76,7 +78,15 @@ public enum Tier {
         Energy,
         Energy4A,
         Energy16A,
-        Energy64A;
+        Energy64A,
+        LaserEnergy,
+        LaserDynamo,
+        WirelessDynamo,
+        WirelessEnergy,
+        WirelessEnergy4A,
+        WirelessEnergy16A,
+        WirelessEnergy64A,
+        WirelessLaser;
 
         @Override
         public String toString() {
@@ -143,7 +153,7 @@ public enum Tier {
     public ItemStack getComponent(Component component, int amount) {
         if (this == ULV) {
             VisAppend.LOG.error("Attempting to get ULV component, but it's already removed!");
-            return VA_ItemList.Test01.get(amount);
+            return VA_ItemList.Test01.get(amount, VA_ItemList.Test01.get(1));
         } else return ItemList.valueOf(component.toString() + this)
             .get(amount, VA_ItemList.Test01.get(1));
     }
@@ -152,7 +162,7 @@ public enum Tier {
         switch (this) {
             case UEV, UIV, UMV, UXV, MAX -> {
                 VisAppend.LOG.error("Attempting to get " + this + " component, but it doesn't exist!");
-                return VA_ItemList.Test01.get(amount);
+                return VA_ItemList.Test01.get(amount, VA_ItemList.Test01.get(1));
             }
             default -> {
                 return ItemList.valueOf(this + "_Coil")
@@ -164,16 +174,15 @@ public enum Tier {
     public ItemStack getComponentAssemblyCasing(int amount) {
         if (this == ULV) {
             VisAppend.LOG.error("Attempting to get ULV casing, but it doesn't exist!");
-            return VA_ItemList.Test01.get(amount);
+            return VA_ItemList.Test01.get(amount, VA_ItemList.Test01.get(1));
         } else return GT_ModHandler
             .getModItem(GoodGenerator.ID, "componentAssemblylineCasing", amount, this.ordinal() - 1);
     }
 
     public ItemStack getGlass(int amount) {
         switch (this) {
-            case ULV, LV, MV -> {
-                VisAppend.LOG.error("Attempting to get " + this + " glass, but it doesn't exist!");
-                return VA_ItemList.Test01.get(amount);
+            case ULV, LV, MV, HV -> {
+                return GT_ModHandler.getModItem(BartWorks.ID, "BW_GlasBlocks", amount, 0);
             }
             case UMV, UXV, MAX -> {
                 return GT_ModHandler.getModItem(BartWorks.ID, "BW_GlasBlocks2", amount);
@@ -186,11 +195,7 @@ public enum Tier {
 
     public ItemStack getBufferCore(int amount) {
         switch (this) {
-            case UHV, UEV, UIV, UMV, UXV -> {
-                VisAppend.LOG.error("Attempting to get " + this + " buffer core, but it doesn't exist!");
-                return VA_ItemList.Test01.get(amount);
-            }
-            case MAX -> {
+            case UHV, UEV, UIV, UMV, UXV, MAX -> {
                 return GT_ModHandler.getModItem(GTPlusPlus.ID, "item.itemBufferCore10", amount);
             }
             default -> {
@@ -200,42 +205,42 @@ public enum Tier {
     }
 
     public ItemStack getHatch(@NotNull Hatch hatch, int amount) {
-        return switch (hatch.toString()) {
-            case "Dynamo" -> this.getDynamoHatch(amount);
-            case "Energy" -> this.getEnergyHatch(amount);
-            case "Energy4A" -> this.getEnergyHatch4A(amount);
-            case "Energy16A" -> this.getEnergyHatch16A(amount);
-            case "Energy64A" -> this.getEnergyHatch64A(amount);
-            default -> throw new IllegalStateException("Unexpected value: " + hatch);
-        };
-    }
-
-    public ItemStack getHatch(@NotNull String hatch, int amount) {
         return switch (hatch) {
-            case "Dynamo" -> this.getDynamoHatch(amount);
-            case "Energy" -> this.getEnergyHatch(amount);
-            case "Energy4A" -> this.getEnergyHatch4A(amount);
-            case "Energy16A" -> this.getEnergyHatch16A(amount);
-            case "Energy64A" -> this.getEnergyHatch64A(amount);
-            default -> throw new IllegalStateException("Unexpected value: " + hatch);
+            case Dynamo -> this.getDynamoHatch(amount);
+            case Energy -> this.getEnergyHatch(amount);
+            case Energy4A -> this.getEnergyHatch4A(amount);
+            case Energy16A -> this.getEnergyHatch16A(amount);
+            case Energy64A -> this.getEnergyHatch64A(amount);
+            case LaserEnergy -> this.getLaserTarget(1, amount);
+            case LaserDynamo -> VA_ItemList.Test01.get(amount);
+            case WirelessDynamo -> this.getDynamoWireless(amount);
+            case WirelessEnergy -> this.getEnergyWireless(amount);
+            case WirelessEnergy4A -> this.getEnergyWireless4A(amount);
+            case WirelessEnergy16A -> this.getEnergyWireless16A(amount);
+            case WirelessEnergy64A -> this.getEnergyWireless64A(amount);
+            case WirelessLaser -> this.getLaserWireless(1, amount);
         };
     }
 
     public ItemStack getDynamoHatch(int amount) {
         return switch (this) {
+            case MAX -> VA_ItemList.Test01.get(1);
             case ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV -> ItemList.valueOf("Hatch_Dynamo_" + this)
-                .get(amount);
-            case UHV, UEV, UIV, UMV, UXV, MAX -> BaseRecipeLoader.getItemContainer("Hatch_Dynamo_" + this)
-                .get(amount);
+                .get(amount, VA_ItemList.Test01.get(1));
+            case UHV -> ItemList.Hatch_Dynamo_MAX.get(amount);
+            case UEV, UIV, UMV, UXV -> BaseRecipeLoader.getItemContainer("Hatch_Dynamo_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
         };
     }
 
     public ItemStack getEnergyHatch(int amount) {
         return switch (this) {
+            case MAX -> VA_ItemList.Test01.get(1);
             case ULV, LV, MV, HV, EV, IV, LuV, ZPM, UV -> ItemList.valueOf("Hatch_Energy_" + this)
-                .get(amount);
-            case UHV, UEV, UIV, UMV, UXV, MAX -> BaseRecipeLoader.getItemContainer("Hatch_Energy_" + this)
-                .get(amount);
+                .get(amount, VA_ItemList.Test01.get(1));
+            case UHV -> ItemList.Hatch_Energy_MAX.get(amount);
+            case UEV, UIV, UMV, UXV -> BaseRecipeLoader.getItemContainer("Hatch_Energy_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
         };
     }
 
@@ -247,7 +252,7 @@ public enum Tier {
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti4_" + this)
-                    .get(amount);
+                    .get(amount, VA_ItemList.Test01.get(1));
             }
         }
         return VA_ItemList.Test01.get(1);
@@ -261,7 +266,7 @@ public enum Tier {
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti16_" + this)
-                    .get(amount);
+                    .get(amount, VA_ItemList.Test01.get(1));
             }
         }
         return VA_ItemList.Test01.get(1);
@@ -275,9 +280,67 @@ public enum Tier {
             }
             case EV, IV, LuV, ZPM, UV, UHV, UEV, UIV, UMV, UXV -> {
                 return CustomItemList.valueOf("eM_energyMulti64_" + this)
-                    .get(amount);
+                    .get(amount, VA_ItemList.Test01.get(1));
             }
         }
         return VA_ItemList.Test01.get(1);
+    }
+
+    public ItemStack getDynamoWireless(int amount) {
+        if (this == MAX) {
+            return VA_ItemList.Test01.get(1);
+        }
+        return ItemList.valueOf("Wireless_Dynamo_Energy_" + this)
+            .get(amount, VA_ItemList.Test01.get(1));
+    }
+
+    public ItemStack getEnergyWireless(int amount) {
+        if (this == MAX) {
+            return VA_ItemList.Test01.get(1);
+        }
+        return ItemList.valueOf("Wireless_Hatch_Energy_" + this)
+            .get(amount, VA_ItemList.Test01.get(1));
+    }
+
+    public ItemStack getEnergyWireless4A(int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, MAX -> VA_ItemList.Test01.get(1);
+            default -> CustomItemList.valueOf("eM_energyWirelessMulti4_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
+        };
+    }
+
+    public ItemStack getEnergyWireless16A(int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, MAX -> VA_ItemList.Test01.get(1);
+            default -> CustomItemList.valueOf("eM_energyWirelessMulti16_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
+        };
+    }
+
+    public ItemStack getEnergyWireless64A(int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, MAX -> VA_ItemList.Test01.get(1);
+            default -> CustomItemList.valueOf("eM_energyWirelessMulti64_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
+        };
+    }
+
+    public ItemStack getLaserTarget(@Range(from = 1, to = 7) int tier, int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, EV, MAX -> VA_ItemList.Test01.get(1);
+            default -> CustomItemList.valueOf("eM_energyTunnel" + tier + "_" + this)
+                .get(amount, VA_ItemList.Test01.get(1));
+        };
+    }
+
+    public ItemStack getLaserWireless(@Range(from = 1, to = 7) int tier, int amount) {
+        return switch (this) {
+            case ULV, LV, MV, HV, EV, MAX -> VA_ItemList.Test01.get(1);
+            case UXV -> CustomItemList.valueOf("eM_energyWirelessTunnel" + tier + "_UXV")
+                .get(amount, VA_ItemList.Test01.get(1));
+            default -> VA_WirelessExtraItemList.valueOf("extLaser_" + this + "_" + tier)
+                .get(amount, VA_ItemList.Test01.get(1));
+        };
     }
 }

@@ -33,8 +33,8 @@ import com.google.common.collect.ImmutableList;
 import com.gtnewhorizon.structurelib.structure.IStructureDefinition;
 import com.gtnewhorizon.structurelib.structure.StructureDefinition;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
-import com.rhynia.gtnh.append.common.VA_ItemList;
 import com.rhynia.gtnh.append.common.block.BlockBasic;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
