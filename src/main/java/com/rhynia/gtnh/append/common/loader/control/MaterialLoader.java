@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common.loader;
+package com.rhynia.gtnh.append.common.loader.control;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.VM;
 

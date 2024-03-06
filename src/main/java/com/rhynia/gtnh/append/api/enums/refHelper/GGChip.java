@@ -4,7 +4,7 @@ import net.minecraft.item.ItemStack;
 import net.minecraftforge.fluids.FluidStack;
 
 import com.rhynia.gtnh.append.api.interfaces.IRecipeHelper;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import gregtech.api.enums.Materials;
 import gregtech.api.util.GT_ModHandler;

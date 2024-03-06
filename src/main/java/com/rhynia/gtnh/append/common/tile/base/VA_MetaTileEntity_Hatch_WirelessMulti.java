@@ -4,8 +4,8 @@ import static com.github.technus.tectech.thing.metaTileEntity.Textures.OVERLAYS_
 import static com.github.technus.tectech.thing.metaTileEntity.Textures.OVERLAYS_ENERGY_IN_WIRELESS_MULTI_16A;
 import static com.github.technus.tectech.thing.metaTileEntity.Textures.OVERLAYS_ENERGY_IN_WIRELESS_MULTI_4A;
 import static com.github.technus.tectech.thing.metaTileEntity.Textures.OVERLAYS_ENERGY_IN_WIRELESS_MULTI_64A;
+import static com.gtnewhorizon.gtnhlib.util.AnimatedTooltipHandler.AQUA;
 import static com.gtnewhorizon.gtnhlib.util.AnimatedTooltipHandler.GRAY;
-import static com.rhynia.gtnh.append.api.enums.VA_Values.CommonStrings.AddByAppend;
 import static gregtech.api.enums.GT_Values.V;
 import static java.lang.Long.min;
 
@@ -33,20 +33,17 @@ public class VA_MetaTileEntity_Hatch_WirelessMulti extends GT_MetaTileEntity_Hat
 
     private String owner_uuid;
     private String owner_name;
-    private boolean eDebug;
 
-    public VA_MetaTileEntity_Hatch_WirelessMulti(int aID, String aName, String aNameRegional, int aTier, int aAmp,
-        boolean debug) {
+    public VA_MetaTileEntity_Hatch_WirelessMulti(int aID, String aName, String aNameRegional, int aTier, int aAmp) {
         super(
             aID,
             aName,
             aNameRegional,
             aTier,
             0,
-            new String[] { GRAY + "将能量存储于全局网络中，上限为2^(2^31)EU.", GRAY + "不连接导线，此方块可以从网络中抽取EU.", AddByAppend },
+            new String[] { GRAY + "将能量存储于全局网络中，上限为2^(2^31)EU.", GRAY + "不连接导线，此方块可以从网络中抽取EU.", AQUA + "额外能源仓系列" },
             aAmp);
         TT_Utility.setTier(aTier, this);
-        eDebug = debug;
     }
 
     public VA_MetaTileEntity_Hatch_WirelessMulti(String aName, int aTier, int aAmp, String[] aDescription,
@@ -210,10 +207,6 @@ public class VA_MetaTileEntity_Hatch_WirelessMulti extends GT_MetaTileEntity_Hat
         long maxEU = maxEUStore();
         long euToTransfer = min(maxEU - currentEU, eu_transferred_per_operation_long);
         if (euToTransfer <= 0) return; // nothing to transfer
-        if (eDebug) {
-            setEUVar(currentEU + euToTransfer);
-            return;
-        }
         if (!addEUToGlobalEnergyMap(owner_uuid, -euToTransfer)) return;
         setEUVar(currentEU + euToTransfer);
     }

@@ -23,7 +23,7 @@ import com.elisis.gtnhlanth.common.register.WerkstoffMaterialPool;
 import com.github.bartimaeusnek.bartworks.system.material.WerkstoffLoader;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 import com.rhynia.gtnh.append.api.recipe.AppendRecipeMaps;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.material.VA_Materials;
 
 import goodgenerator.items.MyMaterial;

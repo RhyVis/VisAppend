@@ -7,7 +7,7 @@ import org.jetbrains.annotations.Contract;
 import org.jetbrains.annotations.NotNull;
 
 import com.rhynia.gtnh.append.VisAppend;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 @SuppressWarnings("unused")
 public class ItemHelper {

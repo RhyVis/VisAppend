@@ -1,11 +1,8 @@
-package com.rhynia.gtnh.append.common.loader;
-
-import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.UXV;
+package com.rhynia.gtnh.append.common.loader.control;
 
 import net.minecraft.item.ItemStack;
 
-import com.rhynia.gtnh.append.common.VA_ItemList;
-import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_Hatch_WirelessMulti;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_DistilledWater;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_Lava;
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Hatch_LiquidAir;
@@ -39,8 +36,6 @@ public class MachineLoader {
     public static ItemStack ZeroGenerator;
     public static ItemStack HumongousCalibrationInputHatch;
     public static ItemStack HumongousCalibrationHalfInputHatch;
-    public static ItemStack WirelessTunnel9001;
-    public static ItemStack WirelessTunnel9001Debug;
     // endregion
 
     // region multi Machine controller
@@ -79,6 +74,8 @@ public class MachineLoader {
         // endregion
 
         // region Single claim
+        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17400, "MachineGeneratorZero", "零点能发电机", 14)
+            .getStackForm(1L);
         InfiniteLiquidAirHatch = new VA_MetaTileEntity_Hatch_LiquidAir(17401, "HatchInfiniteLiquidAir", "无限压缩进气仓", 10)
             .getStackForm(1);
         InfiniteDistilledWaterHatch = new VA_MetaTileEntity_Hatch_DistilledWater(
@@ -91,30 +88,14 @@ public class MachineLoader {
         InfiniteLubricantHatch = new VA_MetaTileEntity_Hatch_Lubricant(17405, "HatchInfiniteLubricant", "无限润滑仓", 10)
             .getStackForm(1);
         InfiniteSteamHatch = new VA_MetaTileEntity_Hatch_Steam(17406, "HatchInfiniteSteam", "无限蒸汽仓", 8).getStackForm(1);
-        ZeroGenerator = new VA_MetaTileEntity_Machine_ZeroGenerator(17450, "MachineGeneratorZero", "零点能发电机", 14)
-            .getStackForm(1L);
         HumongousCalibrationInputHatch = new VA_MetaTileEntity_HumongousCalibrationInputHatch(
-            17451,
+            17407,
             "HatchHumongousCalibration",
             "鸿蒙标定仓").getStackForm(1);
         HumongousCalibrationHalfInputHatch = new VA_MetaTileEntity_HumongousCalibrationHalfInputHatch(
-            17452,
+            17408,
             "HatchHumongousCalibrationHalf",
             "鸿蒙半标定仓").getStackForm(1);
-        WirelessTunnel9001 = new VA_MetaTileEntity_Hatch_WirelessMulti(
-            17453,
-            "HatchWirelessTunnel9001",
-            "传奇无线能源仓",
-            13,
-            (int) UXV,
-            false).getStackForm(1);
-        WirelessTunnel9001Debug = new VA_MetaTileEntity_Hatch_WirelessMulti(
-            17454,
-            "HatchWirelessTunnel9001Debug",
-            "传奇调试能源仓",
-            13,
-            (int) UXV,
-            true).getStackForm(1);
         // endregion
 
         // region ItemList
@@ -140,8 +121,6 @@ public class MachineLoader {
         VA_ItemList.ZeroGenerator.set(ZeroGenerator);
         VA_ItemList.HumongousCalibrationInputHatch.set(HumongousCalibrationInputHatch);
         VA_ItemList.HumongousCalibrationHalfInputHatch.set(HumongousCalibrationHalfInputHatch);
-        VA_ItemList.WirelessTunnel9001.set(WirelessTunnel9001);
-        VA_ItemList.WirelessTunnel9001Debug.set(WirelessTunnel9001Debug);
         // endregion
     }
 

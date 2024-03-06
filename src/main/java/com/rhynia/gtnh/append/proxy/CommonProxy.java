@@ -5,9 +5,10 @@ import static com.rhynia.gtnh.append.VisAppend.VERSION;
 
 import com.rhynia.gtnh.append.VisAppend;
 import com.rhynia.gtnh.append.api.util.ProcessingMap;
-import com.rhynia.gtnh.append.common.loader.MachineLoader;
-import com.rhynia.gtnh.append.common.loader.MaterialLoader;
-import com.rhynia.gtnh.append.common.loader.RecipeLoader;
+import com.rhynia.gtnh.append.common.loader.control.MachineLoader;
+import com.rhynia.gtnh.append.common.loader.control.MaterialLoader;
+import com.rhynia.gtnh.append.common.loader.control.RecipeLoader;
+import com.rhynia.gtnh.append.common.loader.control.WirelessExtraLoader;
 import com.rhynia.gtnh.append.config.Config;
 
 import cpw.mods.fml.common.event.FMLInitializationEvent;
@@ -28,6 +29,7 @@ public class CommonProxy {
     public void init(FMLInitializationEvent event) {
         VisAppend.LOG.info("Loading machines.");
         MachineLoader.loadMachines();// Load Machines
+        WirelessExtraLoader.doRegister();// Load Wireless
     }
 
     public void postInit(FMLPostInitializationEvent event) {

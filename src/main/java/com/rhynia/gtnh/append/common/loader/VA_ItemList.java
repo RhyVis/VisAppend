@@ -1,4 +1,4 @@
-package com.rhynia.gtnh.append.common;
+package com.rhynia.gtnh.append.common.loader;
 
 import static gregtech.api.enums.GT_Values.W;
 
@@ -63,10 +63,6 @@ public enum VA_ItemList implements IItemContainer {
     ReinforcedAssemblyLine,
     SelectedEnergyGenerator,
     Creator,
-    WirelessTunnel9001,
-    WirelessTunnel9001Debug,
-    HumongousCalibrationInputHatch,
-    HumongousCalibrationHalfInputHatch,
     EyeOfUltimate,
     DenseEndpoint,
     ProcessingMatrix,
@@ -78,7 +74,9 @@ public enum VA_ItemList implements IItemContainer {
     InfiniteOilHatch,
     InfiniteLubricantHatch,
     InfiniteSteamHatch,
-    ZeroGenerator,;
+    ZeroGenerator,
+    HumongousCalibrationInputHatch,
+    HumongousCalibrationHalfInputHatch,;
     // endregion;
 
     // endregion

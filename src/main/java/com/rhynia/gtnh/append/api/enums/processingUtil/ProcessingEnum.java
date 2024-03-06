@@ -3,7 +3,7 @@ package com.rhynia.gtnh.append.api.enums.processingUtil;
 import net.minecraft.item.ItemStack;
 
 import com.rhynia.gtnh.append.api.util.ProcessingSet;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMaps;

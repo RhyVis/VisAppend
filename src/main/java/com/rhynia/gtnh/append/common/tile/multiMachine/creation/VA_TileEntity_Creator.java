@@ -24,7 +24,7 @@ import com.gtnewhorizons.modularui.api.screen.UIBuildContext;
 import com.gtnewhorizons.modularui.common.widget.CycleButtonWidget;
 import com.rhynia.gtnh.append.api.enums.VA_Values;
 import com.rhynia.gtnh.append.api.util.MathHelper;
-import com.rhynia.gtnh.append.common.VA_ItemList;
+import com.rhynia.gtnh.append.common.loader.VA_ItemList;
 import com.rhynia.gtnh.append.common.tile.base.VA_MetaTileEntity_MultiBlockBase_Cube;
 
 import gregtech.api.GregTech_API;
