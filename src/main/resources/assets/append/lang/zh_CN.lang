@@ -2,20 +2,21 @@ ModName=Vis Append
 itemGroup.GTAppend=Vis Append
 
 item.Ultimate.name=无效证明
-item.LapoMatrix.name=兰波顿矩阵(弃用)
-item.CrystalMatrix.name=晶体矩阵(弃用)
 
-va.MetaItem01.0.name=测试物品 - 01
+va.MetaItem01.0.name=测试物品
 va.MetaItem01.1.name=兰波顿矩阵
 va.MetaItem01.2.name=晶体矩阵
 va.MetaItem01.3.name=致密绝缘云母
-va.MetaItem01.4.name=星极
-va.MetaItem01.5.name=星极天体透镜
-va.MetaItem01.6.name=星芒魔力透镜
-va.MetaItem01.7.name=原石透镜
-va.MetaItem01.8.name=源石透镜
-va.MetaItem01.9.name=准超立方体
-va.MetaItem01.10.name=星矩
+va.MetaItem01.4.name=准超立方体
+
+va.MetaItem01.1001.name=星极
+va.MetaItem01.1002.name=星矩
+va.MetaItem01.1003.name=星规
+
+va.MetaItem01.3001.name=星极天体透镜
+va.MetaItem01.3002.name=星芒魔力透镜
+va.MetaItem01.3003.name=原石透镜
+va.MetaItem01.3004.name=源石透镜
 
 va.MetaItem02.0.name=标定指示
 va.MetaItem02.1.name=套件 - DTPF

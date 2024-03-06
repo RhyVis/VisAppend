@@ -19,18 +19,22 @@ public enum VA_ItemList implements IItemContainer {
     // endregion
 
     // region MetaItem01
+    // res
     Test01,
     LapoMatrix,
     CrystalMatrix,
     DenseMicaInsulatorFoil,
-    // Meta-Item 02
+    PreTesseract,
+
+    // res
     AstriumInfinityGem,
+    AstriumInfinityComplex,
+    AstriumInfinityGauge,
+
     LensAstriumInfinity,
     LensAstriumMagic,
     LensPrimoium,
     LensOriginium,
-    PreTesseract,
-    AstriumInfinityComplex,
 
     // region MetaItem02
     Calibration,

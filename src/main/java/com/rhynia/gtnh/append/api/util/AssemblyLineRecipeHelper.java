@@ -3,6 +3,8 @@ package com.rhynia.gtnh.append.api.util;
 import static gregtech.api.util.GT_AssemblyLineUtils.findAssemblyLineRecipeFromDataStick;
 
 import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 import net.minecraft.item.ItemStack;
@@ -18,7 +20,6 @@ import com.rhynia.gtnh.append.common.VA_ItemList;
 
 import gregtech.api.enums.GT_Values;
 import gregtech.api.enums.OrePrefixes;
-import gregtech.api.objects.ItemData;
 import gregtech.api.recipe.RecipeMap;
 import gregtech.api.recipe.RecipeMapBuilder;
 import gregtech.api.util.GT_AssemblyLineUtils;
@@ -148,6 +149,14 @@ public class AssemblyLineRecipeHelper {
         return this;
     }
 
+    public ItemStack switchCircuit(ItemStack stack) {
+        var tAltInfo = GT_OreDictUnificator.getAssociation(stack);
+        if (tAltInfo == null) return null;
+        if (tAltInfo.mPrefix == OrePrefixes.circuit || !tAltInfo.hasValidMaterialData()) {
+            return GT_OreDictUnificator.get(OrePrefixes.circuit, tAltInfo.mMaterial.mMaterial, stack.stackSize);
+        } else return null;
+    }
+
     /**
      * Similar to the filterFindRecipe used in recipeMap-based search
      *
@@ -191,52 +200,66 @@ public class AssemblyLineRecipeHelper {
     }
 
     /**
-     * This method will generate a general GT_Recipe out of the assembly specific recipe,
-     * by the way it will also fix the circuit alt problem caused by AssemblyLineRecipe
+     * This method will generate a general Stream<GT_Recipe> out of the assembly specific recipe,
+     * by the way it will also fix the wildcard alt problem caused by AssemblyLineRecipe
      *
-     * @param tLookupResult the data of the scanned data sticks
-     * @return a GT_Recipe with oredict alt info
+     * @return a List<GT_Recipe> with oredict alt info
      */
-    @Contract("_ -> new")
-    @NotNull
-    private GT_Recipe buildRecipeChecked(@NotNull GT_AssemblyLineUtils.LookupResult tLookupResult) {
-        GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
-        return buildRecipeChecked(tRecipe);
-    }
+    private List<GT_Recipe> buildRecipeChecked(GT_Recipe.GT_Recipe_AssemblyLine tRecipe) {
 
-    private GT_Recipe buildRecipeChecked(GT_Recipe.GT_Recipe_AssemblyLine tRecipe) {
+        ItemStack[] tInputStacks = tRecipe.mInputs.clone();
+        ItemStack[] tOutput = new ItemStack[] { tRecipe.mOutput.copy() };
+        FluidStack[] tFluids = tRecipe.mFluidInputs.clone();
 
-        ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
-        ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
-        FluidStack[] tInputFluidStacks = tRecipe.mFluidInputs.clone();
+        ItemStack[][] tAlts = tRecipe.mOreDictAlt;
 
-        ItemStack[][] tAlts = tRecipe.mOreDictAlt.clone();
+        var tRecipeList = new ArrayList<GT_Recipe>();
 
-        for (int i = 0; i < tInputItemStacks.length; i++) {
-            if (tAlts[i] != null) {
-                ItemStack tItemStackAlterable = tInputItemStacks[i];
-                ItemData tAltInfo = GT_OreDictUnificator.getAssociation(tItemStackAlterable);
+        var builder = GT_Values.RA.stdBuilder()
+            .eut(tRecipe.mEUt)
+            .duration(tRecipe.mDuration);
 
-                if (tAltInfo == null) continue;
-
-                if (tAltInfo.mPrefix == OrePrefixes.circuit) {
-                    if (bEnableDebug) {
-                        VisAppend.LOG.info("Found" + tAltInfo.mMaterial + "circuit, send alt stack.");
-                    }
-                    tInputItemStacks[i] = GT_OreDictUnificator
-                        .get(OrePrefixes.circuit, tAltInfo.mMaterial.mMaterial, tItemStackAlterable.stackSize);
+        if (tAlts != null && tAlts.length > 0) {
+            for (int i = 0; i < tAlts.length; i++) {
+                if (tAlts[i] != null && tAlts[i].length > 0) {
+                    var cs = Optional.ofNullable(switchCircuit(tAlts[i][0]));
+                    var tmp = i;
+                    cs.ifPresent(
+                        // Circuit wildcard
+                        itemStack -> {
+                            tInputStacks[tmp] = itemStack;
+                            tRecipeList.add(
+                                builder.itemInputs(tInputStacks)
+                                    .fluidInputs(tFluids)
+                                    .itemOutputs(tOutput)
+                                    .build()
+                                    .orElseGet(this::getDummy));
+                        });
+                    cs.orElseGet(
+                        // Other wildcard
+                        () -> {
+                            for (ItemStack wildcard : tAlts[tmp]) {
+                                tInputStacks[tmp] = wildcard;
+                                tRecipeList.add(
+                                    builder.itemInputs(tInputStacks)
+                                        .fluidInputs(tFluids)
+                                        .itemOutputs(tOutput)
+                                        .build()
+                                        .orElseGet(this::getDummy));
+                            }
+                            return null;
+                        });
                 }
             }
         }
+        tRecipeList.add(
+            builder.itemInputs(tInputStacks)
+                .fluidInputs(tFluids)
+                .itemOutputs(tOutput)
+                .build()
+                .orElseGet(this::getDummy));
 
-        return GT_Values.RA.stdBuilder()
-            .itemInputs(tInputItemStacks)
-            .itemOutputs(tOutputItemStacks)
-            .fluidInputs(tInputFluidStacks)
-            .eut(tRecipe.mEUt)
-            .duration(tRecipe.mDuration)
-            .build()
-            .orElseGet(this::getDummy);
+        return tRecipeList;
     }
 
     /**
@@ -244,11 +267,13 @@ public class AssemblyLineRecipeHelper {
      */
     public Stream<GT_Recipe> generate() {
         if (!pRawDataSticks.isEmpty()) {
-            Stream<GT_Recipe> temp = pRawDataSticks.stream()
+            var temp = pRawDataSticks.stream()
                 .filter(
                     stick -> findAssemblyLineRecipeFromDataStick(stick, false).getType()
-                        == GT_AssemblyLineUtils.LookupResultType.INVALID_STICK)
+                        != GT_AssemblyLineUtils.LookupResultType.INVALID_STICK)
                 .map(stick -> buildRecipeChecked(findAssemblyLineRecipeFromDataStick(stick)))
+                .flatMap(List::stream)
+                .distinct()
                 .filter(recipe -> examineRecipe(recipe, pInputFluids, pInputItems));
             if (!bEnableCompatibilityRecipeMap) {
                 return temp;
