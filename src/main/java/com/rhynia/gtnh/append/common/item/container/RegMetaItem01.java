@@ -101,7 +101,6 @@ public class RegMetaItem01 extends RegItemBasic {
     }
 
     @SideOnly(Side.CLIENT)
-
     @Override
     @SuppressWarnings({ "unchecked" })
     public void addInformation(ItemStack aItemStack, EntityPlayer p_77624_2_, List theTooltipsList,
