@@ -146,7 +146,7 @@ public class VA_TileEntity_ProcessingMatrix
     private void resetState() {
         this.pIndexParallel = 0;
         this.pOrd = 0;
-        this.pDisplayName = "";
+        this.pDisplayName = "NONE";
         this.pCalibrationSet = false;
     }
 
@@ -188,7 +188,7 @@ public class VA_TileEntity_ProcessingMatrix
         super.getWailaBody(itemStack, currentTip, accessor, config);
         final NBTTagCompound tag = accessor.getNBTData();
         if (!tag.getString("pDisplayNameW")
-            .isEmpty()) {
+            .equals("NONE")) {
             currentTip
                 .add(EnumChatFormatting.WHITE + "执行配方: " + EnumChatFormatting.AQUA + tag.getString("pDisplayNameW"));
         }

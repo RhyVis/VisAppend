@@ -37,7 +37,7 @@ public class ItemRegister {
         // Res
         VA_ItemList.AstriumInfinityGem.set(initItem01("星极", 1001, new String[]{"Aμⁿ", "能量络合物"}));
         VA_ItemList.AstriumInfinityComplex.set(initItem01("星矩", 1002, new String[]{"-[Aμⁿ-Aμⁿ]-", EnumChatFormatting.DARK_RED + "高维能量络合物"}));
-        VA_ItemList.AstriumInfinityComplex.set(initItem01("星规", 1003, new String[]{
+        VA_ItemList.AstriumInfinityGauge.set(initItem01("星规", 1003, new String[]{
             "┌Aμⁿ-Aμⁿ┐",
             "└Aμⁿ-Aμⁿ┘",
             EnumChatFormatting.DARK_PURPLE + "时空之空洞"}));

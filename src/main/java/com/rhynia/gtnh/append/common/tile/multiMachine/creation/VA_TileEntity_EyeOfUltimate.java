@@ -181,7 +181,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         pBaseA = pBaseB = 0;
         pMultiplier = 0;
         pCurrentRecipe = null;
-        pDisplayName = "";
+        pDisplayName = "NONE";
     }
 
     @Override
@@ -385,7 +385,7 @@ public class VA_TileEntity_EyeOfUltimate extends VA_MetaTileEntity_MultiBlockBas
         final NBTTagCompound tag = accessor.getNBTData();
 
         if (!tag.getString("pDisplayNameW")
-            .isEmpty()) {
+            .equals("NONE")) {
             currentTip
                 .add(EnumChatFormatting.WHITE + "执行配方: " + EnumChatFormatting.AQUA + tag.getString("pDisplayNameW"));
         }
