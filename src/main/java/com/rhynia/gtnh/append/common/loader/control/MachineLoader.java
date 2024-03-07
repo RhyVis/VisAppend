@@ -14,8 +14,8 @@ import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Humongo
 import com.rhynia.gtnh.append.common.tile.blockMachine.VA_MetaTileEntity_Machine_ZeroGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_Creator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_EyeOfUltimate;
+import com.rhynia.gtnh.append.common.tile.multiMachine.creation.VA_TileEntity_VoidMiner;
 import com.rhynia.gtnh.append.common.tile.multiMachine.generation.VA_TileEntity_SelectedEnergyGenerator;
-import com.rhynia.gtnh.append.common.tile.multiMachine.generation.VA_TileEntity_VoidEnergyGenerator;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_AssemblyMatrix;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_AstraForge;
 import com.rhynia.gtnh.append.common.tile.multiMachine.processing.VA_TileEntity_DenseEndpoint;
@@ -42,7 +42,7 @@ public class MachineLoader {
     public static ItemStack AstraForge;
     public static ItemStack UltimateHeater;
     public static ItemStack AssemblyMatrix;
-    public static ItemStack VoidEnergyGenerator;
+    public static ItemStack VoidMiner;
     public static ItemStack KelvinTransformField;
     public static ItemStack ReinforcedAssemblyLine;
     public static ItemStack SelectedEnergyGenerator;
@@ -57,8 +57,7 @@ public class MachineLoader {
         AstraForge = new VA_TileEntity_AstraForge(17501, "MultiAstraForge", "星辉锻造台").getStackForm(1);
         UltimateHeater = new VA_TileEntity_UltimateHeater(17502, "MultiUltimateHeater", "粒子宏").getStackForm(1);
         AssemblyMatrix = new VA_TileEntity_AssemblyMatrix(17503, "MultiAssemblyMatrix", "组装矩阵").getStackForm(1);
-        VoidEnergyGenerator = new VA_TileEntity_VoidEnergyGenerator(17504, "MultiVoidEnergyGenerator", "星辉能极差发电机")
-            .getStackForm(1);
+        VoidMiner = new VA_TileEntity_VoidMiner(17504, "MultiVoidMiner", "虚空原矿厂").getStackForm(1);
         KelvinTransformField = new VA_TileEntity_KelvinTransformField(17505, "MultiKelvinTransformField", "开尔文变换场")
             .getStackForm(1);
         ReinforcedAssemblyLine = new VA_TileEntity_ReinforcedAssemblyLine(17506, "MultiReinforcedAssemblyLine", "复合装配线")
@@ -103,7 +102,7 @@ public class MachineLoader {
         VA_ItemList.AstraForge.set(AstraForge);
         VA_ItemList.UltimateHeater.set(UltimateHeater);
         VA_ItemList.AssemblyMatrix.set(AssemblyMatrix);
-        VA_ItemList.VoidEnergyGenerator.set(VoidEnergyGenerator);
+        VA_ItemList.VoidMiner.set(VoidMiner);
         VA_ItemList.KelvinTransformField.set(KelvinTransformField);
         VA_ItemList.ReinforcedAssemblyLine.set(ReinforcedAssemblyLine);
         VA_ItemList.SelectedEnergyGenerator.set(SelectedEnergyGenerator);

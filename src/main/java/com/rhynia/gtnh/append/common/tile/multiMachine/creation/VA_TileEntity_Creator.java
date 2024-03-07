@@ -2,8 +2,10 @@ package com.rhynia.gtnh.append.common.tile.multiMachine.creation;
 
 import static gregtech.api.metatileentity.BaseTileEntity.TOOLTIP_DELAY;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
 import net.minecraft.block.Block;
 import net.minecraft.entity.player.EntityPlayer;
@@ -99,16 +101,26 @@ public class VA_TileEntity_Creator extends VA_MetaTileEntity_MultiBlockBase_Cube
         resetState();
         ItemStack tempStack = getControllerSlot();
 
-        for (GT_MetaTileEntity_Hatch_InputBus inputBus : mInputBusses) {
-            for (ItemStack itemStack : inputBus.getRealInventory()) {
-                if (ItemHelper.isAstralInfinityComplex(itemStack)) {
-                    pBase += itemStack.stackSize;
-                }
-                if (GT_Utility.isAnyIntegratedCircuit(itemStack)) {
-                    pMultiplier += MathHelper.clampVal(itemStack.getItemDamage(), 0, 24);
-                }
-            }
-        }
+        mInputBusses.stream()
+            .map(GT_MetaTileEntity_Hatch_InputBus::getRealInventory)
+            .filter(Objects::nonNull)
+            .filter(stacks -> stacks.length > 0)
+            .peek(
+                stacks -> pBase += Arrays.stream(stacks)
+                    .filter(ItemHelper::isAstralInfinityComplex)
+                    .map(stack -> stack.stackSize)
+                    .reduce(Integer::sum)
+                    .orElse(0))
+            .peek(
+                stacks -> pMultiplier += MathHelper.clampVal(
+                    Arrays.stream(stacks)
+                        .filter(GT_Utility::isAnyIntegratedCircuit)
+                        .map(stack -> stack.stackSize)
+                        .reduce(Integer::sum)
+                        .orElse(0),
+                    0,
+                    24))
+            .close();
 
         pProduce = (long) (pBase * Math.pow(2L, Math.min(48, pMultiplier)));
         if (pProduce < 0) {

@@ -22,15 +22,14 @@ import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASQuarkRefactoringReci
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASSuperconductingFormingRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASThermonuclearControlRecipePool;
 import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASTranscendentReactorRecipePool;
-import com.rhynia.gtnh.append.common.recipe.VARecipePool.VASVoidEnergyGeneratorRecipePool;
 
 public class RecipeLoader {
 
     public static void loadRecipesPostInit() {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
-            new VASIntegratedAssemblyRecipePool(), new VASVoidEnergyGeneratorRecipePool(),
-            new VASThermonuclearControlRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool() };
+            new VASIntegratedAssemblyRecipePool(), new VASThermonuclearControlRecipePool(),
+            new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool() };
 
         for (IRecipePool recipePool : recipePools) {
             recipePool.loadRecipesPostInit();
@@ -40,10 +39,10 @@ public class RecipeLoader {
     public static void loadRecipesCompleteInit() {
         IRecipePool[] recipePools = new IRecipePool[] {
             // VA Special Recipe
-            new VASIntegratedAssemblyRecipePool(), new VASVoidEnergyGeneratorRecipePool(),
-            new VASThermonuclearControlRecipePool(), new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool(),
-            new VASTranscendentReactorRecipePool(), new VAPlasmaForgeRecipePool(),
-            new VASSuperconductingFormingRecipePool(), new VASQuarkRefactoringRecipePool(),
+            new VASIntegratedAssemblyRecipePool(), new VASThermonuclearControlRecipePool(),
+            new VASAstraForgeRecipePool(), new VASMicroAssemblyRecipePool(), new VASTranscendentReactorRecipePool(),
+            new VAPlasmaForgeRecipePool(), new VASSuperconductingFormingRecipePool(),
+            new VASQuarkRefactoringRecipePool(),
             // Compatibility
             new VASCompatibilityRecipePool(),
             // Basic & Misc Recipe
