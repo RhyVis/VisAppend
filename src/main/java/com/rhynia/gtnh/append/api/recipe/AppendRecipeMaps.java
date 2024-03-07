@@ -104,16 +104,6 @@ public class AppendRecipeMaps {
         .neiRecipeBackgroundSize(170, 10 + 4 * 18)
         .frontend(MicroAssemblyFrontend::new)
         .build();
-    /** Void Energy Generator (VEG) Recipe */
-    public static final RecipeMap<RecipeMapBackend> voidEnergyGeneratorRecipes = RecipeMapBuilder
-        .of("va.recipe.voidEnergyGenerator")
-        .maxIO(2, 2, 2, 2)
-        .minInputs(1, 0)
-        .logo(VA_Values.TextureSets.VA_LOGO_32)
-        .neiHandlerInfo(
-            builder -> builder.setDisplayStack(VA_ItemList.VoidEnergyGenerator.get(1))
-                .setMaxRecipesPerPage(2))
-        .build();
     /** Superconducting Forming (SF) Recipe (Allow 64+ Stack) */
     public static final RecipeMap<VA_RecipeMapBackend> superconductingFormingRecipes = RecipeMapBuilder
         .of("va.recipe.superconductingForming", VA_RecipeMapBackend::new)

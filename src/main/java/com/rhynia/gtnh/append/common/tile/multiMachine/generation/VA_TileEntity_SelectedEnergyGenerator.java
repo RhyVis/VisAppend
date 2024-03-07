@@ -76,7 +76,7 @@ public class VA_TileEntity_SelectedEnergyGenerator extends
         if (ItemHelper.isAstralInfinityComplex(controlStack)) {
             pCoreValue = controlStack.stackSize;
         } else if (ItemHelper.isAstralInfinityGauge(controlStack)) {
-            pCoreValue = controlStack.stackSize;
+            pCoreValue = controlStack.stackSize * 4;
         } else {
             return SimpleCheckRecipeResult.ofFailure("no_core_set");
         }

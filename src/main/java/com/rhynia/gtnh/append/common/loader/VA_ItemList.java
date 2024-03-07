@@ -58,7 +58,7 @@ public enum VA_ItemList implements IItemContainer {
     AstraForge,
     UltimateHeater,
     AssemblyMatrix,
-    VoidEnergyGenerator,
+    VoidMiner,
     KelvinTransformField,
     ReinforcedAssemblyLine,
     SelectedEnergyGenerator,
