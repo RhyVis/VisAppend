@@ -1,12 +1,14 @@
 package com.rhynia.gtnh.append.common.recipe.GTRecipePool;
 
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.INGOTS;
+import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.RECIPE_EV;
 import static com.rhynia.gtnh.append.api.enums.VA_Values.RecipeValues.SECONDS;
 
 import com.rhynia.gtnh.append.api.enums.refHelper.Tier;
 import com.rhynia.gtnh.append.api.interfaces.IRecipePool;
 
 import gregtech.api.enums.GT_Values;
+import gregtech.api.enums.ItemList;
 import gregtech.api.interfaces.IRecipeMap;
 import gregtech.api.recipe.RecipeMaps;
 import gregtech.api.util.GT_Utility;
@@ -17,7 +19,48 @@ public class VAAssemblerRecipePool implements IRecipePool {
 
     @Override
     public void loadRecipesCompleteInit() {
+        loadMainRecipes();
         loadWirelessHatchRecipesEasy();
+    }
+
+    public void loadMainRecipes() {
+        // Stocking input hatch
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Super_Tank_EV.get(1),
+                Tier.HV.getCircuit(1),
+                Tier.HV.getComponent(Tier.Component.Electric_Pump, 1),
+                GT_Utility.getIntegratedCircuit(23))
+            .itemOutputs(ItemList.Hatch_Input_ME.get(1))
+            .fluidInputs(Tier.HV.getSolderStack(72))
+            .eut(RECIPE_EV)
+            .duration(8 * SECONDS)
+            .addTo(A);
+        // Crafting input bus
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Hatch_Input_Bus_ME.get(1),
+                Tier.HV.getCircuit(2),
+                Tier.HV.getComponent(Tier.Component.Robot_Arm, 2),
+                GT_Utility.getIntegratedCircuit(23))
+            .itemOutputs(ItemList.Hatch_CraftingInput_Bus_ME_ItemOnly.get(1))
+            .fluidInputs(Tier.HV.getSolderStack(72))
+            .eut(RECIPE_EV)
+            .duration(8 * SECONDS)
+            .addTo(A);
+        // Crafting input buffer
+        GT_Values.RA.stdBuilder()
+            .itemInputs(
+                ItemList.Hatch_Input_Bus_ME.get(1),
+                ItemList.Hatch_Input_ME.get(1),
+                Tier.EV.getCircuit(2),
+                Tier.EV.getComponent(Tier.Component.Robot_Arm, 2),
+                GT_Utility.getIntegratedCircuit(23))
+            .itemOutputs(ItemList.Hatch_CraftingInput_Bus_ME.get(1))
+            .fluidInputs(Tier.EV.getSolderStack(72))
+            .eut(RECIPE_EV)
+            .duration(8 * SECONDS)
+            .addTo(A);
     }
 
     public void loadWirelessHatchRecipesEasy() {
