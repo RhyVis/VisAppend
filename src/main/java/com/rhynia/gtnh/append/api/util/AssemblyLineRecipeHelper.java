@@ -3,7 +3,9 @@ package com.rhynia.gtnh.append.api.util;
 import static gregtech.api.util.GT_AssemblyLineUtils.findAssemblyLineRecipeFromDataStick;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Stream;
 
@@ -149,7 +151,7 @@ public class AssemblyLineRecipeHelper {
         return this;
     }
 
-    public ItemStack switchCircuit(ItemStack stack) {
+    public static ItemStack switchCircuit(ItemStack stack) {
         var tAltInfo = GT_OreDictUnificator.getAssociation(stack);
         if (tAltInfo == null) return null;
         if (tAltInfo.mPrefix == OrePrefixes.circuit || !tAltInfo.hasValidMaterialData()) {
@@ -165,38 +167,35 @@ public class AssemblyLineRecipeHelper {
      * @param inputFluid real inputs of fluids in machine
      * @return if the real inputs capable to process the recipe
      */
-    private boolean examineRecipe(@NotNull GT_Recipe recipe, FluidStack[] inputFluid, ItemStack[] inputItem) {
+    private static boolean examineRecipe(@NotNull GT_Recipe recipe, FluidStack[] inputFluid, ItemStack[] inputItem) {
         if (recipe.mEnabled) {
             return recipe.isRecipeInputEqual(false, inputFluid, inputItem);
         }
         return false;
     }
 
-    /**
-     * This method will generate a general GT_Recipe out of the assembly specific recipe
-     *
-     * @param tLookupResult the data of the scanned data sticks
-     * @return a GT_Recipe with oredict alt info
-     */
-    @Contract("_ -> new")
-    @NotNull
-    private GT_Recipe buildRecipe(@NotNull GT_AssemblyLineUtils.LookupResult tLookupResult) {
-        GT_Recipe.GT_Recipe_AssemblyLine tRecipe = tLookupResult.getRecipe();
+    private static List<ItemStack[]> mapValueAll(Map<Integer, ItemStack[]> tweakMapR, ItemStack[] tmp) {
+        List<ItemStack[]> all = new ArrayList<>();
+        mapValueRecursively(tweakMapR, tmp, 0, new ItemStack[tmp.length], all);
+        return all;
+    }
 
-        ItemStack[] tInputItemStacks = tRecipe.mInputs.clone();
-        ItemStack[] tOutputItemStacks = new ItemStack[] { tRecipe.mOutput.copy() };
-        FluidStack[] tInputFluidStacks = tRecipe.mFluidInputs.clone();
-        int tDur = tRecipe.mDuration;
-        int tEUt = tRecipe.mDuration;
-
-        return GT_Values.RA.stdBuilder()
-            .itemInputs(tInputItemStacks)
-            .itemOutputs(tOutputItemStacks)
-            .fluidInputs(tInputFluidStacks)
-            .eut(tEUt)
-            .duration(tDur)
-            .build()
-            .orElseGet(this::getDummy);
+    private static void mapValueRecursively(Map<Integer, ItemStack[]> map, ItemStack[] tmp, int index,
+        ItemStack[] current, List<ItemStack[]> all) {
+        if (index == tmp.length) {
+            all.add(current.clone());
+            return;
+        }
+        var alt = map.get(index);
+        if (alt == null || alt.length == 0) {
+            current[index] = tmp[index];
+            mapValueRecursively(map, tmp, index + 1, current, all);
+            return;
+        }
+        for (var replace : alt) {
+            current[index] = replace;
+            mapValueRecursively(map, tmp, index + 1, current, all);
+        }
     }
 
     /**
@@ -220,44 +219,53 @@ public class AssemblyLineRecipeHelper {
             .duration(tRecipe.mDuration);
 
         if (tAlts != null && tAlts.length > 0) {
+            var tweakMap = new HashMap<Integer, ItemStack>();
+            var tweakMapR = new HashMap<Integer, ItemStack[]>();
             for (int i = 0; i < tAlts.length; i++) {
                 if (tAlts[i] != null && tAlts[i].length > 0) {
-                    var cs = Optional.ofNullable(switchCircuit(tAlts[i][0]));
-                    var tmp = i;
-                    cs.ifPresent(
-                        // Circuit wildcard
-                        itemStack -> {
-                            tInputStacks[tmp] = itemStack;
-                            tRecipeList.add(
-                                builder.itemInputs(tInputStacks)
-                                    .fluidInputs(tFluids)
-                                    .itemOutputs(tOutput)
-                                    .build()
-                                    .orElseGet(this::getDummy));
-                        });
-                    cs.orElseGet(
-                        // Other wildcard
-                        () -> {
-                            for (ItemStack wildcard : tAlts[tmp]) {
-                                tInputStacks[tmp] = wildcard;
-                                tRecipeList.add(
-                                    builder.itemInputs(tInputStacks)
-                                        .fluidInputs(tFluids)
-                                        .itemOutputs(tOutput)
-                                        .build()
-                                        .orElseGet(this::getDummy));
-                            }
-                            return null;
-                        });
+                    var tmp = tAlts[i][0];
+                    if (tmp == null) continue;
+                    var opt = Optional.ofNullable(switchCircuit(tmp));
+                    if (opt.isPresent()) {
+                        tweakMap.put(i, opt.get());
+                    } else {
+                        tweakMapR.put(i, tAlts[i]);
+                    }
                 }
             }
+            if (!tweakMap.isEmpty()) tweakMap.forEach((k, v) -> tInputStacks[k] = v);
+            if (tweakMapR.size() == 1) {
+                tweakMapR.forEach((k, v) -> {
+                    var tmp = tInputStacks.clone();
+                    for (var item : v) {
+                        tmp[k] = item;
+                        tRecipeList.add(
+                            builder.itemInputs(tmp)
+                                .itemOutputs(tOutput)
+                                .fluidInputs(tFluids)
+                                .build()
+                                .orElseGet(this::getDummy));
+                    }
+                });
+            } else if (tweakMapR.size() > 1) {
+                var tmp = mapValueAll(tweakMapR, tInputStacks);
+                tmp.forEach(
+                    stacks -> tRecipeList.add(
+                        builder.itemInputs(stacks)
+                            .itemOutputs(tOutput)
+                            .fluidInputs(tFluids)
+                            .build()
+                            .orElseGet(this::getDummy)));
+            }
         }
-        tRecipeList.add(
-            builder.itemInputs(tInputStacks)
-                .fluidInputs(tFluids)
-                .itemOutputs(tOutput)
-                .build()
-                .orElseGet(this::getDummy));
+        if (tRecipeList.isEmpty()) {
+            tRecipeList.add(
+                builder.itemInputs(tInputStacks)
+                    .fluidInputs(tFluids)
+                    .itemOutputs(tOutput)
+                    .build()
+                    .orElseGet(this::getDummy));
+        }
 
         return tRecipeList;
     }

@@ -7,6 +7,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.function.Consumer;
 import java.util.function.Predicate;
 
@@ -54,7 +55,6 @@ import gregtech.api.util.GT_Multiblock_Tooltip_Builder;
 import gregtech.api.util.GT_Utility;
 import gregtech.common.GT_Worldgen_GT_Ore_Layer;
 import gregtech.common.GT_Worldgen_GT_Ore_SmallPieces;
-import gregtech.common.blocks.GT_Block_Casings8;
 
 public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cube<VA_TileEntity_VoidMiner>
     implements IGlobalWirelessEnergy {
@@ -116,11 +116,24 @@ public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cu
             .reduce(Integer::sum)
             .orElse(0);
         this.multiplier = MathHelper.safeInt((long) (b1 * Math.pow(2, b2)), 7);
+
+        AtomicBoolean ext = new AtomicBoolean(false);
+        this.getStoredInputs()
+            .stream()
+            .filter(GT_Utility::isOre)
+            .findFirst()
+            .ifPresent(stack -> {
+                var tmp = GT_Utility.copyAmountUnsafe(this.multiplier, stack);
+                mOutputItems = new ItemStack[] { tmp };
+                ext.set(true);
+            });
+        if (ext.get()) return CheckRecipeResultRegistry.SUCCESSFUL;
         if (this.totalWeight != 0.f) {
-            final ItemStack output = this.getOreItemStack(this.getOreDamage());
+            var output = this.getOreItemStack(this.getOreDamage());
             mOutputItems = new ItemStack[] { output };
+            return CheckRecipeResultRegistry.SUCCESSFUL;
         }
-        return CheckRecipeResultRegistry.SUCCESSFUL;
+        return CheckRecipeResultRegistry.NO_RECIPE;
     }
 
     private void resetState() {
@@ -468,7 +481,7 @@ public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cu
 
     @Override
     protected int sCasingIndex() {
-        return ((GT_Block_Casings8) GregTech_API.sBlockCasings1).getTextureIndex(10);
+        return 10;
     }
 
     @Override
@@ -485,9 +498,7 @@ public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cu
     public ITexture[] getTexture(IGregTechTileEntity baseMetaTileEntity, ForgeDirection sideDirection,
         ForgeDirection facingDirection, int colorIndex, boolean active, boolean redstoneLevel) {
         if (sideDirection == facingDirection) {
-            if (active) return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(sCasingBlock(), sCasingBlockMeta())),
+            if (active) return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(this.sCasingIndex()),
                 TextureFactory.builder()
                     .addIcon(Textures.BlockIcons.OVERLAY_DTPF_ON)
                     .extFacing()
@@ -497,9 +508,7 @@ public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cu
                     .extFacing()
                     .glow()
                     .build() };
-            return new ITexture[] {
-                Textures.BlockIcons
-                    .getCasingTextureForId(GT_Utility.getCasingTextureIndex(sCasingBlock(), sCasingBlockMeta())),
+            return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(this.sCasingIndex()),
                 TextureFactory.builder()
                     .addIcon(Textures.BlockIcons.OVERLAY_DTPF_OFF)
                     .extFacing()
@@ -510,8 +519,7 @@ public class VA_TileEntity_VoidMiner extends VA_MetaTileEntity_MultiBlockBase_Cu
                     .glow()
                     .build() };
         }
-        return new ITexture[] { Textures.BlockIcons
-            .getCasingTextureForId(GT_Utility.getCasingTextureIndex(sCasingBlock(), sCasingBlockMeta())) };
+        return new ITexture[] { Textures.BlockIcons.getCasingTextureForId(this.sCasingIndex()) };
     }
 
     // endregion
