@@ -110,6 +110,15 @@ public class VAElectrolyzeRecipePool implements IRecipePool {
         // endregion
 
         // region 电解杂项矿
+        // 金红石 Rutile
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Rutile.getDust(3))
+            .itemOutputs(Materials.Titanium.getDust(1))
+            .fluidOutputs(Materials.Oxygen.getGas(1000))
+            .noOptimize()
+            .eut(RECIPE_MV)
+            .duration(4 * SECONDS)
+            .addTo(EC);
         // 二氧化锶
         GT_Values.RA.stdBuilder()
             .itemInputs(MISC_MATERIALS.STRONTIUM_OXIDE.getDust(6))
