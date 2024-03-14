@@ -1,8 +1,9 @@
 package com.rhynia.wireless_ext;
 
-import com.rhynia.wireless_ext.proxy.CommonProxy;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import com.rhynia.wireless_ext.proxy.CommonProxy;
 
 import cpw.mods.fml.common.Mod;
 import cpw.mods.fml.common.SidedProxy;

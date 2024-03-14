@@ -23,11 +23,9 @@ public class CommonProxy {
         WirelessExtraLoader.doRegister();// Load Wireless
     }
 
-    public void postInit(FMLPostInitializationEvent event) {
-    }
+    public void postInit(FMLPostInitializationEvent event) {}
 
-    public void completeInit(FMLLoadCompleteEvent event) {
-    }
+    public void completeInit(FMLLoadCompleteEvent event) {}
 
     public void serverStarting(FMLServerStartingEvent event) {
         WirelessExt.LOG.info("Now " + MOD_NAME + " at version " + VERSION + " loaded successfully.");

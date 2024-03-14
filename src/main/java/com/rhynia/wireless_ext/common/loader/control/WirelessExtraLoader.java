@@ -16,8 +16,8 @@ public class WirelessExtraLoader {
             case 7 -> "ZPM";
             case 8 -> "UV";
             case 9 -> "UHV";
-            case 10 -> "UIV";
-            case 11 -> "UEV";
+            case 10 -> "UEV";
+            case 11 -> "UIV";
             case 12 -> "UMV";
             default -> "?";
         };
