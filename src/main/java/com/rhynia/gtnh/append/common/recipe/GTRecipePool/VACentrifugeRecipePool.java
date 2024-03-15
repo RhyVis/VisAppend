@@ -142,6 +142,19 @@ public class VACentrifugeRecipePool implements IRecipePool {
             .eut(RECIPE_HV)
             .duration(8 * SECONDS)
             .addTo(CF);
+        // 离心暗影秘银
+        GT_Values.RA.stdBuilder()
+            .itemInputs(Materials.Ceruclase.getDust(11))
+            .itemOutputs(
+                Materials.Silver.getDust(3),
+                Materials.ShadowIron.getDust(3),
+                Materials.ElectrumFlux.getDust(2),
+                VA_Materials.Astrium.get(OrePrefixes.dust, 1))
+            .outputChances(FullChance, FullChance, 6500, 5000)
+            .noOptimize()
+            .eut(RECIPE_HV)
+            .duration(4 * SECONDS)
+            .addTo(CF);
         // 离心胶木
         GT_Values.RA.stdBuilder()
             .itemInputs(Materials.Vulcanite.getDust(16))
